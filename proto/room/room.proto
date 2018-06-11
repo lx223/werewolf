@@ -5,3 +5,10 @@ package room;
 // option go_package = "generated/room";
 
 message Room {}
+
+service RoomService {
+    rpc CreateRoom(CreateRoomRequest) returns(CreateRoomResponse);
+}
+
+message CreateRoomRequest{}
+message CreateRoomResponse{}

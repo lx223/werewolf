@@ -14,6 +14,12 @@
   version = "v1.1.0"
 
 [[projects]]
+  name = "github.com/spf13/pflag"
+  packages = ["."]
+  revision = "583c0c0531f06d5278b7d917446061adc344b5cd"
+  version = "v1.0.1"
+
+[[projects]]
   branch = "master"
   name = "golang.org/x/net"
   packages = [
@@ -88,6 +94,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "7196021efccfdf9dc8e45127da04a5241dd1112cd6269208b28b0b77a8850d02"
+  inputs-digest = "e6656b7c1c96afe001dcad1a8e0f574a051c77922a14b2613426e8d0a1dc098d"
   solver-name = "gps-cdcl"
   solver-version = 1

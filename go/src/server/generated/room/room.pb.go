@@ -9,12 +9,19 @@ It is generated from these files:
 
 It has these top-level messages:
 	Room
+	CreateRoomRequest
+	CreateRoomResponse
 */
 package room
 
 import proto "github.com/golang/protobuf/proto"
 import fmt "fmt"
 import math "math"
+
+import (
+	context "golang.org/x/net/context"
+	grpc "google.golang.org/grpc"
+)
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
@@ -35,16 +42,110 @@ func (m *Room) String() string            { return proto.CompactTextString(m) }
 func (*Room) ProtoMessage()               {}
 func (*Room) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
 
+type CreateRoomRequest struct {
+}
+
+func (m *CreateRoomRequest) Reset()                    { *m = CreateRoomRequest{} }
+func (m *CreateRoomRequest) String() string            { return proto.CompactTextString(m) }
+func (*CreateRoomRequest) ProtoMessage()               {}
+func (*CreateRoomRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+
+type CreateRoomResponse struct {
+}
+
+func (m *CreateRoomResponse) Reset()                    { *m = CreateRoomResponse{} }
+func (m *CreateRoomResponse) String() string            { return proto.CompactTextString(m) }
+func (*CreateRoomResponse) ProtoMessage()               {}
+func (*CreateRoomResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+
 func init() {
 	proto.RegisterType((*Room)(nil), "room.Room")
+	proto.RegisterType((*CreateRoomRequest)(nil), "room.CreateRoomRequest")
+	proto.RegisterType((*CreateRoomResponse)(nil), "room.CreateRoomResponse")
+}
+
+// Reference imports to suppress errors if they are not otherwise used.
+var _ context.Context
+var _ grpc.ClientConn
+
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the grpc package it is being compiled against.
+const _ = grpc.SupportPackageIsVersion4
+
+// Client API for RoomService service
+
+type RoomServiceClient interface {
+	CreateRoom(ctx context.Context, in *CreateRoomRequest, opts ...grpc.CallOption) (*CreateRoomResponse, error)
+}
+
+type roomServiceClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewRoomServiceClient(cc *grpc.ClientConn) RoomServiceClient {
+	return &roomServiceClient{cc}
+}
+
+func (c *roomServiceClient) CreateRoom(ctx context.Context, in *CreateRoomRequest, opts ...grpc.CallOption) (*CreateRoomResponse, error) {
+	out := new(CreateRoomResponse)
+	err := grpc.Invoke(ctx, "/room.RoomService/CreateRoom", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for RoomService service
+
+type RoomServiceServer interface {
+	CreateRoom(context.Context, *CreateRoomRequest) (*CreateRoomResponse, error)
+}
+
+func RegisterRoomServiceServer(s *grpc.Server, srv RoomServiceServer) {
+	s.RegisterService(&_RoomService_serviceDesc, srv)
+}
+
+func _RoomService_CreateRoom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateRoomRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RoomServiceServer).CreateRoom(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/room.RoomService/CreateRoom",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RoomServiceServer).CreateRoom(ctx, req.(*CreateRoomRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _RoomService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "room.RoomService",
+	HandlerType: (*RoomServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "CreateRoom",
+			Handler:    _RoomService_CreateRoom_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "room/room.proto",
 }
 
 func init() { proto.RegisterFile("room/room.proto", fileDescriptor0) }
 
 var fileDescriptor0 = []byte{
-	// 55 bytes of a gzipped FileDescriptorProto
+	// 116 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x2f, 0xca, 0xcf, 0xcf,
 	0xd5, 0x07, 0x11, 0x7a, 0x05, 0x45, 0xf9, 0x25, 0xf9, 0x42, 0x2c, 0x20, 0xb6, 0x12, 0x1b, 0x17,
-	0x4b, 0x50, 0x7e, 0x7e, 0x6e, 0x12, 0x1b, 0x58, 0xd0, 0x18, 0x10, 0x00, 0x00, 0xff, 0xff, 0xef,
-	0x6a, 0x14, 0x63, 0x27, 0x00, 0x00, 0x00,
+	0x4b, 0x10, 0x88, 0x16, 0xe6, 0x12, 0x74, 0x2e, 0x4a, 0x4d, 0x2c, 0x49, 0x05, 0xf1, 0x82, 0x52,
+	0x0b, 0x4b, 0x53, 0x8b, 0x4b, 0x94, 0x44, 0xb8, 0x84, 0x90, 0x05, 0x8b, 0x0b, 0xf2, 0xf3, 0x8a,
+	0x53, 0x8d, 0xfc, 0xb8, 0xb8, 0x41, 0xfc, 0xe0, 0xd4, 0xa2, 0xb2, 0xcc, 0xe4, 0x54, 0x21, 0x7b,
+	0x2e, 0x2e, 0x84, 0x22, 0x21, 0x71, 0x3d, 0xb0, 0x15, 0x18, 0x66, 0x49, 0x49, 0x60, 0x4a, 0x40,
+	0xcc, 0x4b, 0x62, 0x03, 0xbb, 0xc7, 0x18, 0x10, 0x00, 0x00, 0xff, 0xff, 0xa7, 0x76, 0x5e, 0x95,
+	0xa2, 0x00, 0x00, 0x00,
 }
