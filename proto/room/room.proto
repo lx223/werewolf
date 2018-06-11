@@ -2,13 +2,28 @@ syntax = "proto3";
 
 package room;
 
-// option go_package = "generated/room";
-
 message Room {}
 
 service RoomService {
     rpc CreateRoom(CreateRoomRequest) returns(CreateRoomResponse);
+    rpc JoinRoom(JoinRoomRequest) returns(JoinRoomResponse);
 }
 
-message CreateRoomRequest{}
-message CreateRoomResponse{}
+message CreateRoomRequest {}
+
+message CreateRoomResponse {
+    int32 room_id = 1;
+}
+
+message JoinRoomRequest {
+    int32 room_id = 1;
+
+    // If unset, server will assign a random user id.
+    // If set, server will try to assign the given id to the caller.
+    // If the given id hasn't been used by server, server will return PermissionDenied error.
+    string user_id = 2;
+}
+
+message JoinRoomResponse {
+    string user_id = 1;
+}
