@@ -1,0 +1,758 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		178CDF6E39284DC35A7F4FAD /* Pods_werewolf_assistant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAEED26C1B93C636A5E2923B /* Pods_werewolf_assistant.framework */; };
+		716C4246B49ABAACE9D3C7BE /* Pods_werewolf_assistantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1100137AFE35F690F4B65053 /* Pods_werewolf_assistantTests.framework */; };
+		B7791D0C20CF4E870043F4AC /* room.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7791D0820CF4E860043F4AC /* room.grpc.swift */; };
+		B7791D0D20CF4E870043F4AC /* room.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7791D0920CF4E860043F4AC /* room.pb.swift */; };
+		B7791D0E20CF4E870043F4AC /* role.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7791D0B20CF4E860043F4AC /* role.pb.swift */; };
+		B7EF75A720CF312F00000A67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF75A620CF312F00000A67 /* AppDelegate.swift */; };
+		B7EF75A920CF312F00000A67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF75A820CF312F00000A67 /* ViewController.swift */; };
+		B7EF75AC20CF312F00000A67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7EF75AA20CF312F00000A67 /* Main.storyboard */; };
+		B7EF75AE20CF313100000A67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7EF75AD20CF313100000A67 /* Assets.xcassets */; };
+		B7EF75B120CF313100000A67 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7EF75AF20CF313100000A67 /* LaunchScreen.storyboard */; };
+		B7EF75BC20CF313100000A67 /* werewolf_assistantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF75BB20CF313100000A67 /* werewolf_assistantTests.swift */; };
+		B7EF75C720CF313100000A67 /* werewolf_assistantUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF75C620CF313100000A67 /* werewolf_assistantUITests.swift */; };
+		E27F80A8F0457E876001BEDD /* Pods_werewolf_assistantUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0138A332AF199FBAF4B706C /* Pods_werewolf_assistantUITests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B7EF75B820CF313100000A67 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B7EF759B20CF312F00000A67 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B7EF75A220CF312F00000A67;
+			remoteInfo = "werewolf-assistant";
+		};
+		B7EF75C320CF313100000A67 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B7EF759B20CF312F00000A67 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B7EF75A220CF312F00000A67;
+			remoteInfo = "werewolf-assistant";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1100137AFE35F690F4B65053 /* Pods_werewolf_assistantTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_werewolf_assistantTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1505852BA9DFA8770A2F102D /* Pods-werewolf-assistant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-werewolf-assistant.release.xcconfig"; path = "Pods/Target Support Files/Pods-werewolf-assistant/Pods-werewolf-assistant.release.xcconfig"; sourceTree = "<group>"; };
+		313D03B3719521B984BBB8C3 /* Pods-werewolf-assistantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-werewolf-assistantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-werewolf-assistantTests/Pods-werewolf-assistantTests.release.xcconfig"; sourceTree = "<group>"; };
+		6631210C884C1649D06C7140 /* Pods-werewolf-assistant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-werewolf-assistant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-werewolf-assistant/Pods-werewolf-assistant.debug.xcconfig"; sourceTree = "<group>"; };
+		82F70EAAF86318F8FA5CC817 /* Pods-werewolf-assistantUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-werewolf-assistantUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-werewolf-assistantUITests/Pods-werewolf-assistantUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B7791D0820CF4E860043F4AC /* room.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = room.grpc.swift; sourceTree = "<group>"; };
+		B7791D0920CF4E860043F4AC /* room.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = room.pb.swift; sourceTree = "<group>"; };
+		B7791D0B20CF4E860043F4AC /* role.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = role.pb.swift; sourceTree = "<group>"; };
+		B7EF75A320CF312F00000A67 /* werewolf-assistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "werewolf-assistant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7EF75A620CF312F00000A67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B7EF75A820CF312F00000A67 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B7EF75AB20CF312F00000A67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B7EF75AD20CF313100000A67 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B7EF75B020CF313100000A67 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B7EF75B220CF313100000A67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B7EF75B720CF313100000A67 /* werewolf-assistantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "werewolf-assistantTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7EF75BB20CF313100000A67 /* werewolf_assistantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = werewolf_assistantTests.swift; sourceTree = "<group>"; };
+		B7EF75BD20CF313100000A67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B7EF75C220CF313100000A67 /* werewolf-assistantUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "werewolf-assistantUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7EF75C620CF313100000A67 /* werewolf_assistantUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = werewolf_assistantUITests.swift; sourceTree = "<group>"; };
+		B7EF75C820CF313100000A67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BAEED26C1B93C636A5E2923B /* Pods_werewolf_assistant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_werewolf_assistant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0138A332AF199FBAF4B706C /* Pods_werewolf_assistantUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_werewolf_assistantUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD49474F024D8824BF7CD062 /* Pods-werewolf-assistantTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-werewolf-assistantTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-werewolf-assistantTests/Pods-werewolf-assistantTests.debug.xcconfig"; sourceTree = "<group>"; };
+		ED61FD3199EA071BCE4B9F54 /* Pods-werewolf-assistantUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-werewolf-assistantUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-werewolf-assistantUITests/Pods-werewolf-assistantUITests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B7EF75A020CF312F00000A67 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				178CDF6E39284DC35A7F4FAD /* Pods_werewolf_assistant.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7EF75B420CF313100000A67 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				716C4246B49ABAACE9D3C7BE /* Pods_werewolf_assistantTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7EF75BF20CF313100000A67 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E27F80A8F0457E876001BEDD /* Pods_werewolf_assistantUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		72D18BB61E9FB3A857BB83F6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6631210C884C1649D06C7140 /* Pods-werewolf-assistant.debug.xcconfig */,
+				1505852BA9DFA8770A2F102D /* Pods-werewolf-assistant.release.xcconfig */,
+				CD49474F024D8824BF7CD062 /* Pods-werewolf-assistantTests.debug.xcconfig */,
+				313D03B3719521B984BBB8C3 /* Pods-werewolf-assistantTests.release.xcconfig */,
+				82F70EAAF86318F8FA5CC817 /* Pods-werewolf-assistantUITests.debug.xcconfig */,
+				ED61FD3199EA071BCE4B9F54 /* Pods-werewolf-assistantUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B7791D0620CF4E860043F4AC /* generated */ = {
+			isa = PBXGroup;
+			children = (
+				B7791D0720CF4E860043F4AC /* room */,
+				B7791D0A20CF4E860043F4AC /* werewolf */,
+			);
+			path = generated;
+			sourceTree = "<group>";
+		};
+		B7791D0720CF4E860043F4AC /* room */ = {
+			isa = PBXGroup;
+			children = (
+				B7791D0820CF4E860043F4AC /* room.grpc.swift */,
+				B7791D0920CF4E860043F4AC /* room.pb.swift */,
+			);
+			path = room;
+			sourceTree = "<group>";
+		};
+		B7791D0A20CF4E860043F4AC /* werewolf */ = {
+			isa = PBXGroup;
+			children = (
+				B7791D0B20CF4E860043F4AC /* role.pb.swift */,
+			);
+			path = werewolf;
+			sourceTree = "<group>";
+		};
+		B7EF759A20CF312F00000A67 = {
+			isa = PBXGroup;
+			children = (
+				B7EF75A520CF312F00000A67 /* werewolf-assistant */,
+				B7EF75BA20CF313100000A67 /* werewolf-assistantTests */,
+				B7EF75C520CF313100000A67 /* werewolf-assistantUITests */,
+				B7EF75A420CF312F00000A67 /* Products */,
+				72D18BB61E9FB3A857BB83F6 /* Pods */,
+				BD35273DD804D88B7AB33C2F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		B7EF75A420CF312F00000A67 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B7EF75A320CF312F00000A67 /* werewolf-assistant.app */,
+				B7EF75B720CF313100000A67 /* werewolf-assistantTests.xctest */,
+				B7EF75C220CF313100000A67 /* werewolf-assistantUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B7EF75A520CF312F00000A67 /* werewolf-assistant */ = {
+			isa = PBXGroup;
+			children = (
+				B7791D0620CF4E860043F4AC /* generated */,
+				B7EF75A620CF312F00000A67 /* AppDelegate.swift */,
+				B7EF75A820CF312F00000A67 /* ViewController.swift */,
+				B7EF75AA20CF312F00000A67 /* Main.storyboard */,
+				B7EF75AD20CF313100000A67 /* Assets.xcassets */,
+				B7EF75AF20CF313100000A67 /* LaunchScreen.storyboard */,
+				B7EF75B220CF313100000A67 /* Info.plist */,
+			);
+			path = "werewolf-assistant";
+			sourceTree = "<group>";
+		};
+		B7EF75BA20CF313100000A67 /* werewolf-assistantTests */ = {
+			isa = PBXGroup;
+			children = (
+				B7EF75BB20CF313100000A67 /* werewolf_assistantTests.swift */,
+				B7EF75BD20CF313100000A67 /* Info.plist */,
+			);
+			path = "werewolf-assistantTests";
+			sourceTree = "<group>";
+		};
+		B7EF75C520CF313100000A67 /* werewolf-assistantUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B7EF75C620CF313100000A67 /* werewolf_assistantUITests.swift */,
+				B7EF75C820CF313100000A67 /* Info.plist */,
+			);
+			path = "werewolf-assistantUITests";
+			sourceTree = "<group>";
+		};
+		BD35273DD804D88B7AB33C2F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BAEED26C1B93C636A5E2923B /* Pods_werewolf_assistant.framework */,
+				1100137AFE35F690F4B65053 /* Pods_werewolf_assistantTests.framework */,
+				C0138A332AF199FBAF4B706C /* Pods_werewolf_assistantUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B7EF75A220CF312F00000A67 /* werewolf-assistant */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B7EF75CB20CF313100000A67 /* Build configuration list for PBXNativeTarget "werewolf-assistant" */;
+			buildPhases = (
+				ECE1F3BA847B08CB9DF2311E /* [CP] Check Pods Manifest.lock */,
+				B7EF759F20CF312F00000A67 /* Sources */,
+				B7EF75A020CF312F00000A67 /* Frameworks */,
+				B7EF75A120CF312F00000A67 /* Resources */,
+				480594C041846F0C042F277C /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "werewolf-assistant";
+			productName = "werewolf-assistant";
+			productReference = B7EF75A320CF312F00000A67 /* werewolf-assistant.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B7EF75B620CF313100000A67 /* werewolf-assistantTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B7EF75CE20CF313100000A67 /* Build configuration list for PBXNativeTarget "werewolf-assistantTests" */;
+			buildPhases = (
+				C42138E3FC1791716B107994 /* [CP] Check Pods Manifest.lock */,
+				B7EF75B320CF313100000A67 /* Sources */,
+				B7EF75B420CF313100000A67 /* Frameworks */,
+				B7EF75B520CF313100000A67 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B7EF75B920CF313100000A67 /* PBXTargetDependency */,
+			);
+			name = "werewolf-assistantTests";
+			productName = "werewolf-assistantTests";
+			productReference = B7EF75B720CF313100000A67 /* werewolf-assistantTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B7EF75C120CF313100000A67 /* werewolf-assistantUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B7EF75D120CF313100000A67 /* Build configuration list for PBXNativeTarget "werewolf-assistantUITests" */;
+			buildPhases = (
+				EADCFB96A972C0DD79E5D48D /* [CP] Check Pods Manifest.lock */,
+				B7EF75BE20CF313100000A67 /* Sources */,
+				B7EF75BF20CF313100000A67 /* Frameworks */,
+				B7EF75C020CF313100000A67 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B7EF75C420CF313100000A67 /* PBXTargetDependency */,
+			);
+			name = "werewolf-assistantUITests";
+			productName = "werewolf-assistantUITests";
+			productReference = B7EF75C220CF313100000A67 /* werewolf-assistantUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B7EF759B20CF312F00000A67 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "Lan Xiao";
+				TargetAttributes = {
+					B7EF75A220CF312F00000A67 = {
+						CreatedOnToolsVersion = 9.3.1;
+					};
+					B7EF75B620CF313100000A67 = {
+						CreatedOnToolsVersion = 9.3.1;
+						TestTargetID = B7EF75A220CF312F00000A67;
+					};
+					B7EF75C120CF313100000A67 = {
+						CreatedOnToolsVersion = 9.3.1;
+						TestTargetID = B7EF75A220CF312F00000A67;
+					};
+				};
+			};
+			buildConfigurationList = B7EF759E20CF312F00000A67 /* Build configuration list for PBXProject "werewolf-assistant" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B7EF759A20CF312F00000A67;
+			productRefGroup = B7EF75A420CF312F00000A67 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B7EF75A220CF312F00000A67 /* werewolf-assistant */,
+				B7EF75B620CF313100000A67 /* werewolf-assistantTests */,
+				B7EF75C120CF313100000A67 /* werewolf-assistantUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B7EF75A120CF312F00000A67 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7EF75B120CF313100000A67 /* LaunchScreen.storyboard in Resources */,
+				B7EF75AE20CF313100000A67 /* Assets.xcassets in Resources */,
+				B7EF75AC20CF312F00000A67 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7EF75B520CF313100000A67 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7EF75C020CF313100000A67 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		480594C041846F0C042F277C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-werewolf-assistant/Pods-werewolf-assistant-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftGRPC/SwiftGRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-werewolf-assistant/Pods-werewolf-assistant-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C42138E3FC1791716B107994 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-werewolf-assistantTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EADCFB96A972C0DD79E5D48D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-werewolf-assistantUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ECE1F3BA847B08CB9DF2311E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-werewolf-assistant-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B7EF759F20CF312F00000A67 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7791D0C20CF4E870043F4AC /* room.grpc.swift in Sources */,
+				B7791D0D20CF4E870043F4AC /* room.pb.swift in Sources */,
+				B7791D0E20CF4E870043F4AC /* role.pb.swift in Sources */,
+				B7EF75A920CF312F00000A67 /* ViewController.swift in Sources */,
+				B7EF75A720CF312F00000A67 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7EF75B320CF313100000A67 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7EF75BC20CF313100000A67 /* werewolf_assistantTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B7EF75BE20CF313100000A67 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7EF75C720CF313100000A67 /* werewolf_assistantUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B7EF75B920CF313100000A67 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B7EF75A220CF312F00000A67 /* werewolf-assistant */;
+			targetProxy = B7EF75B820CF313100000A67 /* PBXContainerItemProxy */;
+		};
+		B7EF75C420CF313100000A67 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B7EF75A220CF312F00000A67 /* werewolf-assistant */;
+			targetProxy = B7EF75C320CF313100000A67 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B7EF75AA20CF312F00000A67 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B7EF75AB20CF312F00000A67 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B7EF75AF20CF313100000A67 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B7EF75B020CF313100000A67 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B7EF75C920CF313100000A67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B7EF75CA20CF313100000A67 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B7EF75CC20CF313100000A67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6631210C884C1649D06C7140 /* Pods-werewolf-assistant.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = EV27867DV2;
+				INFOPLIST_FILE = "werewolf-assistant/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "lan.xiao.werewolf-assistant";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		B7EF75CD20CF313100000A67 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1505852BA9DFA8770A2F102D /* Pods-werewolf-assistant.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = EV27867DV2;
+				INFOPLIST_FILE = "werewolf-assistant/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "lan.xiao.werewolf-assistant";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		B7EF75CF20CF313100000A67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CD49474F024D8824BF7CD062 /* Pods-werewolf-assistantTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = EV27867DV2;
+				INFOPLIST_FILE = "werewolf-assistantTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "lan.xiao.werewolf-assistantTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/werewolf-assistant.app/werewolf-assistant";
+			};
+			name = Debug;
+		};
+		B7EF75D020CF313100000A67 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 313D03B3719521B984BBB8C3 /* Pods-werewolf-assistantTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = EV27867DV2;
+				INFOPLIST_FILE = "werewolf-assistantTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "lan.xiao.werewolf-assistantTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/werewolf-assistant.app/werewolf-assistant";
+			};
+			name = Release;
+		};
+		B7EF75D220CF313100000A67 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82F70EAAF86318F8FA5CC817 /* Pods-werewolf-assistantUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = EV27867DV2;
+				INFOPLIST_FILE = "werewolf-assistantUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "lan.xiao.werewolf-assistantUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "werewolf-assistant";
+			};
+			name = Debug;
+		};
+		B7EF75D320CF313100000A67 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED61FD3199EA071BCE4B9F54 /* Pods-werewolf-assistantUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = EV27867DV2;
+				INFOPLIST_FILE = "werewolf-assistantUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "lan.xiao.werewolf-assistantUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "werewolf-assistant";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B7EF759E20CF312F00000A67 /* Build configuration list for PBXProject "werewolf-assistant" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B7EF75C920CF313100000A67 /* Debug */,
+				B7EF75CA20CF313100000A67 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B7EF75CB20CF313100000A67 /* Build configuration list for PBXNativeTarget "werewolf-assistant" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B7EF75CC20CF313100000A67 /* Debug */,
+				B7EF75CD20CF313100000A67 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B7EF75CE20CF313100000A67 /* Build configuration list for PBXNativeTarget "werewolf-assistantTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B7EF75CF20CF313100000A67 /* Debug */,
+				B7EF75D020CF313100000A67 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B7EF75D120CF313100000A67 /* Build configuration list for PBXNativeTarget "werewolf-assistantUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B7EF75D220CF313100000A67 /* Debug */,
+				B7EF75D320CF313100000A67 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B7EF759B20CF312F00000A67 /* Project object */;
+}
