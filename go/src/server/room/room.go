@@ -18,3 +18,7 @@ func NewRoomService() *RoomService {
 func (s *RoomService) CreateRoom(ctx context.Context, req *pb_room.CreateRoomRequest) (*pb_room.CreateRoomResponse, error) {
 	return nil, status.New(codes.Unimplemented, "not implemented").Err()
 }
+
+func (s *RoomService) JoinRoom(ctx context.Context, req *pb_room.JoinRoomRequest) (*pb_room.JoinRoomResponse, error) {
+	return nil, status.New(codes.Unimplemented, "not implemented").Err()
+}
