@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package werewolf;
+// option go_package = "generated/werewolf";
+
+enum Role {
+    UNKNOWN = 0;
+    VILLAGER = 1;
+    WEREWOLF = 2;
+    WITCH = 3;
+    SEER = 4;
+    HUNTER = 5;
+    BLANK = 6;
+}
