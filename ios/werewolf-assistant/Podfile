@@ -7,7 +7,7 @@ target 'werewolf-assistant' do
 
   # Pods for werewolf-assistant
   pod 'SwiftProtobuf', '~> 1.0.3'
-  pod 'SwiftGRPC', '~> 0.4.1'
+  pod 'SwiftGRPC', '~> 0.4.3'
 
   target 'werewolf-assistantTests' do
     inherit! :search_paths

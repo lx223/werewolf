@@ -15,5 +15,5 @@ echo "Finished generating Go files"
 
 # Code-gen Swift files
 rm -rf $SWIFT_OUT/*
-protoc -I$PROTO_ROOT --swift_out=$SWIFT_OUT --swiftgrpc_out=TestStubs=true:$SWIFT_OUT ${PROTO_ROOT}/**/*.proto
+protoc -I$PROTO_ROOT --swift_out=$SWIFT_OUT --swiftgrpc_out=Server=false:$SWIFT_OUT ${PROTO_ROOT}/**/*.proto
 echo "Finished generating Swift files"

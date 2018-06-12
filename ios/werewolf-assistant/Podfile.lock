@@ -25,7 +25,7 @@ PODS:
   - SwiftProtobuf (1.0.3)
 
 DEPENDENCIES:
-  - SwiftGRPC (~> 0.4.1)
+  - SwiftGRPC (~> 0.4.3)
   - SwiftProtobuf (~> 1.0.3)
 
 SPEC REPOS:
@@ -43,6 +43,6 @@ SPEC CHECKSUMS:
   SwiftGRPC: e582ede5791867075513a3757faa41be215b7e5a
   SwiftProtobuf: 5ccc0e4054e37c75800e5744acb2aa80bb72b39c
 
-PODFILE CHECKSUM: 18917d71c82be6d5d323f149f7addd948fbdd274
+PODFILE CHECKSUM: 8c4815230db19f77a3db57fcbacda86d63ef9d86
 
 COCOAPODS: 1.5.3
