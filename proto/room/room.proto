@@ -2,7 +2,9 @@ syntax = "proto3";
 
 package room;
 
-message Room {}
+message Room {
+    int32 id = 1;
+}
 
 service RoomService {
     rpc CreateRoom(CreateRoomRequest) returns(CreateRoomResponse);

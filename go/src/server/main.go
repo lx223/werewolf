@@ -5,7 +5,6 @@ import (
 	"log"
 	"net"
 	pb_room "server/generated/room"
-	"server/generated/werewolf"
 	"server/room"
 
 	"google.golang.org/grpc"
@@ -24,11 +23,6 @@ func init() {
 }
 
 func main() {
-	role := werewolf.Role_WEREWOLF
-	fmt.Println(role.String())
-
-	fmt.Println(port)
-
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
 	if err != nil {
 		log.Fatalf("failed to start on port %d", port)
