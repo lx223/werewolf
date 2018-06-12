@@ -5,6 +5,7 @@ REPO_BASE=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 PROTO_ROOT="${REPO_BASE}/proto"
 GO_OUT="${REPO_BASE}/go/src/server/generated"
 SWIFT_OUT="${REPO_BASE}/ios/werewolf-assistant/werewolf-assistant/generated"
+JAVA_PROTO_DIR="${REPO_BASE}/android/app/src/main/proto"
 
 # Code-gen Go files
 rm -rf $GO_OUT/*
@@ -17,3 +18,8 @@ echo "Finished generating Go files"
 rm -rf $SWIFT_OUT/*
 protoc -I$PROTO_ROOT --swift_out=$SWIFT_OUT --swiftgrpc_out=Server=false:$SWIFT_OUT ${PROTO_ROOT}/**/*.proto
 echo "Finished generating Swift files"
+
+# Copy *.proto to Android project
+rm -rf $JAVA_PROTO_DIR
+cp -R $PROTO_ROOT $JAVA_PROTO_DIR
+echo "Finished coping proto to Android project"
