@@ -26,6 +26,22 @@ struct Room_Room {
 
   var id: Int32 = 0
 
+  var users: [Room_User] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Room_User {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var id: String = String()
+
+  var imgURL: String = String()
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -90,12 +106,14 @@ extension Room_Room: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementation
   static let protoMessageName: String = _protobuf_package + ".Room"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
+    2: .same(proto: "users"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularInt32Field(value: &self.id)
+      case 2: try decoder.decodeRepeatedMessageField(value: &self.users)
       default: break
       }
     }
@@ -105,11 +123,50 @@ extension Room_Room: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementation
     if self.id != 0 {
       try visitor.visitSingularInt32Field(value: self.id, fieldNumber: 1)
     }
+    if !self.users.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.users, fieldNumber: 2)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   func _protobuf_generated_isEqualTo(other: Room_Room) -> Bool {
     if self.id != other.id {return false}
+    if self.users != other.users {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Room_User: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".User"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "id"),
+    2: .standard(proto: "img_url"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.id)
+      case 2: try decoder.decodeSingularStringField(value: &self.imgURL)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
+    }
+    if !self.imgURL.isEmpty {
+      try visitor.visitSingularStringField(value: self.imgURL, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  func _protobuf_generated_isEqualTo(other: Room_User) -> Bool {
+    if self.id != other.id {return false}
+    if self.imgURL != other.imgURL {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }

@@ -12,6 +12,8 @@ import SwiftGRPC
 class ViewController: UIViewController {
 
     private var roomSrvClient: Room_RoomServiceService = Room_RoomServiceServiceClient(address:"localhost:8080", secure: false, arguments: [])
+    private var roomId: Int32 = 0
+    private var userId: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +28,8 @@ class ViewController: UIViewController {
     @IBAction func onCreateRoomButtonPressed(_ sender: UIButton) {
         do {
             let createRoomResponse = try roomSrvClient.createRoom(Room_CreateRoomRequest())
+
+            self.roomId = createRoomResponse.roomID
             print(createRoomResponse.roomID)
         } catch RPCError.callError(let callResult) {
             print(callResult)
@@ -35,6 +39,19 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onJoinRoomButtonPressed(_ sender: UIButton) {
+        do {
+            var joinRoomRequest = Room_JoinRoomRequest()
+            joinRoomRequest.roomID = self.roomId
+            joinRoomRequest.userID = self.userId
+            let joinRoomResponse = try roomSrvClient.joinRoom(joinRoomRequest)
+
+            userId = joinRoomResponse.userID
+            print(joinRoomResponse.userID)
+        } catch RPCError.callError(let callResult) {
+            print(callResult)
+        } catch {
+            print("issue")
+        }
     }
 
 

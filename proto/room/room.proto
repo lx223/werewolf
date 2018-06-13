@@ -4,6 +4,12 @@ package room;
 
 message Room {
     int32 id = 1;
+    repeated User users = 2;
+}
+
+message User {
+    string id = 1;
+    string img_url = 2;
 }
 
 service RoomService {

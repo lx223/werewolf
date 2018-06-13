@@ -5,9 +5,10 @@ import (
 	"log"
 	"net"
 	pb_room "server/generated/room"
-	"server/room"
 
 	"google.golang.org/grpc"
+
+	"server/srv"
 
 	flag "github.com/spf13/pflag"
 )
@@ -37,6 +38,6 @@ func main() {
 }
 
 func registerServices(s *grpc.Server) {
-	roomSrv := room.NewRoomService()
+	roomSrv := srv.NewRoomService()
 	pb_room.RegisterRoomServiceServer(s, roomSrv)
 }
