@@ -1,0 +1,122 @@
+syntax = "proto3";
+
+package werewolf;
+option java_package="jiang.sichu.werewolf.proto";
+
+service GameService {
+
+    // Host only
+    rpc CreateAndJoinRoom(CreateAndJoinRoomRequest) returns(CreateAndJoinRoomResponse);
+    rpc UpdateGameConfig(UpdateGameConfigRequest) returns(UpdateGameConfigResponse);
+    rpc ReassignRoles(ReassignRolesRequest) returns(ReassignRolesResponse);
+    rpc StartGame(StartGameRequest) returns(StartGameResponse);
+    rpc GetFirstDayResult(GetFirstDayResultRequest) returns(GetFirstDayResultResponse);
+
+    // All players
+    rpc JoinRoom(JoinRoomRequest) returns(JoinRoomResponse);
+    rpc GetRole(GetRoleRequest) returns(GetRoleResponse);
+    rpc GetGameState(GetGameStateRequest) returns(GetGameStateResponse);
+}
+
+message CreateAndJoinRoomRequest {
+    User user = 1;
+}
+
+message CreateAndJoinRoomResponse {
+    int32 room_id = 1;
+}
+
+message UpdateGameConfigRequest {
+    string user_id = 1;
+    repeated Role roles = 2;
+    bool canWitchSaveSelf = 3;
+}
+
+message UpdateGameConfigResponse {}
+
+message ReassignRolesRequest {
+    string user_id = 1;
+}
+
+message ReassignRolesResponse {}
+
+message StartGameRequest {
+    string user_id = 1;
+}
+
+message StartGameResponse {}
+
+message GetGameStateRequest {
+    string user_id = 1;
+}
+
+message GetGameStateResponse {
+    GameState game_state = 1;
+}
+
+message GetFirstDayResultRequest {
+    string user_id = 1;
+}
+
+message GetFirstDayResultResponse {
+    repeated int32 dead_player_numbers = 1;
+}
+
+message JoinRoomRequest {
+    User user = 1;
+    int32 room_id = 2;
+}
+
+message JoinRoomResponse {}
+
+message GetRoleRequest {
+    string user_id = 1;
+}
+
+message GetRoleResponse {
+    Role role = 1;
+}
+
+message Room {
+    int32 id = 1;
+    repeated User users = 2;
+    repeated Seat seats = 3;
+
+    message Seat {
+        int32 number = 1;
+        string user_id = 2;
+    }
+}
+
+message User {
+    string user_id = 1;
+    string nickname = 2;
+    string img_url = 3;
+}
+
+enum Role {
+    ROLE_UNKNOWN = 0;
+    VILLAGER = 1;
+    SEER = 2;
+    WITCH = 3;
+    HUNTER = 4;
+    IDIOT = 5;
+    GUARDIAN = 6;
+    WEREWOLF = 7;
+    WHITE_WEREWOLF = 8;
+    ORPHAN = 9;
+    HALF_BLOOD = 10;
+}
+
+enum GameState {
+    GAME_STATE_UNKNOWN = 0;
+    DARKNESS_FALLS = 1;
+    ORPHAN_AWAKE = 2;
+    HALF_BLOOD_AWAKE = 3;
+    GUARDIAN_AWAKE = 4;
+    WEREWOLF_AWAKE = 5;
+    WITCH_AWAKE = 6;
+    SEER_AWAKE = 7;
+    HUNTER_AWAKE = 8;
+    SHERIFF_ELECTION = 9;
+}

@@ -2,7 +2,7 @@ package srv
 
 import (
 	"math/rand"
-	pb_room "server/generated/room"
+	pb_room "server/generated"
 	"server/util"
 
 	"time"
