@@ -90,7 +90,7 @@ message Room {
 }
 
 message User {
-    string user_id = 1;
+    string id = 1;
     string nickname = 2;
     string img_url = 3;
 }

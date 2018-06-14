@@ -353,7 +353,7 @@ struct Werewolf_User {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var userID: String = String()
+  var id: String = String()
 
   var nickname: String = String()
 
@@ -926,7 +926,7 @@ extension Werewolf_Room.Seat: SwiftProtobuf.Message, SwiftProtobuf._MessageImple
 extension Werewolf_User: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".User"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "user_id"),
+    1: .same(proto: "id"),
     2: .same(proto: "nickname"),
     3: .standard(proto: "img_url"),
   ]
@@ -934,7 +934,7 @@ extension Werewolf_User: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.userID)
+      case 1: try decoder.decodeSingularStringField(value: &self.id)
       case 2: try decoder.decodeSingularStringField(value: &self.nickname)
       case 3: try decoder.decodeSingularStringField(value: &self.imgURL)
       default: break
@@ -943,8 +943,8 @@ extension Werewolf_User: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.userID.isEmpty {
-      try visitor.visitSingularStringField(value: self.userID, fieldNumber: 1)
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
     }
     if !self.nickname.isEmpty {
       try visitor.visitSingularStringField(value: self.nickname, fieldNumber: 2)
@@ -956,7 +956,7 @@ extension Werewolf_User: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
   }
 
   func _protobuf_generated_isEqualTo(other: Werewolf_User) -> Bool {
-    if self.userID != other.userID {return false}
+    if self.id != other.id {return false}
     if self.nickname != other.nickname {return false}
     if self.imgURL != other.imgURL {return false}
     if unknownFields != other.unknownFields {return false}
