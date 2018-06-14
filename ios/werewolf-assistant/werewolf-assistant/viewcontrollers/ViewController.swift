@@ -11,7 +11,7 @@ import SwiftGRPC
 
 class ViewController: UIViewController {
 
-    private var roomSrvClient: Room_RoomServiceService = Room_RoomServiceServiceClient(address:"localhost:8080", secure: false, arguments: [])
+    private var roomSrvClient: Werewolf_GameServiceService  = Werewolf_GameServiceServiceClient(address:"localhost:8080", secure: false, arguments: [])
     private var roomId: Int32 = 0
     private var userId: String = ""
 
@@ -26,7 +26,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onCreateRoomButtonPressed(_ sender: UIButton) {
-        _ = try? roomSrvClient.createRoom(Room_CreateRoomRequest()){ createRoomResponse, callResult in
+        _ = try? roomSrvClient.createAndJoinRoom(Werewolf_CreateAndJoinRoomRequest()){ createRoomResponse, callResult in
             guard let roomID = createRoomResponse?.roomID else {
                 print(callResult)
                 return
@@ -50,7 +50,7 @@ class ViewController: UIViewController {
                 return
             }
 
-            var joinRoomRequest = Room_JoinRoomRequest()
+            var joinRoomRequest = Werewolf_JoinRoomRequest()
             joinRoomRequest.roomID = roomId
             _ = try? self.roomSrvClient.joinRoom(joinRoomRequest) { createRoomResponse, callResult in
                 if let userID = createRoomResponse?.userID {

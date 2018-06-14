@@ -1,7 +1,6 @@
 syntax = "proto3";
 
 package werewolf;
-// option go_package = "werewolf";
 option java_package="jiang.sichu.werewolf.proto";
 
 service GameService {
@@ -19,12 +18,11 @@ service GameService {
     rpc GetGameState(GetGameStateRequest) returns(GetGameStateResponse);
 }
 
-message CreateAndJoinRoomRequest {
-    User user = 1;
-}
+message CreateAndJoinRoomRequest {}
 
 message CreateAndJoinRoomResponse {
     int32 room_id = 1;
+    string user_id = 2;
 }
 
 message UpdateGameConfigRequest {

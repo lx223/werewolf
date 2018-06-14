@@ -9,13 +9,12 @@
 /* Begin PBXBuildFile section */
 		178CDF6E39284DC35A7F4FAD /* Pods_werewolf_assistant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAEED26C1B93C636A5E2923B /* Pods_werewolf_assistant.framework */; };
 		716C4246B49ABAACE9D3C7BE /* Pods_werewolf_assistantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1100137AFE35F690F4B65053 /* Pods_werewolf_assistantTests.framework */; };
-		B7791D0C20CF4E870043F4AC /* room.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7791D0820CF4E860043F4AC /* room.grpc.swift */; };
-		B7791D0D20CF4E870043F4AC /* room.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7791D0920CF4E860043F4AC /* room.pb.swift */; };
-		B7791D0E20CF4E870043F4AC /* role.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7791D0B20CF4E860043F4AC /* role.pb.swift */; };
 		B793EA1220D1D98000F319AD /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA1020D1D98000F319AD /* RoomViewController.swift */; };
 		B793EA1320D1D98000F319AD /* RoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B793EA1120D1D98000F319AD /* RoomViewController.xib */; };
 		B793EA1620D1E67B00F319AD /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA1420D1E67B00F319AD /* ConfigurationViewController.swift */; };
 		B793EA1720D1E67B00F319AD /* ConfigurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B793EA1520D1E67B00F319AD /* ConfigurationViewController.xib */; };
+		B793EA1C20D328B400F319AD /* werewolf.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA1A20D328B400F319AD /* werewolf.grpc.swift */; };
+		B793EA1D20D328B400F319AD /* werewolf.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA1B20D328B400F319AD /* werewolf.pb.swift */; };
 		B7EF75A720CF312F00000A67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF75A620CF312F00000A67 /* AppDelegate.swift */; };
 		B7EF75A920CF312F00000A67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF75A820CF312F00000A67 /* ViewController.swift */; };
 		B7EF75AC20CF312F00000A67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7EF75AA20CF312F00000A67 /* Main.storyboard */; };
@@ -49,13 +48,12 @@
 		313D03B3719521B984BBB8C3 /* Pods-werewolf-assistantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-werewolf-assistantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-werewolf-assistantTests/Pods-werewolf-assistantTests.release.xcconfig"; sourceTree = "<group>"; };
 		6631210C884C1649D06C7140 /* Pods-werewolf-assistant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-werewolf-assistant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-werewolf-assistant/Pods-werewolf-assistant.debug.xcconfig"; sourceTree = "<group>"; };
 		82F70EAAF86318F8FA5CC817 /* Pods-werewolf-assistantUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-werewolf-assistantUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-werewolf-assistantUITests/Pods-werewolf-assistantUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		B7791D0820CF4E860043F4AC /* room.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = room.grpc.swift; sourceTree = "<group>"; };
-		B7791D0920CF4E860043F4AC /* room.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = room.pb.swift; sourceTree = "<group>"; };
-		B7791D0B20CF4E860043F4AC /* role.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = role.pb.swift; sourceTree = "<group>"; };
 		B793EA1020D1D98000F319AD /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
 		B793EA1120D1D98000F319AD /* RoomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomViewController.xib; sourceTree = "<group>"; };
 		B793EA1420D1E67B00F319AD /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 		B793EA1520D1E67B00F319AD /* ConfigurationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigurationViewController.xib; sourceTree = "<group>"; };
+		B793EA1A20D328B400F319AD /* werewolf.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = werewolf.grpc.swift; sourceTree = "<group>"; };
+		B793EA1B20D328B400F319AD /* werewolf.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = werewolf.pb.swift; sourceTree = "<group>"; };
 		B7EF75A320CF312F00000A67 /* werewolf-assistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "werewolf-assistant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7EF75A620CF312F00000A67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7EF75A820CF312F00000A67 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -119,27 +117,10 @@
 		B7791D0620CF4E860043F4AC /* generated */ = {
 			isa = PBXGroup;
 			children = (
-				B7791D0720CF4E860043F4AC /* room */,
-				B7791D0A20CF4E860043F4AC /* werewolf */,
+				B793EA1A20D328B400F319AD /* werewolf.grpc.swift */,
+				B793EA1B20D328B400F319AD /* werewolf.pb.swift */,
 			);
 			path = generated;
-			sourceTree = "<group>";
-		};
-		B7791D0720CF4E860043F4AC /* room */ = {
-			isa = PBXGroup;
-			children = (
-				B7791D0820CF4E860043F4AC /* room.grpc.swift */,
-				B7791D0920CF4E860043F4AC /* room.pb.swift */,
-			);
-			path = room;
-			sourceTree = "<group>";
-		};
-		B7791D0A20CF4E860043F4AC /* werewolf */ = {
-			isa = PBXGroup;
-			children = (
-				B7791D0B20CF4E860043F4AC /* role.pb.swift */,
-			);
-			path = werewolf;
 			sourceTree = "<group>";
 		};
 		B793EA0F20D1D91200F319AD /* viewcontrollers */ = {
@@ -438,13 +419,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7791D0C20CF4E870043F4AC /* room.grpc.swift in Sources */,
-				B7791D0D20CF4E870043F4AC /* room.pb.swift in Sources */,
-				B7791D0E20CF4E870043F4AC /* role.pb.swift in Sources */,
 				B793EA1220D1D98000F319AD /* RoomViewController.swift in Sources */,
 				B793EA1620D1E67B00F319AD /* ConfigurationViewController.swift in Sources */,
 				B7EF75A920CF312F00000A67 /* ViewController.swift in Sources */,
 				B7EF75A720CF312F00000A67 /* AppDelegate.swift in Sources */,
+				B793EA1C20D328B400F319AD /* werewolf.grpc.swift in Sources */,
+				B793EA1D20D328B400F319AD /* werewolf.pb.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

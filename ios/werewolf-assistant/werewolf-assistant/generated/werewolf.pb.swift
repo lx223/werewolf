@@ -131,20 +131,9 @@ struct Werewolf_CreateAndJoinRoomRequest {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var user: Werewolf_User {
-    get {return _storage._user ?? Werewolf_User()}
-    set {_uniqueStorage()._user = newValue}
-  }
-  /// Returns true if `user` has been explicitly set.
-  var hasUser: Bool {return _storage._user != nil}
-  /// Clears the value of `user`. Subsequent reads from it will return its default value.
-  mutating func clearUser() {_storage._user = nil}
-
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
-
-  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 struct Werewolf_CreateAndJoinRoomResponse {
@@ -153,6 +142,8 @@ struct Werewolf_CreateAndJoinRoomResponse {
   // methods supported on all messages.
 
   var roomID: Int32 = 0
+
+  var userID: String = String()
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -420,60 +411,18 @@ extension Werewolf_GameState: SwiftProtobuf._ProtoNameProviding {
 
 extension Werewolf_CreateAndJoinRoomRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".CreateAndJoinRoomRequest"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "user"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _user: Werewolf_User? = nil
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _user = source._user
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._user)
-        default: break
-        }
-      }
+    while let _ = try decoder.nextFieldNumber() {
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._user {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   func _protobuf_generated_isEqualTo(other: Werewolf_CreateAndJoinRoomRequest) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
-        let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._user != other_storage._user {return false}
-        return true
-      }
-      if !storagesAreEqual {return false}
-    }
     if unknownFields != other.unknownFields {return false}
     return true
   }
@@ -483,12 +432,14 @@ extension Werewolf_CreateAndJoinRoomResponse: SwiftProtobuf.Message, SwiftProtob
   static let protoMessageName: String = _protobuf_package + ".CreateAndJoinRoomResponse"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "room_id"),
+    2: .standard(proto: "user_id"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularInt32Field(value: &self.roomID)
+      case 2: try decoder.decodeSingularStringField(value: &self.userID)
       default: break
       }
     }
@@ -498,11 +449,15 @@ extension Werewolf_CreateAndJoinRoomResponse: SwiftProtobuf.Message, SwiftProtob
     if self.roomID != 0 {
       try visitor.visitSingularInt32Field(value: self.roomID, fieldNumber: 1)
     }
+    if !self.userID.isEmpty {
+      try visitor.visitSingularStringField(value: self.userID, fieldNumber: 2)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   func _protobuf_generated_isEqualTo(other: Werewolf_CreateAndJoinRoomResponse) -> Bool {
     if self.roomID != other.roomID {return false}
+    if self.userID != other.userID {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }

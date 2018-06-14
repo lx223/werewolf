@@ -18,12 +18,11 @@ service GameService {
     rpc GetGameState(GetGameStateRequest) returns(GetGameStateResponse);
 }
 
-message CreateAndJoinRoomRequest {
-    User user = 1;
-}
+message CreateAndJoinRoomRequest {}
 
 message CreateAndJoinRoomResponse {
     int32 room_id = 1;
+    string user_id = 2;
 }
 
 message UpdateGameConfigRequest {
