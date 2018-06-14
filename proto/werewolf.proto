@@ -62,11 +62,13 @@ message GetFirstDayResultResponse {
 }
 
 message JoinRoomRequest {
-    User user = 1;
+    string user_id = 1;
     int32 room_id = 2;
 }
 
-message JoinRoomResponse {}
+message JoinRoomResponse {
+    string user_id = 1;
+}
 
 message GetRoleRequest {
     string user_id = 1;

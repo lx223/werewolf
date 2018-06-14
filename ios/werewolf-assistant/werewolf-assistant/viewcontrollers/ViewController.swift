@@ -52,8 +52,8 @@ class ViewController: UIViewController {
 
             var joinRoomRequest = Werewolf_JoinRoomRequest()
             joinRoomRequest.roomID = roomId
-            _ = try? self.roomSrvClient.joinRoom(joinRoomRequest) { createRoomResponse, callResult in
-                if let userID = createRoomResponse?.userID {
+            _ = try? self.roomSrvClient.joinRoom(joinRoomRequest) { joinRoomResponse, callResult in
+                if let userID = joinRoomResponse?.userID {
                     let roomController: RoomViewController = RoomViewController(roomID: roomId, userID: userID)
 
                     DispatchQueue.main.async {
