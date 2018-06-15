@@ -53,12 +53,12 @@ fileprivate extension ConfigurationViewController {
         let req = newUpdateGameConfigRequest()
 
         _ = try? gameSrvClient.updateGameConfig(req) { res, callResult in
-            guard callResult.success else {
+            guard let room = res?.room else {
                 self.showAlert(for: callResult)
                 return
             }
 
-            let roomController = RoomViewController(roomID: self.roomID, userID: self.userID)
+            let roomController = RoomViewController(roomID: self.roomID, userID: self.userID, room: room)
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(roomController, animated: true)
             }

@@ -175,9 +175,20 @@ struct Werewolf_UpdateGameConfigResponse {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  var room: Werewolf_Room {
+    get {return _storage._room ?? Werewolf_Room()}
+    set {_uniqueStorage()._room = newValue}
+  }
+  /// Returns true if `room` has been explicitly set.
+  var hasRoom: Bool {return _storage._room != nil}
+  /// Clears the value of `room`. Subsequent reads from it will return its default value.
+  mutating func clearRoom() {_storage._room = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 struct Werewolf_ReassignRolesRequest {
@@ -331,23 +342,25 @@ struct Werewolf_Room {
 
   var users: [Werewolf_User] = []
 
-  var seats: [Werewolf_Room.Seat] = []
+  var seats: [Werewolf_Seat] = []
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
-  struct Seat {
-    // SwiftProtobuf.Message conformance is added in an extension below. See the
-    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-    // methods supported on all messages.
+  init() {}
+}
 
-    var number: Int32 = 0
+struct Werewolf_Seat {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
 
-    var userID: String = String()
+  var id: String = String()
 
-    var unknownFields = SwiftProtobuf.UnknownStorage()
+  var userID: String = String()
 
-    init() {}
-  }
+  var role: Werewolf_Role = .unknown
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
 }
@@ -512,18 +525,60 @@ extension Werewolf_UpdateGameConfigRequest: SwiftProtobuf.Message, SwiftProtobuf
 
 extension Werewolf_UpdateGameConfigResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".UpdateGameConfigResponse"
-  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "room"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _room: Werewolf_Room? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _room = source._room
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._room)
+        default: break
+        }
+      }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._room {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   func _protobuf_generated_isEqualTo(other: Werewolf_UpdateGameConfigResponse) -> Bool {
+    if _storage !== other._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let other_storage = _args.1
+        if _storage._room != other_storage._room {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
     if unknownFields != other.unknownFields {return false}
     return true
   }
@@ -904,36 +959,42 @@ extension Werewolf_Room: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
   }
 }
 
-extension Werewolf_Room.Seat: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = Werewolf_Room.protoMessageName + ".Seat"
+extension Werewolf_Seat: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".Seat"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "number"),
+    1: .same(proto: "id"),
     2: .standard(proto: "user_id"),
+    3: .same(proto: "role"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeSingularInt32Field(value: &self.number)
+      case 1: try decoder.decodeSingularStringField(value: &self.id)
       case 2: try decoder.decodeSingularStringField(value: &self.userID)
+      case 3: try decoder.decodeSingularEnumField(value: &self.role)
       default: break
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.number != 0 {
-      try visitor.visitSingularInt32Field(value: self.number, fieldNumber: 1)
+    if !self.id.isEmpty {
+      try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
     }
     if !self.userID.isEmpty {
       try visitor.visitSingularStringField(value: self.userID, fieldNumber: 2)
     }
+    if self.role != .unknown {
+      try visitor.visitSingularEnumField(value: self.role, fieldNumber: 3)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_Room.Seat) -> Bool {
-    if self.number != other.number {return false}
+  func _protobuf_generated_isEqualTo(other: Werewolf_Seat) -> Bool {
+    if self.id != other.id {return false}
     if self.userID != other.userID {return false}
+    if self.role != other.role {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }

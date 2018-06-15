@@ -33,7 +33,9 @@ message UpdateGameConfigRequest {
     repeated int32 counts = 5;
 }
 
-message UpdateGameConfigResponse {}
+message UpdateGameConfigResponse {
+    Room room = 1;
+}
 
 message ReassignRolesRequest {
     string user_id = 1;
@@ -82,13 +84,16 @@ message GetRoleResponse {
 
 message Room {
     int32 id = 1;
-    repeated User users = 2;
-    repeated Seat seats = 3;
 
-    message Seat {
-        int32 number = 1;
-        string user_id = 2;
-    }
+    repeated User users = 2;
+
+    repeated Seat seats = 3;
+}
+
+message Seat {
+    string id = 1;
+    string user_id = 2;
+    Role role = 3;
 }
 
 message User {

@@ -12,6 +12,7 @@ class RoomViewController: UIViewController {
 
     private var userID: String
     private var roomID: Int32
+    private var room: Werewolf_Room
     
     private var roomTitle: String {
         return "房间: \(self.roomID)"
@@ -22,11 +23,14 @@ class RoomViewController: UIViewController {
 
         self.navigationItem.title = self.roomTitle
         self.navigationItem.hidesBackButton = true
+
+        print(self.room)
     }
 
-    init(roomID: Int32, userID: String) {
+    init(roomID: Int32, userID: String, room: Werewolf_Room = Werewolf_Room()) {
         self.roomID = roomID
         self.userID = userID
+        self.room = room
 
         super.init(nibName: nil, bundle: nil)
     }
