@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net"
-	pb_room "server/generated/room"
+	proto "server/generated"
 
 	"google.golang.org/grpc"
 
@@ -38,6 +38,6 @@ func main() {
 }
 
 func registerServices(s *grpc.Server) {
-	roomSrv := srv.NewRoomService()
-	pb_room.RegisterRoomServiceServer(s, roomSrv)
+	gameSrv := srv.NewGameService()
+	proto.RegisterGameServiceServer(s, gameSrv)
 }
