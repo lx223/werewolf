@@ -11,7 +11,7 @@ import SwiftGRPC
 
 class ViewController: UIViewController {
 
-    private var roomSrvClient: Werewolf_GameServiceService  = Werewolf_GameServiceServiceClient(address:"localhost:8080", secure: false, arguments: [])
+    private var gameSrvClient: Werewolf_GameServiceService  = Werewolf_GameServiceServiceClient(address:"localhost:8080", secure: false, arguments: [])
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,14 +19,20 @@ class ViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        self.navigationController?.isNavigationBarHidden = false
+    }
+
     @IBAction func onCreateRoomButtonPressed(_ sender: UIButton) {
-        _ = try? roomSrvClient.createAndJoinRoom(Werewolf_CreateAndJoinRoomRequest()){ createRoomResponse, callResult in
+        _ = try? gameSrvClient.createAndJoinRoom(Werewolf_CreateAndJoinRoomRequest()){ createRoomResponse, callResult in
             guard let roomID = createRoomResponse?.roomID, let userID = createRoomResponse?.userID  else {
                 self.showAlert(for: callResult)
                 return
             }
 
-            let configController = ConfigurationViewController(roomID: roomID, userID: userID)
+            let configController = ConfigurationViewController(roomID: roomID, userID: userID, client: self.gameSrvClient)
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(configController, animated: true)
             }
@@ -45,7 +51,7 @@ class ViewController: UIViewController {
 
             var joinRoomRequest = Werewolf_JoinRoomRequest()
             joinRoomRequest.roomID = roomId
-            _ = try? self.roomSrvClient.joinRoom(joinRoomRequest) { joinRoomResponse, callResult in
+            _ = try? self.gameSrvClient.joinRoom(joinRoomRequest) { joinRoomResponse, callResult in
 
                 guard let userID = joinRoomResponse?.userID else {
                     self.showAlert(for: callResult)
@@ -62,13 +68,5 @@ class ViewController: UIViewController {
         self.present(joinRoomAlert, animated: true, completion: nil)
     }
 
-    func showAlert(for callResult: CallResult?, orMessage msg: String? = nil) {
-        DispatchQueue.main.async {
-            let errMsg = callResult?.statusMessage ?? msg
-            let alert = UIAlertController(title: nil, message: errMsg, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "👌", style: .cancel, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
 }
 

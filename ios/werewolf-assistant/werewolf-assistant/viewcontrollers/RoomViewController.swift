@@ -21,6 +21,7 @@ class RoomViewController: UIViewController {
         super.viewDidLoad()
 
         self.navigationItem.title = self.roomTitle
+        self.navigationItem.hidesBackButton = true
     }
 
     init(roomID: Int32, userID: String) {

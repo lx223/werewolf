@@ -45,12 +45,8 @@
                                                 <constraint firstAttribute="width" constant="75" id="YZx-ux-cTy"/>
                                             </constraints>
                                         </imageView>
-                                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I9M-FF-xdn">
+                                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I9M-FF-xdn" customClass="UINumberPickerView" customModule="werewolf_assistant" customModuleProvider="target">
                                             <rect key="frame" x="83" y="0.0" width="65.5" height="75"/>
-                                            <connections>
-                                                <outlet property="dataSource" destination="-1" id="oK6-4k-w1X"/>
-                                                <outlet property="delegate" destination="-1" id="0ZI-uD-HrA"/>
-                                            </connections>
                                         </pickerView>
                                     </subviews>
                                 </stackView>
@@ -60,12 +56,8 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="狼人" translatesAutoresizingMaskIntoConstraints="NO" id="hHM-Yf-hJx">
                                             <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
                                         </imageView>
-                                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HrJ-Pu-pfC">
+                                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HrJ-Pu-pfC" customClass="UINumberPickerView" customModule="werewolf_assistant" customModuleProvider="target">
                                             <rect key="frame" x="75" y="0.0" width="73.5" height="75"/>
-                                            <connections>
-                                                <outlet property="dataSource" destination="-1" id="psD-K3-Ny5"/>
-                                                <outlet property="delegate" destination="-1" id="soB-4s-ZEh"/>
-                                            </connections>
                                         </pickerView>
                                     </subviews>
                                 </stackView>

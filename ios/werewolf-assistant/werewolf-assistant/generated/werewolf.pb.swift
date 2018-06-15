@@ -155,11 +155,15 @@ struct Werewolf_UpdateGameConfigRequest {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  var roomID: Int32 = 0
+
   var userID: String = String()
+
+  var canWitchSaveSelf: Bool = false
 
   var roles: [Werewolf_Role] = []
 
-  var canWitchSaveSelf: Bool = false
+  var counts: [Int32] = []
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -456,39 +460,51 @@ extension Werewolf_CreateAndJoinRoomResponse: SwiftProtobuf.Message, SwiftProtob
 extension Werewolf_UpdateGameConfigRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".UpdateGameConfigRequest"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "user_id"),
-    2: .same(proto: "roles"),
+    1: .standard(proto: "room_id"),
+    2: .standard(proto: "user_id"),
     3: .same(proto: "canWitchSaveSelf"),
+    4: .same(proto: "roles"),
+    5: .same(proto: "counts"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.userID)
-      case 2: try decoder.decodeRepeatedEnumField(value: &self.roles)
+      case 1: try decoder.decodeSingularInt32Field(value: &self.roomID)
+      case 2: try decoder.decodeSingularStringField(value: &self.userID)
       case 3: try decoder.decodeSingularBoolField(value: &self.canWitchSaveSelf)
+      case 4: try decoder.decodeRepeatedEnumField(value: &self.roles)
+      case 5: try decoder.decodeRepeatedInt32Field(value: &self.counts)
       default: break
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.userID.isEmpty {
-      try visitor.visitSingularStringField(value: self.userID, fieldNumber: 1)
+    if self.roomID != 0 {
+      try visitor.visitSingularInt32Field(value: self.roomID, fieldNumber: 1)
     }
-    if !self.roles.isEmpty {
-      try visitor.visitPackedEnumField(value: self.roles, fieldNumber: 2)
+    if !self.userID.isEmpty {
+      try visitor.visitSingularStringField(value: self.userID, fieldNumber: 2)
     }
     if self.canWitchSaveSelf != false {
       try visitor.visitSingularBoolField(value: self.canWitchSaveSelf, fieldNumber: 3)
+    }
+    if !self.roles.isEmpty {
+      try visitor.visitPackedEnumField(value: self.roles, fieldNumber: 4)
+    }
+    if !self.counts.isEmpty {
+      try visitor.visitPackedInt32Field(value: self.counts, fieldNumber: 5)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   func _protobuf_generated_isEqualTo(other: Werewolf_UpdateGameConfigRequest) -> Bool {
+    if self.roomID != other.roomID {return false}
     if self.userID != other.userID {return false}
-    if self.roles != other.roles {return false}
     if self.canWitchSaveSelf != other.canWitchSaveSelf {return false}
+    if self.roles != other.roles {return false}
+    if self.counts != other.counts {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }

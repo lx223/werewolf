@@ -16,6 +16,8 @@
 		B793EA1C20D328B400F319AD /* werewolf.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA1A20D328B400F319AD /* werewolf.grpc.swift */; };
 		B793EA1D20D328B400F319AD /* werewolf.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA1B20D328B400F319AD /* werewolf.pb.swift */; };
 		B793EA1F20D3366200F319AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B793EA1E20D3366200F319AD /* Assets.xcassets */; };
+		B793EA2220D3BFCD00F319AD /* UINumberPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA2120D3BFCD00F319AD /* UINumberPickerView.swift */; };
+		B793EA2520D3CA9C00F319AD /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA2420D3CA9C00F319AD /* UIViewControllerExtensions.swift */; };
 		B7EF75A720CF312F00000A67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF75A620CF312F00000A67 /* AppDelegate.swift */; };
 		B7EF75A920CF312F00000A67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF75A820CF312F00000A67 /* ViewController.swift */; };
 		B7EF75AC20CF312F00000A67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7EF75AA20CF312F00000A67 /* Main.storyboard */; };
@@ -55,6 +57,8 @@
 		B793EA1A20D328B400F319AD /* werewolf.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = werewolf.grpc.swift; sourceTree = "<group>"; };
 		B793EA1B20D328B400F319AD /* werewolf.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = werewolf.pb.swift; sourceTree = "<group>"; };
 		B793EA1E20D3366200F319AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B793EA2120D3BFCD00F319AD /* UINumberPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINumberPickerView.swift; sourceTree = "<group>"; };
+		B793EA2420D3CA9C00F319AD /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		B7EF75A320CF312F00000A67 /* werewolf-assistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "werewolf-assistant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7EF75A620CF312F00000A67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7EF75A820CF312F00000A67 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +139,22 @@
 			path = viewcontrollers;
 			sourceTree = "<group>";
 		};
+		B793EA2020D3BF9800F319AD /* views */ = {
+			isa = PBXGroup;
+			children = (
+				B793EA2120D3BFCD00F319AD /* UINumberPickerView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		B793EA2320D3CA8B00F319AD /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B793EA2420D3CA9C00F319AD /* UIViewControllerExtensions.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
 		B7EF759A20CF312F00000A67 = {
 			isa = PBXGroup;
 			children = (
@@ -160,12 +180,14 @@
 		B7EF75A520CF312F00000A67 /* werewolf-assistant */ = {
 			isa = PBXGroup;
 			children = (
-				B793EA1E20D3366200F319AD /* Assets.xcassets */,
+				B793EA2320D3CA8B00F319AD /* extensions */,
+				B793EA2020D3BF9800F319AD /* views */,
 				B793EA0F20D1D91200F319AD /* viewcontrollers */,
 				B7791D0620CF4E860043F4AC /* generated */,
 				B7EF75A620CF312F00000A67 /* AppDelegate.swift */,
 				B7EF75AA20CF312F00000A67 /* Main.storyboard */,
 				B7EF75AF20CF313100000A67 /* LaunchScreen.storyboard */,
+				B793EA1E20D3366200F319AD /* Assets.xcassets */,
 				B7EF75B220CF313100000A67 /* Info.plist */,
 			);
 			path = "werewolf-assistant";
@@ -419,7 +441,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B793EA2520D3CA9C00F319AD /* UIViewControllerExtensions.swift in Sources */,
 				B793EA1220D1D98000F319AD /* RoomViewController.swift in Sources */,
+				B793EA2220D3BFCD00F319AD /* UINumberPickerView.swift in Sources */,
 				B793EA1620D1E67B00F319AD /* ConfigurationViewController.swift in Sources */,
 				B7EF75A920CF312F00000A67 /* ViewController.swift in Sources */,
 				B7EF75A720CF312F00000A67 /* AppDelegate.swift in Sources */,
