@@ -19,10 +19,11 @@ class ViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
 
-        self.navigationController?.isNavigationBarHidden = false
+        navigationItem.title = "大厅"
+        navigationController?.isNavigationBarHidden = false
     }
 
     @IBAction func onCreateRoomButtonPressed(_ sender: UIButton) {

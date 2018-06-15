@@ -29,6 +29,15 @@ extension UINumberPickerView: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return "\(numOptions[row])"
     }
+
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let optionView = view as? UILabel ?? UILabel()
+        optionView.text = "\(numOptions[row])"
+        optionView.textAlignment = .center
+        let hue = CGFloat(row) / CGFloat(numOptions.count)
+        optionView.backgroundColor = UIColor(hue: hue, saturation: 0.8, brightness:0.8, alpha: 0.8)
+        return optionView
+    }
 }
 
 extension UINumberPickerView: UIPickerViewDataSource {

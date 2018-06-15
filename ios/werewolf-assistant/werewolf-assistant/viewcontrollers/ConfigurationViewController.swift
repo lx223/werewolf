@@ -24,10 +24,6 @@ final class ConfigurationViewController: UIViewController {
     private var userID: String
     fileprivate let gameSrvClient: Werewolf_GameServiceService
 
-    private var roomTitle: String {
-        return "房间: \(self.roomID)"
-    }
-
     init(roomID: Int32, userID: String, client: Werewolf_GameServiceService) {
         self.roomID = roomID
         self.userID = userID
@@ -43,8 +39,18 @@ final class ConfigurationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = roomTitle
+        self.navigationItem.title = "配置设置"
         self.navigationItem.setRightBarButton(UIBarButtonItem(title: "确认", style: .done, target: self, action: #selector(self.onConfirmButtonPressed)), animated: false)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        villagerNumberPicker.selectRow(2, inComponent: 0, animated: animated)
+        werewolfNumberPicker.selectRow(2, inComponent: 0, animated: animated)
+        seerSwitch.setOn(true, animated: animated)
+        witchSwitch.setOn(true, animated: animated)
+        hunterSwitch.setOn(true, animated: animated)
     }
 }
 

@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		178CDF6E39284DC35A7F4FAD /* Pods_werewolf_assistant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAEED26C1B93C636A5E2923B /* Pods_werewolf_assistant.framework */; };
 		716C4246B49ABAACE9D3C7BE /* Pods_werewolf_assistantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1100137AFE35F690F4B65053 /* Pods_werewolf_assistantTests.framework */; };
-		B793EA1220D1D98000F319AD /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA1020D1D98000F319AD /* RoomViewController.swift */; };
-		B793EA1320D1D98000F319AD /* RoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B793EA1120D1D98000F319AD /* RoomViewController.xib */; };
 		B793EA1620D1E67B00F319AD /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA1420D1E67B00F319AD /* ConfigurationViewController.swift */; };
 		B793EA1720D1E67B00F319AD /* ConfigurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B793EA1520D1E67B00F319AD /* ConfigurationViewController.xib */; };
 		B793EA1C20D328B400F319AD /* werewolf.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA1A20D328B400F319AD /* werewolf.grpc.swift */; };
@@ -18,6 +16,10 @@
 		B793EA1F20D3366200F319AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B793EA1E20D3366200F319AD /* Assets.xcassets */; };
 		B793EA2220D3BFCD00F319AD /* UINumberPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA2120D3BFCD00F319AD /* UINumberPickerView.swift */; };
 		B793EA2520D3CA9C00F319AD /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA2420D3CA9C00F319AD /* UIViewControllerExtensions.swift */; };
+		B793EA2720D3F4F600F319AD /* SeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA2620D3F4F600F319AD /* SeatView.swift */; };
+		B793EA2A20D41D9500F319AD /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA2820D41D9500F319AD /* RoomViewController.swift */; };
+		B793EA2B20D41D9500F319AD /* RoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B793EA2920D41D9500F319AD /* RoomViewController.xib */; };
+		B793EA2D20D466D900F319AD /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA2C20D466D900F319AD /* UIViewExtensions.swift */; };
 		B7EF75A720CF312F00000A67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF75A620CF312F00000A67 /* AppDelegate.swift */; };
 		B7EF75A920CF312F00000A67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF75A820CF312F00000A67 /* ViewController.swift */; };
 		B7EF75AC20CF312F00000A67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7EF75AA20CF312F00000A67 /* Main.storyboard */; };
@@ -50,8 +52,6 @@
 		313D03B3719521B984BBB8C3 /* Pods-werewolf-assistantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-werewolf-assistantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-werewolf-assistantTests/Pods-werewolf-assistantTests.release.xcconfig"; sourceTree = "<group>"; };
 		6631210C884C1649D06C7140 /* Pods-werewolf-assistant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-werewolf-assistant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-werewolf-assistant/Pods-werewolf-assistant.debug.xcconfig"; sourceTree = "<group>"; };
 		82F70EAAF86318F8FA5CC817 /* Pods-werewolf-assistantUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-werewolf-assistantUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-werewolf-assistantUITests/Pods-werewolf-assistantUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		B793EA1020D1D98000F319AD /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
-		B793EA1120D1D98000F319AD /* RoomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomViewController.xib; sourceTree = "<group>"; };
 		B793EA1420D1E67B00F319AD /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 		B793EA1520D1E67B00F319AD /* ConfigurationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigurationViewController.xib; sourceTree = "<group>"; };
 		B793EA1A20D328B400F319AD /* werewolf.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = werewolf.grpc.swift; sourceTree = "<group>"; };
@@ -59,6 +59,10 @@
 		B793EA1E20D3366200F319AD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B793EA2120D3BFCD00F319AD /* UINumberPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINumberPickerView.swift; sourceTree = "<group>"; };
 		B793EA2420D3CA9C00F319AD /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
+		B793EA2620D3F4F600F319AD /* SeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatView.swift; sourceTree = "<group>"; };
+		B793EA2820D41D9500F319AD /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
+		B793EA2920D41D9500F319AD /* RoomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomViewController.xib; sourceTree = "<group>"; };
+		B793EA2C20D466D900F319AD /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		B7EF75A320CF312F00000A67 /* werewolf-assistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "werewolf-assistant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7EF75A620CF312F00000A67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7EF75A820CF312F00000A67 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -131,10 +135,10 @@
 			isa = PBXGroup;
 			children = (
 				B7EF75A820CF312F00000A67 /* ViewController.swift */,
-				B793EA1020D1D98000F319AD /* RoomViewController.swift */,
-				B793EA1120D1D98000F319AD /* RoomViewController.xib */,
 				B793EA1420D1E67B00F319AD /* ConfigurationViewController.swift */,
 				B793EA1520D1E67B00F319AD /* ConfigurationViewController.xib */,
+				B793EA2820D41D9500F319AD /* RoomViewController.swift */,
+				B793EA2920D41D9500F319AD /* RoomViewController.xib */,
 			);
 			path = viewcontrollers;
 			sourceTree = "<group>";
@@ -143,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				B793EA2120D3BFCD00F319AD /* UINumberPickerView.swift */,
+				B793EA2620D3F4F600F319AD /* SeatView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				B793EA2420D3CA9C00F319AD /* UIViewControllerExtensions.swift */,
+				B793EA2C20D466D900F319AD /* UIViewExtensions.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -329,10 +335,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B793EA2B20D41D9500F319AD /* RoomViewController.xib in Resources */,
 				B7EF75B120CF313100000A67 /* LaunchScreen.storyboard in Resources */,
 				B7EF75AC20CF312F00000A67 /* Main.storyboard in Resources */,
 				B793EA1720D1E67B00F319AD /* ConfigurationViewController.xib in Resources */,
-				B793EA1320D1D98000F319AD /* RoomViewController.xib in Resources */,
 				B793EA1F20D3366200F319AD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,11 +448,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				B793EA2520D3CA9C00F319AD /* UIViewControllerExtensions.swift in Sources */,
-				B793EA1220D1D98000F319AD /* RoomViewController.swift in Sources */,
 				B793EA2220D3BFCD00F319AD /* UINumberPickerView.swift in Sources */,
+				B793EA2720D3F4F600F319AD /* SeatView.swift in Sources */,
 				B793EA1620D1E67B00F319AD /* ConfigurationViewController.swift in Sources */,
 				B7EF75A920CF312F00000A67 /* ViewController.swift in Sources */,
 				B7EF75A720CF312F00000A67 /* AppDelegate.swift in Sources */,
+				B793EA2D20D466D900F319AD /* UIViewExtensions.swift in Sources */,
+				B793EA2A20D41D9500F319AD /* RoomViewController.swift in Sources */,
 				B793EA1C20D328B400F319AD /* werewolf.grpc.swift in Sources */,
 				B793EA1D20D328B400F319AD /* werewolf.pb.swift in Sources */,
 			);
