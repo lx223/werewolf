@@ -12,6 +12,7 @@ class RoomViewController: UIViewController {
 
     private var userID: String
     private var roomID: Int32
+    
     private var roomTitle: String {
         return "房间: \(self.roomID)"
     }

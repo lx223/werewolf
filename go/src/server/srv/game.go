@@ -18,7 +18,7 @@ import (
 
 const (
 	roomIdUpperLimit = int32(1000000)
-	defaultRoomLimit = 2
+	defaultRoomLimit = 20000
 	defaultUserLimit = 30
 )
 
