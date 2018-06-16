@@ -6,9 +6,9 @@ import android.app.Dialog
 import android.os.Bundle
 import io.grpc.ManagedChannel
 import io.grpc.ManagedChannelBuilder
-import jiang.sichu.werewolf.proto.room.RoomOuterClass.CreateRoomRequest
-import jiang.sichu.werewolf.proto.room.RoomOuterClass.JoinRoomRequest
-import jiang.sichu.werewolf.proto.room.RoomServiceGrpc
+import jiang.sichu.werewolf.proto.GameServiceGrpc
+import jiang.sichu.werewolf.proto.Werewolf.CreateAndJoinRoomRequest
+import jiang.sichu.werewolf.proto.Werewolf.JoinRoomRequest
 import kotlinx.android.synthetic.main.activity_menu.*
 import kotlinx.android.synthetic.main.dialog_join_room.*
 import java.util.concurrent.ExecutorService
@@ -29,7 +29,7 @@ class MenuActivity : Activity() {
         setContentView(R.layout.activity_menu)
         channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build()
         executor = Executors.newSingleThreadExecutor()
-        btn_create_room.setOnClickListener({ createRoom() })
+        btn_create_room.setOnClickListener({ createAndJoinRoom() })
         btn_join_room.setOnClickListener({ showJoinRoomDialog() })
     }
 
@@ -39,6 +39,19 @@ class MenuActivity : Activity() {
         channel = null
         executor?.shutdown()
         executor = null
+    }
+
+    private fun createAndJoinRoom() {
+        executor?.execute {
+            val roomService = GameServiceGrpc.newFutureStub(channel)
+            val request = CreateAndJoinRoomRequest.newBuilder().build()
+            val response = roomService.createAndJoinRoom(request)[rpcTimeoutSec, TimeUnit.SECONDS]
+            runOnUiThread {
+                AlertDialog.Builder(this)
+                        .setMessage("Created room: ${response.roomId}!\nUser ID: ${response.userId}")
+                        .show()
+            }
+        }
     }
 
     private fun showJoinRoomDialog() {
@@ -53,19 +66,12 @@ class MenuActivity : Activity() {
 
     private fun joinRoom(roomId: Int) {
         executor?.execute {
-            val roomService = RoomServiceGrpc.newFutureStub(channel)
-            val joinRoomRequest = JoinRoomRequest.newBuilder().setRoomId(roomId).build()
-            val userId = roomService.joinRoom(joinRoomRequest)[rpcTimeoutSec, TimeUnit.SECONDS].userId
-            runOnUiThread { AlertDialog.Builder(this).setMessage("Joined room $roomId!\nUser ID: $userId").show() }
-        }
-    }
-
-    private fun createRoom() {
-        executor?.execute {
-            val roomService = RoomServiceGrpc.newFutureStub(channel)
-            val createRoomRequest = CreateRoomRequest.newBuilder().build()
-            val roomId = roomService.createRoom(createRoomRequest)[rpcTimeoutSec, TimeUnit.SECONDS].roomId
-            runOnUiThread { AlertDialog.Builder(this).setMessage("Created room: $roomId").show() }
+            val roomService = GameServiceGrpc.newFutureStub(channel)
+            val request = JoinRoomRequest.newBuilder().setRoomId(roomId).build()
+            val userId = roomService.joinRoom(request)[rpcTimeoutSec, TimeUnit.SECONDS].userId
+            runOnUiThread {
+                AlertDialog.Builder(this).setMessage("Joined room $roomId!\nUser ID: $userId").show()
+            }
         }
     }
 }
