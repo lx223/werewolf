@@ -16,7 +16,16 @@ service GameService {
     rpc JoinRoom(JoinRoomRequest) returns(JoinRoomResponse);
     rpc GetRole(GetRoleRequest) returns(GetRoleResponse);
     rpc GetGameState(GetGameStateRequest) returns(GetGameStateResponse);
+    rpc TakeSeat(TakeSeatRequest) returns(TakeSeatResponse);
 }
+
+message TakeSeatRequest {
+    int32 room_id = 1;
+    string user_id = 2;
+    string seat_id = 3;
+}
+
+message TakeSeatResponse {}
 
 message CreateAndJoinRoomRequest {}
 
@@ -44,7 +53,8 @@ message ReassignRolesRequest {
 message ReassignRolesResponse {}
 
 message StartGameRequest {
-    string user_id = 1;
+    int32 room_id = 1;
+    string user_id = 2;
 }
 
 message StartGameResponse {}
@@ -58,7 +68,8 @@ message GetGameStateResponse {
 }
 
 message GetFirstDayResultRequest {
-    string user_id = 1;
+    int32 room_id = 1;
+    string user_id = 2;
 }
 
 message GetFirstDayResultResponse {

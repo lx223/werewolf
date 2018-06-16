@@ -126,6 +126,32 @@ enum Werewolf_GameState: SwiftProtobuf.Enum {
 
 }
 
+struct Werewolf_TakeSeatRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var roomID: Int32 = 0
+
+  var userID: String = String()
+
+  var seatID: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Werewolf_TakeSeatResponse {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 struct Werewolf_CreateAndJoinRoomRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -218,6 +244,8 @@ struct Werewolf_StartGameRequest {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  var roomID: Int32 = 0
+
   var userID: String = String()
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
@@ -263,6 +291,8 @@ struct Werewolf_GetFirstDayResultRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
+
+  var roomID: Int32 = 0
 
   var userID: String = String()
 
@@ -414,6 +444,66 @@ extension Werewolf_GameState: SwiftProtobuf._ProtoNameProviding {
     8: .same(proto: "HUNTER_AWAKE"),
     9: .same(proto: "SHERIFF_ELECTION"),
   ]
+}
+
+extension Werewolf_TakeSeatRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".TakeSeatRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "room_id"),
+    2: .standard(proto: "user_id"),
+    3: .standard(proto: "seat_id"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularInt32Field(value: &self.roomID)
+      case 2: try decoder.decodeSingularStringField(value: &self.userID)
+      case 3: try decoder.decodeSingularStringField(value: &self.seatID)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.roomID != 0 {
+      try visitor.visitSingularInt32Field(value: self.roomID, fieldNumber: 1)
+    }
+    if !self.userID.isEmpty {
+      try visitor.visitSingularStringField(value: self.userID, fieldNumber: 2)
+    }
+    if !self.seatID.isEmpty {
+      try visitor.visitSingularStringField(value: self.seatID, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  func _protobuf_generated_isEqualTo(other: Werewolf_TakeSeatRequest) -> Bool {
+    if self.roomID != other.roomID {return false}
+    if self.userID != other.userID {return false}
+    if self.seatID != other.seatID {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Werewolf_TakeSeatResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".TakeSeatResponse"
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let _ = try decoder.nextFieldNumber() {
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  func _protobuf_generated_isEqualTo(other: Werewolf_TakeSeatResponse) -> Bool {
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
 }
 
 extension Werewolf_CreateAndJoinRoomRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
@@ -635,26 +725,32 @@ extension Werewolf_ReassignRolesResponse: SwiftProtobuf.Message, SwiftProtobuf._
 extension Werewolf_StartGameRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".StartGameRequest"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "user_id"),
+    1: .standard(proto: "room_id"),
+    2: .standard(proto: "user_id"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.userID)
+      case 1: try decoder.decodeSingularInt32Field(value: &self.roomID)
+      case 2: try decoder.decodeSingularStringField(value: &self.userID)
       default: break
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.roomID != 0 {
+      try visitor.visitSingularInt32Field(value: self.roomID, fieldNumber: 1)
+    }
     if !self.userID.isEmpty {
-      try visitor.visitSingularStringField(value: self.userID, fieldNumber: 1)
+      try visitor.visitSingularStringField(value: self.userID, fieldNumber: 2)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   func _protobuf_generated_isEqualTo(other: Werewolf_StartGameRequest) -> Bool {
+    if self.roomID != other.roomID {return false}
     if self.userID != other.userID {return false}
     if unknownFields != other.unknownFields {return false}
     return true
@@ -741,26 +837,32 @@ extension Werewolf_GetGameStateResponse: SwiftProtobuf.Message, SwiftProtobuf._M
 extension Werewolf_GetFirstDayResultRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".GetFirstDayResultRequest"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "user_id"),
+    1: .standard(proto: "room_id"),
+    2: .standard(proto: "user_id"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.userID)
+      case 1: try decoder.decodeSingularInt32Field(value: &self.roomID)
+      case 2: try decoder.decodeSingularStringField(value: &self.userID)
       default: break
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.roomID != 0 {
+      try visitor.visitSingularInt32Field(value: self.roomID, fieldNumber: 1)
+    }
     if !self.userID.isEmpty {
-      try visitor.visitSingularStringField(value: self.userID, fieldNumber: 1)
+      try visitor.visitSingularStringField(value: self.userID, fieldNumber: 2)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   func _protobuf_generated_isEqualTo(other: Werewolf_GetFirstDayResultRequest) -> Bool {
+    if self.roomID != other.roomID {return false}
     if self.userID != other.userID {return false}
     if unknownFields != other.unknownFields {return false}
     return true

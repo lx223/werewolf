@@ -11,10 +11,23 @@ import UIKit
 class RoomViewController: UIViewController {
 
     @IBOutlet var seats: [SeatView]!
-    
-    private var userID: String
-    private var roomID: Int32
-    private var room: Werewolf_Room
+    @IBOutlet weak var roleImageView: UIImageView!
+
+    private var _seatTaken: Int?
+    fileprivate var seatTaken: Int? {
+        get {
+            return _seatTaken
+        }
+        set {
+            _seatTaken = newValue
+            roleImageView.isHidden = newValue == nil
+        }
+    }
+
+    fileprivate let gameSrvClient: Werewolf_GameServiceService
+    private let userID: String
+    private let roomID: Int32
+    private let room: Werewolf_Room
 
     private var roomTitle: String {
         return "房间: \(self.roomID)"
@@ -33,12 +46,16 @@ class RoomViewController: UIViewController {
         for i in 0..<room.seats.count {
             seats[i].attachRecogniser(numOfTap: 1, forTarget: self, withAction: #selector(onSeatPressed))
         }
+
+        roleImageView.attachRecogniser(numOfTap: 1, forTarget: self, withAction: #selector(onRoleImageViewPressed))
+        roleImageView.isUserInteractionEnabled = true
     }
 
-    init(roomID: Int32, userID: String, room: Werewolf_Room = Werewolf_Room()) {
+    init(roomID: Int32, userID: String, client: Werewolf_GameServiceService, room: Werewolf_Room = Werewolf_Room()) {
         self.roomID = roomID
         self.userID = userID
         self.room = room
+        self.gameSrvClient = client
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -49,27 +66,65 @@ class RoomViewController: UIViewController {
 }
 
 extension RoomViewController {
-    @IBAction func onRevealIdentityButtonPressed(_ btn: UIBarButtonItem) {
-        print("real identity")
+    @objc func onRoleImageViewPressed(_ sender: UITapGestureRecognizer) {
+        guard let view = sender.view as? UIImageView, let seat = seatTaken else {
+            return
+        }
+
+        let role = room.seats[seat - 1].role
+        view.image = UIImage.image(forRole: role)
     }
 
     @IBAction func onStartGameButtonPressed(_ btn: UIBarButtonItem) {
-        print("start game")
+        var req = Werewolf_StartGameRequest()
+        req.userID = userID
+        req.roomID = roomID
+        _ = try? gameSrvClient.startGame(req) { (res, callResult) in
+            guard let _ = res else {
+                self.showAlert(for: callResult)
+                return
+            }
+
+            self.showAlert(for: nil, orMessage: "game started")
+        }
     }
 
     @IBAction func onLastNightButtonPressed(_ btn: UIBarButtonItem) {
-        print("last night")
+        var req = Werewolf_GetFirstDayResultRequest()
+        req.userID = userID
+        req.roomID = roomID
+        _ = try? gameSrvClient.getFirstDayResult(req) { (res, callResult) in
+            guard let nums = res?.deadPlayerNumbers else {
+                self.showAlert(for: callResult)
+                return
+            }
+
+            self.showAlert(for: nil, orMessage: "First night: \(nums)")
+        }
     }
 
     @IBAction func onUseSkillButtonPressed(_ btn: UIBarButtonItem) {
         print("use skill")
     }
 
-    @IBAction func onSeatPressed(_ sender: UITapGestureRecognizer) {
+    @objc func onSeatPressed(_ sender: UITapGestureRecognizer) {
         guard let seatView = sender.view as? SeatView else {
             return
         }
 
-        print(seatView.number)
+        var req = Werewolf_TakeSeatRequest()
+        req.seatID = room.seats[seatView.number - 1].id
+        req.userID = userID
+        req.roomID = roomID
+
+        _ = try? gameSrvClient.takeSeat(req) { (res, callResult) in
+            guard let _ = res else {
+                self.showAlert(for: callResult)
+                return
+            }
+
+            self.showAlert(for: nil, orMessage: "Took seat \(seatView.number)")
+            self.seatTaken = seatView.number
+        }
     }
 }

@@ -125,3 +125,8 @@ func (s *GameService) GetGameState(ctx context.Context, req *werewolf.GetGameSta
 	// TODO: implement this.
 	return nil, status.Error(codes.Unimplemented, "GetGameState not implemented yet!")
 }
+
+func (s *GameService) TakeSeat(ctx context.Context, req *werewolf.TakeSeatRequest) (*werewolf.TakeSeatResponse, error) {
+	// TODO: implement this.
+	return nil, status.Error(codes.Unimplemented, "TakeSeat not implemented yet!")
+}

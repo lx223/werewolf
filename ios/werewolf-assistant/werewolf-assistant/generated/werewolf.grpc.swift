@@ -73,6 +73,12 @@ fileprivate final class Werewolf_GameServiceGetGameStateCallBase: ClientCallUnar
   override class var method: String { return "/werewolf.GameService/GetGameState" }
 }
 
+internal protocol Werewolf_GameServiceTakeSeatCall: ClientCallUnary {}
+
+fileprivate final class Werewolf_GameServiceTakeSeatCallBase: ClientCallUnaryBase<Werewolf_TakeSeatRequest, Werewolf_TakeSeatResponse>, Werewolf_GameServiceTakeSeatCall {
+  override class var method: String { return "/werewolf.GameService/TakeSeat" }
+}
+
 
 /// Instantiate Werewolf_GameServiceServiceClient, then call methods of this protocol to make API calls.
 internal protocol Werewolf_GameServiceService: ServiceClient {
@@ -115,6 +121,11 @@ internal protocol Werewolf_GameServiceService: ServiceClient {
   func getGameState(_ request: Werewolf_GetGameStateRequest) throws -> Werewolf_GetGameStateResponse
   /// Asynchronous. Unary.
   func getGameState(_ request: Werewolf_GetGameStateRequest, completion: @escaping (Werewolf_GetGameStateResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceGetGameStateCall
+
+  /// Synchronous. Unary.
+  func takeSeat(_ request: Werewolf_TakeSeatRequest) throws -> Werewolf_TakeSeatResponse
+  /// Asynchronous. Unary.
+  func takeSeat(_ request: Werewolf_TakeSeatRequest, completion: @escaping (Werewolf_TakeSeatResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceTakeSeatCall
 
 }
 
@@ -204,6 +215,17 @@ internal final class Werewolf_GameServiceServiceClient: ServiceClientBase, Werew
   /// Asynchronous. Unary.
   internal func getGameState(_ request: Werewolf_GetGameStateRequest, completion: @escaping (Werewolf_GetGameStateResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceGetGameStateCall {
     return try Werewolf_GameServiceGetGameStateCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  internal func takeSeat(_ request: Werewolf_TakeSeatRequest) throws -> Werewolf_TakeSeatResponse {
+    return try Werewolf_GameServiceTakeSeatCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func takeSeat(_ request: Werewolf_TakeSeatRequest, completion: @escaping (Werewolf_TakeSeatResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceTakeSeatCall {
+    return try Werewolf_GameServiceTakeSeatCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 

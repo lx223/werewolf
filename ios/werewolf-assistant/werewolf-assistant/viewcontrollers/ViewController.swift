@@ -59,7 +59,7 @@ class ViewController: UIViewController {
                     return
                 }
 
-                let roomController: RoomViewController = RoomViewController(roomID: roomId, userID: userID)
+                let roomController: RoomViewController = RoomViewController(roomID: roomId, userID: userID, client: self.gameSrvClient)
                 DispatchQueue.main.async {
                     self.navigationController?.pushViewController(roomController, animated: true)
                 }

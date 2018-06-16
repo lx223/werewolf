@@ -13,6 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RoomViewController" customModule="werewolf_assistant" customModuleProvider="target">
             <connections>
+                <outlet property="roleImageView" destination="842-l4-BsY" id="6Wn-cg-Rzi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="seats" destination="Fnn-8T-eEl" collectionClass="NSMutableArray" id="x6n-TB-uEn"/>
                 <outletCollection property="seats" destination="DX3-X0-CYH" collectionClass="NSMutableArray" id="RAf-0A-11y"/>
@@ -41,22 +42,16 @@
                     <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="Ewh-tA-usn"/>
-                        <barButtonItem title="身份" id="rT9-Fz-Qm3">
-                            <connections>
-                                <action selector="onRevealIdentityButtonPressed:" destination="-1" id="YM0-80-PcQ"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="kTc-Tc-VFI"/>
-                        <barButtonItem title="开始" id="kpj-sH-2E3">
-                            <connections>
-                                <action selector="onStartGameButtonPressed:" destination="-1" id="B4l-zO-OmH"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="z3J-p2-jMr"/>
                         <barButtonItem title="昨夜" id="bg5-Si-odl">
                             <connections>
                                 <action selector="onLastNightButtonPressed:" destination="-1" id="umM-nN-5PB"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="z3J-p2-jMr"/>
+                        <barButtonItem title="开始" id="kpj-sH-2E3">
+                            <connections>
+                                <action selector="onStartGameButtonPressed:" destination="-1" id="B4l-zO-OmH"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="7Rt-Hb-Xq3"/>
@@ -241,14 +236,26 @@
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="oIG-5c-Bnl"/>
                 </stackView>
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="卡背" translatesAutoresizingMaskIntoConstraints="NO" id="842-l4-BsY">
+                    <rect key="frame" x="150" y="395" width="75" height="75"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="75" id="VAK-9S-Cnt"/>
+                        <constraint firstAttribute="height" constant="75" id="fUj-Hz-yZT"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="OL7-KJ-bCX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="2se-IO-rMg"/>
                 <constraint firstItem="OL7-KJ-bCX" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="8" id="XVE-wE-885"/>
+                <constraint firstItem="842-l4-BsY" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="eQB-VF-e00"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="OL7-KJ-bCX" secondAttribute="trailing" constant="8" id="fzu-9w-WQf"/>
+                <constraint firstItem="842-l4-BsY" firstAttribute="top" secondItem="OL7-KJ-bCX" secondAttribute="bottom" constant="8" id="mac-qJ-2Fu"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>
     </objects>
+    <resources>
+        <image name="卡背" width="66" height="66"/>
+    </resources>
 </document>
