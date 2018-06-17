@@ -26,7 +26,7 @@ const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 type Role int32
 
 const (
-	Role_ROLE_UNKNOWN   Role = 0
+	Role_UNKNOWN        Role = 0
 	Role_VILLAGER       Role = 1
 	Role_SEER           Role = 2
 	Role_WITCH          Role = 3
@@ -40,7 +40,7 @@ const (
 )
 
 var Role_name = map[int32]string{
-	0:  "ROLE_UNKNOWN",
+	0:  "UNKNOWN",
 	1:  "VILLAGER",
 	2:  "SEER",
 	3:  "WITCH",
@@ -53,7 +53,7 @@ var Role_name = map[int32]string{
 	10: "HALF_BLOOD",
 }
 var Role_value = map[string]int32{
-	"ROLE_UNKNOWN":   0,
+	"UNKNOWN":        0,
 	"VILLAGER":       1,
 	"SEER":           2,
 	"WITCH":          3,
@@ -70,26 +70,26 @@ func (x Role) String() string {
 	return proto.EnumName(Role_name, int32(x))
 }
 func (Role) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_c26a6dc554e46c5d, []int{0}
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{0}
 }
 
-type GameState int32
+type Game_State int32
 
 const (
-	GameState_GAME_STATE_UNKNOWN GameState = 0
-	GameState_DARKNESS_FALLS     GameState = 1
-	GameState_ORPHAN_AWAKE       GameState = 2
-	GameState_HALF_BLOOD_AWAKE   GameState = 3
-	GameState_GUARDIAN_AWAKE     GameState = 4
-	GameState_WEREWOLF_AWAKE     GameState = 5
-	GameState_WITCH_AWAKE        GameState = 6
-	GameState_SEER_AWAKE         GameState = 7
-	GameState_HUNTER_AWAKE       GameState = 8
-	GameState_SHERIFF_ELECTION   GameState = 9
+	Game_UNKNOWN          Game_State = 0
+	Game_DARKNESS_FALLS   Game_State = 1
+	Game_ORPHAN_AWAKE     Game_State = 2
+	Game_HALF_BLOOD_AWAKE Game_State = 3
+	Game_GUARDIAN_AWAKE   Game_State = 4
+	Game_WEREWOLF_AWAKE   Game_State = 5
+	Game_WITCH_AWAKE      Game_State = 6
+	Game_SEER_AWAKE       Game_State = 7
+	Game_HUNTER_AWAKE     Game_State = 8
+	Game_SHERIFF_ELECTION Game_State = 9
 )
 
-var GameState_name = map[int32]string{
-	0: "GAME_STATE_UNKNOWN",
+var Game_State_name = map[int32]string{
+	0: "UNKNOWN",
 	1: "DARKNESS_FALLS",
 	2: "ORPHAN_AWAKE",
 	3: "HALF_BLOOD_AWAKE",
@@ -100,109 +100,25 @@ var GameState_name = map[int32]string{
 	8: "HUNTER_AWAKE",
 	9: "SHERIFF_ELECTION",
 }
-var GameState_value = map[string]int32{
-	"GAME_STATE_UNKNOWN": 0,
-	"DARKNESS_FALLS":     1,
-	"ORPHAN_AWAKE":       2,
-	"HALF_BLOOD_AWAKE":   3,
-	"GUARDIAN_AWAKE":     4,
-	"WEREWOLF_AWAKE":     5,
-	"WITCH_AWAKE":        6,
-	"SEER_AWAKE":         7,
-	"HUNTER_AWAKE":       8,
-	"SHERIFF_ELECTION":   9,
+var Game_State_value = map[string]int32{
+	"UNKNOWN":          0,
+	"DARKNESS_FALLS":   1,
+	"ORPHAN_AWAKE":     2,
+	"HALF_BLOOD_AWAKE": 3,
+	"GUARDIAN_AWAKE":   4,
+	"WEREWOLF_AWAKE":   5,
+	"WITCH_AWAKE":      6,
+	"SEER_AWAKE":       7,
+	"HUNTER_AWAKE":     8,
+	"SHERIFF_ELECTION": 9,
 }
 
-func (x GameState) String() string {
-	return proto.EnumName(GameState_name, int32(x))
+func (x Game_State) String() string {
+	return proto.EnumName(Game_State_name, int32(x))
 }
-func (GameState) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_c26a6dc554e46c5d, []int{1}
+func (Game_State) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{20, 0}
 }
-
-type TakeSeatRequest struct {
-	RoomId               int32    `protobuf:"varint,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	UserId               string   `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	SeatId               string   `protobuf:"bytes,3,opt,name=seat_id,json=seatId,proto3" json:"seat_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *TakeSeatRequest) Reset()         { *m = TakeSeatRequest{} }
-func (m *TakeSeatRequest) String() string { return proto.CompactTextString(m) }
-func (*TakeSeatRequest) ProtoMessage()    {}
-func (*TakeSeatRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_c26a6dc554e46c5d, []int{0}
-}
-func (m *TakeSeatRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_TakeSeatRequest.Unmarshal(m, b)
-}
-func (m *TakeSeatRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_TakeSeatRequest.Marshal(b, m, deterministic)
-}
-func (dst *TakeSeatRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TakeSeatRequest.Merge(dst, src)
-}
-func (m *TakeSeatRequest) XXX_Size() int {
-	return xxx_messageInfo_TakeSeatRequest.Size(m)
-}
-func (m *TakeSeatRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_TakeSeatRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_TakeSeatRequest proto.InternalMessageInfo
-
-func (m *TakeSeatRequest) GetRoomId() int32 {
-	if m != nil {
-		return m.RoomId
-	}
-	return 0
-}
-
-func (m *TakeSeatRequest) GetUserId() string {
-	if m != nil {
-		return m.UserId
-	}
-	return ""
-}
-
-func (m *TakeSeatRequest) GetSeatId() string {
-	if m != nil {
-		return m.SeatId
-	}
-	return ""
-}
-
-type TakeSeatResponse struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *TakeSeatResponse) Reset()         { *m = TakeSeatResponse{} }
-func (m *TakeSeatResponse) String() string { return proto.CompactTextString(m) }
-func (*TakeSeatResponse) ProtoMessage()    {}
-func (*TakeSeatResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_c26a6dc554e46c5d, []int{1}
-}
-func (m *TakeSeatResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_TakeSeatResponse.Unmarshal(m, b)
-}
-func (m *TakeSeatResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_TakeSeatResponse.Marshal(b, m, deterministic)
-}
-func (dst *TakeSeatResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_TakeSeatResponse.Merge(dst, src)
-}
-func (m *TakeSeatResponse) XXX_Size() int {
-	return xxx_messageInfo_TakeSeatResponse.Size(m)
-}
-func (m *TakeSeatResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_TakeSeatResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_TakeSeatResponse proto.InternalMessageInfo
 
 type CreateAndJoinRoomRequest struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -214,7 +130,7 @@ func (m *CreateAndJoinRoomRequest) Reset()         { *m = CreateAndJoinRoomReque
 func (m *CreateAndJoinRoomRequest) String() string { return proto.CompactTextString(m) }
 func (*CreateAndJoinRoomRequest) ProtoMessage()    {}
 func (*CreateAndJoinRoomRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_c26a6dc554e46c5d, []int{2}
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{0}
 }
 func (m *CreateAndJoinRoomRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CreateAndJoinRoomRequest.Unmarshal(m, b)
@@ -235,7 +151,7 @@ func (m *CreateAndJoinRoomRequest) XXX_DiscardUnknown() {
 var xxx_messageInfo_CreateAndJoinRoomRequest proto.InternalMessageInfo
 
 type CreateAndJoinRoomResponse struct {
-	RoomId               int32    `protobuf:"varint,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
+	RoomId               string   `protobuf:"bytes,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
 	UserId               string   `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -246,7 +162,7 @@ func (m *CreateAndJoinRoomResponse) Reset()         { *m = CreateAndJoinRoomResp
 func (m *CreateAndJoinRoomResponse) String() string { return proto.CompactTextString(m) }
 func (*CreateAndJoinRoomResponse) ProtoMessage()    {}
 func (*CreateAndJoinRoomResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_c26a6dc554e46c5d, []int{3}
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{1}
 }
 func (m *CreateAndJoinRoomResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CreateAndJoinRoomResponse.Unmarshal(m, b)
@@ -266,11 +182,11 @@ func (m *CreateAndJoinRoomResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_CreateAndJoinRoomResponse proto.InternalMessageInfo
 
-func (m *CreateAndJoinRoomResponse) GetRoomId() int32 {
+func (m *CreateAndJoinRoomResponse) GetRoomId() string {
 	if m != nil {
 		return m.RoomId
 	}
-	return 0
+	return ""
 }
 
 func (m *CreateAndJoinRoomResponse) GetUserId() string {
@@ -281,21 +197,18 @@ func (m *CreateAndJoinRoomResponse) GetUserId() string {
 }
 
 type UpdateGameConfigRequest struct {
-	RoomId               int32    `protobuf:"varint,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	UserId               string   `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	CanWitchSaveSelf     bool     `protobuf:"varint,3,opt,name=canWitchSaveSelf,proto3" json:"canWitchSaveSelf,omitempty"`
-	Roles                []Role   `protobuf:"varint,4,rep,packed,name=roles,proto3,enum=werewolf.Role" json:"roles,omitempty"`
-	Counts               []int32  `protobuf:"varint,5,rep,packed,name=counts,proto3" json:"counts,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	RoomId               string                               `protobuf:"bytes,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
+	RoleCounts           []*UpdateGameConfigRequest_RoleCount `protobuf:"bytes,2,rep,name=role_counts,json=roleCounts,proto3" json:"role_counts,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}                             `json:"-"`
+	XXX_unrecognized     []byte                               `json:"-"`
+	XXX_sizecache        int32                                `json:"-"`
 }
 
 func (m *UpdateGameConfigRequest) Reset()         { *m = UpdateGameConfigRequest{} }
 func (m *UpdateGameConfigRequest) String() string { return proto.CompactTextString(m) }
 func (*UpdateGameConfigRequest) ProtoMessage()    {}
 func (*UpdateGameConfigRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_c26a6dc554e46c5d, []int{4}
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{2}
 }
 func (m *UpdateGameConfigRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_UpdateGameConfigRequest.Unmarshal(m, b)
@@ -315,43 +228,67 @@ func (m *UpdateGameConfigRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_UpdateGameConfigRequest proto.InternalMessageInfo
 
-func (m *UpdateGameConfigRequest) GetRoomId() int32 {
+func (m *UpdateGameConfigRequest) GetRoomId() string {
 	if m != nil {
 		return m.RoomId
-	}
-	return 0
-}
-
-func (m *UpdateGameConfigRequest) GetUserId() string {
-	if m != nil {
-		return m.UserId
 	}
 	return ""
 }
 
-func (m *UpdateGameConfigRequest) GetCanWitchSaveSelf() bool {
+func (m *UpdateGameConfigRequest) GetRoleCounts() []*UpdateGameConfigRequest_RoleCount {
 	if m != nil {
-		return m.CanWitchSaveSelf
-	}
-	return false
-}
-
-func (m *UpdateGameConfigRequest) GetRoles() []Role {
-	if m != nil {
-		return m.Roles
+		return m.RoleCounts
 	}
 	return nil
 }
 
-func (m *UpdateGameConfigRequest) GetCounts() []int32 {
+type UpdateGameConfigRequest_RoleCount struct {
+	Role                 Role     `protobuf:"varint,1,opt,name=role,proto3,enum=werewolf.Role" json:"role,omitempty"`
+	Count                string   `protobuf:"bytes,2,opt,name=count,proto3" json:"count,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *UpdateGameConfigRequest_RoleCount) Reset()         { *m = UpdateGameConfigRequest_RoleCount{} }
+func (m *UpdateGameConfigRequest_RoleCount) String() string { return proto.CompactTextString(m) }
+func (*UpdateGameConfigRequest_RoleCount) ProtoMessage()    {}
+func (*UpdateGameConfigRequest_RoleCount) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{2, 0}
+}
+func (m *UpdateGameConfigRequest_RoleCount) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateGameConfigRequest_RoleCount.Unmarshal(m, b)
+}
+func (m *UpdateGameConfigRequest_RoleCount) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateGameConfigRequest_RoleCount.Marshal(b, m, deterministic)
+}
+func (dst *UpdateGameConfigRequest_RoleCount) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateGameConfigRequest_RoleCount.Merge(dst, src)
+}
+func (m *UpdateGameConfigRequest_RoleCount) XXX_Size() int {
+	return xxx_messageInfo_UpdateGameConfigRequest_RoleCount.Size(m)
+}
+func (m *UpdateGameConfigRequest_RoleCount) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateGameConfigRequest_RoleCount.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UpdateGameConfigRequest_RoleCount proto.InternalMessageInfo
+
+func (m *UpdateGameConfigRequest_RoleCount) GetRole() Role {
 	if m != nil {
-		return m.Counts
+		return m.Role
 	}
-	return nil
+	return Role_UNKNOWN
+}
+
+func (m *UpdateGameConfigRequest_RoleCount) GetCount() string {
+	if m != nil {
+		return m.Count
+	}
+	return ""
 }
 
 type UpdateGameConfigResponse struct {
-	Room                 *Room    `protobuf:"bytes,1,opt,name=room,proto3" json:"room,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -361,7 +298,7 @@ func (m *UpdateGameConfigResponse) Reset()         { *m = UpdateGameConfigRespon
 func (m *UpdateGameConfigResponse) String() string { return proto.CompactTextString(m) }
 func (*UpdateGameConfigResponse) ProtoMessage()    {}
 func (*UpdateGameConfigResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_c26a6dc554e46c5d, []int{5}
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{3}
 }
 func (m *UpdateGameConfigResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_UpdateGameConfigResponse.Unmarshal(m, b)
@@ -381,320 +318,9 @@ func (m *UpdateGameConfigResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_UpdateGameConfigResponse proto.InternalMessageInfo
 
-func (m *UpdateGameConfigResponse) GetRoom() *Room {
-	if m != nil {
-		return m.Room
-	}
-	return nil
-}
-
-type ReassignRolesRequest struct {
-	UserId               string   `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ReassignRolesRequest) Reset()         { *m = ReassignRolesRequest{} }
-func (m *ReassignRolesRequest) String() string { return proto.CompactTextString(m) }
-func (*ReassignRolesRequest) ProtoMessage()    {}
-func (*ReassignRolesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_c26a6dc554e46c5d, []int{6}
-}
-func (m *ReassignRolesRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ReassignRolesRequest.Unmarshal(m, b)
-}
-func (m *ReassignRolesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ReassignRolesRequest.Marshal(b, m, deterministic)
-}
-func (dst *ReassignRolesRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ReassignRolesRequest.Merge(dst, src)
-}
-func (m *ReassignRolesRequest) XXX_Size() int {
-	return xxx_messageInfo_ReassignRolesRequest.Size(m)
-}
-func (m *ReassignRolesRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ReassignRolesRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ReassignRolesRequest proto.InternalMessageInfo
-
-func (m *ReassignRolesRequest) GetUserId() string {
-	if m != nil {
-		return m.UserId
-	}
-	return ""
-}
-
-type ReassignRolesResponse struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ReassignRolesResponse) Reset()         { *m = ReassignRolesResponse{} }
-func (m *ReassignRolesResponse) String() string { return proto.CompactTextString(m) }
-func (*ReassignRolesResponse) ProtoMessage()    {}
-func (*ReassignRolesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_c26a6dc554e46c5d, []int{7}
-}
-func (m *ReassignRolesResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ReassignRolesResponse.Unmarshal(m, b)
-}
-func (m *ReassignRolesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ReassignRolesResponse.Marshal(b, m, deterministic)
-}
-func (dst *ReassignRolesResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ReassignRolesResponse.Merge(dst, src)
-}
-func (m *ReassignRolesResponse) XXX_Size() int {
-	return xxx_messageInfo_ReassignRolesResponse.Size(m)
-}
-func (m *ReassignRolesResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ReassignRolesResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ReassignRolesResponse proto.InternalMessageInfo
-
-type StartGameRequest struct {
-	RoomId               int32    `protobuf:"varint,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	UserId               string   `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *StartGameRequest) Reset()         { *m = StartGameRequest{} }
-func (m *StartGameRequest) String() string { return proto.CompactTextString(m) }
-func (*StartGameRequest) ProtoMessage()    {}
-func (*StartGameRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_c26a6dc554e46c5d, []int{8}
-}
-func (m *StartGameRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_StartGameRequest.Unmarshal(m, b)
-}
-func (m *StartGameRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_StartGameRequest.Marshal(b, m, deterministic)
-}
-func (dst *StartGameRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_StartGameRequest.Merge(dst, src)
-}
-func (m *StartGameRequest) XXX_Size() int {
-	return xxx_messageInfo_StartGameRequest.Size(m)
-}
-func (m *StartGameRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_StartGameRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_StartGameRequest proto.InternalMessageInfo
-
-func (m *StartGameRequest) GetRoomId() int32 {
-	if m != nil {
-		return m.RoomId
-	}
-	return 0
-}
-
-func (m *StartGameRequest) GetUserId() string {
-	if m != nil {
-		return m.UserId
-	}
-	return ""
-}
-
-type StartGameResponse struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *StartGameResponse) Reset()         { *m = StartGameResponse{} }
-func (m *StartGameResponse) String() string { return proto.CompactTextString(m) }
-func (*StartGameResponse) ProtoMessage()    {}
-func (*StartGameResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_c26a6dc554e46c5d, []int{9}
-}
-func (m *StartGameResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_StartGameResponse.Unmarshal(m, b)
-}
-func (m *StartGameResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_StartGameResponse.Marshal(b, m, deterministic)
-}
-func (dst *StartGameResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_StartGameResponse.Merge(dst, src)
-}
-func (m *StartGameResponse) XXX_Size() int {
-	return xxx_messageInfo_StartGameResponse.Size(m)
-}
-func (m *StartGameResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_StartGameResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_StartGameResponse proto.InternalMessageInfo
-
-type GetGameStateRequest struct {
-	UserId               string   `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *GetGameStateRequest) Reset()         { *m = GetGameStateRequest{} }
-func (m *GetGameStateRequest) String() string { return proto.CompactTextString(m) }
-func (*GetGameStateRequest) ProtoMessage()    {}
-func (*GetGameStateRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_c26a6dc554e46c5d, []int{10}
-}
-func (m *GetGameStateRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetGameStateRequest.Unmarshal(m, b)
-}
-func (m *GetGameStateRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetGameStateRequest.Marshal(b, m, deterministic)
-}
-func (dst *GetGameStateRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetGameStateRequest.Merge(dst, src)
-}
-func (m *GetGameStateRequest) XXX_Size() int {
-	return xxx_messageInfo_GetGameStateRequest.Size(m)
-}
-func (m *GetGameStateRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetGameStateRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetGameStateRequest proto.InternalMessageInfo
-
-func (m *GetGameStateRequest) GetUserId() string {
-	if m != nil {
-		return m.UserId
-	}
-	return ""
-}
-
-type GetGameStateResponse struct {
-	GameState            GameState `protobuf:"varint,1,opt,name=game_state,json=gameState,proto3,enum=werewolf.GameState" json:"game_state,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
-	XXX_unrecognized     []byte    `json:"-"`
-	XXX_sizecache        int32     `json:"-"`
-}
-
-func (m *GetGameStateResponse) Reset()         { *m = GetGameStateResponse{} }
-func (m *GetGameStateResponse) String() string { return proto.CompactTextString(m) }
-func (*GetGameStateResponse) ProtoMessage()    {}
-func (*GetGameStateResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_c26a6dc554e46c5d, []int{11}
-}
-func (m *GetGameStateResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetGameStateResponse.Unmarshal(m, b)
-}
-func (m *GetGameStateResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetGameStateResponse.Marshal(b, m, deterministic)
-}
-func (dst *GetGameStateResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetGameStateResponse.Merge(dst, src)
-}
-func (m *GetGameStateResponse) XXX_Size() int {
-	return xxx_messageInfo_GetGameStateResponse.Size(m)
-}
-func (m *GetGameStateResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetGameStateResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetGameStateResponse proto.InternalMessageInfo
-
-func (m *GetGameStateResponse) GetGameState() GameState {
-	if m != nil {
-		return m.GameState
-	}
-	return GameState_GAME_STATE_UNKNOWN
-}
-
-type GetFirstDayResultRequest struct {
-	RoomId               int32    `protobuf:"varint,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	UserId               string   `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *GetFirstDayResultRequest) Reset()         { *m = GetFirstDayResultRequest{} }
-func (m *GetFirstDayResultRequest) String() string { return proto.CompactTextString(m) }
-func (*GetFirstDayResultRequest) ProtoMessage()    {}
-func (*GetFirstDayResultRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_c26a6dc554e46c5d, []int{12}
-}
-func (m *GetFirstDayResultRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetFirstDayResultRequest.Unmarshal(m, b)
-}
-func (m *GetFirstDayResultRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetFirstDayResultRequest.Marshal(b, m, deterministic)
-}
-func (dst *GetFirstDayResultRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetFirstDayResultRequest.Merge(dst, src)
-}
-func (m *GetFirstDayResultRequest) XXX_Size() int {
-	return xxx_messageInfo_GetFirstDayResultRequest.Size(m)
-}
-func (m *GetFirstDayResultRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetFirstDayResultRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetFirstDayResultRequest proto.InternalMessageInfo
-
-func (m *GetFirstDayResultRequest) GetRoomId() int32 {
-	if m != nil {
-		return m.RoomId
-	}
-	return 0
-}
-
-func (m *GetFirstDayResultRequest) GetUserId() string {
-	if m != nil {
-		return m.UserId
-	}
-	return ""
-}
-
-type GetFirstDayResultResponse struct {
-	DeadPlayerNumbers    []int32  `protobuf:"varint,1,rep,packed,name=dead_player_numbers,json=deadPlayerNumbers,proto3" json:"dead_player_numbers,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *GetFirstDayResultResponse) Reset()         { *m = GetFirstDayResultResponse{} }
-func (m *GetFirstDayResultResponse) String() string { return proto.CompactTextString(m) }
-func (*GetFirstDayResultResponse) ProtoMessage()    {}
-func (*GetFirstDayResultResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_c26a6dc554e46c5d, []int{13}
-}
-func (m *GetFirstDayResultResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetFirstDayResultResponse.Unmarshal(m, b)
-}
-func (m *GetFirstDayResultResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetFirstDayResultResponse.Marshal(b, m, deterministic)
-}
-func (dst *GetFirstDayResultResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetFirstDayResultResponse.Merge(dst, src)
-}
-func (m *GetFirstDayResultResponse) XXX_Size() int {
-	return xxx_messageInfo_GetFirstDayResultResponse.Size(m)
-}
-func (m *GetFirstDayResultResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetFirstDayResultResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetFirstDayResultResponse proto.InternalMessageInfo
-
-func (m *GetFirstDayResultResponse) GetDeadPlayerNumbers() []int32 {
-	if m != nil {
-		return m.DeadPlayerNumbers
-	}
-	return nil
-}
-
 type JoinRoomRequest struct {
 	UserId               string   `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	RoomId               int32    `protobuf:"varint,2,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
+	RoomId               string   `protobuf:"bytes,2,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -704,7 +330,7 @@ func (m *JoinRoomRequest) Reset()         { *m = JoinRoomRequest{} }
 func (m *JoinRoomRequest) String() string { return proto.CompactTextString(m) }
 func (*JoinRoomRequest) ProtoMessage()    {}
 func (*JoinRoomRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_c26a6dc554e46c5d, []int{14}
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{4}
 }
 func (m *JoinRoomRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_JoinRoomRequest.Unmarshal(m, b)
@@ -731,11 +357,11 @@ func (m *JoinRoomRequest) GetUserId() string {
 	return ""
 }
 
-func (m *JoinRoomRequest) GetRoomId() int32 {
+func (m *JoinRoomRequest) GetRoomId() string {
 	if m != nil {
 		return m.RoomId
 	}
-	return 0
+	return ""
 }
 
 type JoinRoomResponse struct {
@@ -749,7 +375,7 @@ func (m *JoinRoomResponse) Reset()         { *m = JoinRoomResponse{} }
 func (m *JoinRoomResponse) String() string { return proto.CompactTextString(m) }
 func (*JoinRoomResponse) ProtoMessage()    {}
 func (*JoinRoomResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_c26a6dc554e46c5d, []int{15}
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{5}
 }
 func (m *JoinRoomResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_JoinRoomResponse.Unmarshal(m, b)
@@ -776,139 +402,935 @@ func (m *JoinRoomResponse) GetUserId() string {
 	return ""
 }
 
-type GetRoleRequest struct {
-	UserId               string   `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+type GetRoomRequest struct {
+	RoomId               string   `protobuf:"bytes,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *GetRoleRequest) Reset()         { *m = GetRoleRequest{} }
-func (m *GetRoleRequest) String() string { return proto.CompactTextString(m) }
-func (*GetRoleRequest) ProtoMessage()    {}
-func (*GetRoleRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_c26a6dc554e46c5d, []int{16}
+func (m *GetRoomRequest) Reset()         { *m = GetRoomRequest{} }
+func (m *GetRoomRequest) String() string { return proto.CompactTextString(m) }
+func (*GetRoomRequest) ProtoMessage()    {}
+func (*GetRoomRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{6}
 }
-func (m *GetRoleRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetRoleRequest.Unmarshal(m, b)
+func (m *GetRoomRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetRoomRequest.Unmarshal(m, b)
 }
-func (m *GetRoleRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetRoleRequest.Marshal(b, m, deterministic)
+func (m *GetRoomRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetRoomRequest.Marshal(b, m, deterministic)
 }
-func (dst *GetRoleRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetRoleRequest.Merge(dst, src)
+func (dst *GetRoomRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetRoomRequest.Merge(dst, src)
 }
-func (m *GetRoleRequest) XXX_Size() int {
-	return xxx_messageInfo_GetRoleRequest.Size(m)
+func (m *GetRoomRequest) XXX_Size() int {
+	return xxx_messageInfo_GetRoomRequest.Size(m)
 }
-func (m *GetRoleRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetRoleRequest.DiscardUnknown(m)
+func (m *GetRoomRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetRoomRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetRoleRequest proto.InternalMessageInfo
+var xxx_messageInfo_GetRoomRequest proto.InternalMessageInfo
 
-func (m *GetRoleRequest) GetUserId() string {
+func (m *GetRoomRequest) GetRoomId() string {
 	if m != nil {
-		return m.UserId
+		return m.RoomId
 	}
 	return ""
 }
 
-type GetRoleResponse struct {
-	Role                 Role     `protobuf:"varint,1,opt,name=role,proto3,enum=werewolf.Role" json:"role,omitempty"`
+type GetRoomResponse struct {
+	Seats                []*Seat  `protobuf:"bytes,2,rep,name=seats,proto3" json:"seats,omitempty"`
+	GameId               string   `protobuf:"bytes,3,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *GetRoleResponse) Reset()         { *m = GetRoleResponse{} }
-func (m *GetRoleResponse) String() string { return proto.CompactTextString(m) }
-func (*GetRoleResponse) ProtoMessage()    {}
-func (*GetRoleResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_c26a6dc554e46c5d, []int{17}
+func (m *GetRoomResponse) Reset()         { *m = GetRoomResponse{} }
+func (m *GetRoomResponse) String() string { return proto.CompactTextString(m) }
+func (*GetRoomResponse) ProtoMessage()    {}
+func (*GetRoomResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{7}
 }
-func (m *GetRoleResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetRoleResponse.Unmarshal(m, b)
+func (m *GetRoomResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetRoomResponse.Unmarshal(m, b)
 }
-func (m *GetRoleResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetRoleResponse.Marshal(b, m, deterministic)
+func (m *GetRoomResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetRoomResponse.Marshal(b, m, deterministic)
 }
-func (dst *GetRoleResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetRoleResponse.Merge(dst, src)
+func (dst *GetRoomResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetRoomResponse.Merge(dst, src)
 }
-func (m *GetRoleResponse) XXX_Size() int {
-	return xxx_messageInfo_GetRoleResponse.Size(m)
+func (m *GetRoomResponse) XXX_Size() int {
+	return xxx_messageInfo_GetRoomResponse.Size(m)
 }
-func (m *GetRoleResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetRoleResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetRoleResponse proto.InternalMessageInfo
-
-func (m *GetRoleResponse) GetRole() Role {
-	if m != nil {
-		return m.Role
-	}
-	return Role_ROLE_UNKNOWN
+func (m *GetRoomResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetRoomResponse.DiscardUnknown(m)
 }
 
-type Room struct {
-	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Users                []*User  `protobuf:"bytes,2,rep,name=users,proto3" json:"users,omitempty"`
-	Seats                []*Seat  `protobuf:"bytes,3,rep,name=seats,proto3" json:"seats,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
+var xxx_messageInfo_GetRoomResponse proto.InternalMessageInfo
 
-func (m *Room) Reset()         { *m = Room{} }
-func (m *Room) String() string { return proto.CompactTextString(m) }
-func (*Room) ProtoMessage()    {}
-func (*Room) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_c26a6dc554e46c5d, []int{18}
-}
-func (m *Room) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Room.Unmarshal(m, b)
-}
-func (m *Room) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Room.Marshal(b, m, deterministic)
-}
-func (dst *Room) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Room.Merge(dst, src)
-}
-func (m *Room) XXX_Size() int {
-	return xxx_messageInfo_Room.Size(m)
-}
-func (m *Room) XXX_DiscardUnknown() {
-	xxx_messageInfo_Room.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Room proto.InternalMessageInfo
-
-func (m *Room) GetId() int32 {
-	if m != nil {
-		return m.Id
-	}
-	return 0
-}
-
-func (m *Room) GetUsers() []*User {
-	if m != nil {
-		return m.Users
-	}
-	return nil
-}
-
-func (m *Room) GetSeats() []*Seat {
+func (m *GetRoomResponse) GetSeats() []*Seat {
 	if m != nil {
 		return m.Seats
 	}
 	return nil
 }
 
+func (m *GetRoomResponse) GetGameId() string {
+	if m != nil {
+		return m.GameId
+	}
+	return ""
+}
+
+type TakeSeatRequest struct {
+	SeatId               string   `protobuf:"bytes,1,opt,name=seat_id,json=seatId,proto3" json:"seat_id,omitempty"`
+	UserId               string   `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *TakeSeatRequest) Reset()         { *m = TakeSeatRequest{} }
+func (m *TakeSeatRequest) String() string { return proto.CompactTextString(m) }
+func (*TakeSeatRequest) ProtoMessage()    {}
+func (*TakeSeatRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{8}
+}
+func (m *TakeSeatRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TakeSeatRequest.Unmarshal(m, b)
+}
+func (m *TakeSeatRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TakeSeatRequest.Marshal(b, m, deterministic)
+}
+func (dst *TakeSeatRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TakeSeatRequest.Merge(dst, src)
+}
+func (m *TakeSeatRequest) XXX_Size() int {
+	return xxx_messageInfo_TakeSeatRequest.Size(m)
+}
+func (m *TakeSeatRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_TakeSeatRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TakeSeatRequest proto.InternalMessageInfo
+
+func (m *TakeSeatRequest) GetSeatId() string {
+	if m != nil {
+		return m.SeatId
+	}
+	return ""
+}
+
+func (m *TakeSeatRequest) GetUserId() string {
+	if m != nil {
+		return m.UserId
+	}
+	return ""
+}
+
+type TakeSeatResponse struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *TakeSeatResponse) Reset()         { *m = TakeSeatResponse{} }
+func (m *TakeSeatResponse) String() string { return proto.CompactTextString(m) }
+func (*TakeSeatResponse) ProtoMessage()    {}
+func (*TakeSeatResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{9}
+}
+func (m *TakeSeatResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TakeSeatResponse.Unmarshal(m, b)
+}
+func (m *TakeSeatResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TakeSeatResponse.Marshal(b, m, deterministic)
+}
+func (dst *TakeSeatResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TakeSeatResponse.Merge(dst, src)
+}
+func (m *TakeSeatResponse) XXX_Size() int {
+	return xxx_messageInfo_TakeSeatResponse.Size(m)
+}
+func (m *TakeSeatResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_TakeSeatResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TakeSeatResponse proto.InternalMessageInfo
+
+type ReassignRolesRequest struct {
+	RoomId               string   `protobuf:"bytes,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ReassignRolesRequest) Reset()         { *m = ReassignRolesRequest{} }
+func (m *ReassignRolesRequest) String() string { return proto.CompactTextString(m) }
+func (*ReassignRolesRequest) ProtoMessage()    {}
+func (*ReassignRolesRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{10}
+}
+func (m *ReassignRolesRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ReassignRolesRequest.Unmarshal(m, b)
+}
+func (m *ReassignRolesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ReassignRolesRequest.Marshal(b, m, deterministic)
+}
+func (dst *ReassignRolesRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReassignRolesRequest.Merge(dst, src)
+}
+func (m *ReassignRolesRequest) XXX_Size() int {
+	return xxx_messageInfo_ReassignRolesRequest.Size(m)
+}
+func (m *ReassignRolesRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReassignRolesRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ReassignRolesRequest proto.InternalMessageInfo
+
+func (m *ReassignRolesRequest) GetRoomId() string {
+	if m != nil {
+		return m.RoomId
+	}
+	return ""
+}
+
+type ReassignRolesResponse struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ReassignRolesResponse) Reset()         { *m = ReassignRolesResponse{} }
+func (m *ReassignRolesResponse) String() string { return proto.CompactTextString(m) }
+func (*ReassignRolesResponse) ProtoMessage()    {}
+func (*ReassignRolesResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{11}
+}
+func (m *ReassignRolesResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ReassignRolesResponse.Unmarshal(m, b)
+}
+func (m *ReassignRolesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ReassignRolesResponse.Marshal(b, m, deterministic)
+}
+func (dst *ReassignRolesResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ReassignRolesResponse.Merge(dst, src)
+}
+func (m *ReassignRolesResponse) XXX_Size() int {
+	return xxx_messageInfo_ReassignRolesResponse.Size(m)
+}
+func (m *ReassignRolesResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ReassignRolesResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ReassignRolesResponse proto.InternalMessageInfo
+
+type StartGameRequest struct {
+	RoomId               string   `protobuf:"bytes,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *StartGameRequest) Reset()         { *m = StartGameRequest{} }
+func (m *StartGameRequest) String() string { return proto.CompactTextString(m) }
+func (*StartGameRequest) ProtoMessage()    {}
+func (*StartGameRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{12}
+}
+func (m *StartGameRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_StartGameRequest.Unmarshal(m, b)
+}
+func (m *StartGameRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_StartGameRequest.Marshal(b, m, deterministic)
+}
+func (dst *StartGameRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StartGameRequest.Merge(dst, src)
+}
+func (m *StartGameRequest) XXX_Size() int {
+	return xxx_messageInfo_StartGameRequest.Size(m)
+}
+func (m *StartGameRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_StartGameRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_StartGameRequest proto.InternalMessageInfo
+
+func (m *StartGameRequest) GetRoomId() string {
+	if m != nil {
+		return m.RoomId
+	}
+	return ""
+}
+
+type StartGameResponse struct {
+	GameId               string   `protobuf:"bytes,2,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *StartGameResponse) Reset()         { *m = StartGameResponse{} }
+func (m *StartGameResponse) String() string { return proto.CompactTextString(m) }
+func (*StartGameResponse) ProtoMessage()    {}
+func (*StartGameResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{13}
+}
+func (m *StartGameResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_StartGameResponse.Unmarshal(m, b)
+}
+func (m *StartGameResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_StartGameResponse.Marshal(b, m, deterministic)
+}
+func (dst *StartGameResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StartGameResponse.Merge(dst, src)
+}
+func (m *StartGameResponse) XXX_Size() int {
+	return xxx_messageInfo_StartGameResponse.Size(m)
+}
+func (m *StartGameResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_StartGameResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_StartGameResponse proto.InternalMessageInfo
+
+func (m *StartGameResponse) GetGameId() string {
+	if m != nil {
+		return m.GameId
+	}
+	return ""
+}
+
+type GetGameRequest struct {
+	GameId               string   `protobuf:"bytes,1,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetGameRequest) Reset()         { *m = GetGameRequest{} }
+func (m *GetGameRequest) String() string { return proto.CompactTextString(m) }
+func (*GetGameRequest) ProtoMessage()    {}
+func (*GetGameRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{14}
+}
+func (m *GetGameRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetGameRequest.Unmarshal(m, b)
+}
+func (m *GetGameRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetGameRequest.Marshal(b, m, deterministic)
+}
+func (dst *GetGameRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetGameRequest.Merge(dst, src)
+}
+func (m *GetGameRequest) XXX_Size() int {
+	return xxx_messageInfo_GetGameRequest.Size(m)
+}
+func (m *GetGameRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetGameRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetGameRequest proto.InternalMessageInfo
+
+func (m *GetGameRequest) GetGameId() string {
+	if m != nil {
+		return m.GameId
+	}
+	return ""
+}
+
+type GetGameResponse struct {
+	Game                 *Game    `protobuf:"bytes,1,opt,name=game,proto3" json:"game,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *GetGameResponse) Reset()         { *m = GetGameResponse{} }
+func (m *GetGameResponse) String() string { return proto.CompactTextString(m) }
+func (*GetGameResponse) ProtoMessage()    {}
+func (*GetGameResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{15}
+}
+func (m *GetGameResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetGameResponse.Unmarshal(m, b)
+}
+func (m *GetGameResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetGameResponse.Marshal(b, m, deterministic)
+}
+func (dst *GetGameResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetGameResponse.Merge(dst, src)
+}
+func (m *GetGameResponse) XXX_Size() int {
+	return xxx_messageInfo_GetGameResponse.Size(m)
+}
+func (m *GetGameResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetGameResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_GetGameResponse proto.InternalMessageInfo
+
+func (m *GetGameResponse) GetGame() *Game {
+	if m != nil {
+		return m.Game
+	}
+	return nil
+}
+
+type TakeActionRequest struct {
+	GameId string `protobuf:"bytes,1,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
+	// Types that are valid to be assigned to Action:
+	//	*TakeActionRequest_Seer
+	//	*TakeActionRequest_Witch
+	//	*TakeActionRequest_Hunter
+	//	*TakeActionRequest_Guard
+	//	*TakeActionRequest_Werewolf
+	//	*TakeActionRequest_WhiteWerewolf
+	//	*TakeActionRequest_HalfBlood
+	Action               isTakeActionRequest_Action `protobuf_oneof:"action"`
+	XXX_NoUnkeyedLiteral struct{}                   `json:"-"`
+	XXX_unrecognized     []byte                     `json:"-"`
+	XXX_sizecache        int32                      `json:"-"`
+}
+
+func (m *TakeActionRequest) Reset()         { *m = TakeActionRequest{} }
+func (m *TakeActionRequest) String() string { return proto.CompactTextString(m) }
+func (*TakeActionRequest) ProtoMessage()    {}
+func (*TakeActionRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{16}
+}
+func (m *TakeActionRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TakeActionRequest.Unmarshal(m, b)
+}
+func (m *TakeActionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TakeActionRequest.Marshal(b, m, deterministic)
+}
+func (dst *TakeActionRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TakeActionRequest.Merge(dst, src)
+}
+func (m *TakeActionRequest) XXX_Size() int {
+	return xxx_messageInfo_TakeActionRequest.Size(m)
+}
+func (m *TakeActionRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_TakeActionRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TakeActionRequest proto.InternalMessageInfo
+
+type isTakeActionRequest_Action interface {
+	isTakeActionRequest_Action()
+}
+
+type TakeActionRequest_Seer struct {
+	Seer *TakeActionRequest_SeerAction `protobuf:"bytes,2,opt,name=seer,proto3,oneof"`
+}
+type TakeActionRequest_Witch struct {
+	Witch *TakeActionRequest_WitchAction `protobuf:"bytes,3,opt,name=witch,proto3,oneof"`
+}
+type TakeActionRequest_Hunter struct {
+	Hunter *TakeActionRequest_HunterAction `protobuf:"bytes,4,opt,name=hunter,proto3,oneof"`
+}
+type TakeActionRequest_Guard struct {
+	Guard *TakeActionRequest_GuardAction `protobuf:"bytes,5,opt,name=guard,proto3,oneof"`
+}
+type TakeActionRequest_Werewolf struct {
+	Werewolf *TakeActionRequest_WerewolfAction `protobuf:"bytes,6,opt,name=werewolf,proto3,oneof"`
+}
+type TakeActionRequest_WhiteWerewolf struct {
+	WhiteWerewolf *TakeActionRequest_WhiteWerewolfAction `protobuf:"bytes,7,opt,name=white_werewolf,json=whiteWerewolf,proto3,oneof"`
+}
+type TakeActionRequest_HalfBlood struct {
+	HalfBlood *TakeActionRequest_HalfBloodAction `protobuf:"bytes,8,opt,name=half_blood,json=halfBlood,proto3,oneof"`
+}
+
+func (*TakeActionRequest_Seer) isTakeActionRequest_Action()          {}
+func (*TakeActionRequest_Witch) isTakeActionRequest_Action()         {}
+func (*TakeActionRequest_Hunter) isTakeActionRequest_Action()        {}
+func (*TakeActionRequest_Guard) isTakeActionRequest_Action()         {}
+func (*TakeActionRequest_Werewolf) isTakeActionRequest_Action()      {}
+func (*TakeActionRequest_WhiteWerewolf) isTakeActionRequest_Action() {}
+func (*TakeActionRequest_HalfBlood) isTakeActionRequest_Action()     {}
+
+func (m *TakeActionRequest) GetAction() isTakeActionRequest_Action {
+	if m != nil {
+		return m.Action
+	}
+	return nil
+}
+
+func (m *TakeActionRequest) GetGameId() string {
+	if m != nil {
+		return m.GameId
+	}
+	return ""
+}
+
+func (m *TakeActionRequest) GetSeer() *TakeActionRequest_SeerAction {
+	if x, ok := m.GetAction().(*TakeActionRequest_Seer); ok {
+		return x.Seer
+	}
+	return nil
+}
+
+func (m *TakeActionRequest) GetWitch() *TakeActionRequest_WitchAction {
+	if x, ok := m.GetAction().(*TakeActionRequest_Witch); ok {
+		return x.Witch
+	}
+	return nil
+}
+
+func (m *TakeActionRequest) GetHunter() *TakeActionRequest_HunterAction {
+	if x, ok := m.GetAction().(*TakeActionRequest_Hunter); ok {
+		return x.Hunter
+	}
+	return nil
+}
+
+func (m *TakeActionRequest) GetGuard() *TakeActionRequest_GuardAction {
+	if x, ok := m.GetAction().(*TakeActionRequest_Guard); ok {
+		return x.Guard
+	}
+	return nil
+}
+
+func (m *TakeActionRequest) GetWerewolf() *TakeActionRequest_WerewolfAction {
+	if x, ok := m.GetAction().(*TakeActionRequest_Werewolf); ok {
+		return x.Werewolf
+	}
+	return nil
+}
+
+func (m *TakeActionRequest) GetWhiteWerewolf() *TakeActionRequest_WhiteWerewolfAction {
+	if x, ok := m.GetAction().(*TakeActionRequest_WhiteWerewolf); ok {
+		return x.WhiteWerewolf
+	}
+	return nil
+}
+
+func (m *TakeActionRequest) GetHalfBlood() *TakeActionRequest_HalfBloodAction {
+	if x, ok := m.GetAction().(*TakeActionRequest_HalfBlood); ok {
+		return x.HalfBlood
+	}
+	return nil
+}
+
+// XXX_OneofFuncs is for the internal use of the proto package.
+func (*TakeActionRequest) XXX_OneofFuncs() (func(msg proto.Message, b *proto.Buffer) error, func(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error), func(msg proto.Message) (n int), []interface{}) {
+	return _TakeActionRequest_OneofMarshaler, _TakeActionRequest_OneofUnmarshaler, _TakeActionRequest_OneofSizer, []interface{}{
+		(*TakeActionRequest_Seer)(nil),
+		(*TakeActionRequest_Witch)(nil),
+		(*TakeActionRequest_Hunter)(nil),
+		(*TakeActionRequest_Guard)(nil),
+		(*TakeActionRequest_Werewolf)(nil),
+		(*TakeActionRequest_WhiteWerewolf)(nil),
+		(*TakeActionRequest_HalfBlood)(nil),
+	}
+}
+
+func _TakeActionRequest_OneofMarshaler(msg proto.Message, b *proto.Buffer) error {
+	m := msg.(*TakeActionRequest)
+	// action
+	switch x := m.Action.(type) {
+	case *TakeActionRequest_Seer:
+		b.EncodeVarint(2<<3 | proto.WireBytes)
+		if err := b.EncodeMessage(x.Seer); err != nil {
+			return err
+		}
+	case *TakeActionRequest_Witch:
+		b.EncodeVarint(3<<3 | proto.WireBytes)
+		if err := b.EncodeMessage(x.Witch); err != nil {
+			return err
+		}
+	case *TakeActionRequest_Hunter:
+		b.EncodeVarint(4<<3 | proto.WireBytes)
+		if err := b.EncodeMessage(x.Hunter); err != nil {
+			return err
+		}
+	case *TakeActionRequest_Guard:
+		b.EncodeVarint(5<<3 | proto.WireBytes)
+		if err := b.EncodeMessage(x.Guard); err != nil {
+			return err
+		}
+	case *TakeActionRequest_Werewolf:
+		b.EncodeVarint(6<<3 | proto.WireBytes)
+		if err := b.EncodeMessage(x.Werewolf); err != nil {
+			return err
+		}
+	case *TakeActionRequest_WhiteWerewolf:
+		b.EncodeVarint(7<<3 | proto.WireBytes)
+		if err := b.EncodeMessage(x.WhiteWerewolf); err != nil {
+			return err
+		}
+	case *TakeActionRequest_HalfBlood:
+		b.EncodeVarint(8<<3 | proto.WireBytes)
+		if err := b.EncodeMessage(x.HalfBlood); err != nil {
+			return err
+		}
+	case nil:
+	default:
+		return fmt.Errorf("TakeActionRequest.Action has unexpected type %T", x)
+	}
+	return nil
+}
+
+func _TakeActionRequest_OneofUnmarshaler(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error) {
+	m := msg.(*TakeActionRequest)
+	switch tag {
+	case 2: // action.seer
+		if wire != proto.WireBytes {
+			return true, proto.ErrInternalBadWireType
+		}
+		msg := new(TakeActionRequest_SeerAction)
+		err := b.DecodeMessage(msg)
+		m.Action = &TakeActionRequest_Seer{msg}
+		return true, err
+	case 3: // action.witch
+		if wire != proto.WireBytes {
+			return true, proto.ErrInternalBadWireType
+		}
+		msg := new(TakeActionRequest_WitchAction)
+		err := b.DecodeMessage(msg)
+		m.Action = &TakeActionRequest_Witch{msg}
+		return true, err
+	case 4: // action.hunter
+		if wire != proto.WireBytes {
+			return true, proto.ErrInternalBadWireType
+		}
+		msg := new(TakeActionRequest_HunterAction)
+		err := b.DecodeMessage(msg)
+		m.Action = &TakeActionRequest_Hunter{msg}
+		return true, err
+	case 5: // action.guard
+		if wire != proto.WireBytes {
+			return true, proto.ErrInternalBadWireType
+		}
+		msg := new(TakeActionRequest_GuardAction)
+		err := b.DecodeMessage(msg)
+		m.Action = &TakeActionRequest_Guard{msg}
+		return true, err
+	case 6: // action.werewolf
+		if wire != proto.WireBytes {
+			return true, proto.ErrInternalBadWireType
+		}
+		msg := new(TakeActionRequest_WerewolfAction)
+		err := b.DecodeMessage(msg)
+		m.Action = &TakeActionRequest_Werewolf{msg}
+		return true, err
+	case 7: // action.white_werewolf
+		if wire != proto.WireBytes {
+			return true, proto.ErrInternalBadWireType
+		}
+		msg := new(TakeActionRequest_WhiteWerewolfAction)
+		err := b.DecodeMessage(msg)
+		m.Action = &TakeActionRequest_WhiteWerewolf{msg}
+		return true, err
+	case 8: // action.half_blood
+		if wire != proto.WireBytes {
+			return true, proto.ErrInternalBadWireType
+		}
+		msg := new(TakeActionRequest_HalfBloodAction)
+		err := b.DecodeMessage(msg)
+		m.Action = &TakeActionRequest_HalfBlood{msg}
+		return true, err
+	default:
+		return false, nil
+	}
+}
+
+func _TakeActionRequest_OneofSizer(msg proto.Message) (n int) {
+	m := msg.(*TakeActionRequest)
+	// action
+	switch x := m.Action.(type) {
+	case *TakeActionRequest_Seer:
+		s := proto.Size(x.Seer)
+		n += 1 // tag and wire
+		n += proto.SizeVarint(uint64(s))
+		n += s
+	case *TakeActionRequest_Witch:
+		s := proto.Size(x.Witch)
+		n += 1 // tag and wire
+		n += proto.SizeVarint(uint64(s))
+		n += s
+	case *TakeActionRequest_Hunter:
+		s := proto.Size(x.Hunter)
+		n += 1 // tag and wire
+		n += proto.SizeVarint(uint64(s))
+		n += s
+	case *TakeActionRequest_Guard:
+		s := proto.Size(x.Guard)
+		n += 1 // tag and wire
+		n += proto.SizeVarint(uint64(s))
+		n += s
+	case *TakeActionRequest_Werewolf:
+		s := proto.Size(x.Werewolf)
+		n += 1 // tag and wire
+		n += proto.SizeVarint(uint64(s))
+		n += s
+	case *TakeActionRequest_WhiteWerewolf:
+		s := proto.Size(x.WhiteWerewolf)
+		n += 1 // tag and wire
+		n += proto.SizeVarint(uint64(s))
+		n += s
+	case *TakeActionRequest_HalfBlood:
+		s := proto.Size(x.HalfBlood)
+		n += 1 // tag and wire
+		n += proto.SizeVarint(uint64(s))
+		n += s
+	case nil:
+	default:
+		panic(fmt.Sprintf("proto: unexpected type %T in oneof", x))
+	}
+	return n
+}
+
+type TakeActionRequest_SeerAction struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *TakeActionRequest_SeerAction) Reset()         { *m = TakeActionRequest_SeerAction{} }
+func (m *TakeActionRequest_SeerAction) String() string { return proto.CompactTextString(m) }
+func (*TakeActionRequest_SeerAction) ProtoMessage()    {}
+func (*TakeActionRequest_SeerAction) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{16, 0}
+}
+func (m *TakeActionRequest_SeerAction) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TakeActionRequest_SeerAction.Unmarshal(m, b)
+}
+func (m *TakeActionRequest_SeerAction) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TakeActionRequest_SeerAction.Marshal(b, m, deterministic)
+}
+func (dst *TakeActionRequest_SeerAction) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TakeActionRequest_SeerAction.Merge(dst, src)
+}
+func (m *TakeActionRequest_SeerAction) XXX_Size() int {
+	return xxx_messageInfo_TakeActionRequest_SeerAction.Size(m)
+}
+func (m *TakeActionRequest_SeerAction) XXX_DiscardUnknown() {
+	xxx_messageInfo_TakeActionRequest_SeerAction.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TakeActionRequest_SeerAction proto.InternalMessageInfo
+
+type TakeActionRequest_WitchAction struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *TakeActionRequest_WitchAction) Reset()         { *m = TakeActionRequest_WitchAction{} }
+func (m *TakeActionRequest_WitchAction) String() string { return proto.CompactTextString(m) }
+func (*TakeActionRequest_WitchAction) ProtoMessage()    {}
+func (*TakeActionRequest_WitchAction) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{16, 1}
+}
+func (m *TakeActionRequest_WitchAction) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TakeActionRequest_WitchAction.Unmarshal(m, b)
+}
+func (m *TakeActionRequest_WitchAction) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TakeActionRequest_WitchAction.Marshal(b, m, deterministic)
+}
+func (dst *TakeActionRequest_WitchAction) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TakeActionRequest_WitchAction.Merge(dst, src)
+}
+func (m *TakeActionRequest_WitchAction) XXX_Size() int {
+	return xxx_messageInfo_TakeActionRequest_WitchAction.Size(m)
+}
+func (m *TakeActionRequest_WitchAction) XXX_DiscardUnknown() {
+	xxx_messageInfo_TakeActionRequest_WitchAction.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TakeActionRequest_WitchAction proto.InternalMessageInfo
+
+type TakeActionRequest_HunterAction struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *TakeActionRequest_HunterAction) Reset()         { *m = TakeActionRequest_HunterAction{} }
+func (m *TakeActionRequest_HunterAction) String() string { return proto.CompactTextString(m) }
+func (*TakeActionRequest_HunterAction) ProtoMessage()    {}
+func (*TakeActionRequest_HunterAction) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{16, 2}
+}
+func (m *TakeActionRequest_HunterAction) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TakeActionRequest_HunterAction.Unmarshal(m, b)
+}
+func (m *TakeActionRequest_HunterAction) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TakeActionRequest_HunterAction.Marshal(b, m, deterministic)
+}
+func (dst *TakeActionRequest_HunterAction) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TakeActionRequest_HunterAction.Merge(dst, src)
+}
+func (m *TakeActionRequest_HunterAction) XXX_Size() int {
+	return xxx_messageInfo_TakeActionRequest_HunterAction.Size(m)
+}
+func (m *TakeActionRequest_HunterAction) XXX_DiscardUnknown() {
+	xxx_messageInfo_TakeActionRequest_HunterAction.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TakeActionRequest_HunterAction proto.InternalMessageInfo
+
+type TakeActionRequest_GuardAction struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *TakeActionRequest_GuardAction) Reset()         { *m = TakeActionRequest_GuardAction{} }
+func (m *TakeActionRequest_GuardAction) String() string { return proto.CompactTextString(m) }
+func (*TakeActionRequest_GuardAction) ProtoMessage()    {}
+func (*TakeActionRequest_GuardAction) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{16, 3}
+}
+func (m *TakeActionRequest_GuardAction) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TakeActionRequest_GuardAction.Unmarshal(m, b)
+}
+func (m *TakeActionRequest_GuardAction) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TakeActionRequest_GuardAction.Marshal(b, m, deterministic)
+}
+func (dst *TakeActionRequest_GuardAction) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TakeActionRequest_GuardAction.Merge(dst, src)
+}
+func (m *TakeActionRequest_GuardAction) XXX_Size() int {
+	return xxx_messageInfo_TakeActionRequest_GuardAction.Size(m)
+}
+func (m *TakeActionRequest_GuardAction) XXX_DiscardUnknown() {
+	xxx_messageInfo_TakeActionRequest_GuardAction.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TakeActionRequest_GuardAction proto.InternalMessageInfo
+
+type TakeActionRequest_WerewolfAction struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *TakeActionRequest_WerewolfAction) Reset()         { *m = TakeActionRequest_WerewolfAction{} }
+func (m *TakeActionRequest_WerewolfAction) String() string { return proto.CompactTextString(m) }
+func (*TakeActionRequest_WerewolfAction) ProtoMessage()    {}
+func (*TakeActionRequest_WerewolfAction) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{16, 4}
+}
+func (m *TakeActionRequest_WerewolfAction) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TakeActionRequest_WerewolfAction.Unmarshal(m, b)
+}
+func (m *TakeActionRequest_WerewolfAction) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TakeActionRequest_WerewolfAction.Marshal(b, m, deterministic)
+}
+func (dst *TakeActionRequest_WerewolfAction) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TakeActionRequest_WerewolfAction.Merge(dst, src)
+}
+func (m *TakeActionRequest_WerewolfAction) XXX_Size() int {
+	return xxx_messageInfo_TakeActionRequest_WerewolfAction.Size(m)
+}
+func (m *TakeActionRequest_WerewolfAction) XXX_DiscardUnknown() {
+	xxx_messageInfo_TakeActionRequest_WerewolfAction.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TakeActionRequest_WerewolfAction proto.InternalMessageInfo
+
+type TakeActionRequest_WhiteWerewolfAction struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *TakeActionRequest_WhiteWerewolfAction) Reset()         { *m = TakeActionRequest_WhiteWerewolfAction{} }
+func (m *TakeActionRequest_WhiteWerewolfAction) String() string { return proto.CompactTextString(m) }
+func (*TakeActionRequest_WhiteWerewolfAction) ProtoMessage()    {}
+func (*TakeActionRequest_WhiteWerewolfAction) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{16, 5}
+}
+func (m *TakeActionRequest_WhiteWerewolfAction) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TakeActionRequest_WhiteWerewolfAction.Unmarshal(m, b)
+}
+func (m *TakeActionRequest_WhiteWerewolfAction) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TakeActionRequest_WhiteWerewolfAction.Marshal(b, m, deterministic)
+}
+func (dst *TakeActionRequest_WhiteWerewolfAction) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TakeActionRequest_WhiteWerewolfAction.Merge(dst, src)
+}
+func (m *TakeActionRequest_WhiteWerewolfAction) XXX_Size() int {
+	return xxx_messageInfo_TakeActionRequest_WhiteWerewolfAction.Size(m)
+}
+func (m *TakeActionRequest_WhiteWerewolfAction) XXX_DiscardUnknown() {
+	xxx_messageInfo_TakeActionRequest_WhiteWerewolfAction.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TakeActionRequest_WhiteWerewolfAction proto.InternalMessageInfo
+
+type TakeActionRequest_HalfBloodAction struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *TakeActionRequest_HalfBloodAction) Reset()         { *m = TakeActionRequest_HalfBloodAction{} }
+func (m *TakeActionRequest_HalfBloodAction) String() string { return proto.CompactTextString(m) }
+func (*TakeActionRequest_HalfBloodAction) ProtoMessage()    {}
+func (*TakeActionRequest_HalfBloodAction) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{16, 6}
+}
+func (m *TakeActionRequest_HalfBloodAction) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TakeActionRequest_HalfBloodAction.Unmarshal(m, b)
+}
+func (m *TakeActionRequest_HalfBloodAction) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TakeActionRequest_HalfBloodAction.Marshal(b, m, deterministic)
+}
+func (dst *TakeActionRequest_HalfBloodAction) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TakeActionRequest_HalfBloodAction.Merge(dst, src)
+}
+func (m *TakeActionRequest_HalfBloodAction) XXX_Size() int {
+	return xxx_messageInfo_TakeActionRequest_HalfBloodAction.Size(m)
+}
+func (m *TakeActionRequest_HalfBloodAction) XXX_DiscardUnknown() {
+	xxx_messageInfo_TakeActionRequest_HalfBloodAction.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TakeActionRequest_HalfBloodAction proto.InternalMessageInfo
+
+type TakeActionResponse struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *TakeActionResponse) Reset()         { *m = TakeActionResponse{} }
+func (m *TakeActionResponse) String() string { return proto.CompactTextString(m) }
+func (*TakeActionResponse) ProtoMessage()    {}
+func (*TakeActionResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{17}
+}
+func (m *TakeActionResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TakeActionResponse.Unmarshal(m, b)
+}
+func (m *TakeActionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TakeActionResponse.Marshal(b, m, deterministic)
+}
+func (dst *TakeActionResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TakeActionResponse.Merge(dst, src)
+}
+func (m *TakeActionResponse) XXX_Size() int {
+	return xxx_messageInfo_TakeActionResponse.Size(m)
+}
+func (m *TakeActionResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_TakeActionResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TakeActionResponse proto.InternalMessageInfo
+
 type Seat struct {
 	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	UserId               string   `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	User                 *User    `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
 	Role                 Role     `protobuf:"varint,3,opt,name=role,proto3,enum=werewolf.Role" json:"role,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -919,7 +1341,7 @@ func (m *Seat) Reset()         { *m = Seat{} }
 func (m *Seat) String() string { return proto.CompactTextString(m) }
 func (*Seat) ProtoMessage()    {}
 func (*Seat) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_c26a6dc554e46c5d, []int{19}
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{18}
 }
 func (m *Seat) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Seat.Unmarshal(m, b)
@@ -946,23 +1368,22 @@ func (m *Seat) GetId() string {
 	return ""
 }
 
-func (m *Seat) GetUserId() string {
+func (m *Seat) GetUser() *User {
 	if m != nil {
-		return m.UserId
+		return m.User
 	}
-	return ""
+	return nil
 }
 
 func (m *Seat) GetRole() Role {
 	if m != nil {
 		return m.Role
 	}
-	return Role_ROLE_UNKNOWN
+	return Role_UNKNOWN
 }
 
 type User struct {
 	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Nickname             string   `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"`
 	ImgUrl               string   `protobuf:"bytes,3,opt,name=img_url,json=imgUrl,proto3" json:"img_url,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -973,7 +1394,7 @@ func (m *User) Reset()         { *m = User{} }
 func (m *User) String() string { return proto.CompactTextString(m) }
 func (*User) ProtoMessage()    {}
 func (*User) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_c26a6dc554e46c5d, []int{20}
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{19}
 }
 func (m *User) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_User.Unmarshal(m, b)
@@ -1000,13 +1421,6 @@ func (m *User) GetId() string {
 	return ""
 }
 
-func (m *User) GetNickname() string {
-	if m != nil {
-		return m.Nickname
-	}
-	return ""
-}
-
 func (m *User) GetImgUrl() string {
 	if m != nil {
 		return m.ImgUrl
@@ -1014,30 +1428,92 @@ func (m *User) GetImgUrl() string {
 	return ""
 }
 
+type Game struct {
+	Id                   string     `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	State                Game_State `protobuf:"varint,3,opt,name=state,proto3,enum=werewolf.Game_State" json:"state,omitempty"`
+	DeadPlayerNumbers    []string   `protobuf:"bytes,4,rep,name=dead_player_numbers,json=deadPlayerNumbers,proto3" json:"dead_player_numbers,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
+	XXX_unrecognized     []byte     `json:"-"`
+	XXX_sizecache        int32      `json:"-"`
+}
+
+func (m *Game) Reset()         { *m = Game{} }
+func (m *Game) String() string { return proto.CompactTextString(m) }
+func (*Game) ProtoMessage()    {}
+func (*Game) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_ee37f2081c86de66, []int{20}
+}
+func (m *Game) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Game.Unmarshal(m, b)
+}
+func (m *Game) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Game.Marshal(b, m, deterministic)
+}
+func (dst *Game) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Game.Merge(dst, src)
+}
+func (m *Game) XXX_Size() int {
+	return xxx_messageInfo_Game.Size(m)
+}
+func (m *Game) XXX_DiscardUnknown() {
+	xxx_messageInfo_Game.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Game proto.InternalMessageInfo
+
+func (m *Game) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *Game) GetState() Game_State {
+	if m != nil {
+		return m.State
+	}
+	return Game_UNKNOWN
+}
+
+func (m *Game) GetDeadPlayerNumbers() []string {
+	if m != nil {
+		return m.DeadPlayerNumbers
+	}
+	return nil
+}
+
 func init() {
-	proto.RegisterType((*TakeSeatRequest)(nil), "werewolf.TakeSeatRequest")
-	proto.RegisterType((*TakeSeatResponse)(nil), "werewolf.TakeSeatResponse")
 	proto.RegisterType((*CreateAndJoinRoomRequest)(nil), "werewolf.CreateAndJoinRoomRequest")
 	proto.RegisterType((*CreateAndJoinRoomResponse)(nil), "werewolf.CreateAndJoinRoomResponse")
 	proto.RegisterType((*UpdateGameConfigRequest)(nil), "werewolf.UpdateGameConfigRequest")
+	proto.RegisterType((*UpdateGameConfigRequest_RoleCount)(nil), "werewolf.UpdateGameConfigRequest.RoleCount")
 	proto.RegisterType((*UpdateGameConfigResponse)(nil), "werewolf.UpdateGameConfigResponse")
+	proto.RegisterType((*JoinRoomRequest)(nil), "werewolf.JoinRoomRequest")
+	proto.RegisterType((*JoinRoomResponse)(nil), "werewolf.JoinRoomResponse")
+	proto.RegisterType((*GetRoomRequest)(nil), "werewolf.GetRoomRequest")
+	proto.RegisterType((*GetRoomResponse)(nil), "werewolf.GetRoomResponse")
+	proto.RegisterType((*TakeSeatRequest)(nil), "werewolf.TakeSeatRequest")
+	proto.RegisterType((*TakeSeatResponse)(nil), "werewolf.TakeSeatResponse")
 	proto.RegisterType((*ReassignRolesRequest)(nil), "werewolf.ReassignRolesRequest")
 	proto.RegisterType((*ReassignRolesResponse)(nil), "werewolf.ReassignRolesResponse")
 	proto.RegisterType((*StartGameRequest)(nil), "werewolf.StartGameRequest")
 	proto.RegisterType((*StartGameResponse)(nil), "werewolf.StartGameResponse")
-	proto.RegisterType((*GetGameStateRequest)(nil), "werewolf.GetGameStateRequest")
-	proto.RegisterType((*GetGameStateResponse)(nil), "werewolf.GetGameStateResponse")
-	proto.RegisterType((*GetFirstDayResultRequest)(nil), "werewolf.GetFirstDayResultRequest")
-	proto.RegisterType((*GetFirstDayResultResponse)(nil), "werewolf.GetFirstDayResultResponse")
-	proto.RegisterType((*JoinRoomRequest)(nil), "werewolf.JoinRoomRequest")
-	proto.RegisterType((*JoinRoomResponse)(nil), "werewolf.JoinRoomResponse")
-	proto.RegisterType((*GetRoleRequest)(nil), "werewolf.GetRoleRequest")
-	proto.RegisterType((*GetRoleResponse)(nil), "werewolf.GetRoleResponse")
-	proto.RegisterType((*Room)(nil), "werewolf.Room")
+	proto.RegisterType((*GetGameRequest)(nil), "werewolf.GetGameRequest")
+	proto.RegisterType((*GetGameResponse)(nil), "werewolf.GetGameResponse")
+	proto.RegisterType((*TakeActionRequest)(nil), "werewolf.TakeActionRequest")
+	proto.RegisterType((*TakeActionRequest_SeerAction)(nil), "werewolf.TakeActionRequest.SeerAction")
+	proto.RegisterType((*TakeActionRequest_WitchAction)(nil), "werewolf.TakeActionRequest.WitchAction")
+	proto.RegisterType((*TakeActionRequest_HunterAction)(nil), "werewolf.TakeActionRequest.HunterAction")
+	proto.RegisterType((*TakeActionRequest_GuardAction)(nil), "werewolf.TakeActionRequest.GuardAction")
+	proto.RegisterType((*TakeActionRequest_WerewolfAction)(nil), "werewolf.TakeActionRequest.WerewolfAction")
+	proto.RegisterType((*TakeActionRequest_WhiteWerewolfAction)(nil), "werewolf.TakeActionRequest.WhiteWerewolfAction")
+	proto.RegisterType((*TakeActionRequest_HalfBloodAction)(nil), "werewolf.TakeActionRequest.HalfBloodAction")
+	proto.RegisterType((*TakeActionResponse)(nil), "werewolf.TakeActionResponse")
 	proto.RegisterType((*Seat)(nil), "werewolf.Seat")
 	proto.RegisterType((*User)(nil), "werewolf.User")
+	proto.RegisterType((*Game)(nil), "werewolf.Game")
 	proto.RegisterEnum("werewolf.Role", Role_name, Role_value)
-	proto.RegisterEnum("werewolf.GameState", GameState_name, GameState_value)
+	proto.RegisterEnum("werewolf.Game_State", Game_State_name, Game_State_value)
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -1052,17 +1528,17 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type GameServiceClient interface {
-	// Host only
+	// Group of room operations
 	CreateAndJoinRoom(ctx context.Context, in *CreateAndJoinRoomRequest, opts ...grpc.CallOption) (*CreateAndJoinRoomResponse, error)
 	UpdateGameConfig(ctx context.Context, in *UpdateGameConfigRequest, opts ...grpc.CallOption) (*UpdateGameConfigResponse, error)
-	ReassignRoles(ctx context.Context, in *ReassignRolesRequest, opts ...grpc.CallOption) (*ReassignRolesResponse, error)
-	StartGame(ctx context.Context, in *StartGameRequest, opts ...grpc.CallOption) (*StartGameResponse, error)
-	GetFirstDayResult(ctx context.Context, in *GetFirstDayResultRequest, opts ...grpc.CallOption) (*GetFirstDayResultResponse, error)
-	// All players
 	JoinRoom(ctx context.Context, in *JoinRoomRequest, opts ...grpc.CallOption) (*JoinRoomResponse, error)
-	GetRole(ctx context.Context, in *GetRoleRequest, opts ...grpc.CallOption) (*GetRoleResponse, error)
-	GetGameState(ctx context.Context, in *GetGameStateRequest, opts ...grpc.CallOption) (*GetGameStateResponse, error)
+	GetRoom(ctx context.Context, in *GetRoomRequest, opts ...grpc.CallOption) (*GetRoomResponse, error)
 	TakeSeat(ctx context.Context, in *TakeSeatRequest, opts ...grpc.CallOption) (*TakeSeatResponse, error)
+	ReassignRoles(ctx context.Context, in *ReassignRolesRequest, opts ...grpc.CallOption) (*ReassignRolesResponse, error)
+	// group of game operations
+	StartGame(ctx context.Context, in *StartGameRequest, opts ...grpc.CallOption) (*StartGameResponse, error)
+	GetGame(ctx context.Context, in *GetGameRequest, opts ...grpc.CallOption) (*GetGameResponse, error)
+	TakeAction(ctx context.Context, in *TakeActionRequest, opts ...grpc.CallOption) (*TakeActionResponse, error)
 }
 
 type gameServiceClient struct {
@@ -1091,6 +1567,33 @@ func (c *gameServiceClient) UpdateGameConfig(ctx context.Context, in *UpdateGame
 	return out, nil
 }
 
+func (c *gameServiceClient) JoinRoom(ctx context.Context, in *JoinRoomRequest, opts ...grpc.CallOption) (*JoinRoomResponse, error) {
+	out := new(JoinRoomResponse)
+	err := c.cc.Invoke(ctx, "/werewolf.GameService/JoinRoom", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gameServiceClient) GetRoom(ctx context.Context, in *GetRoomRequest, opts ...grpc.CallOption) (*GetRoomResponse, error) {
+	out := new(GetRoomResponse)
+	err := c.cc.Invoke(ctx, "/werewolf.GameService/GetRoom", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gameServiceClient) TakeSeat(ctx context.Context, in *TakeSeatRequest, opts ...grpc.CallOption) (*TakeSeatResponse, error) {
+	out := new(TakeSeatResponse)
+	err := c.cc.Invoke(ctx, "/werewolf.GameService/TakeSeat", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *gameServiceClient) ReassignRoles(ctx context.Context, in *ReassignRolesRequest, opts ...grpc.CallOption) (*ReassignRolesResponse, error) {
 	out := new(ReassignRolesResponse)
 	err := c.cc.Invoke(ctx, "/werewolf.GameService/ReassignRoles", in, out, opts...)
@@ -1109,45 +1612,18 @@ func (c *gameServiceClient) StartGame(ctx context.Context, in *StartGameRequest,
 	return out, nil
 }
 
-func (c *gameServiceClient) GetFirstDayResult(ctx context.Context, in *GetFirstDayResultRequest, opts ...grpc.CallOption) (*GetFirstDayResultResponse, error) {
-	out := new(GetFirstDayResultResponse)
-	err := c.cc.Invoke(ctx, "/werewolf.GameService/GetFirstDayResult", in, out, opts...)
+func (c *gameServiceClient) GetGame(ctx context.Context, in *GetGameRequest, opts ...grpc.CallOption) (*GetGameResponse, error) {
+	out := new(GetGameResponse)
+	err := c.cc.Invoke(ctx, "/werewolf.GameService/GetGame", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gameServiceClient) JoinRoom(ctx context.Context, in *JoinRoomRequest, opts ...grpc.CallOption) (*JoinRoomResponse, error) {
-	out := new(JoinRoomResponse)
-	err := c.cc.Invoke(ctx, "/werewolf.GameService/JoinRoom", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *gameServiceClient) GetRole(ctx context.Context, in *GetRoleRequest, opts ...grpc.CallOption) (*GetRoleResponse, error) {
-	out := new(GetRoleResponse)
-	err := c.cc.Invoke(ctx, "/werewolf.GameService/GetRole", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *gameServiceClient) GetGameState(ctx context.Context, in *GetGameStateRequest, opts ...grpc.CallOption) (*GetGameStateResponse, error) {
-	out := new(GetGameStateResponse)
-	err := c.cc.Invoke(ctx, "/werewolf.GameService/GetGameState", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *gameServiceClient) TakeSeat(ctx context.Context, in *TakeSeatRequest, opts ...grpc.CallOption) (*TakeSeatResponse, error) {
-	out := new(TakeSeatResponse)
-	err := c.cc.Invoke(ctx, "/werewolf.GameService/TakeSeat", in, out, opts...)
+func (c *gameServiceClient) TakeAction(ctx context.Context, in *TakeActionRequest, opts ...grpc.CallOption) (*TakeActionResponse, error) {
+	out := new(TakeActionResponse)
+	err := c.cc.Invoke(ctx, "/werewolf.GameService/TakeAction", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1156,17 +1632,17 @@ func (c *gameServiceClient) TakeSeat(ctx context.Context, in *TakeSeatRequest, o
 
 // GameServiceServer is the server API for GameService service.
 type GameServiceServer interface {
-	// Host only
+	// Group of room operations
 	CreateAndJoinRoom(context.Context, *CreateAndJoinRoomRequest) (*CreateAndJoinRoomResponse, error)
 	UpdateGameConfig(context.Context, *UpdateGameConfigRequest) (*UpdateGameConfigResponse, error)
-	ReassignRoles(context.Context, *ReassignRolesRequest) (*ReassignRolesResponse, error)
-	StartGame(context.Context, *StartGameRequest) (*StartGameResponse, error)
-	GetFirstDayResult(context.Context, *GetFirstDayResultRequest) (*GetFirstDayResultResponse, error)
-	// All players
 	JoinRoom(context.Context, *JoinRoomRequest) (*JoinRoomResponse, error)
-	GetRole(context.Context, *GetRoleRequest) (*GetRoleResponse, error)
-	GetGameState(context.Context, *GetGameStateRequest) (*GetGameStateResponse, error)
+	GetRoom(context.Context, *GetRoomRequest) (*GetRoomResponse, error)
 	TakeSeat(context.Context, *TakeSeatRequest) (*TakeSeatResponse, error)
+	ReassignRoles(context.Context, *ReassignRolesRequest) (*ReassignRolesResponse, error)
+	// group of game operations
+	StartGame(context.Context, *StartGameRequest) (*StartGameResponse, error)
+	GetGame(context.Context, *GetGameRequest) (*GetGameResponse, error)
+	TakeAction(context.Context, *TakeActionRequest) (*TakeActionResponse, error)
 }
 
 func RegisterGameServiceServer(s *grpc.Server, srv GameServiceServer) {
@@ -1209,6 +1685,60 @@ func _GameService_UpdateGameConfig_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GameService_JoinRoom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(JoinRoomRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GameServiceServer).JoinRoom(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/werewolf.GameService/JoinRoom",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GameServiceServer).JoinRoom(ctx, req.(*JoinRoomRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GameService_GetRoom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRoomRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GameServiceServer).GetRoom(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/werewolf.GameService/GetRoom",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GameServiceServer).GetRoom(ctx, req.(*GetRoomRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GameService_TakeSeat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TakeSeatRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GameServiceServer).TakeSeat(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/werewolf.GameService/TakeSeat",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GameServiceServer).TakeSeat(ctx, req.(*TakeSeatRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _GameService_ReassignRoles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ReassignRolesRequest)
 	if err := dec(in); err != nil {
@@ -1245,92 +1775,38 @@ func _GameService_StartGame_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GameService_GetFirstDayResult_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetFirstDayResultRequest)
+func _GameService_GetGame_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetGameRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GameServiceServer).GetFirstDayResult(ctx, in)
+		return srv.(GameServiceServer).GetGame(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/werewolf.GameService/GetFirstDayResult",
+		FullMethod: "/werewolf.GameService/GetGame",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GameServiceServer).GetFirstDayResult(ctx, req.(*GetFirstDayResultRequest))
+		return srv.(GameServiceServer).GetGame(ctx, req.(*GetGameRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GameService_JoinRoom_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(JoinRoomRequest)
+func _GameService_TakeAction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TakeActionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GameServiceServer).JoinRoom(ctx, in)
+		return srv.(GameServiceServer).TakeAction(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/werewolf.GameService/JoinRoom",
+		FullMethod: "/werewolf.GameService/TakeAction",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GameServiceServer).JoinRoom(ctx, req.(*JoinRoomRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GameService_GetRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRoleRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GameServiceServer).GetRole(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/werewolf.GameService/GetRole",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GameServiceServer).GetRole(ctx, req.(*GetRoleRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GameService_GetGameState_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetGameStateRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GameServiceServer).GetGameState(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/werewolf.GameService/GetGameState",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GameServiceServer).GetGameState(ctx, req.(*GetGameStateRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GameService_TakeSeat_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TakeSeatRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GameServiceServer).TakeSeat(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/werewolf.GameService/TakeSeat",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GameServiceServer).TakeSeat(ctx, req.(*TakeSeatRequest))
+		return srv.(GameServiceServer).TakeAction(ctx, req.(*TakeActionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1348,6 +1824,18 @@ var _GameService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _GameService_UpdateGameConfig_Handler,
 		},
 		{
+			MethodName: "JoinRoom",
+			Handler:    _GameService_JoinRoom_Handler,
+		},
+		{
+			MethodName: "GetRoom",
+			Handler:    _GameService_GetRoom_Handler,
+		},
+		{
+			MethodName: "TakeSeat",
+			Handler:    _GameService_TakeSeat_Handler,
+		},
+		{
 			MethodName: "ReassignRoles",
 			Handler:    _GameService_ReassignRoles_Handler,
 		},
@@ -1356,93 +1844,89 @@ var _GameService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _GameService_StartGame_Handler,
 		},
 		{
-			MethodName: "GetFirstDayResult",
-			Handler:    _GameService_GetFirstDayResult_Handler,
+			MethodName: "GetGame",
+			Handler:    _GameService_GetGame_Handler,
 		},
 		{
-			MethodName: "JoinRoom",
-			Handler:    _GameService_JoinRoom_Handler,
-		},
-		{
-			MethodName: "GetRole",
-			Handler:    _GameService_GetRole_Handler,
-		},
-		{
-			MethodName: "GetGameState",
-			Handler:    _GameService_GetGameState_Handler,
-		},
-		{
-			MethodName: "TakeSeat",
-			Handler:    _GameService_TakeSeat_Handler,
+			MethodName: "TakeAction",
+			Handler:    _GameService_TakeAction_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "werewolf.proto",
 }
 
-func init() { proto.RegisterFile("werewolf.proto", fileDescriptor_werewolf_c26a6dc554e46c5d) }
+func init() { proto.RegisterFile("werewolf.proto", fileDescriptor_werewolf_ee37f2081c86de66) }
 
-var fileDescriptor_werewolf_c26a6dc554e46c5d = []byte{
-	// 966 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x56, 0xef, 0x6e, 0xe2, 0x46,
-	0x10, 0xaf, 0xf9, 0x17, 0x98, 0xa4, 0x64, 0xb3, 0x49, 0x2f, 0x8e, 0xdb, 0x5e, 0xa9, 0xdb, 0x0f,
-	0x69, 0x2a, 0x51, 0x29, 0x55, 0xbf, 0x9e, 0xe4, 0x03, 0x03, 0x3e, 0x1c, 0x88, 0xd6, 0x50, 0x54,
-	0x29, 0x92, 0xe5, 0xc0, 0x86, 0x73, 0xcf, 0xd8, 0xa9, 0xd7, 0xdc, 0xe9, 0x5e, 0xa6, 0x6f, 0xd1,
-	0xf7, 0x68, 0xdf, 0xa8, 0x5a, 0x7b, 0x01, 0x63, 0x4c, 0x4e, 0x97, 0x4f, 0x30, 0xf3, 0xdb, 0xf9,
-	0xcd, 0x6f, 0x66, 0x77, 0x67, 0x0d, 0xf5, 0x0f, 0x34, 0xa4, 0x1f, 0x02, 0xef, 0xa1, 0xf9, 0x18,
-	0x06, 0x51, 0x80, 0xab, 0x2b, 0x5b, 0xbd, 0x83, 0xe3, 0x91, 0xf3, 0x8e, 0x5a, 0xd4, 0x89, 0x08,
-	0xfd, 0x6b, 0x49, 0x59, 0x84, 0xcf, 0xe1, 0x20, 0x0c, 0x82, 0x85, 0xed, 0xce, 0x64, 0xa9, 0x21,
-	0x5d, 0x96, 0x49, 0x85, 0x9b, 0xc6, 0x8c, 0x03, 0x4b, 0x46, 0x43, 0x0e, 0x14, 0x1a, 0xd2, 0x65,
-	0x8d, 0x54, 0xb8, 0x99, 0x00, 0x8c, 0x3a, 0x11, 0x07, 0x8a, 0x09, 0xc0, 0x4d, 0x63, 0xa6, 0x62,
-	0x40, 0x1b, 0x76, 0xf6, 0x18, 0xf8, 0x8c, 0xaa, 0x0a, 0xc8, 0xad, 0x90, 0x3a, 0x11, 0xd5, 0xfc,
-	0xd9, 0x9b, 0xc0, 0xf5, 0x49, 0x10, 0x2c, 0x44, 0x6a, 0xf5, 0x06, 0x2e, 0x72, 0xb0, 0x24, 0xf0,
-	0xf3, 0x75, 0xa9, 0xff, 0x48, 0x70, 0x3e, 0x7e, 0x9c, 0x39, 0x11, 0xed, 0x3a, 0x0b, 0xda, 0x0a,
-	0xfc, 0x07, 0x77, 0xfe, 0xfc, 0x2a, 0xaf, 0x00, 0x4d, 0x1d, 0x7f, 0xe2, 0x46, 0xd3, 0xb7, 0x96,
-	0xf3, 0x9e, 0x5a, 0xd4, 0x7b, 0x88, 0xcb, 0xad, 0x92, 0x1d, 0x3f, 0xfe, 0x11, 0xca, 0x61, 0xe0,
-	0x51, 0x26, 0x97, 0x1a, 0xc5, 0xcb, 0xfa, 0x75, 0xbd, 0xb9, 0xde, 0x00, 0x12, 0x78, 0x94, 0x24,
-	0x20, 0x7e, 0x01, 0x95, 0x69, 0xb0, 0xf4, 0x23, 0x26, 0x97, 0x1b, 0x45, 0x2e, 0x21, 0xb1, 0xd4,
-	0x57, 0x20, 0xef, 0xca, 0x16, 0x5d, 0x50, 0xa1, 0xc4, 0x85, 0xc6, 0xa2, 0x0f, 0xb7, 0x89, 0x83,
-	0x05, 0x89, 0x31, 0xf5, 0x17, 0x38, 0x23, 0xd4, 0x61, 0xcc, 0x9d, 0xfb, 0x3c, 0x1d, 0x4b, 0xd5,
-	0xbc, 0x2a, 0x4d, 0xda, 0x6a, 0xd4, 0x39, 0x7c, 0x95, 0x09, 0x10, 0x9b, 0xd5, 0x06, 0x64, 0x45,
-	0x4e, 0x18, 0x71, 0x21, 0xcf, 0xee, 0x9c, 0x7a, 0x0a, 0x27, 0x29, 0x16, 0x41, 0xdd, 0x84, 0xd3,
-	0x2e, 0x8d, 0x5d, 0x56, 0xe4, 0x44, 0xf4, 0x93, 0x1a, 0xdf, 0xc0, 0xd9, 0xf6, 0x7a, 0xd1, 0x90,
-	0x6b, 0x80, 0xb9, 0xb3, 0xa0, 0x36, 0xe3, 0xde, 0x38, 0xa6, 0x7e, 0x7d, 0xba, 0x69, 0xcb, 0x26,
-	0xa0, 0x36, 0x5f, 0xfd, 0x55, 0x4d, 0x90, 0xbb, 0x34, 0xea, 0xb8, 0x21, 0x8b, 0xda, 0xce, 0x47,
-	0x42, 0xd9, 0xd2, 0x7b, 0xfe, 0xf1, 0x57, 0xfb, 0x70, 0x91, 0xc3, 0x26, 0xe4, 0x35, 0xe1, 0x74,
-	0x46, 0x9d, 0x99, 0xfd, 0xe8, 0x39, 0x1f, 0x69, 0x68, 0xfb, 0xcb, 0xc5, 0x3d, 0x0d, 0x99, 0x2c,
-	0xc5, 0x1b, 0x7e, 0xc2, 0xa1, 0xdb, 0x18, 0x19, 0x24, 0x80, 0xda, 0x82, 0xe3, 0xcc, 0xad, 0xd8,
-	0xdb, 0x92, 0xb4, 0xd4, 0x42, 0x5a, 0xaa, 0xfa, 0x33, 0xa0, 0xbc, 0xeb, 0x93, 0xdf, 0xd8, 0x9f,
-	0xa0, 0xde, 0xa5, 0x51, 0x7c, 0x2e, 0x3f, 0xb5, 0x07, 0xbf, 0xc1, 0xf1, 0x7a, 0x69, 0xfa, 0x3c,
-	0x7a, 0xab, 0xc6, 0x67, 0x0f, 0x7a, 0x8c, 0xa9, 0xf7, 0x50, 0xe2, 0x52, 0x70, 0x1d, 0x0a, 0xeb,
-	0xae, 0x16, 0xdc, 0x19, 0xbf, 0x25, 0x9c, 0x98, 0xc9, 0x85, 0x46, 0x71, 0xfb, 0x30, 0x8f, 0x19,
-	0x0d, 0x49, 0x02, 0xf2, 0x55, 0x7c, 0x9c, 0x30, 0xb9, 0x98, 0x5d, 0x15, 0xcf, 0x95, 0x04, 0x54,
-	0x2d, 0x28, 0x71, 0x33, 0x95, 0xa3, 0x16, 0xe7, 0xd8, 0x7b, 0x9d, 0x57, 0xc2, 0x8b, 0x4f, 0x08,
-	0xef, 0x43, 0x89, 0x2b, 0xd9, 0x21, 0x55, 0xa0, 0xea, 0xbb, 0xd3, 0x77, 0xbe, 0xb3, 0xa0, 0x82,
-	0x75, 0x6d, 0xf3, 0x84, 0xee, 0x62, 0x6e, 0x2f, 0x43, 0x6f, 0x35, 0x0c, 0xdd, 0xc5, 0x7c, 0x1c,
-	0x7a, 0x57, 0x7f, 0x4b, 0xbc, 0x0d, 0x1e, 0xc5, 0x08, 0x8e, 0xc8, 0xd0, 0xd4, 0xed, 0xf1, 0xa0,
-	0x3f, 0x18, 0x4e, 0x06, 0xe8, 0x0b, 0x7c, 0x04, 0xd5, 0xdf, 0x0d, 0xd3, 0xd4, 0xba, 0x3a, 0x41,
-	0x12, 0xae, 0x42, 0xc9, 0xd2, 0x75, 0x82, 0x0a, 0xb8, 0x06, 0xe5, 0x89, 0x31, 0x6a, 0xf5, 0x50,
-	0x11, 0x03, 0x54, 0x7a, 0xe3, 0xc1, 0x48, 0x27, 0xa8, 0xc4, 0xdd, 0x46, 0xdb, 0x18, 0x8e, 0x50,
-	0x99, 0x47, 0x76, 0xc7, 0x1a, 0x69, 0x1b, 0xda, 0x00, 0x55, 0xb8, 0x35, 0xd1, 0x89, 0x3e, 0x19,
-	0x9a, 0x1d, 0x74, 0x80, 0x31, 0xd4, 0x27, 0x3d, 0x63, 0xa4, 0xdb, 0x6b, 0x5f, 0x95, 0xd3, 0x0c,
-	0xc9, 0x6d, 0x4f, 0x1b, 0xa0, 0x1a, 0xae, 0x03, 0xf4, 0x34, 0xb3, 0x63, 0xbf, 0x36, 0x87, 0xc3,
-	0x36, 0x82, 0xab, 0x7f, 0x25, 0xa8, 0xad, 0xaf, 0x0b, 0x7e, 0x01, 0xb8, 0xab, 0xdd, 0xe8, 0xb6,
-	0x35, 0xd2, 0x46, 0x69, 0xad, 0x18, 0xea, 0x6d, 0x8d, 0xf4, 0x07, 0xba, 0x65, 0xd9, 0x1d, 0xcd,
-	0x34, 0x2d, 0x24, 0xf1, 0x8a, 0x12, 0x56, 0x5b, 0x9b, 0x68, 0x7d, 0x1d, 0x15, 0xf0, 0x19, 0xa0,
-	0x0d, 0xb7, 0xf0, 0x16, 0x79, 0xec, 0x4a, 0xad, 0xf0, 0x95, 0x62, 0x95, 0x42, 0x9f, 0xf0, 0x95,
-	0xf1, 0x31, 0x1c, 0xc6, 0x75, 0x0b, 0x47, 0x85, 0x4b, 0xe5, 0x2d, 0x11, 0xf6, 0x01, 0x4f, 0x98,
-	0x74, 0x43, 0x78, 0xaa, 0x3c, 0xa1, 0xd5, 0xd3, 0x89, 0xd1, 0xe9, 0xd8, 0xba, 0xa9, 0xb7, 0x46,
-	0xc6, 0x70, 0x80, 0x6a, 0xd7, 0xff, 0x95, 0xe1, 0x30, 0x2e, 0x89, 0x86, 0xef, 0xdd, 0x29, 0xc5,
-	0x77, 0x70, 0xb2, 0xf3, 0xc0, 0x60, 0x75, 0xb3, 0xf7, 0xfb, 0x5e, 0x26, 0xe5, 0x87, 0x27, 0xd7,
-	0x88, 0xbb, 0xf0, 0x07, 0xa0, 0xec, 0xdc, 0xc6, 0xdf, 0xa7, 0x0e, 0x75, 0xfe, 0x53, 0xa4, 0xa8,
-	0x4f, 0x2d, 0x11, 0xd4, 0xb7, 0xf0, 0xe5, 0xd6, 0x84, 0xc6, 0x2f, 0x53, 0x07, 0x36, 0x67, 0xd6,
-	0x2b, 0xdf, 0xed, 0xc5, 0x05, 0x63, 0x1b, 0x6a, 0xeb, 0xa1, 0x8c, 0x95, 0xd4, 0xa5, 0xca, 0xcc,
-	0x7b, 0xe5, 0xeb, 0x5c, 0x4c, 0xb0, 0xdc, 0xc1, 0xc9, 0xce, 0xec, 0x4b, 0x37, 0x74, 0xdf, 0x98,
-	0x4d, 0x37, 0x74, 0xff, 0xf0, 0xd4, 0xa0, 0xba, 0xde, 0xa5, 0x8b, 0x4d, 0x40, 0x76, 0x73, 0x94,
-	0x3c, 0x48, 0x50, 0xbc, 0x82, 0x03, 0x31, 0xb2, 0xb0, 0xbc, 0x95, 0x32, 0x35, 0xf0, 0x94, 0x8b,
-	0x1c, 0x44, 0xc4, 0xdf, 0xc0, 0x51, 0xfa, 0xd9, 0xc1, 0xdf, 0x6e, 0x2d, 0xcd, 0x3e, 0x5f, 0xca,
-	0xcb, 0x7d, 0xf0, 0xa6, 0xa2, 0xd5, 0x17, 0x51, 0xba, 0xa2, 0xcc, 0x37, 0x58, 0xba, 0xa2, 0xec,
-	0x07, 0xd4, 0xeb, 0x6f, 0x40, 0xf9, 0xd3, 0x75, 0xfc, 0x79, 0x93, 0xb9, 0xd3, 0xb7, 0xcb, 0xe6,
-	0xf6, 0xa7, 0xdd, 0x7d, 0x25, 0xfe, 0xf9, 0xf5, 0xff, 0x00, 0x00, 0x00, 0xff, 0xff, 0x02, 0xde,
-	0xa6, 0x78, 0xf3, 0x09, 0x00, 0x00,
+var fileDescriptor_werewolf_ee37f2081c86de66 = []byte{
+	// 1103 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x56, 0x4b, 0x6f, 0xeb, 0x54,
+	0x10, 0xbe, 0x49, 0xec, 0x3c, 0x26, 0x6d, 0x7a, 0x7a, 0x6e, 0xaf, 0x9a, 0xfa, 0x5e, 0x41, 0x31,
+	0x08, 0x4a, 0x8b, 0x52, 0xa9, 0x88, 0x1d, 0x02, 0xb9, 0xa9, 0x9b, 0x98, 0x86, 0xa4, 0x72, 0x12,
+	0x02, 0x12, 0xc2, 0x72, 0xeb, 0xd3, 0xc4, 0x90, 0xc4, 0xc5, 0x76, 0xa8, 0xf8, 0x29, 0xec, 0xd9,
+	0xb2, 0x65, 0xcf, 0x8a, 0xbf, 0x75, 0x35, 0xc7, 0x8e, 0x5f, 0x71, 0xd3, 0x55, 0x72, 0xe6, 0x9b,
+	0xf9, 0x66, 0xe6, 0x3b, 0x8f, 0x31, 0x34, 0x9e, 0x98, 0xcb, 0x9e, 0x9c, 0xf9, 0x43, 0xeb, 0xd1,
+	0x75, 0x7c, 0x87, 0x56, 0xd7, 0x6b, 0x59, 0x82, 0x66, 0xdb, 0x65, 0xa6, 0xcf, 0x94, 0xa5, 0xf5,
+	0x9d, 0x63, 0x2f, 0x75, 0xc7, 0x59, 0xe8, 0xec, 0xf7, 0x15, 0xf3, 0x7c, 0xf9, 0x7b, 0x38, 0xca,
+	0xc1, 0xbc, 0x47, 0x67, 0xe9, 0x31, 0x7a, 0x08, 0x15, 0xd7, 0x71, 0x16, 0x86, 0x6d, 0x35, 0x0b,
+	0xc7, 0x85, 0x93, 0x9a, 0x5e, 0xc6, 0xa5, 0x66, 0x21, 0xb0, 0xf2, 0x98, 0x8b, 0x40, 0x31, 0x00,
+	0x70, 0xa9, 0x59, 0xf2, 0xff, 0x05, 0x38, 0x1c, 0x3f, 0x5a, 0xa6, 0xcf, 0x3a, 0xe6, 0x82, 0xb5,
+	0x9d, 0xe5, 0x83, 0x3d, 0x0d, 0x53, 0x3d, 0xcf, 0xd6, 0x83, 0xba, 0xeb, 0xcc, 0x99, 0x71, 0xef,
+	0xac, 0x96, 0xbe, 0xd7, 0x2c, 0x1e, 0x97, 0x4e, 0xea, 0x17, 0x67, 0xad, 0xa8, 0x9f, 0x67, 0x08,
+	0x5b, 0xba, 0x33, 0x67, 0x6d, 0x8c, 0xd1, 0xc1, 0x5d, 0xff, 0xf5, 0x24, 0x15, 0x6a, 0x11, 0x40,
+	0x65, 0x10, 0x10, 0xe2, 0x09, 0x1b, 0x17, 0x8d, 0x98, 0x13, 0x5d, 0x74, 0x8e, 0xd1, 0x03, 0x10,
+	0x79, 0xe6, 0xb0, 0x95, 0x60, 0x81, 0xa2, 0x6d, 0xe6, 0x0d, 0x74, 0x91, 0xdb, 0xb0, 0x97, 0xd1,
+	0x31, 0xa9, 0x48, 0x21, 0xa9, 0x48, 0xb2, 0xeb, 0x62, 0xb2, 0x6b, 0xf9, 0x0c, 0x48, 0x9e, 0xe0,
+	0xb9, 0x2c, 0xf2, 0xe7, 0xd0, 0xe8, 0x30, 0x3f, 0x93, 0x30, 0x57, 0x4d, 0xf9, 0x16, 0xf6, 0x22,
+	0xd7, 0x90, 0xf6, 0x13, 0x10, 0x3d, 0x66, 0x46, 0xd2, 0x26, 0x64, 0x18, 0x32, 0xd3, 0xd7, 0x03,
+	0x10, 0x19, 0xa7, 0xe6, 0x82, 0x21, 0x63, 0x29, 0x60, 0xc4, 0xa5, 0x66, 0x61, 0xbb, 0x23, 0xf3,
+	0x37, 0xc6, 0x7d, 0xe3, 0xec, 0x18, 0x94, 0xc8, 0x8e, 0xcb, 0x6d, 0x27, 0x83, 0x02, 0x89, 0x49,
+	0x42, 0x1d, 0xcf, 0xe1, 0x40, 0x67, 0xa6, 0xe7, 0xd9, 0xd3, 0x25, 0xee, 0x87, 0xf7, 0x62, 0x6f,
+	0x87, 0xf0, 0x26, 0x13, 0x10, 0x32, 0x9d, 0x01, 0x19, 0xfa, 0xa6, 0xeb, 0xe3, 0x66, 0xbd, 0xc8,
+	0xf2, 0x05, 0xec, 0x27, 0x9c, 0x63, 0xe9, 0xd7, 0xdd, 0x17, 0x53, 0xdd, 0x07, 0xd2, 0x67, 0x88,
+	0xd7, 0xae, 0x85, 0x94, 0xeb, 0x57, 0x5c, 0xfa, 0x14, 0xad, 0x0c, 0x02, 0x82, 0xdc, 0x31, 0xa5,
+	0x3c, 0xf7, 0xe2, 0x98, 0xfc, 0xb7, 0x08, 0xfb, 0xa8, 0x8d, 0x72, 0xef, 0xdb, 0xce, 0xf2, 0xa5,
+	0x2c, 0xf4, 0x6b, 0x10, 0x3c, 0xc6, 0x5c, 0x5e, 0x66, 0xfd, 0xe2, 0xd3, 0x98, 0x72, 0x83, 0xa3,
+	0x35, 0x64, 0xcc, 0x0d, 0x2c, 0xdd, 0x57, 0x3a, 0x8f, 0xa2, 0xdf, 0x82, 0xf8, 0x64, 0xfb, 0xf7,
+	0x33, 0xbe, 0xc7, 0xf5, 0x8b, 0xcf, 0xb6, 0x85, 0x4f, 0xd0, 0x31, 0x8a, 0x0f, 0xe2, 0xe8, 0x25,
+	0x94, 0x67, 0xab, 0xa5, 0xcf, 0xdc, 0xa6, 0xc0, 0x19, 0x4e, 0xb6, 0x31, 0x74, 0xb9, 0x67, 0x44,
+	0x11, 0x46, 0x62, 0x11, 0xd3, 0x95, 0xe9, 0x5a, 0x4d, 0xf1, 0xe5, 0x22, 0x3a, 0xe8, 0x18, 0x17,
+	0xc1, 0xe3, 0x68, 0x17, 0xa2, 0xe7, 0xad, 0x59, 0xe6, 0x1c, 0xa7, 0x5b, 0x1b, 0x09, 0xa1, 0x88,
+	0x26, 0x8a, 0xa6, 0x3f, 0x42, 0xe3, 0x69, 0x66, 0xfb, 0xcc, 0x88, 0xf8, 0x2a, 0x9c, 0xef, 0x7c,
+	0x2b, 0x1f, 0x46, 0x6c, 0x90, 0xee, 0x3e, 0x25, 0xcd, 0xb4, 0x07, 0x30, 0x33, 0xe7, 0x0f, 0xc6,
+	0xdd, 0xdc, 0x71, 0xac, 0x66, 0x95, 0xb3, 0x9e, 0x6d, 0x15, 0xcb, 0x9c, 0x3f, 0x5c, 0xa2, 0x73,
+	0xc4, 0x58, 0x9b, 0xad, 0x4d, 0xd2, 0x0e, 0x40, 0xbc, 0x9b, 0xd2, 0x2e, 0xd4, 0x13, 0x9b, 0x23,
+	0x35, 0x60, 0x27, 0xa9, 0x34, 0xc2, 0x09, 0xd9, 0x24, 0x02, 0x8d, 0x74, 0xb1, 0xd2, 0x1b, 0x78,
+	0x9d, 0xd3, 0x83, 0xb4, 0x0f, 0x7b, 0x99, 0x22, 0x2e, 0xab, 0x50, 0x36, 0xf9, 0x3f, 0xf9, 0x00,
+	0x68, 0xb2, 0xe6, 0xf0, 0xe6, 0xfd, 0x02, 0x02, 0xde, 0x69, 0xda, 0x80, 0x62, 0x74, 0x52, 0x8b,
+	0xb6, 0x85, 0x07, 0x1f, 0x6f, 0x7e, 0x78, 0x4a, 0x13, 0x07, 0x7f, 0xec, 0x31, 0x57, 0xe7, 0x58,
+	0xf4, 0x3a, 0x97, 0x9e, 0x7f, 0x9d, 0xe5, 0x73, 0x10, 0x30, 0x62, 0x83, 0xff, 0x10, 0x2a, 0xf6,
+	0x62, 0x6a, 0xac, 0xdc, 0xf9, 0xfa, 0xb5, 0xb2, 0x17, 0xd3, 0xb1, 0x3b, 0x97, 0xff, 0x2d, 0x82,
+	0x80, 0x97, 0x6b, 0x23, 0xe2, 0x14, 0x44, 0xcf, 0x37, 0xfd, 0x75, 0xba, 0x83, 0xf4, 0x5d, 0x6c,
+	0x0d, 0x11, 0xd3, 0x03, 0x17, 0xda, 0x82, 0xd7, 0x16, 0x33, 0x2d, 0xe3, 0x71, 0x6e, 0xfe, 0xc9,
+	0x5c, 0x63, 0xb9, 0x5a, 0xdc, 0x31, 0xd7, 0x6b, 0x0a, 0xc7, 0xa5, 0x93, 0x9a, 0xbe, 0x8f, 0xd0,
+	0x2d, 0x47, 0xfa, 0x01, 0x20, 0xff, 0x57, 0x00, 0x91, 0x13, 0xd0, 0x3a, 0x54, 0xc6, 0xfd, 0x9b,
+	0xfe, 0x60, 0xd2, 0x27, 0xaf, 0x28, 0x85, 0xc6, 0x95, 0xa2, 0xdf, 0xf4, 0xd5, 0xe1, 0xd0, 0xb8,
+	0x56, 0x7a, 0xbd, 0x21, 0x29, 0x50, 0x02, 0x3b, 0x03, 0xfd, 0xb6, 0xab, 0xf4, 0x0d, 0x65, 0xa2,
+	0xdc, 0xa8, 0xa4, 0x48, 0x0f, 0x80, 0x74, 0x95, 0xde, 0xb5, 0x71, 0xd9, 0x1b, 0x0c, 0xae, 0x42,
+	0x6b, 0x09, 0x63, 0x3b, 0x63, 0x45, 0xbf, 0xd2, 0x22, 0x4f, 0x01, 0x6d, 0x13, 0x55, 0x57, 0x27,
+	0x83, 0xde, 0x75, 0x68, 0x13, 0xe9, 0x1e, 0xd4, 0x27, 0xda, 0xa8, 0xdd, 0x0d, 0x0d, 0x65, 0xda,
+	0x00, 0x18, 0xaa, 0xaa, 0x1e, 0xae, 0x2b, 0x98, 0xb0, 0x3b, 0xee, 0x8f, 0x22, 0x4b, 0x15, 0x13,
+	0x0e, 0xbb, 0xaa, 0xae, 0x5d, 0x5f, 0x1b, 0x6a, 0x4f, 0x6d, 0x8f, 0xb4, 0x41, 0x9f, 0xd4, 0x4e,
+	0xff, 0x2a, 0x80, 0x80, 0xc2, 0xa7, 0x5b, 0xd8, 0x81, 0xea, 0x0f, 0x5a, 0xaf, 0xa7, 0x74, 0x54,
+	0x9d, 0x14, 0x68, 0x15, 0x04, 0xe4, 0x26, 0x45, 0x5a, 0x03, 0x91, 0xa7, 0x25, 0x25, 0x0a, 0x50,
+	0x0e, 0x12, 0x10, 0x01, 0xcd, 0xda, 0x95, 0x36, 0x18, 0x11, 0x11, 0x23, 0xd7, 0x0d, 0x90, 0x32,
+	0xae, 0xd6, 0xa5, 0x93, 0x0a, 0x6f, 0xa4, 0xab, 0x8d, 0x54, 0x23, 0xb2, 0x55, 0x91, 0x26, 0x10,
+	0x86, 0xd4, 0xb0, 0x87, 0x58, 0x12, 0x02, 0x17, 0xff, 0x88, 0x50, 0xc7, 0x5d, 0x1a, 0x32, 0xf7,
+	0x0f, 0xfb, 0x9e, 0xd1, 0x9f, 0x61, 0x7f, 0xe3, 0xb3, 0x85, 0xca, 0xf1, 0x8e, 0x3e, 0xf7, 0xbd,
+	0x23, 0x7d, 0xbc, 0xd5, 0x27, 0x7c, 0xb4, 0x7f, 0x02, 0x92, 0x9d, 0xfd, 0xf4, 0xa3, 0x17, 0xbf,
+	0x47, 0x24, 0x79, 0x9b, 0x4b, 0x48, 0xad, 0x40, 0x35, 0xaa, 0xf7, 0x28, 0xf6, 0xcf, 0x96, 0x29,
+	0xe5, 0x41, 0x21, 0xc5, 0x37, 0x50, 0x09, 0x07, 0x3c, 0x6d, 0x26, 0xce, 0x70, 0xea, 0xf3, 0x40,
+	0x3a, 0xca, 0x41, 0xe2, 0x12, 0xd6, 0x93, 0x38, 0x59, 0x42, 0x66, 0xc4, 0x27, 0x4b, 0xc8, 0x0e,
+	0x6e, 0x7a, 0x0b, 0xbb, 0xa9, 0x39, 0x4c, 0x3f, 0x48, 0xdc, 0xdd, 0x9c, 0x89, 0x2e, 0x7d, 0xf8,
+	0x2c, 0x1e, 0x32, 0x5e, 0x41, 0x2d, 0x9a, 0xc9, 0x34, 0x91, 0x3a, 0x3b, 0xd5, 0xa5, 0xb7, 0xb9,
+	0x58, 0x4a, 0x1a, 0xce, 0x91, 0x96, 0x26, 0xc9, 0x70, 0x94, 0x83, 0x84, 0xf1, 0x1d, 0x80, 0xf8,
+	0x89, 0xa3, 0x6f, 0xb7, 0x3c, 0xd6, 0xd2, 0xbb, 0x7c, 0x30, 0x20, 0xba, 0x7c, 0x07, 0xd2, 0xaf,
+	0xb6, 0xb9, 0x9c, 0xb6, 0x3c, 0xfb, 0x7e, 0xb6, 0x6a, 0xa5, 0x3f, 0xcd, 0xef, 0xca, 0xfc, 0xe7,
+	0xcb, 0xf7, 0x01, 0x00, 0x00, 0xff, 0xff, 0x20, 0x4e, 0x13, 0x48, 0xb3, 0x0b, 0x00, 0x00,
 }

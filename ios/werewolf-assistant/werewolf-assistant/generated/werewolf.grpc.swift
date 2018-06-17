@@ -37,6 +37,24 @@ fileprivate final class Werewolf_GameServiceUpdateGameConfigCallBase: ClientCall
   override class var method: String { return "/werewolf.GameService/UpdateGameConfig" }
 }
 
+internal protocol Werewolf_GameServiceJoinRoomCall: ClientCallUnary {}
+
+fileprivate final class Werewolf_GameServiceJoinRoomCallBase: ClientCallUnaryBase<Werewolf_JoinRoomRequest, Werewolf_JoinRoomResponse>, Werewolf_GameServiceJoinRoomCall {
+  override class var method: String { return "/werewolf.GameService/JoinRoom" }
+}
+
+internal protocol Werewolf_GameServiceGetRoomCall: ClientCallUnary {}
+
+fileprivate final class Werewolf_GameServiceGetRoomCallBase: ClientCallUnaryBase<Werewolf_GetRoomRequest, Werewolf_GetRoomResponse>, Werewolf_GameServiceGetRoomCall {
+  override class var method: String { return "/werewolf.GameService/GetRoom" }
+}
+
+internal protocol Werewolf_GameServiceTakeSeatCall: ClientCallUnary {}
+
+fileprivate final class Werewolf_GameServiceTakeSeatCallBase: ClientCallUnaryBase<Werewolf_TakeSeatRequest, Werewolf_TakeSeatResponse>, Werewolf_GameServiceTakeSeatCall {
+  override class var method: String { return "/werewolf.GameService/TakeSeat" }
+}
+
 internal protocol Werewolf_GameServiceReassignRolesCall: ClientCallUnary {}
 
 fileprivate final class Werewolf_GameServiceReassignRolesCallBase: ClientCallUnaryBase<Werewolf_ReassignRolesRequest, Werewolf_ReassignRolesResponse>, Werewolf_GameServiceReassignRolesCall {
@@ -49,34 +67,16 @@ fileprivate final class Werewolf_GameServiceStartGameCallBase: ClientCallUnaryBa
   override class var method: String { return "/werewolf.GameService/StartGame" }
 }
 
-internal protocol Werewolf_GameServiceGetFirstDayResultCall: ClientCallUnary {}
+internal protocol Werewolf_GameServiceGetGameCall: ClientCallUnary {}
 
-fileprivate final class Werewolf_GameServiceGetFirstDayResultCallBase: ClientCallUnaryBase<Werewolf_GetFirstDayResultRequest, Werewolf_GetFirstDayResultResponse>, Werewolf_GameServiceGetFirstDayResultCall {
-  override class var method: String { return "/werewolf.GameService/GetFirstDayResult" }
+fileprivate final class Werewolf_GameServiceGetGameCallBase: ClientCallUnaryBase<Werewolf_GetGameRequest, Werewolf_GetGameResponse>, Werewolf_GameServiceGetGameCall {
+  override class var method: String { return "/werewolf.GameService/GetGame" }
 }
 
-internal protocol Werewolf_GameServiceJoinRoomCall: ClientCallUnary {}
+internal protocol Werewolf_GameServiceTakeActionCall: ClientCallUnary {}
 
-fileprivate final class Werewolf_GameServiceJoinRoomCallBase: ClientCallUnaryBase<Werewolf_JoinRoomRequest, Werewolf_JoinRoomResponse>, Werewolf_GameServiceJoinRoomCall {
-  override class var method: String { return "/werewolf.GameService/JoinRoom" }
-}
-
-internal protocol Werewolf_GameServiceGetRoleCall: ClientCallUnary {}
-
-fileprivate final class Werewolf_GameServiceGetRoleCallBase: ClientCallUnaryBase<Werewolf_GetRoleRequest, Werewolf_GetRoleResponse>, Werewolf_GameServiceGetRoleCall {
-  override class var method: String { return "/werewolf.GameService/GetRole" }
-}
-
-internal protocol Werewolf_GameServiceGetGameStateCall: ClientCallUnary {}
-
-fileprivate final class Werewolf_GameServiceGetGameStateCallBase: ClientCallUnaryBase<Werewolf_GetGameStateRequest, Werewolf_GetGameStateResponse>, Werewolf_GameServiceGetGameStateCall {
-  override class var method: String { return "/werewolf.GameService/GetGameState" }
-}
-
-internal protocol Werewolf_GameServiceTakeSeatCall: ClientCallUnary {}
-
-fileprivate final class Werewolf_GameServiceTakeSeatCallBase: ClientCallUnaryBase<Werewolf_TakeSeatRequest, Werewolf_TakeSeatResponse>, Werewolf_GameServiceTakeSeatCall {
-  override class var method: String { return "/werewolf.GameService/TakeSeat" }
+fileprivate final class Werewolf_GameServiceTakeActionCallBase: ClientCallUnaryBase<Werewolf_TakeActionRequest, Werewolf_TakeActionResponse>, Werewolf_GameServiceTakeActionCall {
+  override class var method: String { return "/werewolf.GameService/TakeAction" }
 }
 
 
@@ -93,6 +93,21 @@ internal protocol Werewolf_GameServiceService: ServiceClient {
   func updateGameConfig(_ request: Werewolf_UpdateGameConfigRequest, completion: @escaping (Werewolf_UpdateGameConfigResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceUpdateGameConfigCall
 
   /// Synchronous. Unary.
+  func joinRoom(_ request: Werewolf_JoinRoomRequest) throws -> Werewolf_JoinRoomResponse
+  /// Asynchronous. Unary.
+  func joinRoom(_ request: Werewolf_JoinRoomRequest, completion: @escaping (Werewolf_JoinRoomResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceJoinRoomCall
+
+  /// Synchronous. Unary.
+  func getRoom(_ request: Werewolf_GetRoomRequest) throws -> Werewolf_GetRoomResponse
+  /// Asynchronous. Unary.
+  func getRoom(_ request: Werewolf_GetRoomRequest, completion: @escaping (Werewolf_GetRoomResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceGetRoomCall
+
+  /// Synchronous. Unary.
+  func takeSeat(_ request: Werewolf_TakeSeatRequest) throws -> Werewolf_TakeSeatResponse
+  /// Asynchronous. Unary.
+  func takeSeat(_ request: Werewolf_TakeSeatRequest, completion: @escaping (Werewolf_TakeSeatResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceTakeSeatCall
+
+  /// Synchronous. Unary.
   func reassignRoles(_ request: Werewolf_ReassignRolesRequest) throws -> Werewolf_ReassignRolesResponse
   /// Asynchronous. Unary.
   func reassignRoles(_ request: Werewolf_ReassignRolesRequest, completion: @escaping (Werewolf_ReassignRolesResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceReassignRolesCall
@@ -103,29 +118,14 @@ internal protocol Werewolf_GameServiceService: ServiceClient {
   func startGame(_ request: Werewolf_StartGameRequest, completion: @escaping (Werewolf_StartGameResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceStartGameCall
 
   /// Synchronous. Unary.
-  func getFirstDayResult(_ request: Werewolf_GetFirstDayResultRequest) throws -> Werewolf_GetFirstDayResultResponse
+  func getGame(_ request: Werewolf_GetGameRequest) throws -> Werewolf_GetGameResponse
   /// Asynchronous. Unary.
-  func getFirstDayResult(_ request: Werewolf_GetFirstDayResultRequest, completion: @escaping (Werewolf_GetFirstDayResultResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceGetFirstDayResultCall
+  func getGame(_ request: Werewolf_GetGameRequest, completion: @escaping (Werewolf_GetGameResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceGetGameCall
 
   /// Synchronous. Unary.
-  func joinRoom(_ request: Werewolf_JoinRoomRequest) throws -> Werewolf_JoinRoomResponse
+  func takeAction(_ request: Werewolf_TakeActionRequest) throws -> Werewolf_TakeActionResponse
   /// Asynchronous. Unary.
-  func joinRoom(_ request: Werewolf_JoinRoomRequest, completion: @escaping (Werewolf_JoinRoomResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceJoinRoomCall
-
-  /// Synchronous. Unary.
-  func getRole(_ request: Werewolf_GetRoleRequest) throws -> Werewolf_GetRoleResponse
-  /// Asynchronous. Unary.
-  func getRole(_ request: Werewolf_GetRoleRequest, completion: @escaping (Werewolf_GetRoleResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceGetRoleCall
-
-  /// Synchronous. Unary.
-  func getGameState(_ request: Werewolf_GetGameStateRequest) throws -> Werewolf_GetGameStateResponse
-  /// Asynchronous. Unary.
-  func getGameState(_ request: Werewolf_GetGameStateRequest, completion: @escaping (Werewolf_GetGameStateResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceGetGameStateCall
-
-  /// Synchronous. Unary.
-  func takeSeat(_ request: Werewolf_TakeSeatRequest) throws -> Werewolf_TakeSeatResponse
-  /// Asynchronous. Unary.
-  func takeSeat(_ request: Werewolf_TakeSeatRequest, completion: @escaping (Werewolf_TakeSeatResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceTakeSeatCall
+  func takeAction(_ request: Werewolf_TakeActionRequest, completion: @escaping (Werewolf_TakeActionResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceTakeActionCall
 
 }
 
@@ -153,6 +153,39 @@ internal final class Werewolf_GameServiceServiceClient: ServiceClientBase, Werew
   }
 
   /// Synchronous. Unary.
+  internal func joinRoom(_ request: Werewolf_JoinRoomRequest) throws -> Werewolf_JoinRoomResponse {
+    return try Werewolf_GameServiceJoinRoomCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func joinRoom(_ request: Werewolf_JoinRoomRequest, completion: @escaping (Werewolf_JoinRoomResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceJoinRoomCall {
+    return try Werewolf_GameServiceJoinRoomCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  internal func getRoom(_ request: Werewolf_GetRoomRequest) throws -> Werewolf_GetRoomResponse {
+    return try Werewolf_GameServiceGetRoomCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func getRoom(_ request: Werewolf_GetRoomRequest, completion: @escaping (Werewolf_GetRoomResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceGetRoomCall {
+    return try Werewolf_GameServiceGetRoomCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  internal func takeSeat(_ request: Werewolf_TakeSeatRequest) throws -> Werewolf_TakeSeatResponse {
+    return try Werewolf_GameServiceTakeSeatCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func takeSeat(_ request: Werewolf_TakeSeatRequest, completion: @escaping (Werewolf_TakeSeatResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceTakeSeatCall {
+    return try Werewolf_GameServiceTakeSeatCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
   internal func reassignRoles(_ request: Werewolf_ReassignRolesRequest) throws -> Werewolf_ReassignRolesResponse {
     return try Werewolf_GameServiceReassignRolesCallBase(channel)
       .run(request: request, metadata: metadata)
@@ -175,57 +208,24 @@ internal final class Werewolf_GameServiceServiceClient: ServiceClientBase, Werew
   }
 
   /// Synchronous. Unary.
-  internal func getFirstDayResult(_ request: Werewolf_GetFirstDayResultRequest) throws -> Werewolf_GetFirstDayResultResponse {
-    return try Werewolf_GameServiceGetFirstDayResultCallBase(channel)
+  internal func getGame(_ request: Werewolf_GetGameRequest) throws -> Werewolf_GetGameResponse {
+    return try Werewolf_GameServiceGetGameCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  internal func getFirstDayResult(_ request: Werewolf_GetFirstDayResultRequest, completion: @escaping (Werewolf_GetFirstDayResultResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceGetFirstDayResultCall {
-    return try Werewolf_GameServiceGetFirstDayResultCallBase(channel)
+  internal func getGame(_ request: Werewolf_GetGameRequest, completion: @escaping (Werewolf_GetGameResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceGetGameCall {
+    return try Werewolf_GameServiceGetGameCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 
   /// Synchronous. Unary.
-  internal func joinRoom(_ request: Werewolf_JoinRoomRequest) throws -> Werewolf_JoinRoomResponse {
-    return try Werewolf_GameServiceJoinRoomCallBase(channel)
+  internal func takeAction(_ request: Werewolf_TakeActionRequest) throws -> Werewolf_TakeActionResponse {
+    return try Werewolf_GameServiceTakeActionCallBase(channel)
       .run(request: request, metadata: metadata)
   }
   /// Asynchronous. Unary.
-  internal func joinRoom(_ request: Werewolf_JoinRoomRequest, completion: @escaping (Werewolf_JoinRoomResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceJoinRoomCall {
-    return try Werewolf_GameServiceJoinRoomCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func getRole(_ request: Werewolf_GetRoleRequest) throws -> Werewolf_GetRoleResponse {
-    return try Werewolf_GameServiceGetRoleCallBase(channel)
-      .run(request: request, metadata: metadata)
-  }
-  /// Asynchronous. Unary.
-  internal func getRole(_ request: Werewolf_GetRoleRequest, completion: @escaping (Werewolf_GetRoleResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceGetRoleCall {
-    return try Werewolf_GameServiceGetRoleCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func getGameState(_ request: Werewolf_GetGameStateRequest) throws -> Werewolf_GetGameStateResponse {
-    return try Werewolf_GameServiceGetGameStateCallBase(channel)
-      .run(request: request, metadata: metadata)
-  }
-  /// Asynchronous. Unary.
-  internal func getGameState(_ request: Werewolf_GetGameStateRequest, completion: @escaping (Werewolf_GetGameStateResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceGetGameStateCall {
-    return try Werewolf_GameServiceGetGameStateCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func takeSeat(_ request: Werewolf_TakeSeatRequest) throws -> Werewolf_TakeSeatResponse {
-    return try Werewolf_GameServiceTakeSeatCallBase(channel)
-      .run(request: request, metadata: metadata)
-  }
-  /// Asynchronous. Unary.
-  internal func takeSeat(_ request: Werewolf_TakeSeatRequest, completion: @escaping (Werewolf_TakeSeatResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceTakeSeatCall {
-    return try Werewolf_GameServiceTakeSeatCallBase(channel)
+  internal func takeAction(_ request: Werewolf_TakeActionRequest, completion: @escaping (Werewolf_TakeActionResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceTakeActionCall {
+    return try Werewolf_GameServiceTakeActionCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 

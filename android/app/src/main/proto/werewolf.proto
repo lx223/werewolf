@@ -4,117 +4,143 @@ package werewolf;
 option java_package="jiang.sichu.werewolf.proto";
 
 service GameService {
+    // Group of room operations
+    rpc CreateAndJoinRoom (CreateAndJoinRoomRequest) returns (CreateAndJoinRoomResponse);
+    rpc UpdateGameConfig (UpdateGameConfigRequest) returns (UpdateGameConfigResponse);
+    rpc JoinRoom (JoinRoomRequest) returns (JoinRoomResponse);
+    rpc GetRoom (GetRoomRequest) returns (GetRoomResponse);
+    rpc TakeSeat (TakeSeatRequest) returns (TakeSeatResponse);
+    rpc ReassignRoles (ReassignRolesRequest) returns (ReassignRolesResponse);
 
-    // Host only
-    rpc CreateAndJoinRoom(CreateAndJoinRoomRequest) returns(CreateAndJoinRoomResponse);
-    rpc UpdateGameConfig(UpdateGameConfigRequest) returns(UpdateGameConfigResponse);
-    rpc ReassignRoles(ReassignRolesRequest) returns(ReassignRolesResponse);
-    rpc StartGame(StartGameRequest) returns(StartGameResponse);
-    rpc GetFirstDayResult(GetFirstDayResultRequest) returns(GetFirstDayResultResponse);
-
-    // All players
-    rpc JoinRoom(JoinRoomRequest) returns(JoinRoomResponse);
-    rpc GetRole(GetRoleRequest) returns(GetRoleResponse);
-    rpc GetGameState(GetGameStateRequest) returns(GetGameStateResponse);
-    rpc TakeSeat(TakeSeatRequest) returns(TakeSeatResponse);
+    // group of game operations
+    rpc StartGame (StartGameRequest) returns (StartGameResponse);
+    rpc GetGame (GetGameRequest) returns (GetGameResponse);
+    rpc TakeAction (TakeActionRequest) returns (TakeActionResponse);
 }
-
-message TakeSeatRequest {
-    int32 room_id = 1;
-    string user_id = 2;
-    string seat_id = 3;
-}
-
-message TakeSeatResponse {}
 
 message CreateAndJoinRoomRequest {}
 
 message CreateAndJoinRoomResponse {
-    int32 room_id = 1;
+    string room_id = 1;
     string user_id = 2;
 }
 
 message UpdateGameConfigRequest {
-    int32 room_id = 1;
-    string user_id = 2;
-    bool canWitchSaveSelf = 3;
-    repeated Role roles = 4;
-    repeated int32 counts = 5;
+
+    string room_id = 1;
+
+    message RoleCount {
+        Role role = 1;
+        string count = 2;
+    }
+    repeated RoleCount role_counts = 2;
 }
 
-message UpdateGameConfigResponse {
-    Room room = 1;
-}
-
-message ReassignRolesRequest {
-    string user_id = 1;
-}
-
-message ReassignRolesResponse {}
-
-message StartGameRequest {
-    int32 room_id = 1;
-    string user_id = 2;
-}
-
-message StartGameResponse {}
-
-message GetGameStateRequest {
-    string user_id = 1;
-}
-
-message GetGameStateResponse {
-    GameState game_state = 1;
-}
-
-message GetFirstDayResultRequest {
-    int32 room_id = 1;
-    string user_id = 2;
-}
-
-message GetFirstDayResultResponse {
-    repeated int32 dead_player_numbers = 1;
-}
+message UpdateGameConfigResponse {}
 
 message JoinRoomRequest {
     string user_id = 1;
-    int32 room_id = 2;
+    string room_id = 2;
 }
 
 message JoinRoomResponse {
     string user_id = 1;
 }
 
-message GetRoleRequest {
-    string user_id = 1;
+message GetRoomRequest {
+    string room_id = 1;
 }
 
-message GetRoleResponse {
-    Role role = 1;
+message GetRoomResponse {
+    repeated Seat seats = 2;
+    string game_id = 3;
 }
 
-message Room {
-    int32 id = 1;
-
-    repeated User users = 2;
-
-    repeated Seat seats = 3;
+message TakeSeatRequest {
+    string seat_id = 1;
+    string user_id = 2;
 }
+
+message TakeSeatResponse {}
+
+message ReassignRolesRequest {
+    string room_id = 1;
+}
+
+message ReassignRolesResponse {}
+
+message StartGameRequest {
+    string room_id = 1;
+}
+
+message StartGameResponse {
+    string game_id = 2;
+}
+
+message GetGameRequest {
+    string game_id = 1;
+}
+
+message GetGameResponse {
+    Game game = 1;
+}
+
+message TakeActionRequest {
+    string game_id = 1;
+
+    message SeerAction {}
+    message WitchAction {}
+    message HunterAction {}
+    message GuardAction {}
+    message WerewolfAction {}
+    message WhiteWerewolfAction {}
+    message HalfBloodAction {}
+    oneof action {
+        SeerAction seer = 2;
+        WitchAction witch = 3;
+        HunterAction hunter = 4;
+        GuardAction guard = 5;
+        WerewolfAction werewolf = 6;
+        WhiteWerewolfAction white_werewolf = 7;
+        HalfBloodAction half_blood = 8;
+    }
+}
+
+message TakeActionResponse {}
 
 message Seat {
     string id = 1;
-    string user_id = 2;
+    User user = 2;
     Role role = 3;
 }
 
 message User {
     string id = 1;
-    string nickname = 2;
     string img_url = 3;
 }
 
+message Game {
+    string id = 1;
+
+    enum State {
+        UNKNOWN = 0;
+        DARKNESS_FALLS = 1;
+        ORPHAN_AWAKE = 2;
+        HALF_BLOOD_AWAKE = 3;
+        GUARDIAN_AWAKE = 4;
+        WEREWOLF_AWAKE = 5;
+        WITCH_AWAKE = 6;
+        SEER_AWAKE = 7;
+        HUNTER_AWAKE = 8;
+        SHERIFF_ELECTION = 9;
+    }
+    State state = 3;
+
+    repeated string dead_player_numbers = 4;
+}
+
 enum Role {
-    ROLE_UNKNOWN = 0;
+    UNKNOWN = 0;
     VILLAGER = 1;
     SEER = 2;
     WITCH = 3;
@@ -125,17 +151,4 @@ enum Role {
     WHITE_WEREWOLF = 8;
     ORPHAN = 9;
     HALF_BLOOD = 10;
-}
-
-enum GameState {
-    GAME_STATE_UNKNOWN = 0;
-    DARKNESS_FALLS = 1;
-    ORPHAN_AWAKE = 2;
-    HALF_BLOOD_AWAKE = 3;
-    GUARDIAN_AWAKE = 4;
-    WEREWOLF_AWAKE = 5;
-    WITCH_AWAKE = 6;
-    SEER_AWAKE = 7;
-    HUNTER_AWAKE = 8;
-    SHERIFF_ELECTION = 9;
 }
