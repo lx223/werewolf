@@ -1,42 +1,33 @@
 package srv
 
 import (
-	proto "server/generated"
+	"server/generated"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
 
-func (s *GameService) validateJoinRoomRequest(req *proto.JoinRoomRequest) error {
-	if err := s.validateRoomId(req.GetRoomId()); err != nil {
-		return err
+func (s *GameService) validateJoinRoomRequest(req *werewolf.JoinRoomRequest) error {
+	room, ok := s.rooms[req.GetRoomId()]
+	if !ok {
+		return status.Error(codes.NotFound, "room not found")
 	}
 
-	if len(s.users) >= defaultUserLimit {
+	if len(room.Users) >= defaultUserLimit {
 		return status.Error(codes.ResourceExhausted, "user limit reached")
 	}
 
 	return nil
 }
 
-func (s *GameService) validateRoomId(roomId int32) error {
+func (s *GameService) validateUpdateGameConfig(req *werewolf.UpdateGameConfigRequest) error {
+	roomId := req.GetRoomId()
 	if _, ok := s.rooms[roomId]; !ok {
 		return status.Error(codes.NotFound, "room not found")
 	}
-	return nil
-}
 
-func (s *GameService) validateUpdateGameConfig(req *proto.UpdateGameConfigRequest) error {
-	if err := s.validateRoomId(req.GetRoomId()); err != nil {
-		return err
-	}
-
-	if len(req.GetRoles()) != len(req.GetCounts()) || len(req.GetRoles()) == 0 {
-		return status.Error(codes.InvalidArgument, "invalid role config")
-	}
-
-	for i, r := range req.GetRoles() {
-		if err := validateRoleCount(r, req.GetCounts()[i]); err != nil {
+	for _, roleCount := range req.GetRoleCounts() {
+		if err := validateRoleCount(roleCount.Role, roleCount.Count); err != nil {
 			return err
 		}
 	}
@@ -44,27 +35,29 @@ func (s *GameService) validateUpdateGameConfig(req *proto.UpdateGameConfigReques
 	return nil
 }
 
-func validateRoleCount(role proto.Role, count int32) error {
+func validateRoleCount(role werewolf.Role, count int32) error {
 	switch role {
-	case proto.Role_VILLAGER:
-	case proto.Role_WEREWOLF:
+	case werewolf.Role_VILLAGER:
+	case werewolf.Role_WEREWOLF:
 		if count <= 0 {
 			return newRoleCountErr(role)
 		}
-	case proto.Role_SEER:
-	case proto.Role_WITCH:
-	case proto.Role_HUNTER:
-	case proto.Role_IDIOT:
-	case proto.Role_GUARDIAN:
-	case proto.Role_WHITE_WEREWOLF:
-	case proto.Role_HALF_BLOOD:
+	case werewolf.Role_SEER:
+	case werewolf.Role_WITCH:
+	case werewolf.Role_HUNTER:
+	case werewolf.Role_IDIOT:
+	case werewolf.Role_GUARDIAN:
+	case werewolf.Role_WHITE_WEREWOLF:
+	case werewolf.Role_HALF_BLOOD:
 		if count > 1 || count < 0 {
 			return newRoleCountErr(role)
 		}
+	default:
+		return status.Errorf(codes.InvalidArgument, "%s not supported", role.String())
 	}
 	return nil
 }
 
-func newRoleCountErr(role proto.Role) error {
+func newRoleCountErr(role werewolf.Role) error {
 	return status.Errorf(codes.InvalidArgument, "wrong count for %s", role.String())
 }

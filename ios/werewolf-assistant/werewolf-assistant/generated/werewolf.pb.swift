@@ -116,7 +116,7 @@ struct Werewolf_UpdateGameConfigRequest {
 
     var role: Werewolf_Role = .unknown
 
-    var count: String = String()
+    var count: Int32 = 0
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -705,7 +705,7 @@ extension Werewolf_UpdateGameConfigRequest.RoleCount: SwiftProtobuf.Message, Swi
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularEnumField(value: &self.role)
-      case 2: try decoder.decodeSingularStringField(value: &self.count)
+      case 2: try decoder.decodeSingularInt32Field(value: &self.count)
       default: break
       }
     }
@@ -715,8 +715,8 @@ extension Werewolf_UpdateGameConfigRequest.RoleCount: SwiftProtobuf.Message, Swi
     if self.role != .unknown {
       try visitor.visitSingularEnumField(value: self.role, fieldNumber: 1)
     }
-    if !self.count.isEmpty {
-      try visitor.visitSingularStringField(value: self.count, fieldNumber: 2)
+    if self.count != 0 {
+      try visitor.visitSingularInt32Field(value: self.count, fieldNumber: 2)
     }
     try unknownFields.traverse(visitor: &visitor)
   }

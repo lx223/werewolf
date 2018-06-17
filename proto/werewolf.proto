@@ -31,7 +31,7 @@ message UpdateGameConfigRequest {
 
     message RoleCount {
         Role role = 1;
-        string count = 2;
+        int32 count = 2;
     }
     repeated RoleCount role_counts = 2;
 }
