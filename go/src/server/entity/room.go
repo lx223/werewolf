@@ -18,7 +18,10 @@ type Room struct {
 
 func NewRoom() *Room {
 	return &Room{
-		Id: util.RandomRoomId(),
+		Id:    util.RandomRoomId(),
+		Roles: []werewolf.Role{},
+		Seats: make(map[string]*Seat),
+		Users: make(map[string]*User),
 
 		mux: &sync.Mutex{},
 	}
