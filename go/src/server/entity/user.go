@@ -1,6 +1,9 @@
 package entity
 
-import "server/util"
+import (
+	"server/generated"
+	"server/util"
+)
 
 type User struct {
 	Id     string
@@ -9,6 +12,17 @@ type User struct {
 
 func NewUser(roomId string) *User {
 	return &User{
-		Id: util.RandomUserId(roomId),
+		Id: util.NewUserId(roomId),
+	}
+}
+
+func (u *User) ToProto() *werewolf.User {
+	if u == nil {
+		return nil
+	}
+
+	return &werewolf.User{
+		Id:     u.Id,
+		ImgUrl: u.ImgUrl,
 	}
 }

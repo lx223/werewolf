@@ -1,35 +1,23 @@
 package util
 
 import (
-	"fmt"
 	"math/rand"
 	"server/generated"
-	"strconv"
 	"time"
 )
 
 var rnd *rand.Rand
 
-const roomIdUpperLimit = int32(1000000)
-
 func init() {
 	rnd = rand.New(rand.NewSource(time.Now().UnixNano()))
 }
 
-func RandomRoomId() string {
-	return fmt.Sprintf("%d", rnd.Int31n(roomIdUpperLimit))
+func RandomInt32WithLimit(limit int32) int32 {
+	return rand.Int31n(limit)
 }
 
-func RandomSeatId(roomId string) string {
-	return fmt.Sprintf("%s/%s", roomId, randomInt64())
-}
-
-func RandomUserId(roomId string) string {
-	return fmt.Sprintf("%s/%s", roomId, randomInt64())
-}
-
-func randomInt64() string {
-	return strconv.FormatInt(rnd.Int63(), 16)
+func RandomInt64() int64 {
+	return rnd.Int63()
 }
 
 func Shuffle(roles []werewolf.Role) []werewolf.Role {

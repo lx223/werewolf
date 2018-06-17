@@ -179,13 +179,20 @@ struct Werewolf_GetRoomResponse {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var seats: [Werewolf_Seat] = []
-
-  var gameID: String = String()
+  var room: Werewolf_Room {
+    get {return _storage._room ?? Werewolf_Room()}
+    set {_uniqueStorage()._room = newValue}
+  }
+  /// Returns true if `room` has been explicitly set.
+  var hasRoom: Bool {return _storage._room != nil}
+  /// Clears the value of `room`. Subsequent reads from it will return its default value.
+  mutating func clearRoom() {_storage._room = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 struct Werewolf_TakeSeatRequest {
@@ -466,6 +473,20 @@ struct Werewolf_TakeActionResponse {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Werewolf_Room {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var seats: [Werewolf_Seat] = []
+
+  var gameID: String = String()
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -844,33 +865,59 @@ extension Werewolf_GetRoomRequest: SwiftProtobuf.Message, SwiftProtobuf._Message
 extension Werewolf_GetRoomResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".GetRoomResponse"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    2: .same(proto: "seats"),
-    3: .standard(proto: "game_id"),
+    1: .same(proto: "room"),
   ]
 
+  fileprivate class _StorageClass {
+    var _room: Werewolf_Room? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _room = source._room
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 2: try decoder.decodeRepeatedMessageField(value: &self.seats)
-      case 3: try decoder.decodeSingularStringField(value: &self.gameID)
-      default: break
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeSingularMessageField(value: &_storage._room)
+        default: break
+        }
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.seats.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.seats, fieldNumber: 2)
-    }
-    if !self.gameID.isEmpty {
-      try visitor.visitSingularStringField(value: self.gameID, fieldNumber: 3)
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._room {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   func _protobuf_generated_isEqualTo(other: Werewolf_GetRoomResponse) -> Bool {
-    if self.seats != other.seats {return false}
-    if self.gameID != other.gameID {return false}
+    if _storage !== other._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let other_storage = _args.1
+        if _storage._room != other_storage._room {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
     if unknownFields != other.unknownFields {return false}
     return true
   }
@@ -1417,6 +1464,41 @@ extension Werewolf_TakeActionResponse: SwiftProtobuf.Message, SwiftProtobuf._Mes
   }
 
   func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionResponse) -> Bool {
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Werewolf_Room: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".Room"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "seats"),
+    2: .standard(proto: "game_id"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeRepeatedMessageField(value: &self.seats)
+      case 2: try decoder.decodeSingularStringField(value: &self.gameID)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.seats.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.seats, fieldNumber: 1)
+    }
+    if !self.gameID.isEmpty {
+      try visitor.visitSingularStringField(value: self.gameID, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  func _protobuf_generated_isEqualTo(other: Werewolf_Room) -> Bool {
+    if self.seats != other.seats {return false}
+    if self.gameID != other.gameID {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }

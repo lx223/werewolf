@@ -52,8 +52,7 @@ message GetRoomRequest {
 }
 
 message GetRoomResponse {
-    repeated Seat seats = 2;
-    string game_id = 3;
+    Room room = 1;
 }
 
 message TakeSeatRequest {
@@ -107,6 +106,11 @@ message TakeActionRequest {
 }
 
 message TakeActionResponse {}
+
+message Room {
+    repeated Seat seats = 1;
+    string game_id = 2;
+}
 
 message Seat {
     string id = 1;

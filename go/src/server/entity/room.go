@@ -3,6 +3,7 @@ package entity
 import (
 	"server/generated"
 	"server/util"
+	"sort"
 	"sync"
 )
 
@@ -11,14 +12,14 @@ type Room struct {
 	Roles []werewolf.Role
 	Seats map[string]*Seat
 	Users map[string]*User
-	Games map[string]*Game
+	Game  *Game
 
 	mux *sync.Mutex
 }
 
 func NewRoom() *Room {
 	return &Room{
-		Id:    util.RandomRoomId(),
+		Id:    util.NewRoomId(),
 		Roles: []werewolf.Role{},
 		Seats: make(map[string]*Seat),
 		Users: make(map[string]*User),
@@ -55,6 +56,36 @@ func (r *Room) StoreSeat(seat *Seat) {
 	r.concurrentDo(func() {
 		r.Seats[seat.Id] = seat
 	})
+}
+
+func (r *Room) GetSortedSeats() []*Seat {
+	var seats []*Seat
+	for _, v := range r.Seats {
+		seats = append(seats, v)
+	}
+	sort.Sort(BySeatIndex(seats))
+	return seats
+}
+
+func (r *Room) ToProto() *werewolf.Room {
+	if r == nil {
+		return nil
+	}
+
+	var gameId string
+	if r.Game != nil {
+		gameId = r.Game.Id
+	}
+
+	var seatsProto []*werewolf.Seat
+	for _, s := range r.GetSortedSeats() {
+		seatsProto = append(seatsProto, s.ToProto())
+	}
+
+	return &werewolf.Room{
+		Seats:  seatsProto,
+		GameId: gameId,
+	}
 }
 
 func (r *Room) concurrentDo(f func()) {
