@@ -54,6 +54,12 @@
                                 <action selector="onStartGameButtonPressed:" destination="-1" id="B4l-zO-OmH"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="D2L-lL-Obd"/>
+                        <barButtonItem title="发牌" id="AJh-RL-vsE">
+                            <connections>
+                                <action selector="onReassignButtonPressed:" destination="-1" id="14V-3X-0oa"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="7Rt-Hb-Xq3"/>
                         <barButtonItem title="技能" id="ZMx-UC-jJz">
                             <connections>
@@ -71,7 +77,6 @@
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fnn-8T-eEl" customClass="SeatView" customModule="werewolf_assistant" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="84" height="84"/>
-                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="number">
                                             <integer key="value" value="1"/>
@@ -80,7 +85,6 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DX3-X0-CYH" customClass="SeatView" customModule="werewolf_assistant" customModuleProvider="target">
                                     <rect key="frame" x="92" y="0.0" width="83.5" height="84"/>
-                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="number">
                                             <integer key="value" value="2"/>
@@ -89,7 +93,6 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hMQ-3x-QS8" customClass="SeatView" customModule="werewolf_assistant" customModuleProvider="target">
                                     <rect key="frame" x="183.5" y="0.0" width="84" height="84"/>
-                                    <color key="backgroundColor" red="0.94901960780000005" green="0.69411764710000001" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="number">
                                             <integer key="value" value="3"/>
@@ -98,7 +101,6 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yre-7e-TyI" customClass="SeatView" customModule="werewolf_assistant" customModuleProvider="target">
                                     <rect key="frame" x="275.5" y="0.0" width="83.5" height="84"/>
-                                    <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="0.52000000000000002" colorSpace="calibratedRGB"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="number">
                                             <integer key="value" value="4"/>
@@ -112,7 +114,6 @@
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IfS-gi-sCj" customClass="SeatView" customModule="werewolf_assistant" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="84" height="83.5"/>
-                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="number">
                                             <integer key="value" value="5"/>
@@ -121,7 +122,6 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rse-10-v8T" customClass="SeatView" customModule="werewolf_assistant" customModuleProvider="target">
                                     <rect key="frame" x="92" y="0.0" width="83.5" height="83.5"/>
-                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="number">
                                             <integer key="value" value="6"/>
@@ -130,7 +130,6 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rtN-0r-GC6" customClass="SeatView" customModule="werewolf_assistant" customModuleProvider="target">
                                     <rect key="frame" x="183.5" y="0.0" width="84" height="83.5"/>
-                                    <color key="backgroundColor" red="0.94901960780000005" green="0.69411764710000001" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="number">
                                             <integer key="value" value="7"/>
@@ -139,7 +138,6 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8MW-bm-Pfp" customClass="SeatView" customModule="werewolf_assistant" customModuleProvider="target">
                                     <rect key="frame" x="275.5" y="0.0" width="83.5" height="83.5"/>
-                                    <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="0.52000000000000002" colorSpace="calibratedRGB"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="number">
                                             <integer key="value" value="8"/>
@@ -153,7 +151,6 @@
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5pc-Ku-ZIu" customClass="SeatView" customModule="werewolf_assistant" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="84" height="84"/>
-                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="number">
                                             <integer key="value" value="9"/>
@@ -162,7 +159,6 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pSz-cu-K2e" customClass="SeatView" customModule="werewolf_assistant" customModuleProvider="target">
                                     <rect key="frame" x="92" y="0.0" width="83.5" height="84"/>
-                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="number">
                                             <integer key="value" value="10"/>
@@ -171,7 +167,6 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwc-6x-MT3" customClass="SeatView" customModule="werewolf_assistant" customModuleProvider="target">
                                     <rect key="frame" x="183.5" y="0.0" width="84" height="84"/>
-                                    <color key="backgroundColor" red="0.94901960780000005" green="0.69411764710000001" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="number">
                                             <integer key="value" value="11"/>
@@ -180,7 +175,6 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2zg-cD-lcH" customClass="SeatView" customModule="werewolf_assistant" customModuleProvider="target">
                                     <rect key="frame" x="275.5" y="0.0" width="83.5" height="84"/>
-                                    <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="0.52000000000000002" colorSpace="calibratedRGB"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="number">
                                             <integer key="value" value="12"/>
@@ -194,7 +188,6 @@
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o27-zX-yK5" customClass="SeatView" customModule="werewolf_assistant" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="84" height="83.5"/>
-                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="number">
                                             <integer key="value" value="13"/>
@@ -203,7 +196,6 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="edo-Of-Q7h" customClass="SeatView" customModule="werewolf_assistant" customModuleProvider="target">
                                     <rect key="frame" x="92" y="0.0" width="83.5" height="83.5"/>
-                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="number">
                                             <integer key="value" value="14"/>
@@ -212,7 +204,6 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iZQ-Cx-EEn" customClass="SeatView" customModule="werewolf_assistant" customModuleProvider="target">
                                     <rect key="frame" x="183.5" y="0.0" width="84" height="83.5"/>
-                                    <color key="backgroundColor" red="0.94901960780000005" green="0.69411764710000001" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="number">
                                             <integer key="value" value="15"/>
@@ -221,7 +212,6 @@
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cKD-uB-4Ch" customClass="SeatView" customModule="werewolf_assistant" customModuleProvider="target">
                                     <rect key="frame" x="275.5" y="0.0" width="83.5" height="83.5"/>
-                                    <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="0.52000000000000002" colorSpace="calibratedRGB"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="number">
                                             <integer key="value" value="16"/>

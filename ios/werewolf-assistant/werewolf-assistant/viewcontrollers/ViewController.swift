@@ -45,7 +45,7 @@ class ViewController: UIViewController {
         joinRoomAlert.addTextField(configurationHandler: nil)
         joinRoomAlert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
         joinRoomAlert.addAction(UIAlertAction(title: "确认", style: .default, handler: { [weak joinRoomAlert] (_) in
-            guard let text = joinRoomAlert?.textFields?.first?.text, let roomId = Int32(text) else {
+            guard let roomId = joinRoomAlert?.textFields?.first?.text, let _ = Int32(roomId) else {
                 self.showAlert(for: nil, orMessage: "请输入数字")
                 return
             }

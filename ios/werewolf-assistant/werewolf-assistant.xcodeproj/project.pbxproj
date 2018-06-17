@@ -21,6 +21,8 @@
 		B793EA2B20D41D9500F319AD /* RoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B793EA2920D41D9500F319AD /* RoomViewController.xib */; };
 		B793EA2D20D466D900F319AD /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA2C20D466D900F319AD /* UIViewExtensions.swift */; };
 		B793EA3020D47AD700F319AD /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA2F20D47AD700F319AD /* UIImageExtensions.swift */; };
+		B793EA3520D6B12B00F319AD /* WerewolfRoleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA3420D6B12B00F319AD /* WerewolfRoleExtensions.swift */; };
+		B793EA3920D6D19E00F319AD /* CallResultExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA3820D6D19E00F319AD /* CallResultExtensions.swift */; };
 		B7EF75A720CF312F00000A67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF75A620CF312F00000A67 /* AppDelegate.swift */; };
 		B7EF75A920CF312F00000A67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF75A820CF312F00000A67 /* ViewController.swift */; };
 		B7EF75AC20CF312F00000A67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7EF75AA20CF312F00000A67 /* Main.storyboard */; };
@@ -65,6 +67,8 @@
 		B793EA2920D41D9500F319AD /* RoomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomViewController.xib; sourceTree = "<group>"; };
 		B793EA2C20D466D900F319AD /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		B793EA2F20D47AD700F319AD /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
+		B793EA3420D6B12B00F319AD /* WerewolfRoleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WerewolfRoleExtensions.swift; sourceTree = "<group>"; };
+		B793EA3820D6D19E00F319AD /* CallResultExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallResultExtensions.swift; sourceTree = "<group>"; };
 		B7EF75A320CF312F00000A67 /* werewolf-assistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "werewolf-assistant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7EF75A620CF312F00000A67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7EF75A820CF312F00000A67 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 				B793EA2420D3CA9C00F319AD /* UIViewControllerExtensions.swift */,
 				B793EA2C20D466D900F319AD /* UIViewExtensions.swift */,
 				B793EA2F20D47AD700F319AD /* UIImageExtensions.swift */,
+				B793EA3420D6B12B00F319AD /* WerewolfRoleExtensions.swift */,
+				B793EA3820D6D19E00F319AD /* CallResultExtensions.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -371,6 +377,8 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-werewolf-assistant/Pods-werewolf-assistant-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftGRPC/SwiftGRPC.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
@@ -379,6 +387,8 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGRPC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
@@ -450,8 +460,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B793EA3520D6B12B00F319AD /* WerewolfRoleExtensions.swift in Sources */,
 				B793EA2520D3CA9C00F319AD /* UIViewControllerExtensions.swift in Sources */,
 				B793EA3020D47AD700F319AD /* UIImageExtensions.swift in Sources */,
+				B793EA3920D6D19E00F319AD /* CallResultExtensions.swift in Sources */,
 				B793EA2220D3BFCD00F319AD /* UINumberPickerView.swift in Sources */,
 				B793EA2720D3F4F600F319AD /* SeatView.swift in Sources */,
 				B793EA1620D1E67B00F319AD /* ConfigurationViewController.swift in Sources */,

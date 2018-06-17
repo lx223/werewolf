@@ -87,11 +87,13 @@ func (s *GameService) UpdateGameConfig(ctx context.Context, req *werewolf.Update
 	}
 	room.StoreRoles(roles)
 
+	var seats []*entity.Seat
 	for i, role := range util.Shuffle(roles) {
 		seat := entity.NewSeat(room.Id, i)
 		seat.Role = role
-		room.StoreSeat(seat)
+		seats = append(seats, seat)
 	}
+	room.StoreSeats(seats)
 
 	return &werewolf.UpdateGameConfigResponse{}, nil
 }
@@ -115,7 +117,15 @@ func (s *GameService) TakeSeat(ctx context.Context, req *werewolf.TakeSeatReques
 	seatId := req.GetSeatId()
 	userId := req.GetUserId()
 	roomId, _ := util.GetRoomIdFromSeatIdOrUserId(seatId)
+
 	room := s.rooms[roomId]
+
+	for _, seat := range room.GetSortedSeats() {
+		if seat.User != nil && seat.User.Id == userId && seat.Id != seatId {
+			seat.User = nil
+		}
+	}
+
 	seat := room.Seats[seatId]
 	user := room.Users[userId]
 	seat.User = user

@@ -48,13 +48,18 @@ func (r *Room) StoreRoles(roles []werewolf.Role) {
 	})
 }
 
-func (r *Room) StoreSeat(seat *Seat) {
-	if seat == nil {
+func (r *Room) StoreSeats(seats []*Seat) {
+	if seats == nil {
 		return
 	}
 
 	r.concurrentDo(func() {
-		r.Seats[seat.Id] = seat
+		for k := range r.Seats {
+			delete(r.Seats, k)
+		}
+		for _, seat := range seats {
+			r.Seats[seat.Id] = seat
+		}
 	})
 }
 

@@ -20,11 +20,11 @@ final class ConfigurationViewController: UIViewController {
     @IBOutlet fileprivate weak var guardSwitch: UISwitch!
     @IBOutlet fileprivate weak var halfBloodSwitch: UISwitch!
 
-    private var roomID: Int32
+    private var roomID: String
     private var userID: String
     fileprivate let gameSrvClient: Werewolf_GameServiceService
 
-    init(roomID: Int32, userID: String, client: Werewolf_GameServiceService) {
+    init(roomID: String, userID: String, client: Werewolf_GameServiceService) {
         self.roomID = roomID
         self.userID = userID
         self.gameSrvClient = client
@@ -56,72 +56,47 @@ final class ConfigurationViewController: UIViewController {
 
 fileprivate extension ConfigurationViewController {
     @objc func onConfirmButtonPressed() {
-        let req = newUpdateGameConfigRequest()
+        var req = Werewolf_UpdateGameConfigRequest()
+        req.roomID = roomID
+        req.roleCounts = Werewolf_Role.allCases.map { getRoleCount(for: $0) }.filter{ $0.count != 0 }
 
         _ = try? gameSrvClient.updateGameConfig(req) { res, callResult in
-            guard let room = res?.room else {
+            guard res != nil else {
                 self.showAlert(for: callResult)
                 return
             }
 
-            let roomController = RoomViewController(roomID: self.roomID, userID: self.userID, client: self.gameSrvClient, room: room)
+            let roomController = RoomViewController(roomID: self.roomID, userID: self.userID, client: self.gameSrvClient)
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(roomController, animated: true)
             }
         }
     }
 
-    func newUpdateGameConfigRequest() -> Werewolf_UpdateGameConfigRequest {
-        var roles = Array<Werewolf_Role>()
-        var counts = Array<Int32>()
-
-        roles.append(Werewolf_Role.villager)
-        counts.append(villagerNumberPicker.selectedNumber)
-
-        roles.append(Werewolf_Role.werewolf)
-        counts.append(werewolfNumberPicker.selectedNumber)
-
-        if whiteWerewolfSwitch.isOn {
-            roles.append(Werewolf_Role.whiteWerewolf)
-            counts.append(1)
+    func getRoleCount(for role: Werewolf_Role) -> Werewolf_UpdateGameConfigRequest.RoleCount {
+        var roleCount = Werewolf_UpdateGameConfigRequest.RoleCount()
+        roleCount.role = role
+        switch role {
+        case .villager:
+            roleCount.count = villagerNumberPicker.selectedNumber
+        case .werewolf:
+            roleCount.count = werewolfNumberPicker.selectedNumber
+        case .seer:
+            roleCount.count = seerSwitch.isOn ? 1 : 0
+        case .witch:
+            roleCount.count = witchSwitch.isOn ? 1 : 0
+        case .hunter:
+            roleCount.count = hunterSwitch.isOn ? 1 : 0
+        case .idiot:
+            roleCount.count = confusedSwitch.isOn ? 1 : 0
+        case .guardian:
+            roleCount.count = guardSwitch.isOn ? 1 : 0
+        case .whiteWerewolf:
+            roleCount.count = whiteWerewolfSwitch.isOn ? 1 : 0
+        case .halfBlood:
+            roleCount.count = halfBloodSwitch.isOn ? 1 : 0
+        default: break
         }
-
-        if seerSwitch.isOn {
-            roles.append(Werewolf_Role.seer)
-            counts.append(1)
-        }
-
-        if witchSwitch.isOn {
-            roles.append(Werewolf_Role.witch)
-            counts.append(1)
-        }
-
-        if hunterSwitch.isOn {
-            roles.append(Werewolf_Role.hunter)
-            counts.append(1)
-        }
-
-        if confusedSwitch.isOn {
-            roles.append(Werewolf_Role.idiot)
-            counts.append(1)
-        }
-
-        if guardSwitch.isOn {
-            roles.append(Werewolf_Role.guardian)
-            counts.append(1)
-        }
-
-        if halfBloodSwitch.isOn {
-            roles.append(Werewolf_Role.halfBlood)
-            counts.append(1)
-        }
-
-        var req = Werewolf_UpdateGameConfigRequest()
-        req.roles = roles
-        req.counts = counts
-        req.userID = userID
-        req.roomID = roomID
-
-        return req
+        return roleCount
     }
 }

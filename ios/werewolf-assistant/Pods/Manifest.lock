@@ -18,6 +18,9 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - RxCocoa (4.2.0):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.2.0)
   - SwiftGRPC (0.4.3):
     - BoringSSL (~> 10.0)
     - gRPC-Core (~> 1.11.0)
@@ -25,6 +28,8 @@ PODS:
   - SwiftProtobuf (1.0.3)
 
 DEPENDENCIES:
+  - RxCocoa (~> 4.2.0)
+  - RxSwift (~> 4.2.0)
   - SwiftGRPC (~> 0.4.3)
   - SwiftProtobuf (~> 1.0.3)
 
@@ -33,6 +38,8 @@ SPEC REPOS:
     - BoringSSL
     - gRPC-Core
     - nanopb
+    - RxCocoa
+    - RxSwift
     - SwiftGRPC
     - SwiftProtobuf
 
@@ -40,9 +47,11 @@ SPEC CHECKSUMS:
   BoringSSL: c46efb47593135382bc0934196f16d2f726f5f36
   gRPC-Core: 164639cd8ae18ca8b65477fafb2efbaecf4f181a
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
+  RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   SwiftGRPC: e582ede5791867075513a3757faa41be215b7e5a
   SwiftProtobuf: 5ccc0e4054e37c75800e5744acb2aa80bb72b39c
 
-PODFILE CHECKSUM: 8c4815230db19f77a3db57fcbacda86d63ef9d86
+PODFILE CHECKSUM: 20f5b9eba021fea8a2cd738db9bd4e77a203cc3b
 
 COCOAPODS: 1.5.3

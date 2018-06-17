@@ -6,8 +6,10 @@ target 'werewolf-assistant' do
   use_frameworks!
 
   # Pods for werewolf-assistant
-  pod 'SwiftProtobuf', '~> 1.0.3'
-  pod 'SwiftGRPC', '~> 0.4.3'
+  pod 'SwiftProtobuf',  '~> 1.0.3'
+  pod 'SwiftGRPC',      '~> 0.4.3'
+  pod 'RxSwift',        '~> 4.2.0'
+  pod 'RxCocoa',        '~> 4.2.0'
 
   target 'werewolf-assistantTests' do
     inherit! :search_paths
