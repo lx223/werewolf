@@ -8,14 +8,20 @@
 
 import UIKit
 
+@IBDesignable
 final class UINumberPickerView: UIPickerView {
+
+    @IBInspectable var lowestNumber: Int = 0
+    @IBInspectable var highestNumber: Int = 6
 
     var selectedNumber: Int32 {
         let row = self.selectedRow(inComponent: 0)
         return Int32(numOptions[row])
     }
 
-    var numOptions = Array(1...6)
+    var numOptions: [Int] {
+        return Array(lowestNumber...highestNumber)
+    }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)

@@ -14,7 +14,6 @@ service GameService {
 
     // group of game operations
     rpc StartGame (StartGameRequest) returns (StartGameResponse);
-    rpc GetGame (GetGameRequest) returns (GetGameResponse);
     rpc TakeAction (TakeActionRequest) returns (TakeActionResponse);
 }
 
@@ -72,44 +71,64 @@ message StartGameRequest {
     string room_id = 1;
 }
 
-message StartGameResponse {
-    string game_id = 2;
-}
-
-message GetGameRequest {
-    string game_id = 1;
-}
-
-message GetGameResponse {
-    Game game = 1;
-}
+message StartGameResponse {}
 
 message TakeActionRequest {
     string game_id = 1;
 
-    message SeerAction {}
-    message WitchAction {}
+    message CompleteDarknessAction {}
+    message SeerAction {
+        string seat_id = 1;
+    }
+    message WitchAction {
+        string poison_seat_id = 1;
+        string cure_seat_id = 2;
+    }
     message HunterAction {}
-    message GuardAction {}
-    message WerewolfAction {}
+    message GuardAction {
+        string seat_id = 1;
+    }
+    message WerewolfAction {
+        string seat_id = 1;
+    }
     message WhiteWerewolfAction {}
-    message HalfBloodAction {}
+    message HalfBloodAction {
+        string seat_id = 1;
+    }
+    message CompleteSheriffAction {}
     oneof action {
-        SeerAction seer = 2;
-        WitchAction witch = 3;
-        HunterAction hunter = 4;
-        GuardAction guard = 5;
-        WerewolfAction werewolf = 6;
-        WhiteWerewolfAction white_werewolf = 7;
-        HalfBloodAction half_blood = 8;
+        CompleteDarknessAction darkness = 2;
+        SeerAction seer = 3;
+        WitchAction witch = 4;
+        HunterAction hunter = 5;
+        GuardAction guard = 6;
+        WerewolfAction werewolf = 7;
+        WhiteWerewolfAction white_werewolf = 8;
+        HalfBloodAction half_blood = 9;
+        CompleteSheriffAction sheriff = 10;
     }
 }
 
-message TakeActionResponse {}
+message TakeActionResponse {
+    message SeerResult {
+        bool is_werewolf = 1;
+    }
+    message HunterResult {
+        bool good_to_fire = 1;
+    }
+    message WhiteWerewolfResult {
+        bool good_to_kill = 1;
+    }
+    oneof result {
+        SeerResult seer = 1;
+        HunterResult hunter = 2;
+        WhiteWerewolfResult white_werewolf = 3;
+    }
+}
 
 message Room {
     repeated Seat seats = 1;
-    string game_id = 2;
+    Game game = 2;
 }
 
 message Seat {
@@ -136,11 +155,12 @@ message Game {
         WITCH_AWAKE = 6;
         SEER_AWAKE = 7;
         HUNTER_AWAKE = 8;
-        SHERIFF_ELECTION = 9;
+        WHITE_WEREWOLF_AWAKE = 9;
+        SHERIFF_ELECTION = 10;
     }
-    State state = 3;
+    State state = 2;
 
-    repeated string dead_player_numbers = 4;
+    repeated string dead_player_numbers = 3;
 }
 
 enum Role {

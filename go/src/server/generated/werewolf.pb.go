@@ -70,54 +70,57 @@ func (x Role) String() string {
 	return proto.EnumName(Role_name, int32(x))
 }
 func (Role) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{0}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{0}
 }
 
 type Game_State int32
 
 const (
-	Game_UNKNOWN          Game_State = 0
-	Game_DARKNESS_FALLS   Game_State = 1
-	Game_ORPHAN_AWAKE     Game_State = 2
-	Game_HALF_BLOOD_AWAKE Game_State = 3
-	Game_GUARDIAN_AWAKE   Game_State = 4
-	Game_WEREWOLF_AWAKE   Game_State = 5
-	Game_WITCH_AWAKE      Game_State = 6
-	Game_SEER_AWAKE       Game_State = 7
-	Game_HUNTER_AWAKE     Game_State = 8
-	Game_SHERIFF_ELECTION Game_State = 9
+	Game_UNKNOWN              Game_State = 0
+	Game_DARKNESS_FALLS       Game_State = 1
+	Game_ORPHAN_AWAKE         Game_State = 2
+	Game_HALF_BLOOD_AWAKE     Game_State = 3
+	Game_GUARDIAN_AWAKE       Game_State = 4
+	Game_WEREWOLF_AWAKE       Game_State = 5
+	Game_WITCH_AWAKE          Game_State = 6
+	Game_SEER_AWAKE           Game_State = 7
+	Game_HUNTER_AWAKE         Game_State = 8
+	Game_WHITE_WEREWOLF_AWAKE Game_State = 9
+	Game_SHERIFF_ELECTION     Game_State = 10
 )
 
 var Game_State_name = map[int32]string{
-	0: "UNKNOWN",
-	1: "DARKNESS_FALLS",
-	2: "ORPHAN_AWAKE",
-	3: "HALF_BLOOD_AWAKE",
-	4: "GUARDIAN_AWAKE",
-	5: "WEREWOLF_AWAKE",
-	6: "WITCH_AWAKE",
-	7: "SEER_AWAKE",
-	8: "HUNTER_AWAKE",
-	9: "SHERIFF_ELECTION",
+	0:  "UNKNOWN",
+	1:  "DARKNESS_FALLS",
+	2:  "ORPHAN_AWAKE",
+	3:  "HALF_BLOOD_AWAKE",
+	4:  "GUARDIAN_AWAKE",
+	5:  "WEREWOLF_AWAKE",
+	6:  "WITCH_AWAKE",
+	7:  "SEER_AWAKE",
+	8:  "HUNTER_AWAKE",
+	9:  "WHITE_WEREWOLF_AWAKE",
+	10: "SHERIFF_ELECTION",
 }
 var Game_State_value = map[string]int32{
-	"UNKNOWN":          0,
-	"DARKNESS_FALLS":   1,
-	"ORPHAN_AWAKE":     2,
-	"HALF_BLOOD_AWAKE": 3,
-	"GUARDIAN_AWAKE":   4,
-	"WEREWOLF_AWAKE":   5,
-	"WITCH_AWAKE":      6,
-	"SEER_AWAKE":       7,
-	"HUNTER_AWAKE":     8,
-	"SHERIFF_ELECTION": 9,
+	"UNKNOWN":              0,
+	"DARKNESS_FALLS":       1,
+	"ORPHAN_AWAKE":         2,
+	"HALF_BLOOD_AWAKE":     3,
+	"GUARDIAN_AWAKE":       4,
+	"WEREWOLF_AWAKE":       5,
+	"WITCH_AWAKE":          6,
+	"SEER_AWAKE":           7,
+	"HUNTER_AWAKE":         8,
+	"WHITE_WEREWOLF_AWAKE": 9,
+	"SHERIFF_ELECTION":     10,
 }
 
 func (x Game_State) String() string {
 	return proto.EnumName(Game_State_name, int32(x))
 }
 func (Game_State) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{21, 0}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{19, 0}
 }
 
 type CreateAndJoinRoomRequest struct {
@@ -130,7 +133,7 @@ func (m *CreateAndJoinRoomRequest) Reset()         { *m = CreateAndJoinRoomReque
 func (m *CreateAndJoinRoomRequest) String() string { return proto.CompactTextString(m) }
 func (*CreateAndJoinRoomRequest) ProtoMessage()    {}
 func (*CreateAndJoinRoomRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{0}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{0}
 }
 func (m *CreateAndJoinRoomRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CreateAndJoinRoomRequest.Unmarshal(m, b)
@@ -162,7 +165,7 @@ func (m *CreateAndJoinRoomResponse) Reset()         { *m = CreateAndJoinRoomResp
 func (m *CreateAndJoinRoomResponse) String() string { return proto.CompactTextString(m) }
 func (*CreateAndJoinRoomResponse) ProtoMessage()    {}
 func (*CreateAndJoinRoomResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{1}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{1}
 }
 func (m *CreateAndJoinRoomResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CreateAndJoinRoomResponse.Unmarshal(m, b)
@@ -208,7 +211,7 @@ func (m *UpdateGameConfigRequest) Reset()         { *m = UpdateGameConfigRequest
 func (m *UpdateGameConfigRequest) String() string { return proto.CompactTextString(m) }
 func (*UpdateGameConfigRequest) ProtoMessage()    {}
 func (*UpdateGameConfigRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{2}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{2}
 }
 func (m *UpdateGameConfigRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_UpdateGameConfigRequest.Unmarshal(m, b)
@@ -254,7 +257,7 @@ func (m *UpdateGameConfigRequest_RoleCount) Reset()         { *m = UpdateGameCon
 func (m *UpdateGameConfigRequest_RoleCount) String() string { return proto.CompactTextString(m) }
 func (*UpdateGameConfigRequest_RoleCount) ProtoMessage()    {}
 func (*UpdateGameConfigRequest_RoleCount) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{2, 0}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{2, 0}
 }
 func (m *UpdateGameConfigRequest_RoleCount) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_UpdateGameConfigRequest_RoleCount.Unmarshal(m, b)
@@ -298,7 +301,7 @@ func (m *UpdateGameConfigResponse) Reset()         { *m = UpdateGameConfigRespon
 func (m *UpdateGameConfigResponse) String() string { return proto.CompactTextString(m) }
 func (*UpdateGameConfigResponse) ProtoMessage()    {}
 func (*UpdateGameConfigResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{3}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{3}
 }
 func (m *UpdateGameConfigResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_UpdateGameConfigResponse.Unmarshal(m, b)
@@ -330,7 +333,7 @@ func (m *JoinRoomRequest) Reset()         { *m = JoinRoomRequest{} }
 func (m *JoinRoomRequest) String() string { return proto.CompactTextString(m) }
 func (*JoinRoomRequest) ProtoMessage()    {}
 func (*JoinRoomRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{4}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{4}
 }
 func (m *JoinRoomRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_JoinRoomRequest.Unmarshal(m, b)
@@ -375,7 +378,7 @@ func (m *JoinRoomResponse) Reset()         { *m = JoinRoomResponse{} }
 func (m *JoinRoomResponse) String() string { return proto.CompactTextString(m) }
 func (*JoinRoomResponse) ProtoMessage()    {}
 func (*JoinRoomResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{5}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{5}
 }
 func (m *JoinRoomResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_JoinRoomResponse.Unmarshal(m, b)
@@ -413,7 +416,7 @@ func (m *GetRoomRequest) Reset()         { *m = GetRoomRequest{} }
 func (m *GetRoomRequest) String() string { return proto.CompactTextString(m) }
 func (*GetRoomRequest) ProtoMessage()    {}
 func (*GetRoomRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{6}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{6}
 }
 func (m *GetRoomRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_GetRoomRequest.Unmarshal(m, b)
@@ -451,7 +454,7 @@ func (m *GetRoomResponse) Reset()         { *m = GetRoomResponse{} }
 func (m *GetRoomResponse) String() string { return proto.CompactTextString(m) }
 func (*GetRoomResponse) ProtoMessage()    {}
 func (*GetRoomResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{7}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{7}
 }
 func (m *GetRoomResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_GetRoomResponse.Unmarshal(m, b)
@@ -490,7 +493,7 @@ func (m *TakeSeatRequest) Reset()         { *m = TakeSeatRequest{} }
 func (m *TakeSeatRequest) String() string { return proto.CompactTextString(m) }
 func (*TakeSeatRequest) ProtoMessage()    {}
 func (*TakeSeatRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{8}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{8}
 }
 func (m *TakeSeatRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeSeatRequest.Unmarshal(m, b)
@@ -534,7 +537,7 @@ func (m *TakeSeatResponse) Reset()         { *m = TakeSeatResponse{} }
 func (m *TakeSeatResponse) String() string { return proto.CompactTextString(m) }
 func (*TakeSeatResponse) ProtoMessage()    {}
 func (*TakeSeatResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{9}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{9}
 }
 func (m *TakeSeatResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeSeatResponse.Unmarshal(m, b)
@@ -565,7 +568,7 @@ func (m *ReassignRolesRequest) Reset()         { *m = ReassignRolesRequest{} }
 func (m *ReassignRolesRequest) String() string { return proto.CompactTextString(m) }
 func (*ReassignRolesRequest) ProtoMessage()    {}
 func (*ReassignRolesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{10}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{10}
 }
 func (m *ReassignRolesRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ReassignRolesRequest.Unmarshal(m, b)
@@ -602,7 +605,7 @@ func (m *ReassignRolesResponse) Reset()         { *m = ReassignRolesResponse{} }
 func (m *ReassignRolesResponse) String() string { return proto.CompactTextString(m) }
 func (*ReassignRolesResponse) ProtoMessage()    {}
 func (*ReassignRolesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{11}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{11}
 }
 func (m *ReassignRolesResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ReassignRolesResponse.Unmarshal(m, b)
@@ -633,7 +636,7 @@ func (m *StartGameRequest) Reset()         { *m = StartGameRequest{} }
 func (m *StartGameRequest) String() string { return proto.CompactTextString(m) }
 func (*StartGameRequest) ProtoMessage()    {}
 func (*StartGameRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{12}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{12}
 }
 func (m *StartGameRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_StartGameRequest.Unmarshal(m, b)
@@ -661,7 +664,6 @@ func (m *StartGameRequest) GetRoomId() string {
 }
 
 type StartGameResponse struct {
-	GameId               string   `protobuf:"bytes,2,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -671,7 +673,7 @@ func (m *StartGameResponse) Reset()         { *m = StartGameResponse{} }
 func (m *StartGameResponse) String() string { return proto.CompactTextString(m) }
 func (*StartGameResponse) ProtoMessage()    {}
 func (*StartGameResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{13}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{13}
 }
 func (m *StartGameResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_StartGameResponse.Unmarshal(m, b)
@@ -691,92 +693,10 @@ func (m *StartGameResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_StartGameResponse proto.InternalMessageInfo
 
-func (m *StartGameResponse) GetGameId() string {
-	if m != nil {
-		return m.GameId
-	}
-	return ""
-}
-
-type GetGameRequest struct {
-	GameId               string   `protobuf:"bytes,1,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *GetGameRequest) Reset()         { *m = GetGameRequest{} }
-func (m *GetGameRequest) String() string { return proto.CompactTextString(m) }
-func (*GetGameRequest) ProtoMessage()    {}
-func (*GetGameRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{14}
-}
-func (m *GetGameRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetGameRequest.Unmarshal(m, b)
-}
-func (m *GetGameRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetGameRequest.Marshal(b, m, deterministic)
-}
-func (dst *GetGameRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetGameRequest.Merge(dst, src)
-}
-func (m *GetGameRequest) XXX_Size() int {
-	return xxx_messageInfo_GetGameRequest.Size(m)
-}
-func (m *GetGameRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetGameRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetGameRequest proto.InternalMessageInfo
-
-func (m *GetGameRequest) GetGameId() string {
-	if m != nil {
-		return m.GameId
-	}
-	return ""
-}
-
-type GetGameResponse struct {
-	Game                 *Game    `protobuf:"bytes,1,opt,name=game,proto3" json:"game,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *GetGameResponse) Reset()         { *m = GetGameResponse{} }
-func (m *GetGameResponse) String() string { return proto.CompactTextString(m) }
-func (*GetGameResponse) ProtoMessage()    {}
-func (*GetGameResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{15}
-}
-func (m *GetGameResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetGameResponse.Unmarshal(m, b)
-}
-func (m *GetGameResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetGameResponse.Marshal(b, m, deterministic)
-}
-func (dst *GetGameResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetGameResponse.Merge(dst, src)
-}
-func (m *GetGameResponse) XXX_Size() int {
-	return xxx_messageInfo_GetGameResponse.Size(m)
-}
-func (m *GetGameResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetGameResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetGameResponse proto.InternalMessageInfo
-
-func (m *GetGameResponse) GetGame() *Game {
-	if m != nil {
-		return m.Game
-	}
-	return nil
-}
-
 type TakeActionRequest struct {
 	GameId string `protobuf:"bytes,1,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
 	// Types that are valid to be assigned to Action:
+	//	*TakeActionRequest_Darkness
 	//	*TakeActionRequest_Seer
 	//	*TakeActionRequest_Witch
 	//	*TakeActionRequest_Hunter
@@ -784,6 +704,7 @@ type TakeActionRequest struct {
 	//	*TakeActionRequest_Werewolf
 	//	*TakeActionRequest_WhiteWerewolf
 	//	*TakeActionRequest_HalfBlood
+	//	*TakeActionRequest_Sheriff
 	Action               isTakeActionRequest_Action `protobuf_oneof:"action"`
 	XXX_NoUnkeyedLiteral struct{}                   `json:"-"`
 	XXX_unrecognized     []byte                     `json:"-"`
@@ -794,7 +715,7 @@ func (m *TakeActionRequest) Reset()         { *m = TakeActionRequest{} }
 func (m *TakeActionRequest) String() string { return proto.CompactTextString(m) }
 func (*TakeActionRequest) ProtoMessage()    {}
 func (*TakeActionRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{16}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{14}
 }
 func (m *TakeActionRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeActionRequest.Unmarshal(m, b)
@@ -818,28 +739,35 @@ type isTakeActionRequest_Action interface {
 	isTakeActionRequest_Action()
 }
 
+type TakeActionRequest_Darkness struct {
+	Darkness *TakeActionRequest_CompleteDarknessAction `protobuf:"bytes,2,opt,name=darkness,proto3,oneof"`
+}
 type TakeActionRequest_Seer struct {
-	Seer *TakeActionRequest_SeerAction `protobuf:"bytes,2,opt,name=seer,proto3,oneof"`
+	Seer *TakeActionRequest_SeerAction `protobuf:"bytes,3,opt,name=seer,proto3,oneof"`
 }
 type TakeActionRequest_Witch struct {
-	Witch *TakeActionRequest_WitchAction `protobuf:"bytes,3,opt,name=witch,proto3,oneof"`
+	Witch *TakeActionRequest_WitchAction `protobuf:"bytes,4,opt,name=witch,proto3,oneof"`
 }
 type TakeActionRequest_Hunter struct {
-	Hunter *TakeActionRequest_HunterAction `protobuf:"bytes,4,opt,name=hunter,proto3,oneof"`
+	Hunter *TakeActionRequest_HunterAction `protobuf:"bytes,5,opt,name=hunter,proto3,oneof"`
 }
 type TakeActionRequest_Guard struct {
-	Guard *TakeActionRequest_GuardAction `protobuf:"bytes,5,opt,name=guard,proto3,oneof"`
+	Guard *TakeActionRequest_GuardAction `protobuf:"bytes,6,opt,name=guard,proto3,oneof"`
 }
 type TakeActionRequest_Werewolf struct {
-	Werewolf *TakeActionRequest_WerewolfAction `protobuf:"bytes,6,opt,name=werewolf,proto3,oneof"`
+	Werewolf *TakeActionRequest_WerewolfAction `protobuf:"bytes,7,opt,name=werewolf,proto3,oneof"`
 }
 type TakeActionRequest_WhiteWerewolf struct {
-	WhiteWerewolf *TakeActionRequest_WhiteWerewolfAction `protobuf:"bytes,7,opt,name=white_werewolf,json=whiteWerewolf,proto3,oneof"`
+	WhiteWerewolf *TakeActionRequest_WhiteWerewolfAction `protobuf:"bytes,8,opt,name=white_werewolf,json=whiteWerewolf,proto3,oneof"`
 }
 type TakeActionRequest_HalfBlood struct {
-	HalfBlood *TakeActionRequest_HalfBloodAction `protobuf:"bytes,8,opt,name=half_blood,json=halfBlood,proto3,oneof"`
+	HalfBlood *TakeActionRequest_HalfBloodAction `protobuf:"bytes,9,opt,name=half_blood,json=halfBlood,proto3,oneof"`
+}
+type TakeActionRequest_Sheriff struct {
+	Sheriff *TakeActionRequest_CompleteSheriffAction `protobuf:"bytes,10,opt,name=sheriff,proto3,oneof"`
 }
 
+func (*TakeActionRequest_Darkness) isTakeActionRequest_Action()      {}
 func (*TakeActionRequest_Seer) isTakeActionRequest_Action()          {}
 func (*TakeActionRequest_Witch) isTakeActionRequest_Action()         {}
 func (*TakeActionRequest_Hunter) isTakeActionRequest_Action()        {}
@@ -847,6 +775,7 @@ func (*TakeActionRequest_Guard) isTakeActionRequest_Action()         {}
 func (*TakeActionRequest_Werewolf) isTakeActionRequest_Action()      {}
 func (*TakeActionRequest_WhiteWerewolf) isTakeActionRequest_Action() {}
 func (*TakeActionRequest_HalfBlood) isTakeActionRequest_Action()     {}
+func (*TakeActionRequest_Sheriff) isTakeActionRequest_Action()       {}
 
 func (m *TakeActionRequest) GetAction() isTakeActionRequest_Action {
 	if m != nil {
@@ -860,6 +789,13 @@ func (m *TakeActionRequest) GetGameId() string {
 		return m.GameId
 	}
 	return ""
+}
+
+func (m *TakeActionRequest) GetDarkness() *TakeActionRequest_CompleteDarknessAction {
+	if x, ok := m.GetAction().(*TakeActionRequest_Darkness); ok {
+		return x.Darkness
+	}
+	return nil
 }
 
 func (m *TakeActionRequest) GetSeer() *TakeActionRequest_SeerAction {
@@ -911,9 +847,17 @@ func (m *TakeActionRequest) GetHalfBlood() *TakeActionRequest_HalfBloodAction {
 	return nil
 }
 
+func (m *TakeActionRequest) GetSheriff() *TakeActionRequest_CompleteSheriffAction {
+	if x, ok := m.GetAction().(*TakeActionRequest_Sheriff); ok {
+		return x.Sheriff
+	}
+	return nil
+}
+
 // XXX_OneofFuncs is for the internal use of the proto package.
 func (*TakeActionRequest) XXX_OneofFuncs() (func(msg proto.Message, b *proto.Buffer) error, func(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error), func(msg proto.Message) (n int), []interface{}) {
 	return _TakeActionRequest_OneofMarshaler, _TakeActionRequest_OneofUnmarshaler, _TakeActionRequest_OneofSizer, []interface{}{
+		(*TakeActionRequest_Darkness)(nil),
 		(*TakeActionRequest_Seer)(nil),
 		(*TakeActionRequest_Witch)(nil),
 		(*TakeActionRequest_Hunter)(nil),
@@ -921,6 +865,7 @@ func (*TakeActionRequest) XXX_OneofFuncs() (func(msg proto.Message, b *proto.Buf
 		(*TakeActionRequest_Werewolf)(nil),
 		(*TakeActionRequest_WhiteWerewolf)(nil),
 		(*TakeActionRequest_HalfBlood)(nil),
+		(*TakeActionRequest_Sheriff)(nil),
 	}
 }
 
@@ -928,39 +873,49 @@ func _TakeActionRequest_OneofMarshaler(msg proto.Message, b *proto.Buffer) error
 	m := msg.(*TakeActionRequest)
 	// action
 	switch x := m.Action.(type) {
-	case *TakeActionRequest_Seer:
+	case *TakeActionRequest_Darkness:
 		b.EncodeVarint(2<<3 | proto.WireBytes)
+		if err := b.EncodeMessage(x.Darkness); err != nil {
+			return err
+		}
+	case *TakeActionRequest_Seer:
+		b.EncodeVarint(3<<3 | proto.WireBytes)
 		if err := b.EncodeMessage(x.Seer); err != nil {
 			return err
 		}
 	case *TakeActionRequest_Witch:
-		b.EncodeVarint(3<<3 | proto.WireBytes)
+		b.EncodeVarint(4<<3 | proto.WireBytes)
 		if err := b.EncodeMessage(x.Witch); err != nil {
 			return err
 		}
 	case *TakeActionRequest_Hunter:
-		b.EncodeVarint(4<<3 | proto.WireBytes)
+		b.EncodeVarint(5<<3 | proto.WireBytes)
 		if err := b.EncodeMessage(x.Hunter); err != nil {
 			return err
 		}
 	case *TakeActionRequest_Guard:
-		b.EncodeVarint(5<<3 | proto.WireBytes)
+		b.EncodeVarint(6<<3 | proto.WireBytes)
 		if err := b.EncodeMessage(x.Guard); err != nil {
 			return err
 		}
 	case *TakeActionRequest_Werewolf:
-		b.EncodeVarint(6<<3 | proto.WireBytes)
+		b.EncodeVarint(7<<3 | proto.WireBytes)
 		if err := b.EncodeMessage(x.Werewolf); err != nil {
 			return err
 		}
 	case *TakeActionRequest_WhiteWerewolf:
-		b.EncodeVarint(7<<3 | proto.WireBytes)
+		b.EncodeVarint(8<<3 | proto.WireBytes)
 		if err := b.EncodeMessage(x.WhiteWerewolf); err != nil {
 			return err
 		}
 	case *TakeActionRequest_HalfBlood:
-		b.EncodeVarint(8<<3 | proto.WireBytes)
+		b.EncodeVarint(9<<3 | proto.WireBytes)
 		if err := b.EncodeMessage(x.HalfBlood); err != nil {
+			return err
+		}
+	case *TakeActionRequest_Sheriff:
+		b.EncodeVarint(10<<3 | proto.WireBytes)
+		if err := b.EncodeMessage(x.Sheriff); err != nil {
 			return err
 		}
 	case nil:
@@ -973,7 +928,15 @@ func _TakeActionRequest_OneofMarshaler(msg proto.Message, b *proto.Buffer) error
 func _TakeActionRequest_OneofUnmarshaler(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error) {
 	m := msg.(*TakeActionRequest)
 	switch tag {
-	case 2: // action.seer
+	case 2: // action.darkness
+		if wire != proto.WireBytes {
+			return true, proto.ErrInternalBadWireType
+		}
+		msg := new(TakeActionRequest_CompleteDarknessAction)
+		err := b.DecodeMessage(msg)
+		m.Action = &TakeActionRequest_Darkness{msg}
+		return true, err
+	case 3: // action.seer
 		if wire != proto.WireBytes {
 			return true, proto.ErrInternalBadWireType
 		}
@@ -981,7 +944,7 @@ func _TakeActionRequest_OneofUnmarshaler(msg proto.Message, tag, wire int, b *pr
 		err := b.DecodeMessage(msg)
 		m.Action = &TakeActionRequest_Seer{msg}
 		return true, err
-	case 3: // action.witch
+	case 4: // action.witch
 		if wire != proto.WireBytes {
 			return true, proto.ErrInternalBadWireType
 		}
@@ -989,7 +952,7 @@ func _TakeActionRequest_OneofUnmarshaler(msg proto.Message, tag, wire int, b *pr
 		err := b.DecodeMessage(msg)
 		m.Action = &TakeActionRequest_Witch{msg}
 		return true, err
-	case 4: // action.hunter
+	case 5: // action.hunter
 		if wire != proto.WireBytes {
 			return true, proto.ErrInternalBadWireType
 		}
@@ -997,7 +960,7 @@ func _TakeActionRequest_OneofUnmarshaler(msg proto.Message, tag, wire int, b *pr
 		err := b.DecodeMessage(msg)
 		m.Action = &TakeActionRequest_Hunter{msg}
 		return true, err
-	case 5: // action.guard
+	case 6: // action.guard
 		if wire != proto.WireBytes {
 			return true, proto.ErrInternalBadWireType
 		}
@@ -1005,7 +968,7 @@ func _TakeActionRequest_OneofUnmarshaler(msg proto.Message, tag, wire int, b *pr
 		err := b.DecodeMessage(msg)
 		m.Action = &TakeActionRequest_Guard{msg}
 		return true, err
-	case 6: // action.werewolf
+	case 7: // action.werewolf
 		if wire != proto.WireBytes {
 			return true, proto.ErrInternalBadWireType
 		}
@@ -1013,7 +976,7 @@ func _TakeActionRequest_OneofUnmarshaler(msg proto.Message, tag, wire int, b *pr
 		err := b.DecodeMessage(msg)
 		m.Action = &TakeActionRequest_Werewolf{msg}
 		return true, err
-	case 7: // action.white_werewolf
+	case 8: // action.white_werewolf
 		if wire != proto.WireBytes {
 			return true, proto.ErrInternalBadWireType
 		}
@@ -1021,13 +984,21 @@ func _TakeActionRequest_OneofUnmarshaler(msg proto.Message, tag, wire int, b *pr
 		err := b.DecodeMessage(msg)
 		m.Action = &TakeActionRequest_WhiteWerewolf{msg}
 		return true, err
-	case 8: // action.half_blood
+	case 9: // action.half_blood
 		if wire != proto.WireBytes {
 			return true, proto.ErrInternalBadWireType
 		}
 		msg := new(TakeActionRequest_HalfBloodAction)
 		err := b.DecodeMessage(msg)
 		m.Action = &TakeActionRequest_HalfBlood{msg}
+		return true, err
+	case 10: // action.sheriff
+		if wire != proto.WireBytes {
+			return true, proto.ErrInternalBadWireType
+		}
+		msg := new(TakeActionRequest_CompleteSheriffAction)
+		err := b.DecodeMessage(msg)
+		m.Action = &TakeActionRequest_Sheriff{msg}
 		return true, err
 	default:
 		return false, nil
@@ -1038,6 +1009,11 @@ func _TakeActionRequest_OneofSizer(msg proto.Message) (n int) {
 	m := msg.(*TakeActionRequest)
 	// action
 	switch x := m.Action.(type) {
+	case *TakeActionRequest_Darkness:
+		s := proto.Size(x.Darkness)
+		n += 1 // tag and wire
+		n += proto.SizeVarint(uint64(s))
+		n += s
 	case *TakeActionRequest_Seer:
 		s := proto.Size(x.Seer)
 		n += 1 // tag and wire
@@ -1073,6 +1049,11 @@ func _TakeActionRequest_OneofSizer(msg proto.Message) (n int) {
 		n += 1 // tag and wire
 		n += proto.SizeVarint(uint64(s))
 		n += s
+	case *TakeActionRequest_Sheriff:
+		s := proto.Size(x.Sheriff)
+		n += 1 // tag and wire
+		n += proto.SizeVarint(uint64(s))
+		n += s
 	case nil:
 	default:
 		panic(fmt.Sprintf("proto: unexpected type %T in oneof", x))
@@ -1080,7 +1061,40 @@ func _TakeActionRequest_OneofSizer(msg proto.Message) (n int) {
 	return n
 }
 
+type TakeActionRequest_CompleteDarknessAction struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *TakeActionRequest_CompleteDarknessAction) Reset() {
+	*m = TakeActionRequest_CompleteDarknessAction{}
+}
+func (m *TakeActionRequest_CompleteDarknessAction) String() string { return proto.CompactTextString(m) }
+func (*TakeActionRequest_CompleteDarknessAction) ProtoMessage()    {}
+func (*TakeActionRequest_CompleteDarknessAction) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_132595d5480ad182, []int{14, 0}
+}
+func (m *TakeActionRequest_CompleteDarknessAction) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TakeActionRequest_CompleteDarknessAction.Unmarshal(m, b)
+}
+func (m *TakeActionRequest_CompleteDarknessAction) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TakeActionRequest_CompleteDarknessAction.Marshal(b, m, deterministic)
+}
+func (dst *TakeActionRequest_CompleteDarknessAction) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TakeActionRequest_CompleteDarknessAction.Merge(dst, src)
+}
+func (m *TakeActionRequest_CompleteDarknessAction) XXX_Size() int {
+	return xxx_messageInfo_TakeActionRequest_CompleteDarknessAction.Size(m)
+}
+func (m *TakeActionRequest_CompleteDarknessAction) XXX_DiscardUnknown() {
+	xxx_messageInfo_TakeActionRequest_CompleteDarknessAction.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TakeActionRequest_CompleteDarknessAction proto.InternalMessageInfo
+
 type TakeActionRequest_SeerAction struct {
+	SeatId               string   `protobuf:"bytes,1,opt,name=seat_id,json=seatId,proto3" json:"seat_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -1090,7 +1104,7 @@ func (m *TakeActionRequest_SeerAction) Reset()         { *m = TakeActionRequest_
 func (m *TakeActionRequest_SeerAction) String() string { return proto.CompactTextString(m) }
 func (*TakeActionRequest_SeerAction) ProtoMessage()    {}
 func (*TakeActionRequest_SeerAction) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{16, 0}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{14, 1}
 }
 func (m *TakeActionRequest_SeerAction) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeActionRequest_SeerAction.Unmarshal(m, b)
@@ -1110,7 +1124,16 @@ func (m *TakeActionRequest_SeerAction) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_TakeActionRequest_SeerAction proto.InternalMessageInfo
 
+func (m *TakeActionRequest_SeerAction) GetSeatId() string {
+	if m != nil {
+		return m.SeatId
+	}
+	return ""
+}
+
 type TakeActionRequest_WitchAction struct {
+	PoisonSeatId         string   `protobuf:"bytes,1,opt,name=poison_seat_id,json=poisonSeatId,proto3" json:"poison_seat_id,omitempty"`
+	CureSeatId           string   `protobuf:"bytes,2,opt,name=cure_seat_id,json=cureSeatId,proto3" json:"cure_seat_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -1120,7 +1143,7 @@ func (m *TakeActionRequest_WitchAction) Reset()         { *m = TakeActionRequest
 func (m *TakeActionRequest_WitchAction) String() string { return proto.CompactTextString(m) }
 func (*TakeActionRequest_WitchAction) ProtoMessage()    {}
 func (*TakeActionRequest_WitchAction) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{16, 1}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{14, 2}
 }
 func (m *TakeActionRequest_WitchAction) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeActionRequest_WitchAction.Unmarshal(m, b)
@@ -1140,6 +1163,20 @@ func (m *TakeActionRequest_WitchAction) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_TakeActionRequest_WitchAction proto.InternalMessageInfo
 
+func (m *TakeActionRequest_WitchAction) GetPoisonSeatId() string {
+	if m != nil {
+		return m.PoisonSeatId
+	}
+	return ""
+}
+
+func (m *TakeActionRequest_WitchAction) GetCureSeatId() string {
+	if m != nil {
+		return m.CureSeatId
+	}
+	return ""
+}
+
 type TakeActionRequest_HunterAction struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -1150,7 +1187,7 @@ func (m *TakeActionRequest_HunterAction) Reset()         { *m = TakeActionReques
 func (m *TakeActionRequest_HunterAction) String() string { return proto.CompactTextString(m) }
 func (*TakeActionRequest_HunterAction) ProtoMessage()    {}
 func (*TakeActionRequest_HunterAction) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{16, 2}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{14, 3}
 }
 func (m *TakeActionRequest_HunterAction) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeActionRequest_HunterAction.Unmarshal(m, b)
@@ -1171,6 +1208,7 @@ func (m *TakeActionRequest_HunterAction) XXX_DiscardUnknown() {
 var xxx_messageInfo_TakeActionRequest_HunterAction proto.InternalMessageInfo
 
 type TakeActionRequest_GuardAction struct {
+	SeatId               string   `protobuf:"bytes,1,opt,name=seat_id,json=seatId,proto3" json:"seat_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -1180,7 +1218,7 @@ func (m *TakeActionRequest_GuardAction) Reset()         { *m = TakeActionRequest
 func (m *TakeActionRequest_GuardAction) String() string { return proto.CompactTextString(m) }
 func (*TakeActionRequest_GuardAction) ProtoMessage()    {}
 func (*TakeActionRequest_GuardAction) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{16, 3}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{14, 4}
 }
 func (m *TakeActionRequest_GuardAction) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeActionRequest_GuardAction.Unmarshal(m, b)
@@ -1200,7 +1238,15 @@ func (m *TakeActionRequest_GuardAction) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_TakeActionRequest_GuardAction proto.InternalMessageInfo
 
+func (m *TakeActionRequest_GuardAction) GetSeatId() string {
+	if m != nil {
+		return m.SeatId
+	}
+	return ""
+}
+
 type TakeActionRequest_WerewolfAction struct {
+	SeatId               string   `protobuf:"bytes,1,opt,name=seat_id,json=seatId,proto3" json:"seat_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -1210,7 +1256,7 @@ func (m *TakeActionRequest_WerewolfAction) Reset()         { *m = TakeActionRequ
 func (m *TakeActionRequest_WerewolfAction) String() string { return proto.CompactTextString(m) }
 func (*TakeActionRequest_WerewolfAction) ProtoMessage()    {}
 func (*TakeActionRequest_WerewolfAction) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{16, 4}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{14, 5}
 }
 func (m *TakeActionRequest_WerewolfAction) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeActionRequest_WerewolfAction.Unmarshal(m, b)
@@ -1230,6 +1276,13 @@ func (m *TakeActionRequest_WerewolfAction) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_TakeActionRequest_WerewolfAction proto.InternalMessageInfo
 
+func (m *TakeActionRequest_WerewolfAction) GetSeatId() string {
+	if m != nil {
+		return m.SeatId
+	}
+	return ""
+}
+
 type TakeActionRequest_WhiteWerewolfAction struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -1240,7 +1293,7 @@ func (m *TakeActionRequest_WhiteWerewolfAction) Reset()         { *m = TakeActio
 func (m *TakeActionRequest_WhiteWerewolfAction) String() string { return proto.CompactTextString(m) }
 func (*TakeActionRequest_WhiteWerewolfAction) ProtoMessage()    {}
 func (*TakeActionRequest_WhiteWerewolfAction) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{16, 5}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{14, 6}
 }
 func (m *TakeActionRequest_WhiteWerewolfAction) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeActionRequest_WhiteWerewolfAction.Unmarshal(m, b)
@@ -1261,6 +1314,7 @@ func (m *TakeActionRequest_WhiteWerewolfAction) XXX_DiscardUnknown() {
 var xxx_messageInfo_TakeActionRequest_WhiteWerewolfAction proto.InternalMessageInfo
 
 type TakeActionRequest_HalfBloodAction struct {
+	SeatId               string   `protobuf:"bytes,1,opt,name=seat_id,json=seatId,proto3" json:"seat_id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -1270,7 +1324,7 @@ func (m *TakeActionRequest_HalfBloodAction) Reset()         { *m = TakeActionReq
 func (m *TakeActionRequest_HalfBloodAction) String() string { return proto.CompactTextString(m) }
 func (*TakeActionRequest_HalfBloodAction) ProtoMessage()    {}
 func (*TakeActionRequest_HalfBloodAction) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{16, 6}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{14, 7}
 }
 func (m *TakeActionRequest_HalfBloodAction) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeActionRequest_HalfBloodAction.Unmarshal(m, b)
@@ -1290,17 +1344,61 @@ func (m *TakeActionRequest_HalfBloodAction) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_TakeActionRequest_HalfBloodAction proto.InternalMessageInfo
 
-type TakeActionResponse struct {
+func (m *TakeActionRequest_HalfBloodAction) GetSeatId() string {
+	if m != nil {
+		return m.SeatId
+	}
+	return ""
+}
+
+type TakeActionRequest_CompleteSheriffAction struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *TakeActionRequest_CompleteSheriffAction) Reset() {
+	*m = TakeActionRequest_CompleteSheriffAction{}
+}
+func (m *TakeActionRequest_CompleteSheriffAction) String() string { return proto.CompactTextString(m) }
+func (*TakeActionRequest_CompleteSheriffAction) ProtoMessage()    {}
+func (*TakeActionRequest_CompleteSheriffAction) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_132595d5480ad182, []int{14, 8}
+}
+func (m *TakeActionRequest_CompleteSheriffAction) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TakeActionRequest_CompleteSheriffAction.Unmarshal(m, b)
+}
+func (m *TakeActionRequest_CompleteSheriffAction) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TakeActionRequest_CompleteSheriffAction.Marshal(b, m, deterministic)
+}
+func (dst *TakeActionRequest_CompleteSheriffAction) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TakeActionRequest_CompleteSheriffAction.Merge(dst, src)
+}
+func (m *TakeActionRequest_CompleteSheriffAction) XXX_Size() int {
+	return xxx_messageInfo_TakeActionRequest_CompleteSheriffAction.Size(m)
+}
+func (m *TakeActionRequest_CompleteSheriffAction) XXX_DiscardUnknown() {
+	xxx_messageInfo_TakeActionRequest_CompleteSheriffAction.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TakeActionRequest_CompleteSheriffAction proto.InternalMessageInfo
+
+type TakeActionResponse struct {
+	// Types that are valid to be assigned to Result:
+	//	*TakeActionResponse_Seer
+	//	*TakeActionResponse_Hunter
+	//	*TakeActionResponse_WhiteWerewolf
+	Result               isTakeActionResponse_Result `protobuf_oneof:"result"`
+	XXX_NoUnkeyedLiteral struct{}                    `json:"-"`
+	XXX_unrecognized     []byte                      `json:"-"`
+	XXX_sizecache        int32                       `json:"-"`
 }
 
 func (m *TakeActionResponse) Reset()         { *m = TakeActionResponse{} }
 func (m *TakeActionResponse) String() string { return proto.CompactTextString(m) }
 func (*TakeActionResponse) ProtoMessage()    {}
 func (*TakeActionResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{17}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{15}
 }
 func (m *TakeActionResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeActionResponse.Unmarshal(m, b)
@@ -1320,9 +1418,264 @@ func (m *TakeActionResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_TakeActionResponse proto.InternalMessageInfo
 
+type isTakeActionResponse_Result interface {
+	isTakeActionResponse_Result()
+}
+
+type TakeActionResponse_Seer struct {
+	Seer *TakeActionResponse_SeerResult `protobuf:"bytes,1,opt,name=seer,proto3,oneof"`
+}
+type TakeActionResponse_Hunter struct {
+	Hunter *TakeActionResponse_HunterResult `protobuf:"bytes,2,opt,name=hunter,proto3,oneof"`
+}
+type TakeActionResponse_WhiteWerewolf struct {
+	WhiteWerewolf *TakeActionResponse_WhiteWerewolfResult `protobuf:"bytes,3,opt,name=white_werewolf,json=whiteWerewolf,proto3,oneof"`
+}
+
+func (*TakeActionResponse_Seer) isTakeActionResponse_Result()          {}
+func (*TakeActionResponse_Hunter) isTakeActionResponse_Result()        {}
+func (*TakeActionResponse_WhiteWerewolf) isTakeActionResponse_Result() {}
+
+func (m *TakeActionResponse) GetResult() isTakeActionResponse_Result {
+	if m != nil {
+		return m.Result
+	}
+	return nil
+}
+
+func (m *TakeActionResponse) GetSeer() *TakeActionResponse_SeerResult {
+	if x, ok := m.GetResult().(*TakeActionResponse_Seer); ok {
+		return x.Seer
+	}
+	return nil
+}
+
+func (m *TakeActionResponse) GetHunter() *TakeActionResponse_HunterResult {
+	if x, ok := m.GetResult().(*TakeActionResponse_Hunter); ok {
+		return x.Hunter
+	}
+	return nil
+}
+
+func (m *TakeActionResponse) GetWhiteWerewolf() *TakeActionResponse_WhiteWerewolfResult {
+	if x, ok := m.GetResult().(*TakeActionResponse_WhiteWerewolf); ok {
+		return x.WhiteWerewolf
+	}
+	return nil
+}
+
+// XXX_OneofFuncs is for the internal use of the proto package.
+func (*TakeActionResponse) XXX_OneofFuncs() (func(msg proto.Message, b *proto.Buffer) error, func(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error), func(msg proto.Message) (n int), []interface{}) {
+	return _TakeActionResponse_OneofMarshaler, _TakeActionResponse_OneofUnmarshaler, _TakeActionResponse_OneofSizer, []interface{}{
+		(*TakeActionResponse_Seer)(nil),
+		(*TakeActionResponse_Hunter)(nil),
+		(*TakeActionResponse_WhiteWerewolf)(nil),
+	}
+}
+
+func _TakeActionResponse_OneofMarshaler(msg proto.Message, b *proto.Buffer) error {
+	m := msg.(*TakeActionResponse)
+	// result
+	switch x := m.Result.(type) {
+	case *TakeActionResponse_Seer:
+		b.EncodeVarint(1<<3 | proto.WireBytes)
+		if err := b.EncodeMessage(x.Seer); err != nil {
+			return err
+		}
+	case *TakeActionResponse_Hunter:
+		b.EncodeVarint(2<<3 | proto.WireBytes)
+		if err := b.EncodeMessage(x.Hunter); err != nil {
+			return err
+		}
+	case *TakeActionResponse_WhiteWerewolf:
+		b.EncodeVarint(3<<3 | proto.WireBytes)
+		if err := b.EncodeMessage(x.WhiteWerewolf); err != nil {
+			return err
+		}
+	case nil:
+	default:
+		return fmt.Errorf("TakeActionResponse.Result has unexpected type %T", x)
+	}
+	return nil
+}
+
+func _TakeActionResponse_OneofUnmarshaler(msg proto.Message, tag, wire int, b *proto.Buffer) (bool, error) {
+	m := msg.(*TakeActionResponse)
+	switch tag {
+	case 1: // result.seer
+		if wire != proto.WireBytes {
+			return true, proto.ErrInternalBadWireType
+		}
+		msg := new(TakeActionResponse_SeerResult)
+		err := b.DecodeMessage(msg)
+		m.Result = &TakeActionResponse_Seer{msg}
+		return true, err
+	case 2: // result.hunter
+		if wire != proto.WireBytes {
+			return true, proto.ErrInternalBadWireType
+		}
+		msg := new(TakeActionResponse_HunterResult)
+		err := b.DecodeMessage(msg)
+		m.Result = &TakeActionResponse_Hunter{msg}
+		return true, err
+	case 3: // result.white_werewolf
+		if wire != proto.WireBytes {
+			return true, proto.ErrInternalBadWireType
+		}
+		msg := new(TakeActionResponse_WhiteWerewolfResult)
+		err := b.DecodeMessage(msg)
+		m.Result = &TakeActionResponse_WhiteWerewolf{msg}
+		return true, err
+	default:
+		return false, nil
+	}
+}
+
+func _TakeActionResponse_OneofSizer(msg proto.Message) (n int) {
+	m := msg.(*TakeActionResponse)
+	// result
+	switch x := m.Result.(type) {
+	case *TakeActionResponse_Seer:
+		s := proto.Size(x.Seer)
+		n += 1 // tag and wire
+		n += proto.SizeVarint(uint64(s))
+		n += s
+	case *TakeActionResponse_Hunter:
+		s := proto.Size(x.Hunter)
+		n += 1 // tag and wire
+		n += proto.SizeVarint(uint64(s))
+		n += s
+	case *TakeActionResponse_WhiteWerewolf:
+		s := proto.Size(x.WhiteWerewolf)
+		n += 1 // tag and wire
+		n += proto.SizeVarint(uint64(s))
+		n += s
+	case nil:
+	default:
+		panic(fmt.Sprintf("proto: unexpected type %T in oneof", x))
+	}
+	return n
+}
+
+type TakeActionResponse_SeerResult struct {
+	IsWerewolf           bool     `protobuf:"varint,1,opt,name=is_werewolf,json=isWerewolf,proto3" json:"is_werewolf,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *TakeActionResponse_SeerResult) Reset()         { *m = TakeActionResponse_SeerResult{} }
+func (m *TakeActionResponse_SeerResult) String() string { return proto.CompactTextString(m) }
+func (*TakeActionResponse_SeerResult) ProtoMessage()    {}
+func (*TakeActionResponse_SeerResult) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_132595d5480ad182, []int{15, 0}
+}
+func (m *TakeActionResponse_SeerResult) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TakeActionResponse_SeerResult.Unmarshal(m, b)
+}
+func (m *TakeActionResponse_SeerResult) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TakeActionResponse_SeerResult.Marshal(b, m, deterministic)
+}
+func (dst *TakeActionResponse_SeerResult) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TakeActionResponse_SeerResult.Merge(dst, src)
+}
+func (m *TakeActionResponse_SeerResult) XXX_Size() int {
+	return xxx_messageInfo_TakeActionResponse_SeerResult.Size(m)
+}
+func (m *TakeActionResponse_SeerResult) XXX_DiscardUnknown() {
+	xxx_messageInfo_TakeActionResponse_SeerResult.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TakeActionResponse_SeerResult proto.InternalMessageInfo
+
+func (m *TakeActionResponse_SeerResult) GetIsWerewolf() bool {
+	if m != nil {
+		return m.IsWerewolf
+	}
+	return false
+}
+
+type TakeActionResponse_HunterResult struct {
+	GoodToFire           bool     `protobuf:"varint,1,opt,name=good_to_fire,json=goodToFire,proto3" json:"good_to_fire,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *TakeActionResponse_HunterResult) Reset()         { *m = TakeActionResponse_HunterResult{} }
+func (m *TakeActionResponse_HunterResult) String() string { return proto.CompactTextString(m) }
+func (*TakeActionResponse_HunterResult) ProtoMessage()    {}
+func (*TakeActionResponse_HunterResult) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_132595d5480ad182, []int{15, 1}
+}
+func (m *TakeActionResponse_HunterResult) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TakeActionResponse_HunterResult.Unmarshal(m, b)
+}
+func (m *TakeActionResponse_HunterResult) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TakeActionResponse_HunterResult.Marshal(b, m, deterministic)
+}
+func (dst *TakeActionResponse_HunterResult) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TakeActionResponse_HunterResult.Merge(dst, src)
+}
+func (m *TakeActionResponse_HunterResult) XXX_Size() int {
+	return xxx_messageInfo_TakeActionResponse_HunterResult.Size(m)
+}
+func (m *TakeActionResponse_HunterResult) XXX_DiscardUnknown() {
+	xxx_messageInfo_TakeActionResponse_HunterResult.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TakeActionResponse_HunterResult proto.InternalMessageInfo
+
+func (m *TakeActionResponse_HunterResult) GetGoodToFire() bool {
+	if m != nil {
+		return m.GoodToFire
+	}
+	return false
+}
+
+type TakeActionResponse_WhiteWerewolfResult struct {
+	GoodToKill           bool     `protobuf:"varint,1,opt,name=good_to_kill,json=goodToKill,proto3" json:"good_to_kill,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *TakeActionResponse_WhiteWerewolfResult) Reset() {
+	*m = TakeActionResponse_WhiteWerewolfResult{}
+}
+func (m *TakeActionResponse_WhiteWerewolfResult) String() string { return proto.CompactTextString(m) }
+func (*TakeActionResponse_WhiteWerewolfResult) ProtoMessage()    {}
+func (*TakeActionResponse_WhiteWerewolfResult) Descriptor() ([]byte, []int) {
+	return fileDescriptor_werewolf_132595d5480ad182, []int{15, 2}
+}
+func (m *TakeActionResponse_WhiteWerewolfResult) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TakeActionResponse_WhiteWerewolfResult.Unmarshal(m, b)
+}
+func (m *TakeActionResponse_WhiteWerewolfResult) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TakeActionResponse_WhiteWerewolfResult.Marshal(b, m, deterministic)
+}
+func (dst *TakeActionResponse_WhiteWerewolfResult) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TakeActionResponse_WhiteWerewolfResult.Merge(dst, src)
+}
+func (m *TakeActionResponse_WhiteWerewolfResult) XXX_Size() int {
+	return xxx_messageInfo_TakeActionResponse_WhiteWerewolfResult.Size(m)
+}
+func (m *TakeActionResponse_WhiteWerewolfResult) XXX_DiscardUnknown() {
+	xxx_messageInfo_TakeActionResponse_WhiteWerewolfResult.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TakeActionResponse_WhiteWerewolfResult proto.InternalMessageInfo
+
+func (m *TakeActionResponse_WhiteWerewolfResult) GetGoodToKill() bool {
+	if m != nil {
+		return m.GoodToKill
+	}
+	return false
+}
+
 type Room struct {
 	Seats                []*Seat  `protobuf:"bytes,1,rep,name=seats,proto3" json:"seats,omitempty"`
-	GameId               string   `protobuf:"bytes,2,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
+	Game                 *Game    `protobuf:"bytes,2,opt,name=game,proto3" json:"game,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -1332,7 +1685,7 @@ func (m *Room) Reset()         { *m = Room{} }
 func (m *Room) String() string { return proto.CompactTextString(m) }
 func (*Room) ProtoMessage()    {}
 func (*Room) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{18}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{16}
 }
 func (m *Room) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Room.Unmarshal(m, b)
@@ -1359,11 +1712,11 @@ func (m *Room) GetSeats() []*Seat {
 	return nil
 }
 
-func (m *Room) GetGameId() string {
+func (m *Room) GetGame() *Game {
 	if m != nil {
-		return m.GameId
+		return m.Game
 	}
-	return ""
+	return nil
 }
 
 type Seat struct {
@@ -1379,7 +1732,7 @@ func (m *Seat) Reset()         { *m = Seat{} }
 func (m *Seat) String() string { return proto.CompactTextString(m) }
 func (*Seat) ProtoMessage()    {}
 func (*Seat) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{19}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{17}
 }
 func (m *Seat) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Seat.Unmarshal(m, b)
@@ -1432,7 +1785,7 @@ func (m *User) Reset()         { *m = User{} }
 func (m *User) String() string { return proto.CompactTextString(m) }
 func (*User) ProtoMessage()    {}
 func (*User) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{20}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{18}
 }
 func (m *User) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_User.Unmarshal(m, b)
@@ -1468,8 +1821,8 @@ func (m *User) GetImgUrl() string {
 
 type Game struct {
 	Id                   string     `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	State                Game_State `protobuf:"varint,3,opt,name=state,proto3,enum=werewolf.Game_State" json:"state,omitempty"`
-	DeadPlayerNumbers    []string   `protobuf:"bytes,4,rep,name=dead_player_numbers,json=deadPlayerNumbers,proto3" json:"dead_player_numbers,omitempty"`
+	State                Game_State `protobuf:"varint,2,opt,name=state,proto3,enum=werewolf.Game_State" json:"state,omitempty"`
+	DeadPlayerNumbers    []string   `protobuf:"bytes,3,rep,name=dead_player_numbers,json=deadPlayerNumbers,proto3" json:"dead_player_numbers,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
 	XXX_unrecognized     []byte     `json:"-"`
 	XXX_sizecache        int32      `json:"-"`
@@ -1479,7 +1832,7 @@ func (m *Game) Reset()         { *m = Game{} }
 func (m *Game) String() string { return proto.CompactTextString(m) }
 func (*Game) ProtoMessage()    {}
 func (*Game) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_a2d822535e376a9d, []int{21}
+	return fileDescriptor_werewolf_132595d5480ad182, []int{19}
 }
 func (m *Game) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Game.Unmarshal(m, b)
@@ -1536,9 +1889,8 @@ func init() {
 	proto.RegisterType((*ReassignRolesResponse)(nil), "werewolf.ReassignRolesResponse")
 	proto.RegisterType((*StartGameRequest)(nil), "werewolf.StartGameRequest")
 	proto.RegisterType((*StartGameResponse)(nil), "werewolf.StartGameResponse")
-	proto.RegisterType((*GetGameRequest)(nil), "werewolf.GetGameRequest")
-	proto.RegisterType((*GetGameResponse)(nil), "werewolf.GetGameResponse")
 	proto.RegisterType((*TakeActionRequest)(nil), "werewolf.TakeActionRequest")
+	proto.RegisterType((*TakeActionRequest_CompleteDarknessAction)(nil), "werewolf.TakeActionRequest.CompleteDarknessAction")
 	proto.RegisterType((*TakeActionRequest_SeerAction)(nil), "werewolf.TakeActionRequest.SeerAction")
 	proto.RegisterType((*TakeActionRequest_WitchAction)(nil), "werewolf.TakeActionRequest.WitchAction")
 	proto.RegisterType((*TakeActionRequest_HunterAction)(nil), "werewolf.TakeActionRequest.HunterAction")
@@ -1546,7 +1898,11 @@ func init() {
 	proto.RegisterType((*TakeActionRequest_WerewolfAction)(nil), "werewolf.TakeActionRequest.WerewolfAction")
 	proto.RegisterType((*TakeActionRequest_WhiteWerewolfAction)(nil), "werewolf.TakeActionRequest.WhiteWerewolfAction")
 	proto.RegisterType((*TakeActionRequest_HalfBloodAction)(nil), "werewolf.TakeActionRequest.HalfBloodAction")
+	proto.RegisterType((*TakeActionRequest_CompleteSheriffAction)(nil), "werewolf.TakeActionRequest.CompleteSheriffAction")
 	proto.RegisterType((*TakeActionResponse)(nil), "werewolf.TakeActionResponse")
+	proto.RegisterType((*TakeActionResponse_SeerResult)(nil), "werewolf.TakeActionResponse.SeerResult")
+	proto.RegisterType((*TakeActionResponse_HunterResult)(nil), "werewolf.TakeActionResponse.HunterResult")
+	proto.RegisterType((*TakeActionResponse_WhiteWerewolfResult)(nil), "werewolf.TakeActionResponse.WhiteWerewolfResult")
 	proto.RegisterType((*Room)(nil), "werewolf.Room")
 	proto.RegisterType((*Seat)(nil), "werewolf.Seat")
 	proto.RegisterType((*User)(nil), "werewolf.User")
@@ -1576,7 +1932,6 @@ type GameServiceClient interface {
 	ReassignRoles(ctx context.Context, in *ReassignRolesRequest, opts ...grpc.CallOption) (*ReassignRolesResponse, error)
 	// group of game operations
 	StartGame(ctx context.Context, in *StartGameRequest, opts ...grpc.CallOption) (*StartGameResponse, error)
-	GetGame(ctx context.Context, in *GetGameRequest, opts ...grpc.CallOption) (*GetGameResponse, error)
 	TakeAction(ctx context.Context, in *TakeActionRequest, opts ...grpc.CallOption) (*TakeActionResponse, error)
 }
 
@@ -1651,15 +2006,6 @@ func (c *gameServiceClient) StartGame(ctx context.Context, in *StartGameRequest,
 	return out, nil
 }
 
-func (c *gameServiceClient) GetGame(ctx context.Context, in *GetGameRequest, opts ...grpc.CallOption) (*GetGameResponse, error) {
-	out := new(GetGameResponse)
-	err := c.cc.Invoke(ctx, "/werewolf.GameService/GetGame", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *gameServiceClient) TakeAction(ctx context.Context, in *TakeActionRequest, opts ...grpc.CallOption) (*TakeActionResponse, error) {
 	out := new(TakeActionResponse)
 	err := c.cc.Invoke(ctx, "/werewolf.GameService/TakeAction", in, out, opts...)
@@ -1680,7 +2026,6 @@ type GameServiceServer interface {
 	ReassignRoles(context.Context, *ReassignRolesRequest) (*ReassignRolesResponse, error)
 	// group of game operations
 	StartGame(context.Context, *StartGameRequest) (*StartGameResponse, error)
-	GetGame(context.Context, *GetGameRequest) (*GetGameResponse, error)
 	TakeAction(context.Context, *TakeActionRequest) (*TakeActionResponse, error)
 }
 
@@ -1814,24 +2159,6 @@ func _GameService_StartGame_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GameService_GetGame_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetGameRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GameServiceServer).GetGame(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/werewolf.GameService/GetGame",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GameServiceServer).GetGame(ctx, req.(*GetGameRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _GameService_TakeAction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TakeActionRequest)
 	if err := dec(in); err != nil {
@@ -1883,10 +2210,6 @@ var _GameService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _GameService_StartGame_Handler,
 		},
 		{
-			MethodName: "GetGame",
-			Handler:    _GameService_GetGame_Handler,
-		},
-		{
 			MethodName: "TakeAction",
 			Handler:    _GameService_TakeAction_Handler,
 		},
@@ -1895,78 +2218,91 @@ var _GameService_serviceDesc = grpc.ServiceDesc{
 	Metadata: "werewolf.proto",
 }
 
-func init() { proto.RegisterFile("werewolf.proto", fileDescriptor_werewolf_a2d822535e376a9d) }
+func init() { proto.RegisterFile("werewolf.proto", fileDescriptor_werewolf_132595d5480ad182) }
 
-var fileDescriptor_werewolf_a2d822535e376a9d = []byte{
-	// 1118 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x56, 0x5f, 0x6f, 0xea, 0xc6,
-	0x13, 0xbd, 0x80, 0xcd, 0x9f, 0x21, 0x97, 0x38, 0x7b, 0x73, 0x15, 0xc7, 0xf7, 0xea, 0xf7, 0x4b,
-	0xdd, 0xaa, 0x4d, 0x93, 0x8a, 0x48, 0xa9, 0xfa, 0x56, 0xb5, 0x72, 0x88, 0x03, 0x34, 0x14, 0xa2,
-	0x05, 0x4a, 0x2b, 0x55, 0xb5, 0x9c, 0xb0, 0x01, 0xb7, 0x80, 0x53, 0xdb, 0x34, 0xea, 0x47, 0xe9,
-	0x7b, 0x5f, 0xfb, 0xda, 0xf7, 0x3e, 0xf5, 0x6b, 0x55, 0xb3, 0x36, 0xf6, 0x62, 0x0c, 0x79, 0x82,
-	0xdd, 0x33, 0x73, 0x66, 0xe6, 0xec, 0xee, 0x78, 0xa0, 0xf6, 0xcc, 0x3c, 0xf6, 0xec, 0xce, 0x1e,
-	0xeb, 0x4f, 0x9e, 0x1b, 0xb8, 0xa4, 0xbc, 0x5a, 0xeb, 0x1a, 0xa8, 0x0d, 0x8f, 0xd9, 0x01, 0x33,
-	0x16, 0xe3, 0x6f, 0x5c, 0x67, 0x41, 0x5d, 0x77, 0x4e, 0xd9, 0xaf, 0x4b, 0xe6, 0x07, 0xfa, 0xb7,
-	0x70, 0x9c, 0x81, 0xf9, 0x4f, 0xee, 0xc2, 0x67, 0xe4, 0x08, 0x4a, 0x9e, 0xeb, 0xce, 0x2d, 0x67,
-	0xac, 0xe6, 0x4e, 0x72, 0xa7, 0x15, 0x5a, 0xc4, 0x65, 0x7b, 0x8c, 0xc0, 0xd2, 0x67, 0x1e, 0x02,
-	0xf9, 0x10, 0xc0, 0x65, 0x7b, 0xac, 0xff, 0x9b, 0x83, 0xa3, 0xe1, 0xd3, 0xd8, 0x0e, 0x58, 0xd3,
-	0x9e, 0xb3, 0x86, 0xbb, 0x78, 0x74, 0x26, 0x51, 0xa8, 0xed, 0x6c, 0x1d, 0xa8, 0x7a, 0xee, 0x8c,
-	0x59, 0x0f, 0xee, 0x72, 0x11, 0xf8, 0x6a, 0xfe, 0xa4, 0x70, 0x5a, 0xbd, 0x3c, 0xaf, 0xc7, 0xf5,
-	0x6c, 0x21, 0xac, 0x53, 0x77, 0xc6, 0x1a, 0xe8, 0x43, 0xc1, 0x5b, 0xfd, 0xf5, 0x35, 0x13, 0x2a,
-	0x31, 0x40, 0x74, 0x90, 0x10, 0xe2, 0x01, 0x6b, 0x97, 0xb5, 0x84, 0x13, 0x4d, 0x28, 0xc7, 0xc8,
-	0x21, 0xc8, 0x3c, 0x32, 0x2f, 0x45, 0xa6, 0xe1, 0x02, 0x45, 0xdb, 0x8c, 0x1b, 0xea, 0xa2, 0x37,
-	0x60, 0x3f, 0xa5, 0xa3, 0xa8, 0x48, 0x4e, 0x54, 0x44, 0xac, 0x3a, 0x2f, 0x56, 0xad, 0x9f, 0x83,
-	0x92, 0x25, 0x78, 0x26, 0x8b, 0xfe, 0x29, 0xd4, 0x9a, 0x2c, 0x48, 0x05, 0xcc, 0x54, 0x53, 0xff,
-	0x02, 0xf6, 0x63, 0xd3, 0x88, 0x96, 0xab, 0xe0, 0xce, 0xb9, 0x61, 0x75, 0x5d, 0x05, 0x77, 0x4e,
-	0x39, 0x86, 0x35, 0x0d, 0xec, 0x5f, 0x58, 0x9f, 0xd9, 0x81, 0x10, 0xc2, 0x67, 0x76, 0x20, 0x84,
-	0xc0, 0xe5, 0xae, 0xe3, 0x27, 0xa0, 0x24, 0x24, 0x91, 0x58, 0x17, 0x70, 0x48, 0x99, 0xed, 0xfb,
-	0xce, 0x64, 0x81, 0xa2, 0xfb, 0x2f, 0x16, 0x70, 0x04, 0x6f, 0x53, 0x0e, 0x11, 0xd3, 0x39, 0x28,
-	0xfd, 0xc0, 0xf6, 0x02, 0x3c, 0x91, 0x17, 0x59, 0x3e, 0x83, 0x03, 0xc1, 0x38, 0xd1, 0x77, 0x62,
-	0xcf, 0x99, 0x90, 0x38, 0x2e, 0x63, 0x7d, 0x53, 0xc4, 0x2b, 0xd3, 0xdc, 0x9a, 0x69, 0xa8, 0xef,
-	0x1a, 0xad, 0x0e, 0x12, 0x82, 0x9b, 0xfa, 0x72, 0x2b, 0x8e, 0xe9, 0x7f, 0xca, 0x70, 0x80, 0xda,
-	0x18, 0x0f, 0x81, 0xe3, 0x2e, 0x5e, 0x8a, 0x42, 0xbe, 0x04, 0xc9, 0x67, 0xcc, 0xe3, 0x69, 0x56,
-	0x2f, 0x3f, 0x4e, 0x28, 0x37, 0x38, 0xea, 0x7d, 0xc6, 0xbc, 0x70, 0xa7, 0xf5, 0x8a, 0x72, 0x2f,
-	0xf2, 0x35, 0xc8, 0xcf, 0x4e, 0xf0, 0x30, 0x55, 0x0b, 0xdc, 0xfd, 0x93, 0x5d, 0xee, 0x23, 0x34,
-	0x8c, 0xfd, 0x43, 0x3f, 0x72, 0x05, 0xc5, 0xe9, 0x72, 0x11, 0x30, 0x4f, 0x95, 0x38, 0xc3, 0xe9,
-	0x2e, 0x86, 0x16, 0xb7, 0x8c, 0x29, 0x22, 0x4f, 0x4c, 0x62, 0xb2, 0xb4, 0xbd, 0xb1, 0x2a, 0xbf,
-	0x9c, 0x44, 0x13, 0x0d, 0x93, 0x24, 0xb8, 0x1f, 0x69, 0x41, 0xdc, 0xc3, 0xd4, 0x22, 0xe7, 0x38,
-	0xdb, 0x59, 0x48, 0x04, 0xc5, 0x34, 0xb1, 0x37, 0xf9, 0x1e, 0x6a, 0xcf, 0x53, 0x27, 0x60, 0x56,
-	0xcc, 0x57, 0xe2, 0x7c, 0x17, 0x3b, 0xf9, 0xd0, 0x63, 0x83, 0xf4, 0xf5, 0xb3, 0xb8, 0x4d, 0x3a,
-	0x00, 0x53, 0x7b, 0xf6, 0x68, 0xdd, 0xcf, 0x5c, 0x77, 0xac, 0x96, 0x39, 0xeb, 0xf9, 0x4e, 0xb1,
-	0xec, 0xd9, 0xe3, 0x15, 0x1a, 0xc7, 0x8c, 0x95, 0xe9, 0x6a, 0x4b, 0xdb, 0x03, 0x48, 0x4e, 0x53,
-	0x7b, 0x0d, 0x55, 0xe1, 0x70, 0xb4, 0x1a, 0xec, 0x89, 0x4a, 0x23, 0x2c, 0xc8, 0xa6, 0x29, 0x50,
-	0x5b, 0x4f, 0x56, 0x7b, 0x0b, 0x6f, 0x32, 0x6a, 0xd0, 0x0e, 0x60, 0x3f, 0x95, 0xc4, 0x55, 0x19,
-	0x8a, 0x36, 0xff, 0xa7, 0x1f, 0x02, 0x11, 0x73, 0x8e, 0x5e, 0x9e, 0x09, 0x12, 0xb6, 0x0a, 0xf2,
-	0x11, 0xc8, 0xd8, 0x02, 0x7c, 0x35, 0xc7, 0x7b, 0xb4, 0x70, 0xd3, 0xf9, 0x93, 0x0f, 0xc1, 0xed,
-	0xaf, 0xec, 0x27, 0x90, 0xd0, 0x8e, 0xd4, 0x20, 0x1f, 0x5f, 0xf8, 0xbc, 0x33, 0xc6, 0xf7, 0x83,
-	0x0d, 0x24, 0xba, 0xec, 0x02, 0xeb, 0xd0, 0x67, 0x1e, 0xe5, 0x58, 0xdc, 0xc9, 0x0b, 0xdb, 0x3b,
-	0xb9, 0x7e, 0x01, 0x12, 0x7a, 0x6c, 0xf0, 0x1f, 0x41, 0xc9, 0x99, 0x4f, 0xac, 0xa5, 0x37, 0xe3,
-	0xee, 0x15, 0x5a, 0x74, 0xe6, 0x93, 0xa1, 0x37, 0xd3, 0xff, 0xce, 0x83, 0x84, 0x6f, 0x74, 0xc3,
-	0xe3, 0x0c, 0x64, 0x3f, 0xb0, 0x83, 0x55, 0xb8, 0xc3, 0xf5, 0x27, 0x5d, 0xef, 0x23, 0x46, 0x43,
-	0x13, 0x52, 0x87, 0x37, 0x63, 0x66, 0x8f, 0xad, 0xa7, 0x99, 0xfd, 0x3b, 0xf3, 0xac, 0xc5, 0x72,
-	0x7e, 0xcf, 0x3c, 0x5f, 0x95, 0x4e, 0x0a, 0xa7, 0x15, 0x7a, 0x80, 0xd0, 0x1d, 0x47, 0xba, 0x21,
-	0xa0, 0xff, 0x93, 0x03, 0x99, 0x13, 0x90, 0x2a, 0x94, 0x86, 0xdd, 0xdb, 0x6e, 0x6f, 0xd4, 0x55,
-	0x5e, 0x11, 0x02, 0xb5, 0x6b, 0x83, 0xde, 0x76, 0xcd, 0x7e, 0xdf, 0xba, 0x31, 0x3a, 0x9d, 0xbe,
-	0x92, 0x23, 0x0a, 0xec, 0xf5, 0xe8, 0x5d, 0xcb, 0xe8, 0x5a, 0xc6, 0xc8, 0xb8, 0x35, 0x95, 0x3c,
-	0x39, 0x04, 0xa5, 0x65, 0x74, 0x6e, 0xac, 0xab, 0x4e, 0xaf, 0x77, 0x1d, 0xed, 0x16, 0xd0, 0xb7,
-	0x39, 0x34, 0xe8, 0x75, 0x3b, 0xb6, 0x94, 0x70, 0x6f, 0x64, 0x52, 0x73, 0xd4, 0xeb, 0xdc, 0x44,
-	0x7b, 0x32, 0xd9, 0x87, 0xea, 0xa8, 0x3d, 0x68, 0xb4, 0xa2, 0x8d, 0x22, 0xa9, 0x01, 0xf4, 0x4d,
-	0x93, 0x46, 0xeb, 0x12, 0x06, 0x6c, 0x0d, 0xbb, 0x83, 0x78, 0xa7, 0x8c, 0x01, 0xfb, 0x2d, 0x93,
-	0xb6, 0x6f, 0x6e, 0x2c, 0xb3, 0x63, 0x36, 0x06, 0xed, 0x5e, 0x57, 0xa9, 0x9c, 0xfd, 0x91, 0xc3,
-	0x1b, 0x31, 0x4b, 0x95, 0xb0, 0x07, 0xe5, 0xef, 0xda, 0x9d, 0x8e, 0xd1, 0x34, 0xa9, 0x92, 0x23,
-	0x65, 0x90, 0x90, 0x5b, 0xc9, 0x93, 0x0a, 0xc8, 0x3c, 0xac, 0x52, 0x20, 0x00, 0xc5, 0x30, 0x80,
-	0x22, 0xe1, 0x76, 0xfb, 0xba, 0xdd, 0x1b, 0x28, 0x32, 0x7a, 0xae, 0x0a, 0x50, 0x8a, 0xb8, 0x5a,
-	0xa5, 0xae, 0x94, 0x78, 0x21, 0xad, 0xf6, 0xc0, 0xb4, 0xe2, 0xbd, 0x32, 0xd2, 0x84, 0xc2, 0x28,
-	0x15, 0xac, 0x21, 0x91, 0x44, 0x81, 0xcb, 0xbf, 0x64, 0xa8, 0xe2, 0x29, 0xf5, 0x99, 0xf7, 0x9b,
-	0xf3, 0xc0, 0xc8, 0x8f, 0x70, 0xb0, 0x31, 0xe2, 0x10, 0x3d, 0x39, 0xd1, 0x6d, 0xb3, 0x91, 0xf6,
-	0xe1, 0x4e, 0x9b, 0xa8, 0xf7, 0xff, 0x00, 0x4a, 0x7a, 0x4e, 0x20, 0x1f, 0xbc, 0x38, 0xbb, 0x68,
-	0xfa, 0x2e, 0x93, 0x88, 0xda, 0x80, 0x72, 0x9c, 0xef, 0x71, 0x62, 0x9f, 0x4e, 0x53, 0xcb, 0x82,
-	0x22, 0x8a, 0xaf, 0xa0, 0x14, 0x0d, 0x03, 0x44, 0x15, 0xee, 0xf0, 0xda, 0x28, 0xa1, 0x1d, 0x67,
-	0x20, 0x49, 0x0a, 0xab, 0x0f, 0xba, 0x98, 0x42, 0x6a, 0x52, 0x10, 0x53, 0x48, 0x7f, 0xff, 0xc9,
-	0x1d, 0xbc, 0x5e, 0xfb, 0x9c, 0x93, 0xff, 0x09, 0x6f, 0x37, 0x63, 0x30, 0xd0, 0xfe, 0xbf, 0x15,
-	0x8f, 0x18, 0xaf, 0xa1, 0x12, 0x7f, 0xda, 0x89, 0x10, 0x3a, 0x3d, 0x1c, 0x68, 0xef, 0x32, 0xb1,
-	0x35, 0x69, 0x38, 0xc7, 0xba, 0x34, 0x22, 0xc3, 0x71, 0x06, 0x12, 0xf9, 0x37, 0x01, 0x92, 0x4e,
-	0x49, 0xde, 0xed, 0xe8, 0xf9, 0xda, 0xfb, 0x6c, 0x30, 0x24, 0xba, 0x7a, 0x0f, 0xda, 0xcf, 0x8e,
-	0xbd, 0x98, 0xd4, 0x7d, 0xe7, 0x61, 0xba, 0xac, 0xaf, 0x8f, 0xf1, 0xf7, 0x45, 0xfe, 0xf3, 0xf9,
-	0x7f, 0x01, 0x00, 0x00, 0xff, 0xff, 0x8d, 0x2c, 0x7e, 0xac, 0xdf, 0x0b, 0x00, 0x00,
+var fileDescriptor_werewolf_132595d5480ad182 = []byte{
+	// 1324 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x57, 0xdd, 0x72, 0xdb, 0xc4,
+	0x17, 0xaf, 0xbf, 0xed, 0xe3, 0x54, 0x51, 0xb6, 0xe9, 0x3f, 0xaa, 0xda, 0xf9, 0x37, 0x88, 0x52,
+	0xd2, 0x64, 0x70, 0x4b, 0x18, 0x86, 0x1b, 0x3e, 0xc6, 0x71, 0x94, 0xd8, 0xc4, 0xb5, 0x33, 0x92,
+	0x8d, 0xe9, 0x0c, 0x83, 0x46, 0x8d, 0xd6, 0xb6, 0x88, 0xac, 0x35, 0x2b, 0x99, 0x0c, 0x4f, 0xc2,
+	0x70, 0xcf, 0xbb, 0x70, 0xcb, 0x3d, 0xcf, 0xc0, 0x3b, 0x30, 0xbb, 0x92, 0x25, 0x59, 0xb6, 0x15,
+	0xae, 0xe2, 0x3d, 0xe7, 0xfc, 0x7e, 0xe7, 0x73, 0xb5, 0x27, 0x20, 0xdc, 0x61, 0x8a, 0xef, 0x88,
+	0x33, 0x6e, 0xcc, 0x29, 0xf1, 0x09, 0xaa, 0x2e, 0xcf, 0x8a, 0x0c, 0x52, 0x8b, 0x62, 0xd3, 0xc7,
+	0x4d, 0xd7, 0xfa, 0x96, 0xd8, 0xae, 0x46, 0xc8, 0x4c, 0xc3, 0x3f, 0x2f, 0xb0, 0xe7, 0x2b, 0x6f,
+	0xe1, 0xc9, 0x06, 0x9d, 0x37, 0x27, 0xae, 0x87, 0xd1, 0x01, 0x54, 0x28, 0x21, 0x33, 0xc3, 0xb6,
+	0xa4, 0xdc, 0x61, 0xee, 0xa8, 0xa6, 0x95, 0xd9, 0xb1, 0x63, 0x31, 0xc5, 0xc2, 0xc3, 0x94, 0x29,
+	0xf2, 0x81, 0x82, 0x1d, 0x3b, 0x96, 0xf2, 0x67, 0x0e, 0x0e, 0x86, 0x73, 0xcb, 0xf4, 0xf1, 0xa5,
+	0x39, 0xc3, 0x2d, 0xe2, 0x8e, 0xed, 0x49, 0xe8, 0x6a, 0x3b, 0x5b, 0x17, 0xea, 0x94, 0x38, 0xd8,
+	0xb8, 0x21, 0x0b, 0xd7, 0xf7, 0xa4, 0xfc, 0x61, 0xe1, 0xa8, 0x7e, 0x7a, 0xd2, 0x88, 0xf2, 0xd9,
+	0x42, 0xd8, 0xd0, 0x88, 0x83, 0x5b, 0x0c, 0xa3, 0x01, 0x5d, 0xfe, 0xf4, 0x64, 0x15, 0x6a, 0x91,
+	0x02, 0x29, 0x50, 0x64, 0x2a, 0xee, 0x50, 0x38, 0x15, 0x62, 0x4e, 0x66, 0xa2, 0x71, 0x1d, 0xda,
+	0x87, 0x12, 0xf7, 0xcc, 0x53, 0x29, 0x69, 0xc1, 0x81, 0x15, 0x6d, 0xdd, 0x6f, 0x50, 0x17, 0xa5,
+	0x05, 0xbb, 0xa9, 0x3a, 0x26, 0x2b, 0x92, 0x4b, 0x56, 0x24, 0x99, 0x75, 0x3e, 0x99, 0xb5, 0x72,
+	0x02, 0xe2, 0xa6, 0x82, 0x6f, 0x64, 0x51, 0x5e, 0x81, 0x70, 0x89, 0xfd, 0x94, 0xc3, 0x8d, 0xd5,
+	0x54, 0x3e, 0x87, 0xdd, 0xc8, 0x34, 0xa4, 0xe5, 0x55, 0x20, 0x33, 0x6e, 0x58, 0x5f, 0xad, 0x02,
+	0x99, 0x69, 0x5c, 0xc7, 0x72, 0x1a, 0x98, 0xb7, 0x58, 0xc7, 0xa6, 0x9f, 0x70, 0xe1, 0x61, 0xd3,
+	0x4f, 0xb8, 0x60, 0xc7, 0xac, 0xf6, 0x23, 0x10, 0x63, 0x92, 0xb0, 0x58, 0xaf, 0x61, 0x5f, 0xc3,
+	0xa6, 0xe7, 0xd9, 0x13, 0x97, 0x15, 0xdd, 0xbb, 0x37, 0x81, 0x03, 0x78, 0x9c, 0x02, 0x84, 0x4c,
+	0x27, 0x20, 0xea, 0xbe, 0x49, 0x7d, 0xd6, 0x91, 0x7b, 0x59, 0x1e, 0xc1, 0x5e, 0xc2, 0x38, 0x64,
+	0xf8, 0xa3, 0x0a, 0x7b, 0x2c, 0xc0, 0xe6, 0x8d, 0x6f, 0x13, 0x37, 0xc1, 0x31, 0x31, 0x67, 0x38,
+	0xc1, 0xc1, 0x8e, 0x1d, 0x0b, 0x5d, 0x43, 0xd5, 0x32, 0xe9, 0xad, 0x8b, 0x3d, 0x8f, 0x27, 0x5a,
+	0x3f, 0x3d, 0x8d, 0x6b, 0xb7, 0xc6, 0xd3, 0x68, 0x91, 0xd9, 0xdc, 0xc1, 0x3e, 0x3e, 0x0f, 0x31,
+	0x81, 0xb6, 0xfd, 0x40, 0x8b, 0x58, 0xd0, 0x97, 0x50, 0xf4, 0x30, 0xa6, 0x52, 0x81, 0xb3, 0xbd,
+	0xcc, 0x62, 0xd3, 0x31, 0xa6, 0x11, 0x03, 0x47, 0xa1, 0x6f, 0xa0, 0x74, 0x67, 0xfb, 0x37, 0x53,
+	0xa9, 0xc8, 0xe1, 0x1f, 0x67, 0xc1, 0x47, 0xcc, 0x30, 0xc2, 0x07, 0x38, 0x74, 0x06, 0xe5, 0xe9,
+	0xc2, 0xf5, 0x31, 0x95, 0x4a, 0x9c, 0xe1, 0x28, 0x8b, 0xa1, 0xcd, 0x2d, 0x23, 0x8a, 0x10, 0xc9,
+	0x82, 0x98, 0x2c, 0x4c, 0x6a, 0x49, 0xe5, 0xfb, 0x83, 0xb8, 0x64, 0x86, 0x71, 0x10, 0x1c, 0x87,
+	0xda, 0x10, 0x7d, 0x9a, 0xa4, 0x0a, 0xe7, 0x38, 0xce, 0x4c, 0x24, 0x54, 0xc5, 0xd5, 0x5c, 0x1a,
+	0xa3, 0xef, 0x41, 0xb8, 0x9b, 0xda, 0x3e, 0x36, 0x22, 0xbe, 0x2a, 0xe7, 0x7b, 0x9d, 0xc9, 0xc7,
+	0x10, 0x6b, 0xa4, 0x0f, 0xef, 0x92, 0x62, 0xd4, 0x05, 0x98, 0x9a, 0xce, 0xd8, 0x78, 0xef, 0x10,
+	0x62, 0x49, 0x35, 0xce, 0x7a, 0x92, 0x59, 0x2c, 0xd3, 0x19, 0x9f, 0x31, 0xe3, 0x88, 0xb1, 0x36,
+	0x5d, 0x8a, 0xd0, 0x5b, 0xa8, 0x78, 0x53, 0x4c, 0xed, 0xf1, 0x58, 0x02, 0x4e, 0xf5, 0xe9, 0x7f,
+	0x19, 0x23, 0x3d, 0x80, 0x44, 0x84, 0x4b, 0x0e, 0x59, 0x82, 0xff, 0x6d, 0x1e, 0x35, 0xf9, 0x23,
+	0x80, 0x78, 0x6c, 0xb6, 0xde, 0x5f, 0x79, 0x08, 0xf5, 0xc4, 0x78, 0xa0, 0x17, 0x20, 0xcc, 0x89,
+	0xed, 0x11, 0xd7, 0x58, 0x35, 0xdf, 0x09, 0xa4, 0x7a, 0x70, 0xe9, 0x0f, 0x61, 0xe7, 0x66, 0x41,
+	0x71, 0x64, 0x13, 0xdc, 0x7c, 0x60, 0xb2, 0xc0, 0x42, 0x16, 0x60, 0x27, 0x39, 0x33, 0xf2, 0x4b,
+	0xa8, 0x27, 0x06, 0x60, 0x7b, 0x38, 0xaf, 0x40, 0x58, 0xed, 0xc7, 0x76, 0xd3, 0xc7, 0xf0, 0x68,
+	0x43, 0xff, 0xe4, 0x63, 0xd8, 0x4d, 0x35, 0x60, 0x3b, 0xc5, 0x01, 0x3c, 0xde, 0x58, 0xe1, 0xb3,
+	0x2a, 0x94, 0x4d, 0xfe, 0x4b, 0xf9, 0xad, 0x00, 0x28, 0xd9, 0x97, 0xf0, 0x33, 0xfa, 0x55, 0x78,
+	0x79, 0x73, 0x59, 0x83, 0x1f, 0xd8, 0xf2, 0xdb, 0xab, 0x61, 0x6f, 0xe1, 0xf8, 0xd1, 0xed, 0x6d,
+	0x45, 0x97, 0x2f, 0xf8, 0x96, 0xbc, 0xca, 0x24, 0x08, 0x2a, 0x19, 0x51, 0x2c, 0x6f, 0xdf, 0xbb,
+	0xb5, 0x91, 0x0f, 0x3e, 0x25, 0x6f, 0x32, 0xc9, 0x56, 0x6a, 0x16, 0x71, 0xae, 0xce, 0xbc, 0xfc,
+	0x49, 0x30, 0x3c, 0x81, 0x1a, 0x3d, 0x87, 0xba, 0xed, 0xc5, 0x5e, 0x58, 0xce, 0x55, 0x0d, 0x6c,
+	0x2f, 0x32, 0x7f, 0xb3, 0xec, 0x76, 0x08, 0x38, 0x84, 0x9d, 0x09, 0x21, 0x96, 0xe1, 0x13, 0x63,
+	0x6c, 0x53, 0xbc, 0x44, 0x30, 0xd9, 0x80, 0x5c, 0xd8, 0x14, 0xcb, 0x5f, 0xa4, 0x9a, 0xb7, 0x0e,
+	0xbc, 0xb5, 0x1d, 0x67, 0x15, 0x78, 0x65, 0x3b, 0x0e, 0xeb, 0x0c, 0xe5, 0xb6, 0xca, 0x35, 0x14,
+	0xd9, 0x9b, 0x85, 0x5e, 0x40, 0x89, 0xb5, 0xd3, 0x93, 0x72, 0x7c, 0x59, 0x48, 0x3c, 0x69, 0xfc,
+	0xed, 0x09, 0x94, 0xec, 0xdd, 0x63, 0x5f, 0xf2, 0xb0, 0xde, 0x09, 0x23, 0xfe, 0x28, 0x70, 0x9d,
+	0xf2, 0x23, 0x14, 0x19, 0x04, 0x09, 0x90, 0x8f, 0x46, 0x25, 0x6f, 0x5b, 0x0c, 0xcb, 0x1e, 0xb5,
+	0x75, 0xec, 0xd0, 0xc3, 0x54, 0xe3, 0xba, 0x68, 0xbb, 0x28, 0x6c, 0xdf, 0x2e, 0x94, 0xd7, 0x50,
+	0x64, 0x88, 0x35, 0xfe, 0x03, 0xa8, 0xd8, 0xb3, 0x89, 0xb1, 0xa0, 0x0e, 0x87, 0xd7, 0xb4, 0xb2,
+	0x3d, 0x9b, 0x0c, 0xa9, 0xa3, 0xfc, 0x95, 0x87, 0x22, 0x8b, 0x6f, 0x0d, 0x71, 0x0c, 0x25, 0xcf,
+	0x37, 0xfd, 0x20, 0x1d, 0xe1, 0x74, 0x7f, 0x35, 0x9d, 0x86, 0xce, 0x74, 0x5a, 0x60, 0x82, 0x1a,
+	0xf0, 0xc8, 0xc2, 0xa6, 0x65, 0xcc, 0x1d, 0xf3, 0x57, 0x4c, 0x0d, 0x77, 0x31, 0x7b, 0x8f, 0xa9,
+	0x27, 0x15, 0x0e, 0x0b, 0x47, 0x35, 0x6d, 0x8f, 0xa9, 0xae, 0xb9, 0xa6, 0x17, 0x28, 0x94, 0xbf,
+	0x73, 0x50, 0xe2, 0x04, 0xa8, 0x0e, 0x95, 0x61, 0xef, 0xaa, 0xd7, 0x1f, 0xf5, 0xc4, 0x07, 0x08,
+	0x81, 0x70, 0xde, 0xd4, 0xae, 0x7a, 0xaa, 0xae, 0x1b, 0x17, 0xcd, 0x6e, 0x57, 0x17, 0x73, 0x48,
+	0x84, 0x9d, 0xbe, 0x76, 0xdd, 0x6e, 0xf6, 0x8c, 0xe6, 0xa8, 0x79, 0xa5, 0x8a, 0x79, 0xb4, 0x0f,
+	0x62, 0xbb, 0xd9, 0xbd, 0x30, 0xce, 0xba, 0xfd, 0xfe, 0x79, 0x28, 0x2d, 0x30, 0xec, 0xe5, 0xb0,
+	0xa9, 0x9d, 0x77, 0x22, 0xcb, 0x22, 0x93, 0x8d, 0x54, 0x4d, 0x1d, 0xf5, 0xbb, 0x17, 0xa1, 0xac,
+	0x84, 0x76, 0xa1, 0x3e, 0xea, 0x0c, 0x5a, 0xed, 0x50, 0x50, 0x46, 0x02, 0x80, 0xae, 0xaa, 0x5a,
+	0x78, 0xae, 0x30, 0x87, 0xed, 0x61, 0x6f, 0x10, 0x49, 0xaa, 0x48, 0x82, 0xfd, 0x51, 0xbb, 0x33,
+	0x50, 0x8d, 0x14, 0x59, 0x8d, 0x85, 0xa2, 0xb7, 0x55, 0xad, 0x73, 0x71, 0x61, 0xa8, 0x5d, 0xb5,
+	0x35, 0xe8, 0xf4, 0x7b, 0x22, 0x1c, 0xff, 0x9e, 0x63, 0x63, 0xe3, 0xa4, 0x92, 0xdb, 0x81, 0xea,
+	0x77, 0x9d, 0x6e, 0xb7, 0x79, 0xa9, 0x6a, 0x62, 0x0e, 0x55, 0xa1, 0xc8, 0xbc, 0x8a, 0x79, 0x54,
+	0x83, 0x12, 0x0f, 0x48, 0x2c, 0x20, 0x80, 0x72, 0xe0, 0x5a, 0x2c, 0x32, 0x71, 0xe7, 0xbc, 0xd3,
+	0x1f, 0x88, 0x25, 0x86, 0x5c, 0xa6, 0x26, 0x96, 0xd9, 0x69, 0x19, 0x87, 0x58, 0xe1, 0x29, 0xae,
+	0xc4, 0x26, 0x56, 0x19, 0x4d, 0x50, 0x32, 0xb1, 0xc6, 0xb2, 0x8b, 0x8b, 0x25, 0xc2, 0xe9, 0x3f,
+	0x45, 0xa8, 0xb3, 0xfe, 0xe9, 0x98, 0xfe, 0x62, 0xdf, 0x60, 0xf4, 0x03, 0xec, 0xad, 0x2d, 0xe4,
+	0x48, 0x89, 0x7b, 0xbd, 0x6d, 0x93, 0x97, 0x3f, 0xcc, 0xb4, 0x09, 0x3f, 0x61, 0xef, 0x40, 0x4c,
+	0x6f, 0xb5, 0xe8, 0x83, 0x7b, 0x37, 0x6d, 0x59, 0xc9, 0x32, 0x09, 0xa9, 0x9b, 0x50, 0x8d, 0xe2,
+	0x7d, 0x12, 0xdb, 0xa7, 0xc3, 0x94, 0x37, 0xa9, 0x42, 0x8a, 0xaf, 0xa1, 0x12, 0xae, 0xae, 0x48,
+	0x4a, 0x4c, 0xf7, 0xca, 0xe2, 0x2b, 0x3f, 0xd9, 0xa0, 0x89, 0x43, 0x58, 0xae, 0x9f, 0xc9, 0x10,
+	0x52, 0x7b, 0x6d, 0x32, 0x84, 0xf4, 0xb6, 0x8a, 0xae, 0xe1, 0xe1, 0xca, 0xf2, 0x89, 0xfe, 0x9f,
+	0xb8, 0xd5, 0x1b, 0xd6, 0x58, 0xf9, 0xf9, 0x56, 0x7d, 0xc8, 0x78, 0x0e, 0xb5, 0x68, 0x11, 0x45,
+	0x09, 0xd7, 0xe9, 0x55, 0x56, 0x7e, 0xba, 0x51, 0x17, 0xb2, 0x5c, 0x02, 0xc4, 0xdf, 0x75, 0xf4,
+	0x34, 0x63, 0x7f, 0x90, 0x9f, 0x65, 0x3d, 0x05, 0x67, 0xcf, 0x40, 0xfe, 0xc9, 0x36, 0xdd, 0x49,
+	0xc3, 0xb3, 0x6f, 0xa6, 0x8b, 0xc6, 0xea, 0x3f, 0x8d, 0xef, 0xcb, 0xfc, 0xcf, 0x67, 0xff, 0x06,
+	0x00, 0x00, 0xff, 0xff, 0x42, 0xed, 0xe2, 0xe1, 0x4d, 0x0e, 0x00, 0x00,
 }

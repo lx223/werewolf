@@ -26,12 +26,14 @@ PODS:
     - gRPC-Core (~> 1.11.0)
     - SwiftProtobuf (~> 1.0.3)
   - SwiftProtobuf (1.0.3)
+  - SwiftySound (1.0.0)
 
 DEPENDENCIES:
   - RxCocoa (~> 4.2.0)
   - RxSwift (~> 4.2.0)
   - SwiftGRPC (~> 0.4.3)
   - SwiftProtobuf (~> 1.0.3)
+  - SwiftySound (~> 1.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -42,6 +44,7 @@ SPEC REPOS:
     - RxSwift
     - SwiftGRPC
     - SwiftProtobuf
+    - SwiftySound
 
 SPEC CHECKSUMS:
   BoringSSL: c46efb47593135382bc0934196f16d2f726f5f36
@@ -51,7 +54,8 @@ SPEC CHECKSUMS:
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   SwiftGRPC: e582ede5791867075513a3757faa41be215b7e5a
   SwiftProtobuf: 5ccc0e4054e37c75800e5744acb2aa80bb72b39c
+  SwiftySound: b9c3370956fd4ed65ed79d45563070077a50a2cd
 
-PODFILE CHECKSUM: 20f5b9eba021fea8a2cd738db9bd4e77a203cc3b
+PODFILE CHECKSUM: 28cfd69e92c0e3b4162b092323fa7cb77965b1bf
 
 COCOAPODS: 1.5.3

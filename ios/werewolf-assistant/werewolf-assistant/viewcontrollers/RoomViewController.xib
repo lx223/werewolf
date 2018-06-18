@@ -15,22 +15,22 @@
             <connections>
                 <outlet property="roleImageView" destination="842-l4-BsY" id="6Wn-cg-Rzi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outletCollection property="seats" destination="Fnn-8T-eEl" collectionClass="NSMutableArray" id="x6n-TB-uEn"/>
-                <outletCollection property="seats" destination="DX3-X0-CYH" collectionClass="NSMutableArray" id="RAf-0A-11y"/>
-                <outletCollection property="seats" destination="hMQ-3x-QS8" collectionClass="NSMutableArray" id="6RL-yI-PkR"/>
-                <outletCollection property="seats" destination="yre-7e-TyI" collectionClass="NSMutableArray" id="ybS-XR-ctd"/>
-                <outletCollection property="seats" destination="IfS-gi-sCj" collectionClass="NSMutableArray" id="Tkq-Um-3j9"/>
-                <outletCollection property="seats" destination="rse-10-v8T" collectionClass="NSMutableArray" id="5Mt-gz-dAX"/>
-                <outletCollection property="seats" destination="rtN-0r-GC6" collectionClass="NSMutableArray" id="jVt-Bf-Pu6"/>
-                <outletCollection property="seats" destination="8MW-bm-Pfp" collectionClass="NSMutableArray" id="hsV-le-9Th"/>
-                <outletCollection property="seats" destination="5pc-Ku-ZIu" collectionClass="NSMutableArray" id="mNc-B6-dSG"/>
-                <outletCollection property="seats" destination="pSz-cu-K2e" collectionClass="NSMutableArray" id="3lb-qW-pdS"/>
-                <outletCollection property="seats" destination="wwc-6x-MT3" collectionClass="NSMutableArray" id="1Ar-D2-3jN"/>
-                <outletCollection property="seats" destination="2zg-cD-lcH" collectionClass="NSMutableArray" id="sIl-Uh-I0o"/>
-                <outletCollection property="seats" destination="o27-zX-yK5" collectionClass="NSMutableArray" id="kFx-Ae-77O"/>
-                <outletCollection property="seats" destination="edo-Of-Q7h" collectionClass="NSMutableArray" id="KZ8-Tl-wKy"/>
-                <outletCollection property="seats" destination="iZQ-Cx-EEn" collectionClass="NSMutableArray" id="FVo-wv-L7E"/>
-                <outletCollection property="seats" destination="cKD-uB-4Ch" collectionClass="NSMutableArray" id="2VV-lo-DVi"/>
+                <outletCollection property="seatViews" destination="Fnn-8T-eEl" collectionClass="NSMutableArray" id="x6n-TB-uEn"/>
+                <outletCollection property="seatViews" destination="DX3-X0-CYH" collectionClass="NSMutableArray" id="RAf-0A-11y"/>
+                <outletCollection property="seatViews" destination="hMQ-3x-QS8" collectionClass="NSMutableArray" id="6RL-yI-PkR"/>
+                <outletCollection property="seatViews" destination="yre-7e-TyI" collectionClass="NSMutableArray" id="ybS-XR-ctd"/>
+                <outletCollection property="seatViews" destination="IfS-gi-sCj" collectionClass="NSMutableArray" id="Tkq-Um-3j9"/>
+                <outletCollection property="seatViews" destination="rse-10-v8T" collectionClass="NSMutableArray" id="5Mt-gz-dAX"/>
+                <outletCollection property="seatViews" destination="rtN-0r-GC6" collectionClass="NSMutableArray" id="jVt-Bf-Pu6"/>
+                <outletCollection property="seatViews" destination="8MW-bm-Pfp" collectionClass="NSMutableArray" id="hsV-le-9Th"/>
+                <outletCollection property="seatViews" destination="5pc-Ku-ZIu" collectionClass="NSMutableArray" id="mNc-B6-dSG"/>
+                <outletCollection property="seatViews" destination="pSz-cu-K2e" collectionClass="NSMutableArray" id="3lb-qW-pdS"/>
+                <outletCollection property="seatViews" destination="wwc-6x-MT3" collectionClass="NSMutableArray" id="1Ar-D2-3jN"/>
+                <outletCollection property="seatViews" destination="2zg-cD-lcH" collectionClass="NSMutableArray" id="sIl-Uh-I0o"/>
+                <outletCollection property="seatViews" destination="o27-zX-yK5" collectionClass="NSMutableArray" id="kFx-Ae-77O"/>
+                <outletCollection property="seatViews" destination="edo-Of-Q7h" collectionClass="NSMutableArray" id="KZ8-Tl-wKy"/>
+                <outletCollection property="seatViews" destination="iZQ-Cx-EEn" collectionClass="NSMutableArray" id="FVo-wv-L7E"/>
+                <outletCollection property="seatViews" destination="cKD-uB-4Ch" collectionClass="NSMutableArray" id="2VV-lo-DVi"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -226,7 +226,7 @@
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="oIG-5c-Bnl"/>
                 </stackView>
-                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="卡背" translatesAutoresizingMaskIntoConstraints="NO" id="842-l4-BsY">
+                <imageView hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="卡背" translatesAutoresizingMaskIntoConstraints="NO" id="842-l4-BsY">
                     <rect key="frame" x="150" y="395" width="75" height="75"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="75" id="VAK-9S-Cnt"/>

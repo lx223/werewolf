@@ -258,44 +258,9 @@ struct Werewolf_StartGameResponse {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var gameID: String = String()
-
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
-}
-
-struct Werewolf_GetGameRequest {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  var gameID: String = String()
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-}
-
-struct Werewolf_GetGameResponse {
-  // SwiftProtobuf.Message conformance is added in an extension below. See the
-  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
-  // methods supported on all messages.
-
-  var game: Werewolf_Game {
-    get {return _storage._game ?? Werewolf_Game()}
-    set {_uniqueStorage()._game = newValue}
-  }
-  /// Returns true if `game` has been explicitly set.
-  var hasGame: Bool {return _storage._game != nil}
-  /// Clears the value of `game`. Subsequent reads from it will return its default value.
-  mutating func clearGame() {_storage._game = nil}
-
-  var unknownFields = SwiftProtobuf.UnknownStorage()
-
-  init() {}
-
-  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 struct Werewolf_TakeActionRequest {
@@ -311,6 +276,14 @@ struct Werewolf_TakeActionRequest {
   var action: OneOf_Action? {
     get {return _storage._action}
     set {_uniqueStorage()._action = newValue}
+  }
+
+  var darkness: Werewolf_TakeActionRequest.CompleteDarknessAction {
+    get {
+      if case .darkness(let v)? = _storage._action {return v}
+      return Werewolf_TakeActionRequest.CompleteDarknessAction()
+    }
+    set {_uniqueStorage()._action = .darkness(newValue)}
   }
 
   var seer: Werewolf_TakeActionRequest.SeerAction {
@@ -369,9 +342,18 @@ struct Werewolf_TakeActionRequest {
     set {_uniqueStorage()._action = .halfBlood(newValue)}
   }
 
+  var sheriff: Werewolf_TakeActionRequest.CompleteSheriffAction {
+    get {
+      if case .sheriff(let v)? = _storage._action {return v}
+      return Werewolf_TakeActionRequest.CompleteSheriffAction()
+    }
+    set {_uniqueStorage()._action = .sheriff(newValue)}
+  }
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   enum OneOf_Action: Equatable {
+    case darkness(Werewolf_TakeActionRequest.CompleteDarknessAction)
     case seer(Werewolf_TakeActionRequest.SeerAction)
     case witch(Werewolf_TakeActionRequest.WitchAction)
     case hunter(Werewolf_TakeActionRequest.HunterAction)
@@ -379,9 +361,11 @@ struct Werewolf_TakeActionRequest {
     case werewolf(Werewolf_TakeActionRequest.WerewolfAction)
     case whiteWerewolf(Werewolf_TakeActionRequest.WhiteWerewolfAction)
     case halfBlood(Werewolf_TakeActionRequest.HalfBloodAction)
+    case sheriff(Werewolf_TakeActionRequest.CompleteSheriffAction)
 
     static func ==(lhs: Werewolf_TakeActionRequest.OneOf_Action, rhs: Werewolf_TakeActionRequest.OneOf_Action) -> Bool {
       switch (lhs, rhs) {
+      case (.darkness(let l), .darkness(let r)): return l == r
       case (.seer(let l), .seer(let r)): return l == r
       case (.witch(let l), .witch(let r)): return l == r
       case (.hunter(let l), .hunter(let r)): return l == r
@@ -389,15 +373,28 @@ struct Werewolf_TakeActionRequest {
       case (.werewolf(let l), .werewolf(let r)): return l == r
       case (.whiteWerewolf(let l), .whiteWerewolf(let r)): return l == r
       case (.halfBlood(let l), .halfBlood(let r)): return l == r
+      case (.sheriff(let l), .sheriff(let r)): return l == r
       default: return false
       }
     }
+  }
+
+  struct CompleteDarknessAction {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    init() {}
   }
 
   struct SeerAction {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
+
+    var seatID: String = String()
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -408,6 +405,10 @@ struct Werewolf_TakeActionRequest {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
+
+    var poisonSeatID: String = String()
+
+    var cureSeatID: String = String()
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -429,6 +430,8 @@ struct Werewolf_TakeActionRequest {
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
 
+    var seatID: String = String()
+
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
     init() {}
@@ -438,6 +441,8 @@ struct Werewolf_TakeActionRequest {
     // SwiftProtobuf.Message conformance is added in an extension below. See the
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
+
+    var seatID: String = String()
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -459,6 +464,18 @@ struct Werewolf_TakeActionRequest {
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
 
+    var seatID: String = String()
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    init() {}
+  }
+
+  struct CompleteSheriffAction {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
     init() {}
@@ -474,9 +491,91 @@ struct Werewolf_TakeActionResponse {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
+  var result: OneOf_Result? {
+    get {return _storage._result}
+    set {_uniqueStorage()._result = newValue}
+  }
+
+  var seer: Werewolf_TakeActionResponse.SeerResult {
+    get {
+      if case .seer(let v)? = _storage._result {return v}
+      return Werewolf_TakeActionResponse.SeerResult()
+    }
+    set {_uniqueStorage()._result = .seer(newValue)}
+  }
+
+  var hunter: Werewolf_TakeActionResponse.HunterResult {
+    get {
+      if case .hunter(let v)? = _storage._result {return v}
+      return Werewolf_TakeActionResponse.HunterResult()
+    }
+    set {_uniqueStorage()._result = .hunter(newValue)}
+  }
+
+  var whiteWerewolf: Werewolf_TakeActionResponse.WhiteWerewolfResult {
+    get {
+      if case .whiteWerewolf(let v)? = _storage._result {return v}
+      return Werewolf_TakeActionResponse.WhiteWerewolfResult()
+    }
+    set {_uniqueStorage()._result = .whiteWerewolf(newValue)}
+  }
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
+  enum OneOf_Result: Equatable {
+    case seer(Werewolf_TakeActionResponse.SeerResult)
+    case hunter(Werewolf_TakeActionResponse.HunterResult)
+    case whiteWerewolf(Werewolf_TakeActionResponse.WhiteWerewolfResult)
+
+    static func ==(lhs: Werewolf_TakeActionResponse.OneOf_Result, rhs: Werewolf_TakeActionResponse.OneOf_Result) -> Bool {
+      switch (lhs, rhs) {
+      case (.seer(let l), .seer(let r)): return l == r
+      case (.hunter(let l), .hunter(let r)): return l == r
+      case (.whiteWerewolf(let l), .whiteWerewolf(let r)): return l == r
+      default: return false
+      }
+    }
+  }
+
+  struct SeerResult {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    var isWerewolf: Bool = false
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    init() {}
+  }
+
+  struct HunterResult {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    var goodToFire: Bool = false
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    init() {}
+  }
+
+  struct WhiteWerewolfResult {
+    // SwiftProtobuf.Message conformance is added in an extension below. See the
+    // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+    // methods supported on all messages.
+
+    var goodToKill: Bool = false
+
+    var unknownFields = SwiftProtobuf.UnknownStorage()
+
+    init() {}
+  }
+
   init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 struct Werewolf_Room {
@@ -484,13 +583,25 @@ struct Werewolf_Room {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var seats: [Werewolf_Seat] = []
+  var seats: [Werewolf_Seat] {
+    get {return _storage._seats}
+    set {_uniqueStorage()._seats = newValue}
+  }
 
-  var gameID: String = String()
+  var game: Werewolf_Game {
+    get {return _storage._game ?? Werewolf_Game()}
+    set {_uniqueStorage()._game = newValue}
+  }
+  /// Returns true if `game` has been explicitly set.
+  var hasGame: Bool {return _storage._game != nil}
+  /// Clears the value of `game`. Subsequent reads from it will return its default value.
+  mutating func clearGame() {_storage._game = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
+
+  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 struct Werewolf_Seat {
@@ -562,7 +673,8 @@ struct Werewolf_Game {
     case witchAwake // = 6
     case seerAwake // = 7
     case hunterAwake // = 8
-    case sheriffElection // = 9
+    case whiteWerewolfAwake // = 9
+    case sheriffElection // = 10
     case UNRECOGNIZED(Int)
 
     init() {
@@ -580,7 +692,8 @@ struct Werewolf_Game {
       case 6: self = .witchAwake
       case 7: self = .seerAwake
       case 8: self = .hunterAwake
-      case 9: self = .sheriffElection
+      case 9: self = .whiteWerewolfAwake
+      case 10: self = .sheriffElection
       default: self = .UNRECOGNIZED(rawValue)
       }
     }
@@ -596,7 +709,8 @@ struct Werewolf_Game {
       case .witchAwake: return 6
       case .seerAwake: return 7
       case .hunterAwake: return 8
-      case .sheriffElection: return 9
+      case .whiteWerewolfAwake: return 9
+      case .sheriffElection: return 10
       case .UNRECOGNIZED(let i): return i
       }
     }
@@ -1056,118 +1170,18 @@ extension Werewolf_StartGameRequest: SwiftProtobuf.Message, SwiftProtobuf._Messa
 
 extension Werewolf_StartGameResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".StartGameResponse"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    2: .standard(proto: "game_id"),
-  ]
+  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 2: try decoder.decodeSingularStringField(value: &self.gameID)
-      default: break
-      }
+    while let _ = try decoder.nextFieldNumber() {
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.gameID.isEmpty {
-      try visitor.visitSingularStringField(value: self.gameID, fieldNumber: 2)
-    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   func _protobuf_generated_isEqualTo(other: Werewolf_StartGameResponse) -> Bool {
-    if self.gameID != other.gameID {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Werewolf_GetGameRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".GetGameRequest"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "game_id"),
-  ]
-
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeSingularStringField(value: &self.gameID)
-      default: break
-      }
-    }
-  }
-
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.gameID.isEmpty {
-      try visitor.visitSingularStringField(value: self.gameID, fieldNumber: 1)
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  func _protobuf_generated_isEqualTo(other: Werewolf_GetGameRequest) -> Bool {
-    if self.gameID != other.gameID {return false}
-    if unknownFields != other.unknownFields {return false}
-    return true
-  }
-}
-
-extension Werewolf_GetGameResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".GetGameResponse"
-  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "game"),
-  ]
-
-  fileprivate class _StorageClass {
-    var _game: Werewolf_Game? = nil
-
-    static let defaultInstance = _StorageClass()
-
-    private init() {}
-
-    init(copying source: _StorageClass) {
-      _game = source._game
-    }
-  }
-
-  fileprivate mutating func _uniqueStorage() -> _StorageClass {
-    if !isKnownUniquelyReferenced(&_storage) {
-      _storage = _StorageClass(copying: _storage)
-    }
-    return _storage
-  }
-
-  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    _ = _uniqueStorage()
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      while let fieldNumber = try decoder.nextFieldNumber() {
-        switch fieldNumber {
-        case 1: try decoder.decodeSingularMessageField(value: &_storage._game)
-        default: break
-        }
-      }
-    }
-  }
-
-  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
-      if let v = _storage._game {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-      }
-    }
-    try unknownFields.traverse(visitor: &visitor)
-  }
-
-  func _protobuf_generated_isEqualTo(other: Werewolf_GetGameResponse) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
-        let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._game != other_storage._game {return false}
-        return true
-      }
-      if !storagesAreEqual {return false}
-    }
     if unknownFields != other.unknownFields {return false}
     return true
   }
@@ -1177,13 +1191,15 @@ extension Werewolf_TakeActionRequest: SwiftProtobuf.Message, SwiftProtobuf._Mess
   static let protoMessageName: String = _protobuf_package + ".TakeActionRequest"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .standard(proto: "game_id"),
-    2: .same(proto: "seer"),
-    3: .same(proto: "witch"),
-    4: .same(proto: "hunter"),
-    5: .same(proto: "guard"),
-    6: .same(proto: "werewolf"),
-    7: .standard(proto: "white_werewolf"),
-    8: .standard(proto: "half_blood"),
+    2: .same(proto: "darkness"),
+    3: .same(proto: "seer"),
+    4: .same(proto: "witch"),
+    5: .same(proto: "hunter"),
+    6: .same(proto: "guard"),
+    7: .same(proto: "werewolf"),
+    8: .standard(proto: "white_werewolf"),
+    9: .standard(proto: "half_blood"),
+    10: .same(proto: "sheriff"),
   ]
 
   fileprivate class _StorageClass {
@@ -1214,6 +1230,14 @@ extension Werewolf_TakeActionRequest: SwiftProtobuf.Message, SwiftProtobuf._Mess
         switch fieldNumber {
         case 1: try decoder.decodeSingularStringField(value: &_storage._gameID)
         case 2:
+          var v: Werewolf_TakeActionRequest.CompleteDarknessAction?
+          if let current = _storage._action {
+            try decoder.handleConflictingOneOf()
+            if case .darkness(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._action = .darkness(v)}
+        case 3:
           var v: Werewolf_TakeActionRequest.SeerAction?
           if let current = _storage._action {
             try decoder.handleConflictingOneOf()
@@ -1221,7 +1245,7 @@ extension Werewolf_TakeActionRequest: SwiftProtobuf.Message, SwiftProtobuf._Mess
           }
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._action = .seer(v)}
-        case 3:
+        case 4:
           var v: Werewolf_TakeActionRequest.WitchAction?
           if let current = _storage._action {
             try decoder.handleConflictingOneOf()
@@ -1229,7 +1253,7 @@ extension Werewolf_TakeActionRequest: SwiftProtobuf.Message, SwiftProtobuf._Mess
           }
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._action = .witch(v)}
-        case 4:
+        case 5:
           var v: Werewolf_TakeActionRequest.HunterAction?
           if let current = _storage._action {
             try decoder.handleConflictingOneOf()
@@ -1237,7 +1261,7 @@ extension Werewolf_TakeActionRequest: SwiftProtobuf.Message, SwiftProtobuf._Mess
           }
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._action = .hunter(v)}
-        case 5:
+        case 6:
           var v: Werewolf_TakeActionRequest.GuardAction?
           if let current = _storage._action {
             try decoder.handleConflictingOneOf()
@@ -1245,7 +1269,7 @@ extension Werewolf_TakeActionRequest: SwiftProtobuf.Message, SwiftProtobuf._Mess
           }
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._action = .guard(v)}
-        case 6:
+        case 7:
           var v: Werewolf_TakeActionRequest.WerewolfAction?
           if let current = _storage._action {
             try decoder.handleConflictingOneOf()
@@ -1253,7 +1277,7 @@ extension Werewolf_TakeActionRequest: SwiftProtobuf.Message, SwiftProtobuf._Mess
           }
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._action = .werewolf(v)}
-        case 7:
+        case 8:
           var v: Werewolf_TakeActionRequest.WhiteWerewolfAction?
           if let current = _storage._action {
             try decoder.handleConflictingOneOf()
@@ -1261,7 +1285,7 @@ extension Werewolf_TakeActionRequest: SwiftProtobuf.Message, SwiftProtobuf._Mess
           }
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._action = .whiteWerewolf(v)}
-        case 8:
+        case 9:
           var v: Werewolf_TakeActionRequest.HalfBloodAction?
           if let current = _storage._action {
             try decoder.handleConflictingOneOf()
@@ -1269,6 +1293,14 @@ extension Werewolf_TakeActionRequest: SwiftProtobuf.Message, SwiftProtobuf._Mess
           }
           try decoder.decodeSingularMessageField(value: &v)
           if let v = v {_storage._action = .halfBlood(v)}
+        case 10:
+          var v: Werewolf_TakeActionRequest.CompleteSheriffAction?
+          if let current = _storage._action {
+            try decoder.handleConflictingOneOf()
+            if case .sheriff(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._action = .sheriff(v)}
         default: break
         }
       }
@@ -1281,20 +1313,24 @@ extension Werewolf_TakeActionRequest: SwiftProtobuf.Message, SwiftProtobuf._Mess
         try visitor.visitSingularStringField(value: _storage._gameID, fieldNumber: 1)
       }
       switch _storage._action {
-      case .seer(let v)?:
+      case .darkness(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-      case .witch(let v)?:
+      case .seer(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-      case .hunter(let v)?:
+      case .witch(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-      case .guard(let v)?:
+      case .hunter(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-      case .werewolf(let v)?:
+      case .guard(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
-      case .whiteWerewolf(let v)?:
+      case .werewolf(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
-      case .halfBlood(let v)?:
+      case .whiteWerewolf(let v)?:
         try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+      case .halfBlood(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+      case .sheriff(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
       case nil: break
       }
     }
@@ -1317,8 +1353,8 @@ extension Werewolf_TakeActionRequest: SwiftProtobuf.Message, SwiftProtobuf._Mess
   }
 }
 
-extension Werewolf_TakeActionRequest.SeerAction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = Werewolf_TakeActionRequest.protoMessageName + ".SeerAction"
+extension Werewolf_TakeActionRequest.CompleteDarknessAction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = Werewolf_TakeActionRequest.protoMessageName + ".CompleteDarknessAction"
   static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1330,7 +1366,36 @@ extension Werewolf_TakeActionRequest.SeerAction: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
+  func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionRequest.CompleteDarknessAction) -> Bool {
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Werewolf_TakeActionRequest.SeerAction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = Werewolf_TakeActionRequest.protoMessageName + ".SeerAction"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "seat_id"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.seatID)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.seatID.isEmpty {
+      try visitor.visitSingularStringField(value: self.seatID, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
   func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionRequest.SeerAction) -> Bool {
+    if self.seatID != other.seatID {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
@@ -1338,18 +1403,34 @@ extension Werewolf_TakeActionRequest.SeerAction: SwiftProtobuf.Message, SwiftPro
 
 extension Werewolf_TakeActionRequest.WitchAction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = Werewolf_TakeActionRequest.protoMessageName + ".WitchAction"
-  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "poison_seat_id"),
+    2: .standard(proto: "cure_seat_id"),
+  ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.poisonSeatID)
+      case 2: try decoder.decodeSingularStringField(value: &self.cureSeatID)
+      default: break
+      }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.poisonSeatID.isEmpty {
+      try visitor.visitSingularStringField(value: self.poisonSeatID, fieldNumber: 1)
+    }
+    if !self.cureSeatID.isEmpty {
+      try visitor.visitSingularStringField(value: self.cureSeatID, fieldNumber: 2)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionRequest.WitchAction) -> Bool {
+    if self.poisonSeatID != other.poisonSeatID {return false}
+    if self.cureSeatID != other.cureSeatID {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
@@ -1376,18 +1457,28 @@ extension Werewolf_TakeActionRequest.HunterAction: SwiftProtobuf.Message, SwiftP
 
 extension Werewolf_TakeActionRequest.GuardAction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = Werewolf_TakeActionRequest.protoMessageName + ".GuardAction"
-  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "seat_id"),
+  ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.seatID)
+      default: break
+      }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.seatID.isEmpty {
+      try visitor.visitSingularStringField(value: self.seatID, fieldNumber: 1)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionRequest.GuardAction) -> Bool {
+    if self.seatID != other.seatID {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
@@ -1395,18 +1486,28 @@ extension Werewolf_TakeActionRequest.GuardAction: SwiftProtobuf.Message, SwiftPr
 
 extension Werewolf_TakeActionRequest.WerewolfAction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = Werewolf_TakeActionRequest.protoMessageName + ".WerewolfAction"
-  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "seat_id"),
+  ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.seatID)
+      default: break
+      }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.seatID.isEmpty {
+      try visitor.visitSingularStringField(value: self.seatID, fieldNumber: 1)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionRequest.WerewolfAction) -> Bool {
+    if self.seatID != other.seatID {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
@@ -1433,6 +1534,35 @@ extension Werewolf_TakeActionRequest.WhiteWerewolfAction: SwiftProtobuf.Message,
 
 extension Werewolf_TakeActionRequest.HalfBloodAction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = Werewolf_TakeActionRequest.protoMessageName + ".HalfBloodAction"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "seat_id"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularStringField(value: &self.seatID)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.seatID.isEmpty {
+      try visitor.visitSingularStringField(value: self.seatID, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionRequest.HalfBloodAction) -> Bool {
+    if self.seatID != other.seatID {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Werewolf_TakeActionRequest.CompleteSheriffAction: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = Werewolf_TakeActionRequest.protoMessageName + ".CompleteSheriffAction"
   static let _protobuf_nameMap = SwiftProtobuf._NameMap()
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1444,7 +1574,7 @@ extension Werewolf_TakeActionRequest.HalfBloodAction: SwiftProtobuf.Message, Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionRequest.HalfBloodAction) -> Bool {
+  func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionRequest.CompleteSheriffAction) -> Bool {
     if unknownFields != other.unknownFields {return false}
     return true
   }
@@ -1452,18 +1582,178 @@ extension Werewolf_TakeActionRequest.HalfBloodAction: SwiftProtobuf.Message, Swi
 
 extension Werewolf_TakeActionResponse: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".TakeActionResponse"
-  static let _protobuf_nameMap = SwiftProtobuf._NameMap()
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "seer"),
+    2: .same(proto: "hunter"),
+    3: .standard(proto: "white_werewolf"),
+  ]
+
+  fileprivate class _StorageClass {
+    var _result: Werewolf_TakeActionResponse.OneOf_Result?
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _result = source._result
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let _ = try decoder.nextFieldNumber() {
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1:
+          var v: Werewolf_TakeActionResponse.SeerResult?
+          if let current = _storage._result {
+            try decoder.handleConflictingOneOf()
+            if case .seer(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._result = .seer(v)}
+        case 2:
+          var v: Werewolf_TakeActionResponse.HunterResult?
+          if let current = _storage._result {
+            try decoder.handleConflictingOneOf()
+            if case .hunter(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._result = .hunter(v)}
+        case 3:
+          var v: Werewolf_TakeActionResponse.WhiteWerewolfResult?
+          if let current = _storage._result {
+            try decoder.handleConflictingOneOf()
+            if case .whiteWerewolf(let m) = current {v = m}
+          }
+          try decoder.decodeSingularMessageField(value: &v)
+          if let v = v {_storage._result = .whiteWerewolf(v)}
+        default: break
+        }
+      }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      switch _storage._result {
+      case .seer(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      case .hunter(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      case .whiteWerewolf(let v)?:
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      case nil: break
+      }
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionResponse) -> Bool {
+    if _storage !== other._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let other_storage = _args.1
+        if _storage._result != other_storage._result {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Werewolf_TakeActionResponse.SeerResult: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = Werewolf_TakeActionResponse.protoMessageName + ".SeerResult"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "is_werewolf"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBoolField(value: &self.isWerewolf)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.isWerewolf != false {
+      try visitor.visitSingularBoolField(value: self.isWerewolf, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionResponse.SeerResult) -> Bool {
+    if self.isWerewolf != other.isWerewolf {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Werewolf_TakeActionResponse.HunterResult: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = Werewolf_TakeActionResponse.protoMessageName + ".HunterResult"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "good_to_fire"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBoolField(value: &self.goodToFire)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.goodToFire != false {
+      try visitor.visitSingularBoolField(value: self.goodToFire, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionResponse.HunterResult) -> Bool {
+    if self.goodToFire != other.goodToFire {return false}
+    if unknownFields != other.unknownFields {return false}
+    return true
+  }
+}
+
+extension Werewolf_TakeActionResponse.WhiteWerewolfResult: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = Werewolf_TakeActionResponse.protoMessageName + ".WhiteWerewolfResult"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .standard(proto: "good_to_kill"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      switch fieldNumber {
+      case 1: try decoder.decodeSingularBoolField(value: &self.goodToKill)
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if self.goodToKill != false {
+      try visitor.visitSingularBoolField(value: self.goodToKill, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionResponse.WhiteWerewolfResult) -> Bool {
+    if self.goodToKill != other.goodToKill {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
@@ -1473,32 +1763,66 @@ extension Werewolf_Room: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
   static let protoMessageName: String = _protobuf_package + ".Room"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "seats"),
-    2: .standard(proto: "game_id"),
+    2: .same(proto: "game"),
   ]
 
+  fileprivate class _StorageClass {
+    var _seats: [Werewolf_Seat] = []
+    var _game: Werewolf_Game? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _seats = source._seats
+      _game = source._game
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      switch fieldNumber {
-      case 1: try decoder.decodeRepeatedMessageField(value: &self.seats)
-      case 2: try decoder.decodeSingularStringField(value: &self.gameID)
-      default: break
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        switch fieldNumber {
+        case 1: try decoder.decodeRepeatedMessageField(value: &_storage._seats)
+        case 2: try decoder.decodeSingularMessageField(value: &_storage._game)
+        default: break
+        }
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.seats.isEmpty {
-      try visitor.visitRepeatedMessageField(value: self.seats, fieldNumber: 1)
-    }
-    if !self.gameID.isEmpty {
-      try visitor.visitSingularStringField(value: self.gameID, fieldNumber: 2)
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if !_storage._seats.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._seats, fieldNumber: 1)
+      }
+      if let v = _storage._game {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   func _protobuf_generated_isEqualTo(other: Werewolf_Room) -> Bool {
-    if self.seats != other.seats {return false}
-    if self.gameID != other.gameID {return false}
+    if _storage !== other._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let other_storage = _args.1
+        if _storage._seats != other_storage._seats {return false}
+        if _storage._game != other_storage._game {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
     if unknownFields != other.unknownFields {return false}
     return true
   }
@@ -1620,16 +1944,16 @@ extension Werewolf_Game: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
   static let protoMessageName: String = _protobuf_package + ".Game"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
-    3: .same(proto: "state"),
-    4: .standard(proto: "dead_player_numbers"),
+    2: .same(proto: "state"),
+    3: .standard(proto: "dead_player_numbers"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
       case 1: try decoder.decodeSingularStringField(value: &self.id)
-      case 3: try decoder.decodeSingularEnumField(value: &self.state)
-      case 4: try decoder.decodeRepeatedStringField(value: &self.deadPlayerNumbers)
+      case 2: try decoder.decodeSingularEnumField(value: &self.state)
+      case 3: try decoder.decodeRepeatedStringField(value: &self.deadPlayerNumbers)
       default: break
       }
     }
@@ -1640,10 +1964,10 @@ extension Werewolf_Game: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
       try visitor.visitSingularStringField(value: self.id, fieldNumber: 1)
     }
     if self.state != .unknown {
-      try visitor.visitSingularEnumField(value: self.state, fieldNumber: 3)
+      try visitor.visitSingularEnumField(value: self.state, fieldNumber: 2)
     }
     if !self.deadPlayerNumbers.isEmpty {
-      try visitor.visitRepeatedStringField(value: self.deadPlayerNumbers, fieldNumber: 4)
+      try visitor.visitRepeatedStringField(value: self.deadPlayerNumbers, fieldNumber: 3)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -1668,6 +1992,7 @@ extension Werewolf_Game.State: SwiftProtobuf._ProtoNameProviding {
     6: .same(proto: "WITCH_AWAKE"),
     7: .same(proto: "SEER_AWAKE"),
     8: .same(proto: "HUNTER_AWAKE"),
-    9: .same(proto: "SHERIFF_ELECTION"),
+    9: .same(proto: "WHITE_WEREWOLF_AWAKE"),
+    10: .same(proto: "SHERIFF_ELECTION"),
   ]
 }

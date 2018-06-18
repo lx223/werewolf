@@ -10,106 +10,49 @@ import UIKit
 import RxSwift
 import SwiftGRPC
 import RxCocoa
+import SwiftySound
 
 class RoomViewController: UIViewController {
 
-    @IBOutlet var seats: [SeatView]!
+    @IBOutlet var seatViews: [SeatView]!
     @IBOutlet weak var roleImageView: UIImageView!
 
-    private var seatTaken: Int?
+    private var seatTaken: Werewolf_Seat?
+    private var seerAction = false
 
-    private var roomTitle: String {
-        return "房间: \(self.roomID)"
-    }
-
-    private var showingRole = false
+    private var disposeBag = DisposeBag()
 
     private let gameSrvClient: Werewolf_GameServiceService
     private let userID: String
     private let roomID: String
     private let isHost: Bool
-    private let disposeBag = DisposeBag()
-    private let room = BehaviorRelay<Werewolf_Room?>(value: nil)
+
+    private let game = BehaviorRelay<Werewolf_Game?>(value: nil)
+    private let seats = BehaviorRelay<[Werewolf_Seat]?>(value: nil)
+    private let showingRole = BehaviorRelay<Bool>(value: false)
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let roomLabel = UILabel()
-        roomLabel.text = roomTitle
+        roomLabel.text = "房间: \(roomID)"
         let rightBarButtonItem = UIBarButtonItem(customView: roomLabel)
         navigationItem.setRightBarButton(rightBarButtonItem, animated: false)
 
-        seats.sort { $0.number < $1.number }
-        seats.forEach{ $0.attachRecogniser(numOfTap: 1, forTarget: self, withAction: #selector(onSeatPressed)) }
+        seatViews.sort { $0.number < $1.number }
+        seatViews.forEach{ $0.attachRecogniser(numOfTap: 1, forTarget: self, withAction: #selector(onSeatPressed)) }
 
         roleImageView.attachRecogniser(numOfTap: 1, forTarget: self, withAction: #selector(onRoleImageViewPressed))
-        roleImageView.isUserInteractionEnabled = true
 
-        var req = Werewolf_GetRoomRequest()
-        req.roomID = self.roomID
-        Observable<Int>
-            .timer(RxTimeInterval(0), period: RxTimeInterval(2), scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
-            .flatMapLatest { _ -> Observable<Werewolf_Room> in
-                return Observable<Werewolf_Room>.create { observer -> Disposable in
-                    let getRoomCall = try? self.gameSrvClient.getRoom(req) { (res, callResult) in
-                        guard let room = res?.room else {
-                            observer.onError(callResult)
-                            return
-                        }
-                        observer.onNext(room)
-                    }
-                    return Disposables.create {
-                        getRoomCall?.cancel()
-                    }
-                }
-            }
-            .observeOn(MainScheduler.asyncInstance)
-            .distinctUntilChanged()
-            .subscribe(onNext: { (room) in
-                self.room.accept(room)
-            }, onError: { (error) in
-                self.showAlert(for: nil, orMessage: (error as? CallResult)?.statusMessage)
-            })
-            .disposed(by: disposeBag)
+        initGetRoomStream()
+        configureSeatsSubscription()
+        configureGameSubscription()
+    }
 
-        room
-            .asObservable()
-            .flatMapLatest({ room -> Observable<Werewolf_Seat?> in
-                return Observable.create({ (observer) -> Disposable in
-                    observer.onNext(room?.seats.filter{ $0.user.id == self.userID }.first)
-                    return Disposables.create()
-                })
-            })
-            .distinctUntilChanged()
-            .observeOn(MainScheduler.asyncInstance)
-            .subscribe(onNext: { (seat) in
-                self.roleImageView.isHidden = seat == nil
-            }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .disposed(by: disposeBag)
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
 
-        room
-            .asObservable()
-            .flatMapLatest {
-                Observable.of($0?.seats)
-            }
-            .distinctUntilChanged()
-            .observeOn(MainScheduler.asyncInstance)
-            .subscribe(onNext: { (seatsOption) in
-                guard let seats = seatsOption else {
-                    return
-                }
-
-                for i in 0..<seats.count {
-                    self.seats[i].alpha = 1.0
-                    self.seats[i].taken = seats[i].hasUser
-                }
-
-                for i in seats.count..<self.seats.count {
-                    self.seats[i].alpha = 0.0
-                }
-            }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .disposed(by: disposeBag)
-
+        disposeBag = DisposeBag()
     }
 
     init(roomID: String, userID: String, client: Werewolf_GameServiceService, isHost: Bool = false) {
@@ -128,16 +71,7 @@ class RoomViewController: UIViewController {
 
 extension RoomViewController {
     @objc func onRoleImageViewPressed(_ sender: UITapGestureRecognizer) {
-        guard let view = sender.view as? UIImageView, let seat = seatTaken, let role = room.value?.seats[seat - 1].role else {
-            return
-        }
-        
-        if showingRole {
-            view.image = #imageLiteral(resourceName: "卡背")
-        } else {
-            view.image = UIImage.image(forRole: role)
-        }
-        showingRole = !showingRole
+        showingRole.accept(!showingRole.value)
     }
 
     @IBAction func onStartGameButtonPressed(_ btn: UIBarButtonItem) {
@@ -154,11 +88,29 @@ extension RoomViewController {
     }
 
     @IBAction func onLastNightButtonPressed(_ btn: UIBarButtonItem) {
-        print("last night result")
+        guard let deadPlayerString = game.value?.deadPlayerNumbers.joined(separator: ",") else {
+            return
+        }
+
+        var msg = "昨夜是平安夜"
+        if !deadPlayerString.isEmpty {
+            msg = "昨夜死亡的玩家: \(deadPlayerString)"
+        }
+        showAlert(for: nil, orMessage: msg)
     }
 
     @IBAction func onUseSkillButtonPressed(_ btn: UIBarButtonItem) {
-        print("use skill")
+        guard let role = seatTaken?.role else {
+            return
+        }
+
+        switch role {
+        case .seer:
+            showAlert(for: nil, orMessage: "点击要验的💺")
+            seerAction = true
+        default:
+            break
+        }
     }
 
     @IBAction func onReassignButtonPressed(_ btn: UIBarButtonItem) {
@@ -175,7 +127,16 @@ extension RoomViewController {
     }
 
     @objc func onSeatPressed(_ sender: UITapGestureRecognizer) {
-        guard let seatView = sender.view as? SeatView, let seatID = room.value?.seats[seatView.number - 1].id else {
+        if seerAction {
+            guard let seatView = sender.view as? SeatView, let role = seats.value?[seatView.number - 1].role else {
+                return
+            }
+
+            showAlert(for: nil, orMessage: "\(role)")
+            return
+        }
+
+        guard let seatView = sender.view as? SeatView, let seatID = seats.value?[seatView.number - 1].id else {
             return
         }
 
@@ -190,9 +151,132 @@ extension RoomViewController {
             }
 
             self.showAlert(for: nil, orMessage: "Took seat \(seatView.number)")
-            self.seatTaken = seatView.number
         }
     }
 }
 
+private extension RoomViewController {
+     func initGetRoomStream() {
+        var req = Werewolf_GetRoomRequest()
+        req.roomID = self.roomID
+        Observable<Int>
+            .timer(RxTimeInterval(0), period: RxTimeInterval(2), scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
+            .flatMapLatest { _ -> Observable<Werewolf_Room> in
+                return Observable<Werewolf_Room>.create { observer -> Disposable in
+                    let getRoomCall = try? self.gameSrvClient.getRoom(req) { (res, callResult) in
+                        guard let room = res?.room else {
+                            observer.onError(callResult)
+                            return
+                        }
+                        observer.onNext(room)
+                    }
+                    return Disposables.create {
+                        getRoomCall?.cancel()
+                    }
+                }
+            }
+            .distinctUntilChanged()
+            .subscribe(onNext: { (room) in
+                self.seats.accept(room.seats)
+                self.game.accept(room.game)
+            }, onError: { (error) in
+                self.showAlert(for: nil, orMessage: (error as? CallResult)?.statusMessage)
+            })
+            .disposed(by: disposeBag)
+    }
 
+     func configureSeatsSubscription() {
+        let distinctSeats = seats
+            .asObservable()
+            .distinctUntilChanged()
+
+        distinctSeats
+            .subscribe(onNext: { (seats) in
+                self.seatTaken = seats?.first(where: { (seat) -> Bool in
+                    seat.user.id == self.userID
+                })
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
+
+        distinctSeats
+            .flatMapLatest{ (seats) -> Observable<Bool> in
+                return Observable.create({ (observer) -> Disposable in
+                    observer.onNext(seats?.first(where: { (seat) -> Bool in
+                        seat.user.id == self.userID
+                    }) == nil)
+                    return Disposables.create()
+                })
+            }
+            .bind(to: roleImageView.rx.isHidden)
+            .disposed(by: disposeBag)
+
+        distinctSeats
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { (seatsOption) in
+                guard let seats = seatsOption else {
+                    return
+                }
+
+                for i in 0..<seats.count {
+                    self.seatViews[i].alpha = 1.0
+                    self.seatViews[i].taken = seats[i].hasUser
+                }
+
+                for i in seats.count..<self.seatViews.count {
+                    self.seatViews[i].alpha = 0.0
+                }
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
+
+        let roleImage = distinctSeats
+            .flatMapLatest{ (seats) -> Observable<UIImage?> in
+                return Observable.create({ (observer) -> Disposable in
+                    if let role = seats?.first(where: { (seat) -> Bool in
+                        seat.user.id == self.userID
+                    })?.role {
+                        observer.onNext(UIImage.image(forRole: role))
+                    }
+
+                    return Disposables.create()
+                })
+            }
+
+        Observable
+            .combineLatest(roleImage, showingRole.asObservable()) { (role, showing) -> UIImage? in
+                if !showing {
+                    return #imageLiteral(resourceName: "卡背")
+                }
+                return role
+            }
+            .bind(to: roleImageView.rx.image)
+            .disposed(by: disposeBag)
+    }
+
+    func configureGameSubscription() {
+        game
+            .asObservable()
+            .distinctUntilChanged()
+            .subscribe(onNext: { (gameOptional) in
+                guard let game = gameOptional else {
+                    return
+                }
+
+                switch game.state {
+                case .darknessFalls:
+                    Sound.play(file: "darkness_falls.mp3")
+                case .orphanAwake: break
+                case .halfBloodAwake: break
+                case .guardianAwake: break
+                case .werewolfAwake: break
+                case .witchAwake: break
+                case .seerAwake: break
+                case .hunterAwake: break
+                case .whiteWerewolfAwake: break
+                case .sheriffElection: break
+                default:
+                    break
+                }
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
+    }
+}

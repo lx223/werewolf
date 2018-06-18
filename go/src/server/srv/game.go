@@ -95,6 +95,8 @@ func (s *GameService) UpdateGameConfig(ctx context.Context, req *werewolf.Update
 	}
 	room.StoreSeats(seats)
 
+	room.Game = nil
+
 	return &werewolf.UpdateGameConfigResponse{}, nil
 }
 
@@ -116,7 +118,7 @@ func (s *GameService) TakeSeat(ctx context.Context, req *werewolf.TakeSeatReques
 
 	seatId := req.GetSeatId()
 	userId := req.GetUserId()
-	roomId, _ := util.GetRoomIdFromSeatIdOrUserId(seatId)
+	roomId, _ := util.GetRoomId(seatId)
 
 	room := s.rooms[roomId]
 
@@ -148,16 +150,34 @@ func (s *GameService) ReassignRoles(ctx context.Context, req *werewolf.ReassignR
 }
 
 func (s *GameService) StartGame(ctx context.Context, req *werewolf.StartGameRequest) (*werewolf.StartGameResponse, error) {
-	// TODO: implement this.
-	return nil, status.Error(codes.Unimplemented, "StartGame not implemented yet!")
-}
+	if err := s.validateStartGameRequest(req); err != nil {
+		return nil, err
+	}
 
-func (s *GameService) GetGame(ctx context.Context, req *werewolf.GetGameRequest) (*werewolf.GetGameResponse, error) {
-	// TODO: implement this.
-	return nil, status.Error(codes.Unimplemented, "GetGameState not implemented yet!")
+	roomId := req.GetRoomId()
+	room := s.rooms[roomId]
+
+	var seats []entity.Seat
+	for _, seat := range room.GetSortedSeats() {
+		seats = append(seats, *seat)
+	}
+	room.Game = entity.NewGame(roomId, room.Roles, seats)
+
+	return &werewolf.StartGameResponse{}, nil
 }
 
 func (s *GameService) TakeAction(ctx context.Context, req *werewolf.TakeActionRequest) (*werewolf.TakeActionResponse, error) {
-	// TODO: implement this.
-	return nil, status.Error(codes.Unimplemented, "not implemented")
+	if err := s.validateTakeActionRequest(req); err != nil {
+		return nil, err
+	}
+
+	gameId := req.GetGameId()
+	roomId, _ := util.GetRoomId(gameId)
+
+	room := s.rooms[roomId]
+	game := room.Game
+	game.Actions = append(game.Actions, req)
+	game.AdvanceToNextState()
+
+	return &werewolf.TakeActionResponse{}, nil
 }

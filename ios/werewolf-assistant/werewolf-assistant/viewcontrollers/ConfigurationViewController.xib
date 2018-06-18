@@ -46,13 +46,29 @@
                                             </constraints>
                                         </imageView>
                                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I9M-FF-xdn" customClass="UINumberPickerView" customModule="werewolf_assistant" customModuleProvider="target">
-                                            <rect key="frame" x="83" y="0.0" width="93" height="75"/>
+                                            <rect key="frame" x="83" y="0.0" width="92.5" height="75"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="lowestNumber">
+                                                    <integer key="value" value="0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="highestNumber">
+                                                    <integer key="value" value="6"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </pickerView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="狼人" translatesAutoresizingMaskIntoConstraints="NO" id="hHM-Yf-hJx">
                                             <rect key="frame" x="183.5" y="0.0" width="75" height="75"/>
                                         </imageView>
                                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HrJ-Pu-pfC" customClass="UINumberPickerView" customModule="werewolf_assistant" customModuleProvider="target">
                                             <rect key="frame" x="266.5" y="0.0" width="92.5" height="75"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="lowestNumber">
+                                                    <integer key="value" value="0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="highestNumber">
+                                                    <integer key="value" value="6"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </pickerView>
                                     </subviews>
                                     <constraints>

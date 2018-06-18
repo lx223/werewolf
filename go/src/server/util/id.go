@@ -24,7 +24,11 @@ func NewUserId(roomId string) string {
 	return fmt.Sprintf("%s%s%d", roomId, separator, RandomInt64())
 }
 
-func GetRoomIdFromSeatIdOrUserId(id string) (string, error) {
+func NewGameId(roomId string) string {
+	return fmt.Sprintf("%s%s%d", roomId, separator, RandomInt64())
+}
+
+func GetRoomId(id string) (string, error) {
 	parts := strings.Split(id, "/")
 	if len(parts) != 2 {
 		return "", errors.New("wrong id format")

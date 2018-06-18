@@ -67,12 +67,6 @@ fileprivate final class Werewolf_GameServiceStartGameCallBase: ClientCallUnaryBa
   override class var method: String { return "/werewolf.GameService/StartGame" }
 }
 
-internal protocol Werewolf_GameServiceGetGameCall: ClientCallUnary {}
-
-fileprivate final class Werewolf_GameServiceGetGameCallBase: ClientCallUnaryBase<Werewolf_GetGameRequest, Werewolf_GetGameResponse>, Werewolf_GameServiceGetGameCall {
-  override class var method: String { return "/werewolf.GameService/GetGame" }
-}
-
 internal protocol Werewolf_GameServiceTakeActionCall: ClientCallUnary {}
 
 fileprivate final class Werewolf_GameServiceTakeActionCallBase: ClientCallUnaryBase<Werewolf_TakeActionRequest, Werewolf_TakeActionResponse>, Werewolf_GameServiceTakeActionCall {
@@ -116,11 +110,6 @@ internal protocol Werewolf_GameServiceService: ServiceClient {
   func startGame(_ request: Werewolf_StartGameRequest) throws -> Werewolf_StartGameResponse
   /// Asynchronous. Unary.
   func startGame(_ request: Werewolf_StartGameRequest, completion: @escaping (Werewolf_StartGameResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceStartGameCall
-
-  /// Synchronous. Unary.
-  func getGame(_ request: Werewolf_GetGameRequest) throws -> Werewolf_GetGameResponse
-  /// Asynchronous. Unary.
-  func getGame(_ request: Werewolf_GetGameRequest, completion: @escaping (Werewolf_GetGameResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceGetGameCall
 
   /// Synchronous. Unary.
   func takeAction(_ request: Werewolf_TakeActionRequest) throws -> Werewolf_TakeActionResponse
@@ -204,17 +193,6 @@ internal final class Werewolf_GameServiceServiceClient: ServiceClientBase, Werew
   /// Asynchronous. Unary.
   internal func startGame(_ request: Werewolf_StartGameRequest, completion: @escaping (Werewolf_StartGameResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceStartGameCall {
     return try Werewolf_GameServiceStartGameCallBase(channel)
-      .start(request: request, metadata: metadata, completion: completion)
-  }
-
-  /// Synchronous. Unary.
-  internal func getGame(_ request: Werewolf_GetGameRequest) throws -> Werewolf_GetGameResponse {
-    return try Werewolf_GameServiceGetGameCallBase(channel)
-      .run(request: request, metadata: metadata)
-  }
-  /// Asynchronous. Unary.
-  internal func getGame(_ request: Werewolf_GetGameRequest, completion: @escaping (Werewolf_GetGameResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceGetGameCall {
-    return try Werewolf_GameServiceGetGameCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 

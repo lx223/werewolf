@@ -5,6 +5,8 @@ import (
 
 	"server/util"
 
+	"server/entity"
+
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -28,6 +30,10 @@ func (s *GameService) validateUpdateGameConfig(req *werewolf.UpdateGameConfigReq
 		return status.Error(codes.NotFound, "room not found")
 	}
 
+	if len(req.GetRoleCounts()) == 0 {
+		return status.Error(codes.InvalidArgument, "empty config")
+	}
+
 	for _, roleCount := range req.GetRoleCounts() {
 		if err := validateRoleCount(roleCount.Role, roleCount.Count); err != nil {
 			return err
@@ -39,18 +45,18 @@ func (s *GameService) validateUpdateGameConfig(req *werewolf.UpdateGameConfigReq
 
 func validateRoleCount(role werewolf.Role, count int32) error {
 	switch role {
-	case werewolf.Role_VILLAGER:
-	case werewolf.Role_WEREWOLF:
+	case werewolf.Role_VILLAGER,
+		werewolf.Role_WEREWOLF:
 		if count <= 0 {
 			return newRoleCountErr(role)
 		}
-	case werewolf.Role_SEER:
-	case werewolf.Role_WITCH:
-	case werewolf.Role_HUNTER:
-	case werewolf.Role_IDIOT:
-	case werewolf.Role_GUARDIAN:
-	case werewolf.Role_WHITE_WEREWOLF:
-	case werewolf.Role_HALF_BLOOD:
+	case werewolf.Role_SEER,
+		werewolf.Role_WITCH,
+		werewolf.Role_HUNTER,
+		werewolf.Role_IDIOT,
+		werewolf.Role_GUARDIAN,
+		werewolf.Role_WHITE_WEREWOLF,
+		werewolf.Role_HALF_BLOOD:
 		if count > 1 || count < 0 {
 			return newRoleCountErr(role)
 		}
@@ -75,7 +81,7 @@ func (s *GameService) validateGetRoomReq(req *werewolf.GetRoomRequest) error {
 func (s *GameService) validateTakeSeatRequest(req *werewolf.TakeSeatRequest) error {
 	userId := req.GetUserId()
 	seatId := req.GetSeatId()
-	roomId, err := util.GetRoomIdFromSeatIdOrUserId(userId)
+	roomId, err := util.GetRoomId(userId)
 	if err != nil {
 		return status.Error(codes.InvalidArgument, err.Error())
 	}
@@ -102,5 +108,71 @@ func (s *GameService) validateReassignRolesRequest(req *werewolf.ReassignRolesRe
 		return status.Error(codes.InvalidArgument, "invalid user id or seat id")
 	}
 
+	return nil
+}
+
+func (s *GameService) validateStartGameRequest(req *werewolf.StartGameRequest) error {
+	roomId := req.GetRoomId()
+	room, ok := s.rooms[roomId]
+	if !ok {
+		return status.Error(codes.InvalidArgument, "room not found")
+	}
+
+	for _, seat := range room.GetSortedSeats() {
+		if seat.User == nil {
+			return status.Error(codes.FailedPrecondition, "not all seats taken")
+		}
+	}
+
+	return nil
+}
+
+func (s *GameService) validateTakeActionRequest(req *werewolf.TakeActionRequest) error {
+	gameId := req.GetGameId()
+	roomId, err := util.GetRoomId(gameId)
+	if err != nil {
+		return status.Error(codes.InvalidArgument, err.Error())
+	}
+
+	room, ok := s.rooms[roomId]
+	if !ok {
+		return status.Error(codes.InvalidArgument, "room not found")
+	}
+
+	game := room.Game
+	if game == nil || game.Id != gameId {
+		return status.Error(codes.InvalidArgument, "game not found")
+	}
+
+	switch req.GetAction().(type) {
+	case *werewolf.TakeActionRequest_Darkness:
+		return validateRequiredActionStateAgainstGameState(game, werewolf.Game_DARKNESS_FALLS)
+	case *werewolf.TakeActionRequest_Guard:
+		return validateRequiredActionStateAgainstGameState(game, werewolf.Game_GUARDIAN_AWAKE)
+	case *werewolf.TakeActionRequest_HalfBlood:
+		return validateRequiredActionStateAgainstGameState(game, werewolf.Game_HALF_BLOOD_AWAKE)
+	case *werewolf.TakeActionRequest_Hunter:
+		return validateRequiredActionStateAgainstGameState(game, werewolf.Game_HUNTER_AWAKE)
+	case *werewolf.TakeActionRequest_Seer:
+		return validateRequiredActionStateAgainstGameState(game, werewolf.Game_SEER_AWAKE)
+	case *werewolf.TakeActionRequest_Werewolf:
+		return validateRequiredActionStateAgainstGameState(game, werewolf.Game_WEREWOLF_AWAKE)
+	case *werewolf.TakeActionRequest_WhiteWerewolf:
+		return validateRequiredActionStateAgainstGameState(game, werewolf.Game_WHITE_WEREWOLF_AWAKE)
+	case *werewolf.TakeActionRequest_Witch:
+		return validateRequiredActionStateAgainstGameState(game, werewolf.Game_GUARDIAN_AWAKE)
+	case *werewolf.TakeActionRequest_Sheriff:
+		return validateRequiredActionStateAgainstGameState(game, werewolf.Game_SHERIFF_ELECTION)
+	default:
+		return status.Error(codes.InvalidArgument, "unsupported action")
+	}
+
+	return nil
+}
+
+func validateRequiredActionStateAgainstGameState(game *entity.Game, requiredState werewolf.Game_State) error {
+	if game.State != requiredState {
+		return status.Errorf(codes.FailedPrecondition, "game state: %s, required state: %s", game.State.String(), requiredState.String())
+	}
 	return nil
 }

@@ -10,6 +10,7 @@ target 'werewolf-assistant' do
   pod 'SwiftGRPC',      '~> 0.4.3'
   pod 'RxSwift',        '~> 4.2.0'
   pod 'RxCocoa',        '~> 4.2.0'
+  pod 'SwiftySound',    '~> 1.0.0'
 
   target 'werewolf-assistantTests' do
     inherit! :search_paths

@@ -77,19 +77,14 @@ func (r *Room) ToProto() *werewolf.Room {
 		return nil
 	}
 
-	var gameId string
-	if r.Game != nil {
-		gameId = r.Game.Id
-	}
-
 	var seatsProto []*werewolf.Seat
 	for _, s := range r.GetSortedSeats() {
 		seatsProto = append(seatsProto, s.ToProto())
 	}
 
 	return &werewolf.Room{
-		Seats:  seatsProto,
-		GameId: gameId,
+		Seats: seatsProto,
+		Game:  r.Game.ToProto(),
 	}
 }
 
