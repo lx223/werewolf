@@ -74,6 +74,37 @@ enum Werewolf_Role: SwiftProtobuf.Enum {
 
 }
 
+enum Werewolf_Ruling: SwiftProtobuf.Enum {
+  typealias RawValue = Int
+  case unknownRuling // = 0
+  case positive // = 1
+  case negative // = 2
+  case UNRECOGNIZED(Int)
+
+  init() {
+    self = .unknownRuling
+  }
+
+  init?(rawValue: Int) {
+    switch rawValue {
+    case 0: self = .unknownRuling
+    case 1: self = .positive
+    case 2: self = .negative
+    default: self = .UNRECOGNIZED(rawValue)
+    }
+  }
+
+  var rawValue: Int {
+    switch self {
+    case .unknownRuling: return 0
+    case .positive: return 1
+    case .negative: return 2
+    case .UNRECOGNIZED(let i): return i
+    }
+  }
+
+}
+
 struct Werewolf_CreateAndJoinRoomRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -542,7 +573,7 @@ struct Werewolf_TakeActionResponse {
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
 
-    var isWerewolf: Bool = false
+    var ruling: Werewolf_Ruling = .unknownRuling
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -554,7 +585,7 @@ struct Werewolf_TakeActionResponse {
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
 
-    var goodToFire: Bool = false
+    var ruling: Werewolf_Ruling = .unknownRuling
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -566,7 +597,7 @@ struct Werewolf_TakeActionResponse {
     // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
     // methods supported on all messages.
 
-    var goodToKill: Bool = false
+    var ruling: Werewolf_Ruling = .unknownRuling
 
     var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -737,6 +768,14 @@ extension Werewolf_Role: SwiftProtobuf._ProtoNameProviding {
     8: .same(proto: "WHITE_WEREWOLF"),
     9: .same(proto: "ORPHAN"),
     10: .same(proto: "HALF_BLOOD"),
+  ]
+}
+
+extension Werewolf_Ruling: SwiftProtobuf._ProtoNameProviding {
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    0: .same(proto: "UNKNOWN_RULING"),
+    1: .same(proto: "POSITIVE"),
+    2: .same(proto: "NEGATIVE"),
   ]
 }
 
@@ -1675,27 +1714,27 @@ extension Werewolf_TakeActionResponse: SwiftProtobuf.Message, SwiftProtobuf._Mes
 extension Werewolf_TakeActionResponse.SeerResult: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = Werewolf_TakeActionResponse.protoMessageName + ".SeerResult"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "is_werewolf"),
+    1: .same(proto: "ruling"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeSingularBoolField(value: &self.isWerewolf)
+      case 1: try decoder.decodeSingularEnumField(value: &self.ruling)
       default: break
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.isWerewolf != false {
-      try visitor.visitSingularBoolField(value: self.isWerewolf, fieldNumber: 1)
+    if self.ruling != .unknownRuling {
+      try visitor.visitSingularEnumField(value: self.ruling, fieldNumber: 1)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionResponse.SeerResult) -> Bool {
-    if self.isWerewolf != other.isWerewolf {return false}
+    if self.ruling != other.ruling {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
@@ -1704,27 +1743,27 @@ extension Werewolf_TakeActionResponse.SeerResult: SwiftProtobuf.Message, SwiftPr
 extension Werewolf_TakeActionResponse.HunterResult: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = Werewolf_TakeActionResponse.protoMessageName + ".HunterResult"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "good_to_fire"),
+    1: .same(proto: "ruling"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeSingularBoolField(value: &self.goodToFire)
+      case 1: try decoder.decodeSingularEnumField(value: &self.ruling)
       default: break
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.goodToFire != false {
-      try visitor.visitSingularBoolField(value: self.goodToFire, fieldNumber: 1)
+    if self.ruling != .unknownRuling {
+      try visitor.visitSingularEnumField(value: self.ruling, fieldNumber: 1)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionResponse.HunterResult) -> Bool {
-    if self.goodToFire != other.goodToFire {return false}
+    if self.ruling != other.ruling {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }
@@ -1733,27 +1772,27 @@ extension Werewolf_TakeActionResponse.HunterResult: SwiftProtobuf.Message, Swift
 extension Werewolf_TakeActionResponse.WhiteWerewolfResult: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = Werewolf_TakeActionResponse.protoMessageName + ".WhiteWerewolfResult"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "good_to_kill"),
+    1: .same(proto: "ruling"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
     while let fieldNumber = try decoder.nextFieldNumber() {
       switch fieldNumber {
-      case 1: try decoder.decodeSingularBoolField(value: &self.goodToKill)
+      case 1: try decoder.decodeSingularEnumField(value: &self.ruling)
       default: break
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if self.goodToKill != false {
-      try visitor.visitSingularBoolField(value: self.goodToKill, fieldNumber: 1)
+    if self.ruling != .unknownRuling {
+      try visitor.visitSingularEnumField(value: self.ruling, fieldNumber: 1)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionResponse.WhiteWerewolfResult) -> Bool {
-    if self.goodToKill != other.goodToKill {return false}
+    if self.ruling != other.ruling {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }

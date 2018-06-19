@@ -11,6 +11,7 @@ import RxSwift
 import SwiftGRPC
 import RxCocoa
 import SwiftySound
+import MaterialComponents
 
 class RoomViewController: UIViewController {
 
@@ -18,7 +19,6 @@ class RoomViewController: UIViewController {
     @IBOutlet weak var roleImageView: UIImageView!
 
     private var seatTaken: Werewolf_Seat?
-    private var seerAction = false
 
     private var disposeBag = DisposeBag()
 
@@ -100,14 +100,64 @@ extension RoomViewController {
     }
 
     @IBAction func onUseSkillButtonPressed(_ btn: UIBarButtonItem) {
-        guard let role = seatTaken?.role else {
+        guard let role = seatTaken?.role, let gameID = game.value?.id else {
             return
         }
 
+        var req = Werewolf_TakeActionRequest()
+        req.gameID = gameID
         switch role {
-        case .seer:
-            showAlert(for: nil, orMessage: "点击要验的💺")
-            seerAction = true
+        case .seer,
+             .guardian,
+             .werewolf,
+             .halfBlood:
+            showSnackbar(withMessage: "请选择目标💺")
+        case .hunter:
+            req.hunter = Werewolf_TakeActionRequest.HunterAction()
+            gameSrvClient
+                .takeActionRx(req)
+                .observeOn(MainScheduler.asyncInstance)
+                .subscribe(onNext: { (res) in
+                    self.showSnackbar(withMessage: "\(res.hunter.ruling)")
+                })
+                .disposed(by: disposeBag)
+        case .whiteWerewolf:
+            req.whiteWerewolf = Werewolf_TakeActionRequest.WhiteWerewolfAction()
+            gameSrvClient
+                .takeActionRx(req)
+                .observeOn(MainScheduler.asyncInstance)
+                .subscribe(onNext: { (res) in
+                    self.showSnackbar(withMessage: "\(res.whiteWerewolf.ruling)")
+                })
+                .disposed(by: disposeBag)
+        case .witch:
+            let alert = UIAlertController(title: "女巫", message: "今晚死的是：", preferredStyle: .alert)
+            alert.addTextField { $0.placeholder = "救谁" }
+            alert.addTextField{ $0.placeholder = "毒谁" }
+            alert.addAction(UIAlertAction(title: "确认", style: .default, handler: { (_) in
+                let curedSeatNumber = Int(alert.textFields?.first?.text ?? "")
+                let poisonedSeatNumber = Int(alert.textFields?.last?.text ?? "")
+
+                var curedSeatID = ""
+                var poisonedSeatID = ""
+                if let num = curedSeatNumber {
+                    curedSeatID = self.seats.value?[num - 1].id ?? ""
+                }
+                if let num = poisonedSeatNumber {
+                    poisonedSeatID = self.seats.value?[num - 1].id ?? ""
+                }
+
+                var req = Werewolf_TakeActionRequest()
+                req.witch.cureSeatID = curedSeatID
+                req.witch.poisonSeatID = poisonedSeatID
+                req.gameID = self.game.value?.id ?? ""
+                _ = try? self.gameSrvClient.takeAction(req
+                    , completion: { (res, callResult) in
+                        self.showAlert(for: callResult)
+                })
+            }))
+            alert.addAction(UIAlertAction(title: "不使用", style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
         default:
             break
         }
@@ -127,16 +177,76 @@ extension RoomViewController {
     }
 
     @objc func onSeatPressed(_ sender: UITapGestureRecognizer) {
-        if seerAction {
-            guard let seatView = sender.view as? SeatView, let role = seats.value?[seatView.number - 1].role else {
-                return
-            }
-
-            showAlert(for: nil, orMessage: "\(role)")
+        guard let seatViewPressed = sender.view as? SeatView else {
             return
         }
 
-        guard let seatView = sender.view as? SeatView, let seatID = seats.value?[seatView.number - 1].id else {
+        tryHandleRoleSkill(seatViewPressed)
+        tryHandleSeatTaking(seatViewPressed)
+    }
+
+    func tryHandleRoleSkill(_ seatView: SeatView) {
+        guard let gameState = game.value?.state, let role = seatTaken?.role, let seatID = seats.value?[seatView.number - 1].id, let gameID = game.value?.id else {
+            return
+        }
+
+        var req = Werewolf_TakeActionRequest()
+        req.gameID = gameID
+        switch gameState {
+        case .seerAwake:
+            if role != .seer {
+                return
+            }
+            req.seer.seatID = seatID
+            gameSrvClient
+                .takeActionRx(req)
+                .observeOn(MainScheduler.asyncInstance)
+                .subscribe(onNext: { (res) in
+                    self.showSnackbar(withMessage: "\(res.seer.ruling)")
+                })
+                .disposed(by: disposeBag)
+        case .halfBloodAwake:
+            if role != .halfBlood {
+                return
+            }
+            req.halfBlood.seatID = seatID
+            gameSrvClient
+                .takeActionRx(req)
+                .subscribe(onNext: { (_) in
+                    self.showSnackbar(withMessage: "榜样设立成功")
+                }, onError: nil, onCompleted: nil, onDisposed: nil)
+                .disposed(by: disposeBag)
+        case .guardianAwake:
+            if role != .guardian {
+                return
+            }
+            req.guard.seatID = seatID
+            gameSrvClient
+                .takeActionRx(req)
+                .subscribe(onNext: { (_) in
+                    self.showSnackbar(withMessage: "守卫成功")
+                }, onError: nil, onCompleted: nil, onDisposed: nil)
+                .disposed(by: disposeBag)
+        case .werewolfAwake:
+            if role != .werewolf && role != .whiteWerewolf {
+                return
+            }
+            req.werewolf.seatID = seatID
+            gameSrvClient
+                .takeActionRx(req)
+                .subscribe(onNext: { (_) in
+                    self.showSnackbar(withMessage: "🔪人成功")
+                }, onError: nil, onCompleted: nil, onDisposed: nil)
+                .disposed(by: disposeBag)
+        default:
+            break
+        }
+    }
+
+    func tryHandleSeatTaking(_ seatView: SeatView) {
+        guard let seatID = seats.value?[seatView.number - 1].id,
+            let hasUser = seats.value?[seatView.number - 1].hasUser,
+            !hasUser else {
             return
         }
 
@@ -150,7 +260,7 @@ extension RoomViewController {
                 return
             }
 
-            self.showAlert(for: nil, orMessage: "Took seat \(seatView.number)")
+            self.showSnackbar(withMessage: "Took seat \(seatView.number)")
         }
     }
 }
@@ -255,13 +365,19 @@ private extension RoomViewController {
     func configureGameSubscription() {
         game
             .asObservable()
+            .flatMapLatest {
+                Observable.just($0?.state)
+            }
             .distinctUntilChanged()
-            .subscribe(onNext: { (gameOptional) in
-                guard let game = gameOptional else {
+            .scan(nil, accumulator: { (previous, current) -> Werewolf_Game.State? in
+                // TODO: play closing sound for last round
+                return current
+            })
+            .subscribe(onNext: { (stateOptional) in
+                guard let state = stateOptional else {
                     return
                 }
-
-                switch game.state {
+                switch state {
                 case .darknessFalls:
                     Sound.play(file: "darkness_falls.mp3")
                 case .orphanAwake: break

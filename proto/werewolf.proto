@@ -111,13 +111,13 @@ message TakeActionRequest {
 
 message TakeActionResponse {
     message SeerResult {
-        bool is_werewolf = 1;
+        Ruling ruling = 1;
     }
     message HunterResult {
-        bool good_to_fire = 1;
+        Ruling ruling = 1;
     }
     message WhiteWerewolfResult {
-        bool good_to_kill = 1;
+        Ruling ruling = 1;
     }
     oneof result {
         SeerResult seer = 1;
@@ -175,4 +175,10 @@ enum Role {
     WHITE_WEREWOLF = 8;
     ORPHAN = 9;
     HALF_BLOOD = 10;
+}
+
+enum Ruling {
+    UNKNOWN_RULING = 0;
+    POSITIVE = 1;
+    NEGATIVE = 2;
 }

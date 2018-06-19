@@ -17,24 +17,25 @@ type Game struct {
 }
 
 func NewGame(roomId string, roles []werewolf.Role, seats []Seat) *Game {
+	stateSequence := computePossibleStates(roles)
 	return &Game{
 		Id:      util.NewGameId(roomId),
 		Roles:   roles,
 		Seats:   seats,
-		State:   werewolf.Game_DARKNESS_FALLS,
+		State:   stateSequence[0],
 		Actions: []*werewolf.TakeActionRequest{},
 
 		currentStateIndex: 0,
-		possibleStates:    computePossibleStates(roles),
+		possibleStates:    stateSequence,
 	}
 }
 
 func (g *Game) AdvanceToNextState() {
+	g.currentStateIndex++
 	if g.currentStateIndex >= len(g.possibleStates) {
 		return
 	}
 
-	g.currentStateIndex++
 	g.State = g.possibleStates[g.currentStateIndex]
 }
 
@@ -84,8 +85,7 @@ func computePossibleStates(roles []werewolf.Role) []werewolf.Game_State {
 			if hasRoles[r] {
 				states = append(states, s)
 			}
-		case werewolf.Game_DARKNESS_FALLS,
-			werewolf.Game_SHERIFF_ELECTION:
+		case werewolf.Game_SHERIFF_ELECTION:
 			states = append(states, s)
 		default:
 			break

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SwiftGRPC
+import MaterialComponents
 
 extension UIViewController {
     func showAlert(for callResult: CallResult?, orMessage msg: String? = nil) {
@@ -18,5 +19,10 @@ extension UIViewController {
             alert.addAction(UIAlertAction(title: "👌", style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
+    }
+
+    func showSnackbar(withMessage msg: String) {
+        let message = MDCSnackbarMessage(text: msg)
+        MDCSnackbarManager.show(message)
     }
 }

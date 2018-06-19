@@ -24,6 +24,7 @@
 		B793EA3520D6B12B00F319AD /* WerewolfRoleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA3420D6B12B00F319AD /* WerewolfRoleExtensions.swift */; };
 		B793EA3920D6D19E00F319AD /* CallResultExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA3820D6D19E00F319AD /* CallResultExtensions.swift */; };
 		B7DB22F920D8506B0068F7C7 /* darkness_falls.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B7DB22F820D8506B0068F7C7 /* darkness_falls.mp3 */; };
+		B7DB230220D9B8A60068F7C7 /* GameServiceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB230120D9B8A60068F7C7 /* GameServiceExtensions.swift */; };
 		B7EF75A720CF312F00000A67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF75A620CF312F00000A67 /* AppDelegate.swift */; };
 		B7EF75A920CF312F00000A67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF75A820CF312F00000A67 /* ViewController.swift */; };
 		B7EF75AC20CF312F00000A67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7EF75AA20CF312F00000A67 /* Main.storyboard */; };
@@ -71,6 +72,7 @@
 		B793EA3420D6B12B00F319AD /* WerewolfRoleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WerewolfRoleExtensions.swift; sourceTree = "<group>"; };
 		B793EA3820D6D19E00F319AD /* CallResultExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallResultExtensions.swift; sourceTree = "<group>"; };
 		B7DB22F820D8506B0068F7C7 /* darkness_falls.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = darkness_falls.mp3; path = ../../../../resources/sounds/darkness_falls.mp3; sourceTree = "<group>"; };
+		B7DB230120D9B8A60068F7C7 /* GameServiceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameServiceExtensions.swift; sourceTree = "<group>"; };
 		B7EF75A320CF312F00000A67 /* werewolf-assistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "werewolf-assistant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7EF75A620CF312F00000A67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7EF75A820CF312F00000A67 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				B793EA2F20D47AD700F319AD /* UIImageExtensions.swift */,
 				B793EA3420D6B12B00F319AD /* WerewolfRoleExtensions.swift */,
 				B793EA3820D6D19E00F319AD /* CallResultExtensions.swift */,
+				B7DB230120D9B8A60068F7C7 /* GameServiceExtensions.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -397,6 +400,9 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-werewolf-assistant/Pods-werewolf-assistant-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/MDFInternationalization/MDFInternationalization.framework",
+				"${BUILT_PRODUCTS_DIR}/MDFTextAccessibility/MDFTextAccessibility.framework",
+				"${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftGRPC/SwiftGRPC.framework",
@@ -408,6 +414,9 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFInternationalization.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFTextAccessibility.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialComponents.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGRPC.framework",
@@ -491,6 +500,7 @@
 				B793EA1620D1E67B00F319AD /* ConfigurationViewController.swift in Sources */,
 				B7EF75A920CF312F00000A67 /* ViewController.swift in Sources */,
 				B7EF75A720CF312F00000A67 /* AppDelegate.swift in Sources */,
+				B7DB230220D9B8A60068F7C7 /* GameServiceExtensions.swift in Sources */,
 				B793EA2D20D466D900F319AD /* UIViewExtensions.swift in Sources */,
 				B793EA2A20D41D9500F319AD /* RoomViewController.swift in Sources */,
 				B793EA1C20D328B400F319AD /* werewolf.grpc.swift in Sources */,

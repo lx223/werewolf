@@ -13,6 +13,43 @@ PODS:
     - gRPC-Core/Interface (= 1.11.0)
     - nanopb (~> 0.3)
   - gRPC-Core/Interface (1.11.0)
+  - MaterialComponents/AnimationTiming (55.4.0)
+  - MaterialComponents/Buttons (55.4.0):
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Math
+    - MaterialComponents/private/Shapes
+    - MaterialComponents/ShadowElevations
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/Typography
+    - MDFInternationalization
+    - MDFTextAccessibility
+  - MaterialComponents/Ink (55.4.0):
+    - MaterialComponents/private/Math
+  - MaterialComponents/OverlayWindow (55.4.0):
+    - MaterialComponents/private/Application
+  - MaterialComponents/private/Application (55.4.0)
+  - MaterialComponents/private/KeyboardWatcher (55.4.0):
+    - MaterialComponents/private/Application
+  - MaterialComponents/private/Math (55.4.0)
+  - MaterialComponents/private/Overlay (55.4.0)
+  - MaterialComponents/private/Shapes (55.4.0):
+    - MaterialComponents/private/Math
+    - MaterialComponents/ShadowLayer
+  - MaterialComponents/ShadowElevations (55.4.0)
+  - MaterialComponents/ShadowLayer (55.4.0):
+    - MaterialComponents/ShadowElevations
+  - MaterialComponents/Snackbar (55.4.0):
+    - MaterialComponents/AnimationTiming
+    - MaterialComponents/Buttons
+    - MaterialComponents/OverlayWindow
+    - MaterialComponents/private/Application
+    - MaterialComponents/private/KeyboardWatcher
+    - MaterialComponents/private/Overlay
+    - MaterialComponents/Typography
+  - MaterialComponents/Typography (55.4.0):
+    - MaterialComponents/private/Application
+  - MDFInternationalization (1.0.4)
+  - MDFTextAccessibility (1.2.0)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -29,6 +66,7 @@ PODS:
   - SwiftySound (1.0.0)
 
 DEPENDENCIES:
+  - MaterialComponents/Snackbar
   - RxCocoa (~> 4.2.0)
   - RxSwift (~> 4.2.0)
   - SwiftGRPC (~> 0.4.3)
@@ -39,6 +77,9 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - BoringSSL
     - gRPC-Core
+    - MaterialComponents
+    - MDFInternationalization
+    - MDFTextAccessibility
     - nanopb
     - RxCocoa
     - RxSwift
@@ -49,6 +90,9 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   BoringSSL: c46efb47593135382bc0934196f16d2f726f5f36
   gRPC-Core: 164639cd8ae18ca8b65477fafb2efbaecf4f181a
+  MaterialComponents: 1a021ab211e40e95e27eb87d9051d558e8f095bd
+  MDFInternationalization: e355b0cebecf53d60233bd267084e49366c82513
+  MDFTextAccessibility: 94098925e0853551c5a311ce7c1ecefbe297cdb6
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
@@ -56,6 +100,6 @@ SPEC CHECKSUMS:
   SwiftProtobuf: 5ccc0e4054e37c75800e5744acb2aa80bb72b39c
   SwiftySound: b9c3370956fd4ed65ed79d45563070077a50a2cd
 
-PODFILE CHECKSUM: 28cfd69e92c0e3b4162b092323fa7cb77965b1bf
+PODFILE CHECKSUM: 658ccdfe209ab8621e12fab88c41ba6064ca1eb3
 
 COCOAPODS: 1.5.3

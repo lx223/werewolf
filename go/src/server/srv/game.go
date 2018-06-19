@@ -179,5 +179,21 @@ func (s *GameService) TakeAction(ctx context.Context, req *werewolf.TakeActionRe
 	game.Actions = append(game.Actions, req)
 	game.AdvanceToNextState()
 
-	return &werewolf.TakeActionResponse{}, nil
+	var res = &werewolf.TakeActionResponse{}
+	switch req.GetAction().(type) {
+	case *werewolf.TakeActionRequest_Hunter:
+		res.Result = &werewolf.TakeActionResponse_Hunter{Hunter: &werewolf.TakeActionResponse_HunterResult{
+			Ruling: werewolf.Ruling_POSITIVE,
+		}}
+	case *werewolf.TakeActionRequest_Seer:
+		res.Result = &werewolf.TakeActionResponse_Seer{Seer: &werewolf.TakeActionResponse_SeerResult{
+			Ruling: werewolf.Ruling_POSITIVE,
+		}}
+	case *werewolf.TakeActionRequest_WhiteWerewolf:
+		res.Result = &werewolf.TakeActionResponse_Hunter{Hunter: &werewolf.TakeActionResponse_HunterResult{
+			Ruling: werewolf.Ruling_POSITIVE,
+		}}
+	}
+
+	return res, nil
 }

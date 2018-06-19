@@ -11,6 +11,7 @@ target 'werewolf-assistant' do
   pod 'RxSwift',        '~> 4.2.0'
   pod 'RxCocoa',        '~> 4.2.0'
   pod 'SwiftySound',    '~> 1.0.0'
+  pod 'MaterialComponents/Snackbar'
 
   target 'werewolf-assistantTests' do
     inherit! :search_paths

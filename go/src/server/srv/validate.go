@@ -160,7 +160,7 @@ func (s *GameService) validateTakeActionRequest(req *werewolf.TakeActionRequest)
 	case *werewolf.TakeActionRequest_WhiteWerewolf:
 		return validateRequiredActionStateAgainstGameState(game, werewolf.Game_WHITE_WEREWOLF_AWAKE)
 	case *werewolf.TakeActionRequest_Witch:
-		return validateRequiredActionStateAgainstGameState(game, werewolf.Game_GUARDIAN_AWAKE)
+		return validateRequiredActionStateAgainstGameState(game, werewolf.Game_WITCH_AWAKE)
 	case *werewolf.TakeActionRequest_Sheriff:
 		return validateRequiredActionStateAgainstGameState(game, werewolf.Game_SHERIFF_ELECTION)
 	default:
