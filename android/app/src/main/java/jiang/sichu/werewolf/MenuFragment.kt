@@ -19,11 +19,11 @@ class MenuFragment : Fragment() {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        activity = getActivity() as GameActivity
+        activity = context as GameActivity
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDetach() {
+        super.onDetach()
         activity = null
     }
 
@@ -38,12 +38,8 @@ class MenuFragment : Fragment() {
     private fun createAndJoinRoom() {
         activity?.executor?.execute {
             val request = CreateAndJoinRoomRequest.newBuilder().build()
-            val response = activity?.gameService?.createAndJoinRoom(request)
-            activity?.runOnUiThread {
-                AlertDialog.Builder(context)
-                        .setMessage("Created room: ${response?.roomId}\nUser ID: ${response?.userId}")
-                        .show()
-            }
+            val response = activity?.gameService?.createAndJoinRoom(request)!!
+            activity?.onCreateRoomSuccess(response.roomId, response.userId)
         }
     }
 
@@ -60,12 +56,8 @@ class MenuFragment : Fragment() {
     private fun joinRoom(roomId: String) {
         activity?.executor?.execute {
             val request = JoinRoomRequest.newBuilder().setRoomId(roomId).build()
-            val response = activity?.gameService?.joinRoom(request)
-            activity?.runOnUiThread {
-                AlertDialog.Builder(context)
-                        .setMessage("Joined room: $roomId\nUser ID: ${response?.userId}")
-                        .show()
-            }
+            val response = activity?.gameService?.joinRoom(request)!!
+            activity?.onJoinRoomSuccess(roomId, response.userId)
         }
     }
 }

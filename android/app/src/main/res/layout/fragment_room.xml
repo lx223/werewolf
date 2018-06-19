@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:name="jiang.sichu.werewolf.RoomFragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="jiang.sichu.werewolf.RoomFragment">
+
+    <GridView
+        android:id="@+id/grid_seats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:horizontalSpacing="@dimen/fragment_room_seat_spacing"
+        android:padding="@dimen/fragment_room_seat_spacing"
+        android:verticalSpacing="@dimen/fragment_room_seat_spacing" />
+
+    <jiang.sichu.werewolf.ui.RoleCardImageView
+        android:id="@+id/image_role_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+

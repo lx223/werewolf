@@ -3,8 +3,18 @@
     <!-- common -->
     <string name="app_name">一个叫狼人杀助手的小法官</string>
     <string name="btn_label_confirm">确认</string>
+    <string name="role_seer">预言家</string>
+    <string name="role_witch">女巫</string>
+    <string name="role_hunter">猎人</string>
+    <string name="role_idiot">白痴</string>
+    <string name="role_guardian">守卫</string>
+    <string name="role_werewolf">狼人</string>
+    <string name="role_white_wolf">白狼王</string>
+    <string name="role_half_blood">混子</string>
+    <string name="role_orphan">野孩子</string>
+    <string name="role_villager">平民</string>
 
-    <!-- MenuActivity -->
+    <!-- MenuFragment -->
     <string name="btn_label_create_room">创建房间</string>
     <string name="btn_label_join_room">加入房间</string>
     <string name="dialog_title_join_room">请输入房间号</string>

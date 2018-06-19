@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="jiang.sichu.werewolf.GameConfigFragment">
+
+    <GridView
+        android:id="@+id/grid_roles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:horizontalSpacing="@dimen/fragment_game_config_spacing"
+        android:numColumns="2"
+        android:padding="@dimen/fragment_game_config_spacing"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="@dimen/fragment_game_config_spacing"
+        tools:listitem="@layout/item_game_config" />
+
+    <Button
+        android:id="@+id/btn_submit_config"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_label_confirm" />
+
+</LinearLayout>
