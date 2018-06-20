@@ -16,8 +16,6 @@ import jiang.sichu.werewolf.proto.Werewolf.UpdateGameConfigRequest.RoleCount
 import kotlinx.android.synthetic.main.fragment_game_config.view.*
 import kotlinx.android.synthetic.main.item_game_config.view.*
 
-private const val ARG_ROOM_ID = "roomId"
-private const val ARG_USER_ID = "userId"
 private val ROLES = arrayOf(
         VILLAGER, WEREWOLF, SEER, WITCH, HUNTER, IDIOT, WHITE_WEREWOLF, GUARDIAN, HALF_BLOOD
         // Role.ORPHAN is not implemented yet.
@@ -25,44 +23,29 @@ private val ROLES = arrayOf(
 
 class GameConfigFragment : GameFragment() {
 
-    companion object {
-        @JvmStatic
-        fun newInstance(roomId: String, userId: String) =
-                GameConfigFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_ROOM_ID, roomId)
-                        putString(ARG_USER_ID, userId)
-                    }
-                }
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_game_config, container, false)
         val adapter = RoleAdapter(context)
         view.grid_roles.adapter = adapter
         view.btn_submit_config.setOnClickListener {
-            updateGameConfig(
-                    arguments.getString(ARG_ROOM_ID),
-                    arguments.getString(ARG_USER_ID),
-                    adapter.counts)
+            updateGameConfig(adapter.counts)
         }
         return view
     }
 
-    private fun updateGameConfig(roomId: String, userId: String, roleCounts: HashMap<Role, Int>) {
+    private fun updateGameConfig(roleCounts: HashMap<Role, Int>) {
         executor?.execute {
-            gameService?.updateGameConfig(buildUpdateGameConfigRequest(roomId, roleCounts))
-            activity?.onUpdateGameConfigSuccess(roomId, userId)
+            gameService?.updateGameConfig(buildUpdateGameConfigRequest(roleCounts))
+            activity?.onUpdateGameConfigSuccess()
         }
     }
 
-    private fun buildUpdateGameConfigRequest(roomId: String, counts: Map<Role, Int>): UpdateGameConfigRequest {
-        val builder = UpdateGameConfigRequest.newBuilder().setRoomId(roomId)
-        counts.filter { entry -> entry.value > 0 }
-                .forEach { role, count ->
-                    builder.addRoleCounts(RoleCount.newBuilder().setRole(role).setCount(count).build())
-                }
+    private fun buildUpdateGameConfigRequest(counts: Map<Role, Int>): UpdateGameConfigRequest {
+        val builder = UpdateGameConfigRequest.newBuilder().setRoomId(activity?.roomId)
+        counts.filter { entry -> entry.value > 0 }.forEach { role, count ->
+            builder.addRoleCounts(RoleCount.newBuilder().setRole(role).setCount(count).build())
+        }
         return builder.build()
     }
 

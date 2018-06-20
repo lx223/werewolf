@@ -10,36 +10,26 @@ import jiang.sichu.werewolf.proto.Werewolf.*
 import jiang.sichu.werewolf.ui.SquareImageView
 import kotlinx.android.synthetic.main.fragment_room.view.*
 
-private const val ARG_ROOM_ID = "roomId"
-private const val ARG_USER_ID = "userId"
 private const val COLUMN_COUNT = 4
 private const val COLOR_RES_MY_SEAT = android.R.color.holo_green_dark
 private const val COLOR_RES_OTHER_SEATS = android.R.color.darker_gray
 
 class RoomFragment : GameFragment() {
 
-    companion object {
-        @JvmStatic
-        fun newInstance(roomId: String, userId: String) =
-                RoomFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_ROOM_ID, roomId)
-                        putString(ARG_USER_ID, userId)
-                    }
-                }
-    }
-
-    private var roomId: String? = null
-    private var userId: String? = null
+    private var seatAdapter: SeatAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        roomId = arguments.getString(ARG_ROOM_ID)
-        userId = arguments.getString(ARG_USER_ID)
         val view = inflater.inflate(R.layout.fragment_room, container, false)
+        seatAdapter = SeatAdapter()
         view.grid_seats.numColumns = COLUMN_COUNT
-        view.grid_seats.adapter = SeatAdapter()
+        view.grid_seats.adapter = seatAdapter
         return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        seatAdapter = null
     }
 
     override fun onResume() {
@@ -51,7 +41,7 @@ class RoomFragment : GameFragment() {
 
     private fun takeSeat(seatId: String) {
         executor?.execute {
-            val request = TakeSeatRequest.newBuilder().setSeatId(seatId).setUserId(userId).build()
+            val request = TakeSeatRequest.newBuilder().setSeatId(seatId).setUserId(activity?.userId).build()
             gameService?.takeSeat(request)
             getSeatsAndUpdateView()
         }
@@ -59,11 +49,11 @@ class RoomFragment : GameFragment() {
 
     @WorkerThread
     private fun getSeatsAndUpdateView() {
-        val request = GetRoomRequest.newBuilder().setRoomId(roomId).build()
+        val request = GetRoomRequest.newBuilder().setRoomId(activity?.roomId).build()
         val seats = gameService?.getRoom(request)!!.room.seatsList
         activity?.runOnUiThread {
-            (view?.grid_seats?.adapter as SeatAdapter).setSeats(seats)
-            seats.firstOrNull { seat -> seat.user.id == userId }?.role
+            seatAdapter?.setSeats(seats)
+            seats.firstOrNull { seat -> seat.user.id == activity?.userId }?.role
                     .let { role -> view.image_role_card.setRole(role) }
         }
     }
@@ -83,7 +73,8 @@ class RoomFragment : GameFragment() {
         override fun getItemId(position: Int) = position.toLong()
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-            val colorRes = if (getItem(position).user.id == userId) COLOR_RES_MY_SEAT else COLOR_RES_OTHER_SEATS
+            val isMySeat = getItem(position).user.id == activity?.userId
+            val colorRes = if (isMySeat) COLOR_RES_MY_SEAT else COLOR_RES_OTHER_SEATS
             return SquareImageView(context, null).apply {
                 setBackgroundColor(resources.getColor(colorRes))
                 setOnClickListener { takeSeat(getItem(position).id) }

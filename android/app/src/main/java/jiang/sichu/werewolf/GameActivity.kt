@@ -16,6 +16,9 @@ class GameActivity : Activity() {
 
     var executor: ExecutorService? = null
     var gameService: GameServiceGrpc.GameServiceBlockingStub? = null
+    var userId: String? = null
+    var roomId: String? = null
+    var isHost: Boolean? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,15 +39,21 @@ class GameActivity : Activity() {
     }
 
     fun onCreateRoomSuccess(roomId: String, userId: String) {
-        showFragment(GameConfigFragment.newInstance(roomId, userId))
+        this.userId = userId
+        this.roomId = roomId
+        isHost = true
+        showFragment(GameConfigFragment())
     }
 
     fun onJoinRoomSuccess(roomId: String, userId: String) {
-        showFragment(RoomFragment.newInstance(roomId, userId))
+        this.userId = userId
+        this.roomId = roomId
+        isHost = false
+        showFragment(RoomFragment())
     }
 
-    fun onUpdateGameConfigSuccess(roomId: String, userId: String) {
-        showFragment(RoomFragment.newInstance(roomId, userId))
+    fun onUpdateGameConfigSuccess() {
+        showFragment(RoomFragment())
     }
 
     private fun showFragment(fragment: Fragment) {
