@@ -3,7 +3,6 @@ package jiang.sichu.werewolf
 import android.app.Activity
 import android.app.Fragment
 import android.os.Bundle
-import android.util.Log
 import io.grpc.ManagedChannel
 import io.grpc.ManagedChannelBuilder
 import jiang.sichu.werewolf.proto.GameServiceGrpc
@@ -37,17 +36,14 @@ class GameActivity : Activity() {
     }
 
     fun onCreateRoomSuccess(roomId: String, userId: String) {
-        Log.d("", "onCreateRoomSuccess")
         showFragment(GameConfigFragment.newInstance(roomId, userId))
     }
 
     fun onJoinRoomSuccess(roomId: String, userId: String) {
-        Log.d("", "onJoinRoomSuccess")
         showFragment(RoomFragment.newInstance(roomId, userId))
     }
 
     fun onUpdateGameConfigSuccess(roomId: String, userId: String) {
-        Log.d("", "onUpdateGameConfigSuccess")
         showFragment(RoomFragment.newInstance(roomId, userId))
     }
 

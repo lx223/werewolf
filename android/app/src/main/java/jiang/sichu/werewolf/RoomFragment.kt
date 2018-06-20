@@ -1,14 +1,12 @@
 package jiang.sichu.werewolf
 
-import android.app.Fragment
-import android.content.Context
 import android.os.Bundle
 import android.support.annotation.WorkerThread
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import jiang.sichu.werewolf.proto.Werewolf
+import jiang.sichu.werewolf.proto.Werewolf.*
 import jiang.sichu.werewolf.ui.SquareImageView
 import kotlinx.android.synthetic.main.fragment_room.view.*
 
@@ -18,7 +16,7 @@ private const val COLUMN_COUNT = 4
 private const val COLOR_RES_MY_SEAT = android.R.color.holo_green_dark
 private const val COLOR_RES_OTHER_SEATS = android.R.color.darker_gray
 
-class RoomFragment : Fragment() {
+class RoomFragment : GameFragment() {
 
     companion object {
         @JvmStatic
@@ -31,24 +29,13 @@ class RoomFragment : Fragment() {
                 }
     }
 
-    private var activity: GameActivity? = null
     private var roomId: String? = null
     private var userId: String? = null
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        activity = context as GameActivity
-        roomId = arguments.getString(ARG_ROOM_ID)
-        userId = arguments.getString(ARG_USER_ID)
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        activity = null
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        roomId = arguments.getString(ARG_ROOM_ID)
+        userId = arguments.getString(ARG_USER_ID)
         val view = inflater.inflate(R.layout.fragment_room, container, false)
         view.grid_seats.numColumns = COLUMN_COUNT
         view.grid_seats.adapter = SeatAdapter()
@@ -59,13 +46,21 @@ class RoomFragment : Fragment() {
         super.onResume()
 
         // TODO: update seats periodically
-        activity?.executor?.execute { getSeatsAndUpdateView() }
+        executor?.execute { getSeatsAndUpdateView() }
+    }
+
+    private fun takeSeat(seatId: String) {
+        executor?.execute {
+            val request = TakeSeatRequest.newBuilder().setSeatId(seatId).setUserId(userId).build()
+            gameService?.takeSeat(request)
+            getSeatsAndUpdateView()
+        }
     }
 
     @WorkerThread
     private fun getSeatsAndUpdateView() {
-        val request = Werewolf.GetRoomRequest.newBuilder().setRoomId(roomId).build()
-        val seats = activity?.gameService?.getRoom(request)!!.room.seatsList
+        val request = GetRoomRequest.newBuilder().setRoomId(roomId).build()
+        val seats = gameService?.getRoom(request)!!.room.seatsList
         activity?.runOnUiThread {
             (view?.grid_seats?.adapter as SeatAdapter).setSeats(seats)
             seats.firstOrNull { seat -> seat.user.id == userId }?.role
@@ -74,9 +69,9 @@ class RoomFragment : Fragment() {
     }
 
     inner class SeatAdapter : BaseAdapter() {
-        private var seats: List<Werewolf.Seat> = arrayListOf()
+        private var seats: List<Seat> = arrayListOf()
 
-        fun setSeats(seats: List<Werewolf.Seat>) {
+        fun setSeats(seats: List<Seat>) {
             this.seats = seats
             notifyDataSetChanged()
         }
@@ -92,14 +87,6 @@ class RoomFragment : Fragment() {
             return SquareImageView(context, null).apply {
                 setBackgroundColor(resources.getColor(colorRes))
                 setOnClickListener { takeSeat(getItem(position).id) }
-            }
-        }
-
-        private fun takeSeat(seatId: String) {
-            activity?.executor?.execute {
-                val request = Werewolf.TakeSeatRequest.newBuilder().setSeatId(seatId).setUserId(userId).build()
-                activity?.gameService?.takeSeat(request)
-                getSeatsAndUpdateView()
             }
         }
     }

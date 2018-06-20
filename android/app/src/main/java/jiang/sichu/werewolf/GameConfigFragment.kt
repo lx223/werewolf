@@ -1,7 +1,6 @@
 package jiang.sichu.werewolf
 
 import android.annotation.SuppressLint
-import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
@@ -24,7 +23,7 @@ private val ROLES = arrayOf(
         // Role.ORPHAN is not implemented yet.
 )
 
-class GameConfigFragment : Fragment() {
+class GameConfigFragment : GameFragment() {
 
     companion object {
         @JvmStatic
@@ -35,18 +34,6 @@ class GameConfigFragment : Fragment() {
                         putString(ARG_USER_ID, userId)
                     }
                 }
-    }
-
-    private var activity: GameActivity? = null
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        activity = context as GameActivity
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        activity = null
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -64,9 +51,8 @@ class GameConfigFragment : Fragment() {
     }
 
     private fun updateGameConfig(roomId: String, userId: String, roleCounts: HashMap<Role, Int>) {
-        activity?.executor?.execute {
-            val request = buildUpdateGameConfigRequest(roomId, roleCounts)
-            activity?.gameService?.updateGameConfig(request)
+        executor?.execute {
+            gameService?.updateGameConfig(buildUpdateGameConfigRequest(roomId, roleCounts))
             activity?.onUpdateGameConfigSuccess(roomId, userId)
         }
     }
@@ -77,7 +63,6 @@ class GameConfigFragment : Fragment() {
                 .forEach { role, count ->
                     builder.addRoleCounts(RoleCount.newBuilder().setRole(role).setCount(count).build())
                 }
-
         return builder.build()
     }
 
