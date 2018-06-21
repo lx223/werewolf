@@ -56,6 +56,10 @@ class GameActivity : Activity() {
         showFragment(RoomFragment())
     }
 
+    fun onCheckRoleButtonClick() {
+        showFragment(RoleFragment())
+    }
+
     private fun showFragment(fragment: Fragment) {
         runOnUiThread {
             fragmentManager.beginTransaction()

@@ -12,13 +12,27 @@
         android:id="@+id/grid_seats"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:horizontalSpacing="@dimen/fragment_room_seat_spacing"
-        android:padding="@dimen/fragment_room_seat_spacing"
-        android:verticalSpacing="@dimen/fragment_room_seat_spacing" />
+        android:horizontalSpacing="@dimen/gutter_width"
+        android:padding="@dimen/gutter_width"
+        android:verticalSpacing="@dimen/gutter_width" />
 
-    <jiang.sichu.werewolf.ui.RoleCardImageView
-        android:id="@+id/image_role_card"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/gutter_width">
+
+        <Button
+            android:id="@+id/btn_check_role"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btn_check_role"
+            android:visibility="gone" />
+    </LinearLayout>
 </LinearLayout>
 

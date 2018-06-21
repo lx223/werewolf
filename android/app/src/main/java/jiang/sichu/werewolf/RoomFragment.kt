@@ -14,7 +14,7 @@ private const val COLUMN_COUNT = 4
 private const val COLOR_RES_MY_SEAT = android.R.color.holo_green_dark
 private const val COLOR_RES_OTHER_SEATS = android.R.color.darker_gray
 
-class RoomFragment : GameFragment() {
+class RoomFragment : BaseFragment() {
 
     private var seatAdapter: SeatAdapter? = null
 
@@ -24,6 +24,7 @@ class RoomFragment : GameFragment() {
         seatAdapter = SeatAdapter()
         view.grid_seats.numColumns = COLUMN_COUNT
         view.grid_seats.adapter = seatAdapter
+        view.btn_check_role.setOnClickListener { activity?.onCheckRoleButtonClick() }
         return view
     }
 
@@ -51,10 +52,10 @@ class RoomFragment : GameFragment() {
     private fun getSeatsAndUpdateView() {
         val request = GetRoomRequest.newBuilder().setRoomId(activity?.roomId).build()
         val seats = gameService?.getRoom(request)!!.room.seatsList
-        activity?.runOnUiThread {
+        runOnUiThread {
             seatAdapter?.setSeats(seats)
-            seats.firstOrNull { seat -> seat.user.id == activity?.userId }?.role
-                    .let { role -> view.image_role_card.setRole(role) }
+            val isSeated = seats.any { seat -> seat.user.id == activity?.userId }
+            view.btn_check_role.visibility = if (isSeated) View.VISIBLE else View.GONE
         }
     }
 

@@ -5,7 +5,7 @@ import android.content.Context
 import jiang.sichu.werewolf.proto.GameServiceGrpc
 import java.util.concurrent.ExecutorService
 
-abstract class GameFragment : Fragment() {
+abstract class BaseFragment : Fragment() {
 
     var activity: GameActivity? = null
     var executor: ExecutorService? = null
@@ -23,5 +23,9 @@ abstract class GameFragment : Fragment() {
         activity = null
         executor = null
         gameService = null
+    }
+
+    fun runOnUiThread(action: () -> Unit) {
+        activity?.runOnUiThread(action)
     }
 }

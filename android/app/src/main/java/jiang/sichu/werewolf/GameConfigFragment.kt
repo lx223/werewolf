@@ -21,7 +21,7 @@ private val ROLES = arrayOf(
         // Role.ORPHAN is not implemented yet.
 )
 
-class GameConfigFragment : GameFragment() {
+class GameConfigFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

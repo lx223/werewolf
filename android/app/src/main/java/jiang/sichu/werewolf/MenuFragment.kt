@@ -11,7 +11,7 @@ import jiang.sichu.werewolf.proto.Werewolf.JoinRoomRequest
 import kotlinx.android.synthetic.main.dialog_join_room.*
 import kotlinx.android.synthetic.main.fragment_menu.view.*
 
-class MenuFragment : GameFragment() {
+class MenuFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

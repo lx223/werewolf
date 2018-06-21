@@ -18,4 +18,7 @@
     <string name="btn_label_create_room">创建房间</string>
     <string name="btn_label_join_room">加入房间</string>
     <string name="dialog_title_join_room">请输入房间号</string>
+
+    <!-- RoomFragment -->
+    <string name="btn_check_role">查看身份</string>
 </resources>

@@ -10,11 +10,11 @@
         android:id="@+id/grid_roles"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:horizontalSpacing="@dimen/fragment_game_config_spacing"
+        android:horizontalSpacing="@dimen/gutter_width"
         android:numColumns="2"
-        android:padding="@dimen/fragment_game_config_spacing"
+        android:padding="@dimen/gutter_width"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="@dimen/fragment_game_config_spacing"
+        android:verticalSpacing="@dimen/gutter_width"
         tools:listitem="@layout/item_game_config" />
 
     <Button

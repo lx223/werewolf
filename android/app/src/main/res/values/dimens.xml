@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="fragment_game_config_spacing">16dp</dimen>
-    <dimen name="fragment_room_seat_spacing">12dp</dimen>
+    <dimen name="gutter_width">16dp</dimen>
+    <dimen name="double_gutter_width">16dp</dimen>
+    <dimen name="half_gutter_width">8dp</dimen>
 </resources>
