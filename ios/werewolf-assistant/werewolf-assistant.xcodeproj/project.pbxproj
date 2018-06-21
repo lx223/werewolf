@@ -41,6 +41,7 @@
 		B7DB232320DB1F870068F7C7 /* 野孩子闭眼.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B7DB231320DB1F860068F7C7 /* 野孩子闭眼.m4a */; };
 		B7DB232420DB1F870068F7C7 /* 预言家睁眼.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B7DB231420DB1F860068F7C7 /* 预言家睁眼.m4a */; };
 		B7DB232720DB206B0068F7C7 /* SoundExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB232620DB206B0068F7C7 /* SoundExtensions.swift */; };
+		B7DB232D20DC5AFF0068F7C7 /* SoundQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB232C20DC5AFF0068F7C7 /* SoundQueue.swift */; };
 		B7EF75A720CF312F00000A67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF75A620CF312F00000A67 /* AppDelegate.swift */; };
 		B7EF75A920CF312F00000A67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF75A820CF312F00000A67 /* ViewController.swift */; };
 		B7EF75AC20CF312F00000A67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7EF75AA20CF312F00000A67 /* Main.storyboard */; };
@@ -105,6 +106,7 @@
 		B7DB231320DB1F860068F7C7 /* 野孩子闭眼.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "野孩子闭眼.m4a"; sourceTree = "<group>"; };
 		B7DB231420DB1F860068F7C7 /* 预言家睁眼.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "预言家睁眼.m4a"; sourceTree = "<group>"; };
 		B7DB232620DB206B0068F7C7 /* SoundExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundExtensions.swift; sourceTree = "<group>"; };
+		B7DB232C20DC5AFF0068F7C7 /* SoundQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundQueue.swift; sourceTree = "<group>"; };
 		B7EF75A320CF312F00000A67 /* werewolf-assistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "werewolf-assistant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7EF75A620CF312F00000A67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7EF75A820CF312F00000A67 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -173,18 +175,6 @@
 			path = generated;
 			sourceTree = "<group>";
 		};
-		B793EA0F20D1D91200F319AD /* viewcontrollers */ = {
-			isa = PBXGroup;
-			children = (
-				B7EF75A820CF312F00000A67 /* ViewController.swift */,
-				B793EA1420D1E67B00F319AD /* ConfigurationViewController.swift */,
-				B793EA1520D1E67B00F319AD /* ConfigurationViewController.xib */,
-				B793EA2820D41D9500F319AD /* RoomViewController.swift */,
-				B793EA2920D41D9500F319AD /* RoomViewController.xib */,
-			);
-			path = viewcontrollers;
-			sourceTree = "<group>";
-		};
 		B793EA2020D3BF9800F319AD /* views */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,6 +237,43 @@
 			path = resources;
 			sourceTree = "<group>";
 		};
+		B7DB232820DC5A3A0068F7C7 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				B7DB232B20DC5A5B0068F7C7 /* hall */,
+				B7DB232A20DC5A510068F7C7 /* config */,
+				B7DB232920DC5A450068F7C7 /* room */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
+		B7DB232920DC5A450068F7C7 /* room */ = {
+			isa = PBXGroup;
+			children = (
+				B793EA2820D41D9500F319AD /* RoomViewController.swift */,
+				B793EA2920D41D9500F319AD /* RoomViewController.xib */,
+				B7DB232C20DC5AFF0068F7C7 /* SoundQueue.swift */,
+			);
+			path = room;
+			sourceTree = "<group>";
+		};
+		B7DB232A20DC5A510068F7C7 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				B793EA1420D1E67B00F319AD /* ConfigurationViewController.swift */,
+				B793EA1520D1E67B00F319AD /* ConfigurationViewController.xib */,
+			);
+			path = config;
+			sourceTree = "<group>";
+		};
+		B7DB232B20DC5A5B0068F7C7 /* hall */ = {
+			isa = PBXGroup;
+			children = (
+				B7EF75A820CF312F00000A67 /* ViewController.swift */,
+			);
+			path = hall;
+			sourceTree = "<group>";
+		};
 		B7EF759A20CF312F00000A67 = {
 			isa = PBXGroup;
 			children = (
@@ -272,11 +299,11 @@
 		B7EF75A520CF312F00000A67 /* werewolf-assistant */ = {
 			isa = PBXGroup;
 			children = (
+				B7DB232820DC5A3A0068F7C7 /* components */,
 				B7DB232520DB20480068F7C7 /* resources */,
 				B7DB22FA20D8592F0068F7C7 /* actioncontrollers */,
 				B793EA2320D3CA8B00F319AD /* extensions */,
 				B793EA2020D3BF9800F319AD /* views */,
-				B793EA0F20D1D91200F319AD /* viewcontrollers */,
 				B7791D0620CF4E860043F4AC /* generated */,
 				B7EF75A620CF312F00000A67 /* AppDelegate.swift */,
 				B7EF75AA20CF312F00000A67 /* Main.storyboard */,
@@ -571,6 +598,7 @@
 				B793EA1620D1E67B00F319AD /* ConfigurationViewController.swift in Sources */,
 				B7EF75A920CF312F00000A67 /* ViewController.swift in Sources */,
 				B7EF75A720CF312F00000A67 /* AppDelegate.swift in Sources */,
+				B7DB232D20DC5AFF0068F7C7 /* SoundQueue.swift in Sources */,
 				B7DB230220D9B8A60068F7C7 /* GameServiceExtensions.swift in Sources */,
 				B793EA2D20D466D900F319AD /* UIViewExtensions.swift in Sources */,
 				B7DB232720DB206B0068F7C7 /* SoundExtensions.swift in Sources */,

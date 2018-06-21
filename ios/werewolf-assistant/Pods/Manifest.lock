@@ -66,6 +66,7 @@ PODS:
   - SwiftySound (1.0.0)
 
 DEPENDENCIES:
+  - MaterialComponents/Buttons
   - MaterialComponents/Snackbar
   - RxCocoa (~> 4.2.0)
   - RxSwift (~> 4.2.0)
@@ -100,6 +101,6 @@ SPEC CHECKSUMS:
   SwiftProtobuf: 5ccc0e4054e37c75800e5744acb2aa80bb72b39c
   SwiftySound: b9c3370956fd4ed65ed79d45563070077a50a2cd
 
-PODFILE CHECKSUM: 658ccdfe209ab8621e12fab88c41ba6064ca1eb3
+PODFILE CHECKSUM: 26befea26b3b8e45c90497cab3be84244e7af083
 
 COCOAPODS: 1.5.3

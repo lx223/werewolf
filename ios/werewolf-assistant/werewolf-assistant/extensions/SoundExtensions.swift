@@ -80,4 +80,52 @@ extension Sound {
         }
         return nil
     }
+
+    class func getClosingSound(forState state: Werewolf_Game.State) -> Sound? {
+        var sound: Sound?
+        switch state {
+        case .unknown:
+            sound = Sound.darkness
+        case .orphanAwake:
+            sound = Sound.orphanClosing
+        case .halfBloodAwake:
+            sound = Sound.halfBloodClosing
+        case .guardianAwake:
+            sound = Sound.guardClosing
+        case .werewolfAwake:
+            sound = Sound.werewolfClosing
+        case .witchAwake:
+            sound = Sound.witchClosing
+        case .seerAwake:
+            sound = Sound.seerClosing
+        case .hunterAwake:
+             sound = Sound.hunterClosing
+        default:
+            sound = nil
+        }
+        return sound
+    }
+
+    class func getOpeningSound(forState state: Werewolf_Game.State) -> Sound? {
+        switch state {
+        case .orphanAwake:
+            return Sound.orphanOpening
+        case .halfBloodAwake:
+            return Sound.halfBloodOpening
+        case .guardianAwake:
+            return Sound.guardOpening
+        case .werewolfAwake:
+            return Sound.werewolfOpening
+        case .witchAwake:
+            return Sound.witchOpening
+        case .seerAwake:
+            return Sound.seerOpening
+        case .hunterAwake:
+            return Sound.hunterOpening
+        case .sheriffElection:
+            return sheriffElection
+        default:
+           return nil
+        }
+    }
 }

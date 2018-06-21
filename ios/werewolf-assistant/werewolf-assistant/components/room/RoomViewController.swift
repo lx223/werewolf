@@ -27,6 +27,7 @@ class RoomViewController: UIViewController {
     private let roomID: String
     private let isHost: Bool
 
+    private let soundQueuer: SoundQueuing = SoundQueuer()
     private let game = BehaviorRelay<Werewolf_Game?>(value: nil)
     private let seats = BehaviorRelay<[Werewolf_Seat]?>(value: nil)
     private let showingRole = BehaviorRelay<Bool>(value: false)
@@ -363,64 +364,21 @@ private extension RoomViewController {
                 Observable.just($0?.state)
             }
             .distinctUntilChanged()
+            .subscribeOn(SerialDispatchQueueScheduler(internalSerialQueueName: "sound stream"))
             .scan(nil, accumulator: { (previous, current) -> Werewolf_Game.State? in
-                if let state = previous {
-                    self.playClosingSound(forState: state)
+                if let s = previous, let sound = Sound.getClosingSound(forState: s)  {
+                    self.soundQueuer.queue(sound)
                 }
 
                 return current
             })
-            .subscribe(onNext: { (stateOptional) in
-                guard let state = stateOptional else {
+            .subscribe(onNext: { (state) in
+                guard let s = state, let sound = Sound.getOpeningSound(forState: s) else {
                     return
                 }
 
-                self.playOpeningSound(forState: state)
+                self.soundQueuer.queue(sound)
             }, onError: nil, onCompleted: nil, onDisposed: nil)
             .disposed(by: disposeBag)
-    }
-
-    func playClosingSound(forState state: Werewolf_Game.State) {
-        switch state {
-        case .unknown:
-            Sound.darkness.play()
-        case .orphanAwake:
-            Sound.orphanClosing.play()
-        case .halfBloodAwake:
-            Sound.halfBloodClosing.play()
-        case .guardianAwake:
-            Sound.guardClosing.play()
-        case .werewolfAwake:
-            Sound.werewolfClosing.play()
-        case .witchAwake:
-            Sound.witchClosing.play()
-        case .seerAwake:
-            Sound.seerClosing.play()
-        case .hunterAwake:
-            Sound.hunterClosing.play()
-        default:
-            break
-        }
-    }
-
-    func playOpeningSound(forState state: Werewolf_Game.State) {
-        switch state {
-            case .orphanAwake:
-                Sound.orphanOpening.play()
-            case .halfBloodAwake:
-                Sound.halfBloodOpening.play()
-            case .guardianAwake:
-                Sound.guardOpening.play()
-            case .werewolfAwake:
-                Sound.werewolfOpening.play()
-            case .witchAwake:
-                Sound.witchOpening.play()
-            case .seerAwake:
-                Sound.seerOpening.play()
-            case .hunterAwake:
-                Sound.hunterOpening.play()
-            default:
-                break
-        }
     }
 }
