@@ -23,8 +23,24 @@
 		B793EA3020D47AD700F319AD /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA2F20D47AD700F319AD /* UIImageExtensions.swift */; };
 		B793EA3520D6B12B00F319AD /* WerewolfRoleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA3420D6B12B00F319AD /* WerewolfRoleExtensions.swift */; };
 		B793EA3920D6D19E00F319AD /* CallResultExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA3820D6D19E00F319AD /* CallResultExtensions.swift */; };
-		B7DB22F920D8506B0068F7C7 /* darkness_falls.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B7DB22F820D8506B0068F7C7 /* darkness_falls.mp3 */; };
 		B7DB230220D9B8A60068F7C7 /* GameServiceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB230120D9B8A60068F7C7 /* GameServiceExtensions.swift */; };
+		B7DB231520DB1F870068F7C7 /* 狼人睁眼.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B7DB230520DB1F840068F7C7 /* 狼人睁眼.m4a */; };
+		B7DB231620DB1F870068F7C7 /* 守卫闭眼.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B7DB230620DB1F840068F7C7 /* 守卫闭眼.m4a */; };
+		B7DB231720DB1F870068F7C7 /* 预言家闭眼.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B7DB230720DB1F840068F7C7 /* 预言家闭眼.m4a */; };
+		B7DB231820DB1F870068F7C7 /* 守卫睁眼.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B7DB230820DB1F840068F7C7 /* 守卫睁眼.m4a */; };
+		B7DB231920DB1F870068F7C7 /* 猎人睁眼.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B7DB230920DB1F850068F7C7 /* 猎人睁眼.m4a */; };
+		B7DB231A20DB1F870068F7C7 /* 女巫睁眼.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B7DB230A20DB1F850068F7C7 /* 女巫睁眼.m4a */; };
+		B7DB231B20DB1F870068F7C7 /* 警长竞选.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B7DB230B20DB1F850068F7C7 /* 警长竞选.m4a */; };
+		B7DB231C20DB1F870068F7C7 /* 女巫闭眼.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B7DB230C20DB1F850068F7C7 /* 女巫闭眼.m4a */; };
+		B7DB231D20DB1F870068F7C7 /* 混子闭眼.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B7DB230D20DB1F850068F7C7 /* 混子闭眼.m4a */; };
+		B7DB231E20DB1F870068F7C7 /* 野孩子睁眼.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B7DB230E20DB1F850068F7C7 /* 野孩子睁眼.m4a */; };
+		B7DB231F20DB1F870068F7C7 /* 混子睁眼.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B7DB230F20DB1F860068F7C7 /* 混子睁眼.m4a */; };
+		B7DB232020DB1F870068F7C7 /* 猎人闭眼.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B7DB231020DB1F860068F7C7 /* 猎人闭眼.m4a */; };
+		B7DB232120DB1F870068F7C7 /* 天黑了.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B7DB231120DB1F860068F7C7 /* 天黑了.m4a */; };
+		B7DB232220DB1F870068F7C7 /* 狼人闭眼.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B7DB231220DB1F860068F7C7 /* 狼人闭眼.m4a */; };
+		B7DB232320DB1F870068F7C7 /* 野孩子闭眼.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B7DB231320DB1F860068F7C7 /* 野孩子闭眼.m4a */; };
+		B7DB232420DB1F870068F7C7 /* 预言家睁眼.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B7DB231420DB1F860068F7C7 /* 预言家睁眼.m4a */; };
+		B7DB232720DB206B0068F7C7 /* SoundExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB232620DB206B0068F7C7 /* SoundExtensions.swift */; };
 		B7EF75A720CF312F00000A67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF75A620CF312F00000A67 /* AppDelegate.swift */; };
 		B7EF75A920CF312F00000A67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF75A820CF312F00000A67 /* ViewController.swift */; };
 		B7EF75AC20CF312F00000A67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7EF75AA20CF312F00000A67 /* Main.storyboard */; };
@@ -71,8 +87,24 @@
 		B793EA2F20D47AD700F319AD /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		B793EA3420D6B12B00F319AD /* WerewolfRoleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WerewolfRoleExtensions.swift; sourceTree = "<group>"; };
 		B793EA3820D6D19E00F319AD /* CallResultExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallResultExtensions.swift; sourceTree = "<group>"; };
-		B7DB22F820D8506B0068F7C7 /* darkness_falls.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = darkness_falls.mp3; path = ../../../../resources/sounds/darkness_falls.mp3; sourceTree = "<group>"; };
 		B7DB230120D9B8A60068F7C7 /* GameServiceExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameServiceExtensions.swift; sourceTree = "<group>"; };
+		B7DB230520DB1F840068F7C7 /* 狼人睁眼.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "狼人睁眼.m4a"; sourceTree = "<group>"; };
+		B7DB230620DB1F840068F7C7 /* 守卫闭眼.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "守卫闭眼.m4a"; sourceTree = "<group>"; };
+		B7DB230720DB1F840068F7C7 /* 预言家闭眼.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "预言家闭眼.m4a"; sourceTree = "<group>"; };
+		B7DB230820DB1F840068F7C7 /* 守卫睁眼.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "守卫睁眼.m4a"; sourceTree = "<group>"; };
+		B7DB230920DB1F850068F7C7 /* 猎人睁眼.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "猎人睁眼.m4a"; sourceTree = "<group>"; };
+		B7DB230A20DB1F850068F7C7 /* 女巫睁眼.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "女巫睁眼.m4a"; sourceTree = "<group>"; };
+		B7DB230B20DB1F850068F7C7 /* 警长竞选.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "警长竞选.m4a"; sourceTree = "<group>"; };
+		B7DB230C20DB1F850068F7C7 /* 女巫闭眼.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "女巫闭眼.m4a"; sourceTree = "<group>"; };
+		B7DB230D20DB1F850068F7C7 /* 混子闭眼.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "混子闭眼.m4a"; sourceTree = "<group>"; };
+		B7DB230E20DB1F850068F7C7 /* 野孩子睁眼.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "野孩子睁眼.m4a"; sourceTree = "<group>"; };
+		B7DB230F20DB1F860068F7C7 /* 混子睁眼.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "混子睁眼.m4a"; sourceTree = "<group>"; };
+		B7DB231020DB1F860068F7C7 /* 猎人闭眼.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "猎人闭眼.m4a"; sourceTree = "<group>"; };
+		B7DB231120DB1F860068F7C7 /* 天黑了.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "天黑了.m4a"; sourceTree = "<group>"; };
+		B7DB231220DB1F860068F7C7 /* 狼人闭眼.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "狼人闭眼.m4a"; sourceTree = "<group>"; };
+		B7DB231320DB1F860068F7C7 /* 野孩子闭眼.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "野孩子闭眼.m4a"; sourceTree = "<group>"; };
+		B7DB231420DB1F860068F7C7 /* 预言家睁眼.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "预言家睁眼.m4a"; sourceTree = "<group>"; };
+		B7DB232620DB206B0068F7C7 /* SoundExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundExtensions.swift; sourceTree = "<group>"; };
 		B7EF75A320CF312F00000A67 /* werewolf-assistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "werewolf-assistant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7EF75A620CF312F00000A67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7EF75A820CF312F00000A67 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -171,6 +203,7 @@
 				B793EA3420D6B12B00F319AD /* WerewolfRoleExtensions.swift */,
 				B793EA3820D6D19E00F319AD /* CallResultExtensions.swift */,
 				B7DB230120D9B8A60068F7C7 /* GameServiceExtensions.swift */,
+				B7DB232620DB206B0068F7C7 /* SoundExtensions.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -178,7 +211,22 @@
 		B7DB22F720D8504E0068F7C7 /* sounds */ = {
 			isa = PBXGroup;
 			children = (
-				B7DB22F820D8506B0068F7C7 /* darkness_falls.mp3 */,
+				B7DB231120DB1F860068F7C7 /* 天黑了.m4a */,
+				B7DB230A20DB1F850068F7C7 /* 女巫睁眼.m4a */,
+				B7DB230C20DB1F850068F7C7 /* 女巫闭眼.m4a */,
+				B7DB230820DB1F840068F7C7 /* 守卫睁眼.m4a */,
+				B7DB230620DB1F840068F7C7 /* 守卫闭眼.m4a */,
+				B7DB230F20DB1F860068F7C7 /* 混子睁眼.m4a */,
+				B7DB230D20DB1F850068F7C7 /* 混子闭眼.m4a */,
+				B7DB230520DB1F840068F7C7 /* 狼人睁眼.m4a */,
+				B7DB231220DB1F860068F7C7 /* 狼人闭眼.m4a */,
+				B7DB230920DB1F850068F7C7 /* 猎人睁眼.m4a */,
+				B7DB231020DB1F860068F7C7 /* 猎人闭眼.m4a */,
+				B7DB230B20DB1F850068F7C7 /* 警长竞选.m4a */,
+				B7DB230E20DB1F850068F7C7 /* 野孩子睁眼.m4a */,
+				B7DB231320DB1F860068F7C7 /* 野孩子闭眼.m4a */,
+				B7DB231420DB1F860068F7C7 /* 预言家睁眼.m4a */,
+				B7DB230720DB1F840068F7C7 /* 预言家闭眼.m4a */,
 			);
 			path = sounds;
 			sourceTree = "<group>";
@@ -188,6 +236,15 @@
 			children = (
 			);
 			path = actioncontrollers;
+			sourceTree = "<group>";
+		};
+		B7DB232520DB20480068F7C7 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				B793EA1E20D3366200F319AD /* Assets.xcassets */,
+				B7DB22F720D8504E0068F7C7 /* sounds */,
+			);
+			path = resources;
 			sourceTree = "<group>";
 		};
 		B7EF759A20CF312F00000A67 = {
@@ -215,8 +272,8 @@
 		B7EF75A520CF312F00000A67 /* werewolf-assistant */ = {
 			isa = PBXGroup;
 			children = (
+				B7DB232520DB20480068F7C7 /* resources */,
 				B7DB22FA20D8592F0068F7C7 /* actioncontrollers */,
-				B7DB22F720D8504E0068F7C7 /* sounds */,
 				B793EA2320D3CA8B00F319AD /* extensions */,
 				B793EA2020D3BF9800F319AD /* views */,
 				B793EA0F20D1D91200F319AD /* viewcontrollers */,
@@ -224,7 +281,6 @@
 				B7EF75A620CF312F00000A67 /* AppDelegate.swift */,
 				B7EF75AA20CF312F00000A67 /* Main.storyboard */,
 				B7EF75AF20CF313100000A67 /* LaunchScreen.storyboard */,
-				B793EA1E20D3366200F319AD /* Assets.xcassets */,
 				B7EF75B220CF313100000A67 /* Info.plist */,
 			);
 			path = "werewolf-assistant";
@@ -366,12 +422,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7DB22F920D8506B0068F7C7 /* darkness_falls.mp3 in Resources */,
 				B793EA2B20D41D9500F319AD /* RoomViewController.xib in Resources */,
+				B7DB232220DB1F870068F7C7 /* 狼人闭眼.m4a in Resources */,
+				B7DB231820DB1F870068F7C7 /* 守卫睁眼.m4a in Resources */,
+				B7DB231520DB1F870068F7C7 /* 狼人睁眼.m4a in Resources */,
+				B7DB231720DB1F870068F7C7 /* 预言家闭眼.m4a in Resources */,
 				B7EF75B120CF313100000A67 /* LaunchScreen.storyboard in Resources */,
+				B7DB231E20DB1F870068F7C7 /* 野孩子睁眼.m4a in Resources */,
+				B7DB232020DB1F870068F7C7 /* 猎人闭眼.m4a in Resources */,
+				B7DB231620DB1F870068F7C7 /* 守卫闭眼.m4a in Resources */,
+				B7DB231D20DB1F870068F7C7 /* 混子闭眼.m4a in Resources */,
+				B7DB231A20DB1F870068F7C7 /* 女巫睁眼.m4a in Resources */,
+				B7DB232320DB1F870068F7C7 /* 野孩子闭眼.m4a in Resources */,
 				B7EF75AC20CF312F00000A67 /* Main.storyboard in Resources */,
+				B7DB231F20DB1F870068F7C7 /* 混子睁眼.m4a in Resources */,
+				B7DB231920DB1F870068F7C7 /* 猎人睁眼.m4a in Resources */,
+				B7DB231C20DB1F870068F7C7 /* 女巫闭眼.m4a in Resources */,
 				B793EA1720D1E67B00F319AD /* ConfigurationViewController.xib in Resources */,
+				B7DB231B20DB1F870068F7C7 /* 警长竞选.m4a in Resources */,
 				B793EA1F20D3366200F319AD /* Assets.xcassets in Resources */,
+				B7DB232420DB1F870068F7C7 /* 预言家睁眼.m4a in Resources */,
+				B7DB232120DB1F870068F7C7 /* 天黑了.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,6 +573,7 @@
 				B7EF75A720CF312F00000A67 /* AppDelegate.swift in Sources */,
 				B7DB230220D9B8A60068F7C7 /* GameServiceExtensions.swift in Sources */,
 				B793EA2D20D466D900F319AD /* UIViewExtensions.swift in Sources */,
+				B7DB232720DB206B0068F7C7 /* SoundExtensions.swift in Sources */,
 				B793EA2A20D41D9500F319AD /* RoomViewController.swift in Sources */,
 				B793EA1C20D328B400F319AD /* werewolf.grpc.swift in Sources */,
 				B793EA1D20D328B400F319AD /* werewolf.pb.swift in Sources */,

@@ -121,15 +121,6 @@ extension RoomViewController {
                     self.showSnackbar(withMessage: "\(res.hunter.ruling)")
                 })
                 .disposed(by: disposeBag)
-        case .whiteWerewolf:
-            req.whiteWerewolf = Werewolf_TakeActionRequest.WhiteWerewolfAction()
-            gameSrvClient
-                .takeActionRx(req)
-                .observeOn(MainScheduler.asyncInstance)
-                .subscribe(onNext: { (res) in
-                    self.showSnackbar(withMessage: "\(res.whiteWerewolf.ruling)")
-                })
-                .disposed(by: disposeBag)
         case .witch:
             let alert = UIAlertController(title: "女巫", message: "今晚死的是：", preferredStyle: .alert)
             alert.addTextField { $0.placeholder = "救谁" }
@@ -151,10 +142,13 @@ extension RoomViewController {
                 req.witch.cureSeatID = curedSeatID
                 req.witch.poisonSeatID = poisonedSeatID
                 req.gameID = self.game.value?.id ?? ""
-                _ = try? self.gameSrvClient.takeAction(req
-                    , completion: { (res, callResult) in
-                        self.showAlert(for: callResult)
-                })
+                self.gameSrvClient
+                    .takeActionRx(req)
+                    .observeOn(MainScheduler.asyncInstance)
+                    .subscribe(onNext: { (res) in
+                        self.showSnackbar(withMessage: "操作成功")
+                    }, onError: nil, onCompleted: nil, onDisposed: nil)
+                    .disposed(by: self.disposeBag)
             }))
             alert.addAction(UIAlertAction(title: "不使用", style: .cancel, handler: nil))
             present(alert, animated: true, completion: nil)
@@ -370,29 +364,63 @@ private extension RoomViewController {
             }
             .distinctUntilChanged()
             .scan(nil, accumulator: { (previous, current) -> Werewolf_Game.State? in
-                // TODO: play closing sound for last round
+                if let state = previous {
+                    self.playClosingSound(forState: state)
+                }
+
                 return current
             })
             .subscribe(onNext: { (stateOptional) in
                 guard let state = stateOptional else {
                     return
                 }
-                switch state {
-                case .darknessFalls:
-                    Sound.play(file: "darkness_falls.mp3")
-                case .orphanAwake: break
-                case .halfBloodAwake: break
-                case .guardianAwake: break
-                case .werewolfAwake: break
-                case .witchAwake: break
-                case .seerAwake: break
-                case .hunterAwake: break
-                case .whiteWerewolfAwake: break
-                case .sheriffElection: break
-                default:
-                    break
-                }
+
+                self.playOpeningSound(forState: state)
             }, onError: nil, onCompleted: nil, onDisposed: nil)
             .disposed(by: disposeBag)
+    }
+
+    func playClosingSound(forState state: Werewolf_Game.State) {
+        switch state {
+        case .unknown:
+            Sound.darkness.play()
+        case .orphanAwake:
+            Sound.orphanClosing.play()
+        case .halfBloodAwake:
+            Sound.halfBloodClosing.play()
+        case .guardianAwake:
+            Sound.guardClosing.play()
+        case .werewolfAwake:
+            Sound.werewolfClosing.play()
+        case .witchAwake:
+            Sound.witchClosing.play()
+        case .seerAwake:
+            Sound.seerClosing.play()
+        case .hunterAwake:
+            Sound.hunterClosing.play()
+        default:
+            break
+        }
+    }
+
+    func playOpeningSound(forState state: Werewolf_Game.State) {
+        switch state {
+            case .orphanAwake:
+                Sound.orphanOpening.play()
+            case .halfBloodAwake:
+                Sound.halfBloodOpening.play()
+            case .guardianAwake:
+                Sound.guardOpening.play()
+            case .werewolfAwake:
+                Sound.werewolfOpening.play()
+            case .witchAwake:
+                Sound.witchOpening.play()
+            case .seerAwake:
+                Sound.seerOpening.play()
+            case .hunterAwake:
+                Sound.hunterOpening.play()
+            default:
+                break
+        }
     }
 }

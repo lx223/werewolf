@@ -157,11 +157,12 @@ func (s *GameService) StartGame(ctx context.Context, req *werewolf.StartGameRequ
 	roomId := req.GetRoomId()
 	room := s.rooms[roomId]
 
-	var seats []entity.Seat
-	for _, seat := range room.GetSortedSeats() {
-		seats = append(seats, *seat)
+	seatsCopy := make(map[string]*entity.Seat)
+	for k, seat := range room.Seats {
+		var seatCopy = *seat
+		seatsCopy[k] = &seatCopy
 	}
-	room.Game = entity.NewGame(roomId, room.Roles, seats)
+	room.Game = entity.NewGame(roomId, room.Roles, seatsCopy)
 
 	return &werewolf.StartGameResponse{}, nil
 }
@@ -176,22 +177,24 @@ func (s *GameService) TakeAction(ctx context.Context, req *werewolf.TakeActionRe
 
 	room := s.rooms[roomId]
 	game := room.Game
-	game.Actions = append(game.Actions, req)
 	game.AdvanceToNextState()
 
 	var res = &werewolf.TakeActionResponse{}
-	switch req.GetAction().(type) {
+	switch action := req.GetAction().(type) {
+	case *werewolf.TakeActionRequest_Witch:
+		game.WitchCureSeatId = action.Witch.CureSeatId
+		game.WitchPoisonSeatId = action.Witch.PoisonSeatId
+	case *werewolf.TakeActionRequest_Werewolf:
+		game.WerewolfKillSeatId = action.Werewolf.SeatId
+	case *werewolf.TakeActionRequest_Guard:
+		game.GuardSeatId = action.Guard.SeatId
 	case *werewolf.TakeActionRequest_Hunter:
 		res.Result = &werewolf.TakeActionResponse_Hunter{Hunter: &werewolf.TakeActionResponse_HunterResult{
-			Ruling: werewolf.Ruling_POSITIVE,
+			Ruling: game.HunterAction(),
 		}}
 	case *werewolf.TakeActionRequest_Seer:
 		res.Result = &werewolf.TakeActionResponse_Seer{Seer: &werewolf.TakeActionResponse_SeerResult{
-			Ruling: werewolf.Ruling_POSITIVE,
-		}}
-	case *werewolf.TakeActionRequest_WhiteWerewolf:
-		res.Result = &werewolf.TakeActionResponse_Hunter{Hunter: &werewolf.TakeActionResponse_HunterResult{
-			Ruling: werewolf.Ruling_POSITIVE,
+			Ruling: game.SeerAction(action.Seer.SeatId),
 		}}
 	}
 

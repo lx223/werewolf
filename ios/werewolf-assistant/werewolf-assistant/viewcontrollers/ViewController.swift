@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftGRPC
+import SwiftySound
 
 class ViewController: UIViewController {
 

@@ -145,8 +145,6 @@ func (s *GameService) validateTakeActionRequest(req *werewolf.TakeActionRequest)
 	}
 
 	switch req.GetAction().(type) {
-	case *werewolf.TakeActionRequest_Darkness:
-		return validateRequiredActionStateAgainstGameState(game, werewolf.Game_DARKNESS_FALLS)
 	case *werewolf.TakeActionRequest_Guard:
 		return validateRequiredActionStateAgainstGameState(game, werewolf.Game_GUARDIAN_AWAKE)
 	case *werewolf.TakeActionRequest_HalfBlood:
@@ -157,8 +155,6 @@ func (s *GameService) validateTakeActionRequest(req *werewolf.TakeActionRequest)
 		return validateRequiredActionStateAgainstGameState(game, werewolf.Game_SEER_AWAKE)
 	case *werewolf.TakeActionRequest_Werewolf:
 		return validateRequiredActionStateAgainstGameState(game, werewolf.Game_WEREWOLF_AWAKE)
-	case *werewolf.TakeActionRequest_WhiteWerewolf:
-		return validateRequiredActionStateAgainstGameState(game, werewolf.Game_WHITE_WEREWOLF_AWAKE)
 	case *werewolf.TakeActionRequest_Witch:
 		return validateRequiredActionStateAgainstGameState(game, werewolf.Game_WITCH_AWAKE)
 	case *werewolf.TakeActionRequest_Sheriff:

@@ -91,7 +91,6 @@ message TakeActionRequest {
     message WerewolfAction {
         string seat_id = 1;
     }
-    message WhiteWerewolfAction {}
     message HalfBloodAction {
         string seat_id = 1;
     }
@@ -103,9 +102,8 @@ message TakeActionRequest {
         HunterAction hunter = 5;
         GuardAction guard = 6;
         WerewolfAction werewolf = 7;
-        WhiteWerewolfAction white_werewolf = 8;
-        HalfBloodAction half_blood = 9;
-        CompleteSheriffAction sheriff = 10;
+        HalfBloodAction half_blood = 8;
+        CompleteSheriffAction sheriff = 9;
     }
 }
 
@@ -116,13 +114,9 @@ message TakeActionResponse {
     message HunterResult {
         Ruling ruling = 1;
     }
-    message WhiteWerewolfResult {
-        Ruling ruling = 1;
-    }
     oneof result {
         SeerResult seer = 1;
         HunterResult hunter = 2;
-        WhiteWerewolfResult white_werewolf = 3;
     }
 }
 
@@ -147,16 +141,14 @@ message Game {
 
     enum State {
         UNKNOWN = 0;
-        DARKNESS_FALLS = 1;
-        ORPHAN_AWAKE = 2;
-        HALF_BLOOD_AWAKE = 3;
-        GUARDIAN_AWAKE = 4;
-        WEREWOLF_AWAKE = 5;
-        WITCH_AWAKE = 6;
-        SEER_AWAKE = 7;
-        HUNTER_AWAKE = 8;
-        WHITE_WEREWOLF_AWAKE = 9;
-        SHERIFF_ELECTION = 10;
+        ORPHAN_AWAKE = 1;
+        HALF_BLOOD_AWAKE = 2;
+        GUARDIAN_AWAKE = 3;
+        WEREWOLF_AWAKE = 4;
+        WITCH_AWAKE = 5;
+        SEER_AWAKE = 6;
+        HUNTER_AWAKE = 7;
+        SHERIFF_ELECTION = 8;
     }
     State state = 2;
 
