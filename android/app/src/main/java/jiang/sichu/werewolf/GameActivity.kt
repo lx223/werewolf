@@ -10,7 +10,7 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 private const val HOST = "10.0.2.2"
-private const val PORT = 8080
+private const val PORT = 21806
 
 class GameActivity : Activity() {
 
