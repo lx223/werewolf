@@ -66,7 +66,7 @@ fileprivate extension ConfigurationViewController {
                 return
             }
 
-            let roomController = RoomViewController(roomID: self.roomID, userID: self.userID, client: self.gameSrvClient)
+            let roomController = RoomViewController(roomID: self.roomID, userID: self.userID, client: self.gameSrvClient, isHost: true)
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(roomController, animated: true)
             }

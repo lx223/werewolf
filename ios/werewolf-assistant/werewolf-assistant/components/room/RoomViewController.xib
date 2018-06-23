@@ -246,6 +246,6 @@
         </view>
     </objects>
     <resources>
-        <image name="卡背" width="66" height="66"/>
+        <image name="卡背" width="50" height="50"/>
     </resources>
 </document>

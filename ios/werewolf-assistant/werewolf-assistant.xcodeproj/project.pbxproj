@@ -42,6 +42,7 @@
 		B7DB232420DB1F870068F7C7 /* 预言家睁眼.m4a in Resources */ = {isa = PBXBuildFile; fileRef = B7DB231420DB1F860068F7C7 /* 预言家睁眼.m4a */; };
 		B7DB232720DB206B0068F7C7 /* SoundExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB232620DB206B0068F7C7 /* SoundExtensions.swift */; };
 		B7DB232D20DC5AFF0068F7C7 /* SoundQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB232C20DC5AFF0068F7C7 /* SoundQueue.swift */; };
+		B7DB233120DE3BDA0068F7C7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB233020DE3BDA0068F7C7 /* Constants.swift */; };
 		B7EF75A720CF312F00000A67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF75A620CF312F00000A67 /* AppDelegate.swift */; };
 		B7EF75A920CF312F00000A67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF75A820CF312F00000A67 /* ViewController.swift */; };
 		B7EF75AC20CF312F00000A67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7EF75AA20CF312F00000A67 /* Main.storyboard */; };
@@ -107,6 +108,7 @@
 		B7DB231420DB1F860068F7C7 /* 预言家睁眼.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "预言家睁眼.m4a"; sourceTree = "<group>"; };
 		B7DB232620DB206B0068F7C7 /* SoundExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundExtensions.swift; sourceTree = "<group>"; };
 		B7DB232C20DC5AFF0068F7C7 /* SoundQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundQueue.swift; sourceTree = "<group>"; };
+		B7DB233020DE3BDA0068F7C7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B7EF75A320CF312F00000A67 /* werewolf-assistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "werewolf-assistant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7EF75A620CF312F00000A67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7EF75A820CF312F00000A67 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 			children = (
 				B793EA1E20D3366200F319AD /* Assets.xcassets */,
 				B7DB22F720D8504E0068F7C7 /* sounds */,
+				B7DB233020DE3BDA0068F7C7 /* Constants.swift */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B793EA3520D6B12B00F319AD /* WerewolfRoleExtensions.swift in Sources */,
+				B7DB233120DE3BDA0068F7C7 /* Constants.swift in Sources */,
 				B793EA2520D3CA9C00F319AD /* UIViewControllerExtensions.swift in Sources */,
 				B793EA3020D47AD700F319AD /* UIImageExtensions.swift in Sources */,
 				B793EA3920D6D19E00F319AD /* CallResultExtensions.swift in Sources */,

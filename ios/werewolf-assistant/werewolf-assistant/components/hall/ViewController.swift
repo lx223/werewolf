@@ -12,7 +12,11 @@ import SwiftySound
 
 class ViewController: UIViewController {
 
-    private var gameSrvClient: Werewolf_GameServiceService  = Werewolf_GameServiceServiceClient(address:"localhost:8080", secure: false, arguments: [])
+    private var gameSrvClient: Werewolf_GameServiceService  = {
+        let client = Werewolf_GameServiceServiceClient(address:Constants.serverAddress, secure: false, arguments: [])
+        try! client.metadata.add(key: "x-api-key", value: Constants.googleApiKey)
+        return client
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()

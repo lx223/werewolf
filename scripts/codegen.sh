@@ -7,6 +7,14 @@ GO_OUT="${REPO_BASE}/go/src/server/generated"
 SWIFT_OUT="${REPO_BASE}/ios/werewolf-assistant/werewolf-assistant/generated"
 JAVA_PROTO_DIR="${REPO_BASE}/android/app/src/main/proto"
 
+# Code-gen descriptor
+protoc \
+    -I$PROTO_ROOT \
+    --include_imports \
+    --include_source_info \
+    --descriptor_set_out=$PROTO_ROOT/out.pb \
+    ${PROTO_ROOT}/*.proto
+
 # Code-gen Go files
 rm -rf $GO_OUT/*
 for p in `find $PROTO_ROOT -name "*.proto" -type f`; do

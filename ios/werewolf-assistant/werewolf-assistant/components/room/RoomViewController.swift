@@ -84,7 +84,7 @@ extension RoomViewController {
                 return
             }
 
-            self.showAlert(for: nil, orMessage: "game started")
+            self.showSnackbar(withMessage: "game started")
         }
     }
 
@@ -366,14 +366,14 @@ private extension RoomViewController {
             .distinctUntilChanged()
             .subscribeOn(SerialDispatchQueueScheduler(internalSerialQueueName: "sound stream"))
             .scan(nil, accumulator: { (previous, current) -> Werewolf_Game.State? in
-                if let s = previous, let sound = Sound.getClosingSound(forState: s)  {
+                if let s = previous, let sound = Sound.getClosingSound(forState: s), self.isHost  {
                     self.soundQueuer.queue(sound)
                 }
 
                 return current
             })
             .subscribe(onNext: { (state) in
-                guard let s = state, let sound = Sound.getOpeningSound(forState: s) else {
+                guard let s = state, let sound = Sound.getOpeningSound(forState: s), self.isHost else {
                     return
                 }
 
