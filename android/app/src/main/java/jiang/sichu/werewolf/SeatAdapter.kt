@@ -10,28 +10,41 @@ import jiang.sichu.werewolf.ui.SquareImageView
 private const val COLOR_RES_MY_SEAT = android.R.color.holo_green_dark
 private const val COLOR_RES_OTHER_SEATS = android.R.color.darker_gray
 
-class SeatAdapter(private val context: Context,
-                  private val userId: String?,
-                  private val takeSeatFunc: (String) -> Unit) : BaseAdapter() {
-        private var seats: List<Seat> = arrayListOf()
+class SeatAdapter(private val context: Context, private val userId: String?) : BaseAdapter() {
 
-        fun setSeats(seats: List<Seat>) {
-            this.seats = seats
-            notifyDataSetChanged()
-        }
+    interface OneOffOnSeatClickListener {
+        fun onSeatClicked(seatId: String, oneBasedIndex: Int)
+    }
 
-        override fun getCount() = seats.size
+    private var seats: List<Seat> = arrayListOf()
+    private var listener: OneOffOnSeatClickListener? = null
 
-        override fun getItem(position: Int) = seats[position]
+    fun setSeats(seats: List<Seat>) {
+        this.seats = seats
+        notifyDataSetChanged()
+    }
 
-        override fun getItemId(position: Int) = position.toLong()
-
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-            val isMySeat = getItem(position).user.id == userId
-            val colorRes = if (isMySeat) COLOR_RES_MY_SEAT else COLOR_RES_OTHER_SEATS
-            return SquareImageView(context, null).apply {
-                setBackgroundColor(context.resources.getColor(colorRes))
-                setOnClickListener { takeSeatFunc(getItem(position).id) }
+    fun setOneOffOnSeatClickListener(callback: (String, Int) -> Unit) {
+        listener = object : OneOffOnSeatClickListener {
+            override fun onSeatClicked(seatId: String, oneBasedIndex: Int) {
+                callback(seatId, oneBasedIndex)
+                listener = null
             }
         }
     }
+
+    override fun getCount() = seats.size
+
+    override fun getItem(position: Int) = seats[position]
+
+    override fun getItemId(position: Int) = position.toLong()
+
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        val isMySeat = getItem(position).user.id == userId
+        val colorRes = if (isMySeat) COLOR_RES_MY_SEAT else COLOR_RES_OTHER_SEATS
+        return SquareImageView(context, null).apply {
+            setBackgroundColor(context.resources.getColor(colorRes))
+            setOnClickListener { listener?.onSeatClicked(getItem(position).id, position + 1) }
+        }
+    }
+}

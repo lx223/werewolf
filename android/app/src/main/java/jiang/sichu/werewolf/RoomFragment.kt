@@ -1,16 +1,22 @@
 package jiang.sichu.werewolf
 
+import android.app.AlertDialog
 import android.os.Bundle
+import android.support.design.widget.Snackbar
+import android.support.design.widget.Snackbar.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import jiang.sichu.werewolf.proto.Werewolf.*
+import jiang.sichu.werewolf.proto.Werewolf.Game.State.*
+import jiang.sichu.werewolf.proto.Werewolf.Role.*
 import kotlinx.android.synthetic.main.fragment_room.view.*
 
 class RoomFragment : BaseFragment(), RoomPollingService.Listener {
 
     private var seatAdapter: SeatAdapter? = null
     private var roomPollingService: RoomPollingService? = null
+    // TODO: move audio manager to activity to avoid interruption on fragment transactions
     private var audioManager: AudioManager? = null
 
     override fun onCreateView(inflater: LayoutInflater,
@@ -18,15 +24,26 @@ class RoomFragment : BaseFragment(), RoomPollingService.Listener {
                               savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_room, container, false)
-        seatAdapter = SeatAdapter(context, activity?.userId, this::takeSeat)
+
+        // TODO: display room ID
+
+        seatAdapter = SeatAdapter(context, activity!!.userId)
+                .apply { setOneOffOnSeatClickListener { seatId, _ -> takeSeat(seatId) } }
         view.grid_seats.adapter = seatAdapter
         view.btn_check_role.setOnClickListener { activity?.onCheckRoleButtonClick() }
+        view.btn_take_action.setOnClickListener { takeAction() }
+
+        // TODO: add "dead players" button
+
         roomPollingService = RoomPollingService(activity?.roomId!!, this, gameService!!).apply { init() }
         audioManager = AudioManager(context)
 
         if (activity!!.isHost) {
             view.btn_start_game.visibility = View.VISIBLE
-            view.btn_start_game.setOnClickListener { startGame() }
+            view.btn_start_game.setOnClickListener {
+                startGame()
+                view.btn_start_game.isEnabled = false
+            }
         }
 
         return view
@@ -55,7 +72,10 @@ class RoomFragment : BaseFragment(), RoomPollingService.Listener {
         runOnUiThread {
             seatAdapter?.setSeats(seats)
             val isSeated = seats.any { seat -> seat.user.id == activity?.userId }
-            view.btn_check_role.visibility = if (isSeated) View.VISIBLE else View.GONE
+            if (isSeated) {
+                view.btn_check_role.visibility = View.VISIBLE
+                view.btn_take_action.visibility = View.VISIBLE
+            }
         }
     }
 
@@ -78,5 +98,176 @@ class RoomFragment : BaseFragment(), RoomPollingService.Listener {
             val request = StartGameRequest.newBuilder().setRoomId(activity?.roomId).build()
             gameService?.startGame(request)
         }
+    }
+
+    private fun takeAction() {
+        val myRole = roomPollingService!!.getRoom().seatsList.first { seat -> seat.user.id == activity?.userId }.role
+        if (!canTakeAction(myRole)) {
+            showNoActionSnackbar()
+            return
+        }
+
+        when (myRole) {
+            ORPHAN -> throw NotImplementedError()
+            HALF_BLOOD -> takeHalfBloodAction()
+            GUARDIAN -> takeGuardianAction()
+            WEREWOLF -> takeWerewolfAction()
+            WITCH -> takeWitchAction()
+            SEER -> takeSeerAction()
+            HUNTER -> takeHunterAction()
+            else -> showNoActionSnackbar()
+        }
+    }
+
+    private fun canTakeAction(role: Role): Boolean {
+        val gameState = roomPollingService!!.getRoom().game.state
+        return when (role) {
+            ORPHAN -> throw NotImplementedError()
+            HALF_BLOOD -> gameState == HALF_BLOOD_AWAKE
+            GUARDIAN -> gameState == GUARDIAN_AWAKE
+            WEREWOLF -> gameState == WEREWOLF_AWAKE
+            WITCH -> gameState == WITCH_AWAKE
+            SEER -> gameState == SEER_AWAKE
+            HUNTER -> gameState == HUNTER_AWAKE
+            else -> false
+        }
+    }
+
+    private fun showNoActionSnackbar() {
+        Snackbar.make(view, R.string.snackbar_no_action, LENGTH_SHORT).show()
+    }
+
+    private fun takeHalfBloodAction() {
+        val snackbar = Snackbar.make(view, R.string.snackbar_half_blood_action, LENGTH_INDEFINITE).apply { show() }
+        seatAdapter?.setOneOffOnSeatClickListener { seatId, _ ->
+            executor?.execute {
+                val halfBloodAction = TakeActionRequest.HalfBloodAction.newBuilder().setSeatId(seatId)
+                val request = createTakeActionRequestBuilder().setHalfBlood(halfBloodAction).build()
+                gameService!!.takeAction(request)
+                runOnUiThread { snackbar.dismiss() }
+            }
+        }
+    }
+
+    private fun takeGuardianAction() {
+        val snackbar = Snackbar.make(view, R.string.snackbar_guardian_action, LENGTH_INDEFINITE).apply { show() }
+        seatAdapter?.setOneOffOnSeatClickListener { seatId, _ ->
+            executor?.execute {
+                val guardianAction = TakeActionRequest.GuardAction.newBuilder().setSeatId(seatId)
+                val request = createTakeActionRequestBuilder().setGuard(guardianAction).build()
+                gameService!!.takeAction(request)
+                runOnUiThread { snackbar.dismiss() }
+            }
+        }
+    }
+
+    private fun takeWerewolfAction() {
+        val snackbar = Snackbar.make(view, R.string.snackbar_werewolf_action, LENGTH_INDEFINITE).apply { show() }
+        seatAdapter?.setOneOffOnSeatClickListener { seatId, _ ->
+            executor?.execute {
+                val werewolfAction = TakeActionRequest.WerewolfAction.newBuilder().setSeatId(seatId)
+                val request = createTakeActionRequestBuilder().setWerewolf(werewolfAction).build()
+                gameService!!.takeAction(request)
+                runOnUiThread { snackbar.dismiss() }
+            }
+        }
+    }
+
+    private fun takeWitchAction() {
+        val deadPlayerSeatId = roomPollingService!!.getRoom().game.deadPlayerNumbersList?.firstOrNull()
+        if (deadPlayerSeatId == null) {
+            showPoisonDialog(R.string.dialog_witch_poison_action_nobody_killed)
+        } else {
+            showCureDialog(deadPlayerSeatId)
+        }
+    }
+
+    private fun showCureDialog(deadPlayerSeatId: String) {
+        val seats = roomPollingService!!.getRoom().seatsList
+        val deadPlayerSeatIndex = seats.first { seat -> seat.id == deadPlayerSeatId }
+        val mySeatId = seats.first { seat -> seat.user.id == activity!!.userId }.id
+        AlertDialog.Builder(context)
+                .setMessage(getString(R.string.dialog_witch_cure_action, deadPlayerSeatIndex))
+                .apply {
+                    if (deadPlayerSeatId != mySeatId) {
+                        setPositiveButton(R.string.btn_label_yes, { _, _ -> cure(deadPlayerSeatId) })
+                    }
+                    setNegativeButton(
+                            R.string.btn_label_no,
+                            { _, _ -> showPoisonDialog(R.string.dialog_witch_poison_action) })
+                }
+                .show()
+    }
+
+    private fun showPoisonDialog(messageResId: Int) {
+        AlertDialog.Builder(context)
+                .setMessage(messageResId)
+                .setPositiveButton(R.string.btn_label_yes, { _, _ -> poison() })
+                .setNegativeButton(R.string.btn_label_no, { _, _ -> witchNoAction() })
+                .show()
+    }
+
+    private fun witchNoAction() {
+        executor?.execute {
+            val witchAction = TakeActionRequest.WitchAction.newBuilder()
+            gameService?.takeAction(createTakeActionRequestBuilder().setWitch(witchAction).build())
+        }
+    }
+
+    private fun cure(seatId: String) {
+        executor?.execute {
+            val witchAction = TakeActionRequest.WitchAction.newBuilder().setCureSeatId(seatId)
+            gameService?.takeAction(createTakeActionRequestBuilder().setWitch(witchAction).build())
+        }
+    }
+
+    private fun poison() {
+        val snackbar = Snackbar.make(view, R.string.snackbar_witch_poison_action, LENGTH_INDEFINITE).apply { show() }
+        seatAdapter?.setOneOffOnSeatClickListener { seatId, _ ->
+            executor?.execute {
+                val witchAction = TakeActionRequest.WitchAction.newBuilder().setPoisonSeatId(seatId)
+                gameService?.takeAction(createTakeActionRequestBuilder().setWitch(witchAction).build())
+                runOnUiThread { snackbar.dismiss() }
+            }
+        }
+    }
+
+    private fun takeSeerAction() {
+        val snackbar = Snackbar.make(view, R.string.snackbar_seer_action, LENGTH_INDEFINITE).apply { show() }
+        seatAdapter?.setOneOffOnSeatClickListener { seatId, oneBasedIndex ->
+            executor?.execute {
+                val seerAction = TakeActionRequest.SeerAction.newBuilder().setSeatId(seatId)
+                val request = createTakeActionRequestBuilder().setSeer(seerAction).build()
+                val seerRuling = gameService!!.takeAction(request).seer.ruling
+                val seerResultResId =
+                        if (seerRuling == Ruling.POSITIVE)
+                            R.string.snackbar_seer_action_result_positive
+                        else R.string.snackbar_seer_action_result_negative
+                runOnUiThread {
+                    snackbar.dismiss()
+                    Snackbar.make(view, getString(seerResultResId, oneBasedIndex), LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
+    private fun takeHunterAction() {
+        executor?.execute {
+            val hunterAction = TakeActionRequest.HunterAction.newBuilder()
+            val request = createTakeActionRequestBuilder().setHunter(hunterAction).build()
+            val hunterRuling = gameService!!.takeAction(request).hunter.ruling
+            val hunterResultResId =
+                    if (hunterRuling == Ruling.POSITIVE)
+                        R.string.snackbar_hunter_action_result_positive
+                    else R.string.snackbar_hunter_action_result_negative
+            runOnUiThread {
+                Snackbar.make(view, hunterResultResId, LENGTH_LONG).show()
+            }
+        }
+    }
+
+    private fun createTakeActionRequestBuilder(): TakeActionRequest.Builder {
+        val gameId = roomPollingService!!.getRoom().game.id
+        return TakeActionRequest.newBuilder().setGameId(gameId)
     }
 }

@@ -3,6 +3,8 @@
     <!-- common -->
     <string name="app_name">一个叫狼人杀助手的小法官</string>
     <string name="btn_label_confirm">确认</string>
+    <string name="btn_label_yes">是</string>
+    <string name="btn_label_no">否</string>
     <string name="role_seer">预言家</string>
     <string name="role_witch">女巫</string>
     <string name="role_hunter">猎人</string>
@@ -22,4 +24,18 @@
     <!-- RoomFragment -->
     <string name="btn_check_role">查看身份</string>
     <string name="btn_start_game">开始游戏</string>
+    <string name="btn_take_action">使用技能</string>
+    <string name="snackbar_no_action">暂时无法使用技能</string>
+    <string name="snackbar_half_blood_action">请选择你的榜样</string>
+    <string name="snackbar_guardian_action">请选择你要守护的玩家</string>
+    <string name="snackbar_werewolf_action">请选择击杀目标</string>
+    <string name="dialog_witch_cure_action">今晚被杀的玩家是：%d号\n你要使用解药吗？</string>
+    <string name="dialog_witch_poison_action_nobody_killed">今晚没有玩家被杀！你要使用毒药吗？</string>
+    <string name="dialog_witch_poison_action">你要使用毒药吗？</string>
+    <string name="snackbar_witch_poison_action">请选择要毒杀的玩家</string>
+    <string name="snackbar_seer_action">请选择查验对象</string>
+    <string name="snackbar_seer_action_result_positive">%d号玩家是：好人</string>
+    <string name="snackbar_seer_action_result_negative">%d号玩家是：狼人</string>
+    <string name="snackbar_hunter_action_result_positive">你的开枪状态：可以开枪</string>
+    <string name="snackbar_hunter_action_result_negative">你的开枪状态：不能开枪！</string>
 </resources>

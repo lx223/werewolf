@@ -56,7 +56,7 @@ class RoomPollingService(private val roomId: String,
             listener.onSeatsChanged(newRoom.seatsList)
         }
         if (newRoom.game.state != room.game.state) {
-            listener.onGameStateChanged(newRoom.game.state, room.game.state)
+            listener.onGameStateChanged(room.game.state, newRoom.game.state)
         }
         room = newRoom
     }

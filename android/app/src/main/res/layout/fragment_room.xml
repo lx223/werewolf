@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/btn_check_role"
-            android:visibility="gone" />
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/btn_start_game"
@@ -43,6 +43,15 @@
             android:layout_weight="1"
             android:text="@string/btn_start_game"
             android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btn_take_action"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/gutter_width"
+            android:layout_weight="1"
+            android:text="@string/btn_take_action"
+            android:visibility="invisible" />
     </LinearLayout>
 </LinearLayout>
 
