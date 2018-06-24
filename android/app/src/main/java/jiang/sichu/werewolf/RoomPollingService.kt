@@ -1,8 +1,7 @@
 package jiang.sichu.werewolf
 
 import jiang.sichu.werewolf.proto.GameServiceGrpc
-import jiang.sichu.werewolf.proto.Werewolf
-import jiang.sichu.werewolf.proto.Werewolf.Game
+import jiang.sichu.werewolf.proto.Werewolf.*
 import java.util.concurrent.Executors
 import java.util.concurrent.Future
 import java.util.concurrent.ScheduledExecutorService
@@ -16,17 +15,19 @@ class RoomPollingService(private val roomId: String,
                          private val gameService: GameServiceGrpc.GameServiceBlockingStub) {
 
     interface Listener {
-        fun onSeatsChanged(seats: List<Werewolf.Seat>)
+        fun onSeatsChanged(seats: List<Seat>)
         fun onGameStateChanged(previousState: Game.State, currentState: Game.State)
     }
 
     private var executor: ScheduledExecutorService? = null
     private var taskFuture: Future<*>? = null
-    private var seats: List<Werewolf.Seat> = listOf()
-    private var currentState: Game.State = Game.State.UNKNOWN
+    private var room = Room.getDefaultInstance()
+
+    fun getRoom() = room
 
     fun init() {
         executor = Executors.newSingleThreadScheduledExecutor()
+        room = Room.newBuilder().setGame(Game.newBuilder().setState(Game.State.UNKNOWN)).build()
     }
 
     fun start() {
@@ -49,15 +50,14 @@ class RoomPollingService(private val roomId: String,
     }
 
     private fun fetchRoomAndNotifyListenerIfChanged() {
-        val request = Werewolf.GetRoomRequest.newBuilder().setRoomId(roomId).build()
-        val room = gameService.getRoom(request).room
-        if (seats != room.seatsList) {
-            listener.onSeatsChanged(room.seatsList)
-            seats = room.seatsList
+        val request = GetRoomRequest.newBuilder().setRoomId(roomId).build()
+        val newRoom = gameService.getRoom(request).room
+        if (newRoom.seatsList != room.seatsList) {
+            listener.onSeatsChanged(newRoom.seatsList)
         }
-        if (currentState != room.game.state) {
-            listener.onGameStateChanged(currentState, room.game.state)
-            currentState = room.game.state
+        if (newRoom.game.state != room.game.state) {
+            listener.onGameStateChanged(newRoom.game.state, room.game.state)
         }
+        room = newRoom
     }
 }
