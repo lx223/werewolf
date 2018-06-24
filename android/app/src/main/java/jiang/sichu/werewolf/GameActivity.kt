@@ -18,7 +18,7 @@ class GameActivity : Activity() {
     var gameService: GameServiceGrpc.GameServiceBlockingStub? = null
     var userId: String? = null
     var roomId: String? = null
-    var isHost: Boolean? = null
+    var isHost = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

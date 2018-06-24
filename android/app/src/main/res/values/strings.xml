@@ -21,4 +21,5 @@
 
     <!-- RoomFragment -->
     <string name="btn_check_role">查看身份</string>
+    <string name="btn_start_game">开始游戏</string>
 </resources>
