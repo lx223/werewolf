@@ -43,6 +43,8 @@
 		B7DB232720DB206B0068F7C7 /* SoundExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB232620DB206B0068F7C7 /* SoundExtensions.swift */; };
 		B7DB232D20DC5AFF0068F7C7 /* SoundQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB232C20DC5AFF0068F7C7 /* SoundQueue.swift */; };
 		B7DB233120DE3BDA0068F7C7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB233020DE3BDA0068F7C7 /* Constants.swift */; };
+		B7DB233520DE82730068F7C7 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB233420DE82730068F7C7 /* UIColorExtensions.swift */; };
+		B7DB233720E18F5B0068F7C7 /* MDCButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB233620E18F5B0068F7C7 /* MDCButtonExtensions.swift */; };
 		B7EF75A720CF312F00000A67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF75A620CF312F00000A67 /* AppDelegate.swift */; };
 		B7EF75A920CF312F00000A67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF75A820CF312F00000A67 /* ViewController.swift */; };
 		B7EF75AC20CF312F00000A67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7EF75AA20CF312F00000A67 /* Main.storyboard */; };
@@ -109,6 +111,8 @@
 		B7DB232620DB206B0068F7C7 /* SoundExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundExtensions.swift; sourceTree = "<group>"; };
 		B7DB232C20DC5AFF0068F7C7 /* SoundQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundQueue.swift; sourceTree = "<group>"; };
 		B7DB233020DE3BDA0068F7C7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B7DB233420DE82730068F7C7 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+		B7DB233620E18F5B0068F7C7 /* MDCButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDCButtonExtensions.swift; sourceTree = "<group>"; };
 		B7EF75A320CF312F00000A67 /* werewolf-assistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "werewolf-assistant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7EF75A620CF312F00000A67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7EF75A820CF312F00000A67 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +200,8 @@
 				B793EA3820D6D19E00F319AD /* CallResultExtensions.swift */,
 				B7DB230120D9B8A60068F7C7 /* GameServiceExtensions.swift */,
 				B7DB232620DB206B0068F7C7 /* SoundExtensions.swift */,
+				B7DB233420DE82730068F7C7 /* UIColorExtensions.swift */,
+				B7DB233620E18F5B0068F7C7 /* MDCButtonExtensions.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -598,6 +604,8 @@
 				B793EA3020D47AD700F319AD /* UIImageExtensions.swift in Sources */,
 				B793EA3920D6D19E00F319AD /* CallResultExtensions.swift in Sources */,
 				B793EA2220D3BFCD00F319AD /* UINumberPickerView.swift in Sources */,
+				B7DB233720E18F5B0068F7C7 /* MDCButtonExtensions.swift in Sources */,
+				B7DB233520DE82730068F7C7 /* UIColorExtensions.swift in Sources */,
 				B793EA2720D3F4F600F319AD /* SeatView.swift in Sources */,
 				B793EA1620D1E67B00F319AD /* ConfigurationViewController.swift in Sources */,
 				B7EF75A920CF312F00000A67 /* ViewController.swift in Sources */,

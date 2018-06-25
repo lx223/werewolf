@@ -15,7 +15,7 @@ import MaterialComponents
 
 class RoomViewController: UIViewController {
 
-    @IBOutlet var seatViews: [SeatView]!
+    @IBOutlet var seatButtons: [MDCButton]!
     @IBOutlet weak var roleImageView: UIImageView!
 
     private var seatTaken: Werewolf_Seat?
@@ -39,9 +39,6 @@ class RoomViewController: UIViewController {
         roomLabel.text = "房间: \(roomID)"
         let rightBarButtonItem = UIBarButtonItem(customView: roomLabel)
         navigationItem.setRightBarButton(rightBarButtonItem, animated: false)
-
-        seatViews.sort { $0.number < $1.number }
-        seatViews.forEach{ $0.attachRecogniser(numOfTap: 1, forTarget: self, withAction: #selector(onSeatPressed)) }
 
         roleImageView.attachRecogniser(numOfTap: 1, forTarget: self, withAction: #selector(onRoleImageViewPressed))
 
@@ -171,17 +168,8 @@ extension RoomViewController {
         }
     }
 
-    @objc func onSeatPressed(_ sender: UITapGestureRecognizer) {
-        guard let seatViewPressed = sender.view as? SeatView else {
-            return
-        }
-
-        tryHandleRoleSkill(seatViewPressed)
-        tryHandleSeatTaking(seatViewPressed)
-    }
-
-    func tryHandleRoleSkill(_ seatView: SeatView) {
-        guard let gameState = game.value?.state, let role = seatTaken?.role, let seatID = seats.value?[seatView.number - 1].id, let gameID = game.value?.id else {
+    func tryHandleRoleSkill(_ seatButton: MDCButton) {
+        guard let gameState = game.value?.state, let role = seatTaken?.role, let seatID = seats.value?[seatButton.number - 1].id, let gameID = game.value?.id else {
             return
         }
 
@@ -207,6 +195,7 @@ extension RoomViewController {
             req.halfBlood.seatID = seatID
             gameSrvClient
                 .takeActionRx(req)
+                .observeOn(MainScheduler.asyncInstance)
                 .subscribe(onNext: { (_) in
                     self.showSnackbar(withMessage: "榜样设立成功")
                 }, onError: nil, onCompleted: nil, onDisposed: nil)
@@ -218,6 +207,7 @@ extension RoomViewController {
             req.guard.seatID = seatID
             gameSrvClient
                 .takeActionRx(req)
+                .observeOn(MainScheduler.asyncInstance)
                 .subscribe(onNext: { (_) in
                     self.showSnackbar(withMessage: "守卫成功")
                 }, onError: nil, onCompleted: nil, onDisposed: nil)
@@ -229,6 +219,7 @@ extension RoomViewController {
             req.werewolf.seatID = seatID
             gameSrvClient
                 .takeActionRx(req)
+                .observeOn(MainScheduler.asyncInstance)
                 .subscribe(onNext: { (_) in
                     self.showSnackbar(withMessage: "🔪人成功")
                 }, onError: nil, onCompleted: nil, onDisposed: nil)
@@ -238,9 +229,9 @@ extension RoomViewController {
         }
     }
 
-    func tryHandleSeatTaking(_ seatView: SeatView) {
-        guard let seatID = seats.value?[seatView.number - 1].id,
-            let hasUser = seats.value?[seatView.number - 1].hasUser,
+    func tryHandleSeatTaking(_ seatButton: MDCButton) {
+        guard let seatID = seats.value?[seatButton.number - 1].id,
+            let hasUser = seats.value?[seatButton.number - 1].hasUser,
             !hasUser else {
             return
         }
@@ -249,14 +240,13 @@ extension RoomViewController {
         req.seatID = seatID
         req.userID = userID
 
-        _ = try? gameSrvClient.takeSeat(req) { (res, callResult) in
-            guard let _ = res else {
-                self.showAlert(for: callResult)
-                return
-            }
-
-            self.showSnackbar(withMessage: "Took seat \(seatView.number)")
-        }
+        gameSrvClient
+            .takeSeatRx(req)
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { (_) in
+                self.showSnackbar(withMessage: "Took seat \(seatButton.number)")
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
     }
 }
 
@@ -265,7 +255,7 @@ private extension RoomViewController {
         var req = Werewolf_GetRoomRequest()
         req.roomID = self.roomID
         Observable<Int>
-            .timer(RxTimeInterval(0), period: RxTimeInterval(2), scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
+            .timer(RxTimeInterval(0), period: RxTimeInterval(0.5), scheduler: ConcurrentDispatchQueueScheduler(qos: .background))
             .flatMapLatest { _ -> Observable<Werewolf_Room> in
                 return Observable<Werewolf_Room>.create { observer -> Disposable in
                     let getRoomCall = try? self.gameSrvClient.getRoom(req) { (res, callResult) in
@@ -291,6 +281,21 @@ private extension RoomViewController {
     }
 
      func configureSeatsSubscription() {
+
+        Observable
+            .merge(seatButtons
+                .compactMap { (button) -> Observable<MDCButton> in
+                    return button.rx.tap.flatMapLatest({ (_) -> Observable<MDCButton> in
+                        return Observable.just(button)
+                    })
+            })
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { (button) in
+                self.tryHandleRoleSkill(button)
+                self.tryHandleSeatTaking(button)
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
+
         let distinctSeats = seats
             .asObservable()
             .distinctUntilChanged()
@@ -323,12 +328,12 @@ private extension RoomViewController {
                 }
 
                 for i in 0..<seats.count {
-                    self.seatViews[i].alpha = 1.0
-                    self.seatViews[i].taken = seats[i].hasUser
+                    self.seatButtons[i].alpha = 1.0
+                    self.seatButtons[i].backgroundColor = seats[i].hasUser ? .seatTaken : .seatVacant;
                 }
 
-                for i in seats.count..<self.seatViews.count {
-                    self.seatViews[i].alpha = 0.0
+                for i in seats.count..<self.seatButtons.count {
+                    self.seatButtons[i].alpha = 0.0
                 }
             }, onError: nil, onCompleted: nil, onDisposed: nil)
             .disposed(by: disposeBag)

@@ -27,4 +27,22 @@ extension Werewolf_GameServiceService {
             }
         }
     }
+
+    func takeSeatRx(_ req: Werewolf_TakeSeatRequest) -> Observable<Werewolf_TakeSeatResponse> {
+        return Observable<Werewolf_TakeSeatResponse>.create { observer -> Disposable in
+            let call = try? self.takeSeat(req) {
+                guard let res = $0 else {
+                    observer.onError($1)
+                    return
+                }
+
+                observer.onNext(res)
+                observer.onCompleted()
+            }
+
+            return Disposables.create {
+                call?.cancel()
+            }
+        }
+    }
 }
