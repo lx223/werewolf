@@ -50,7 +50,7 @@ class RoleFragment : BaseFragment() {
         executor?.execute {
             val request = GetRoomRequest.newBuilder().setRoomId(activity?.roomId).build()
             val response = gameService?.getRoom(request)!!
-            val myRole = response.room.seatsList.first { seat -> seat.user.id == activity?.userId }.role
+            val myRole = response.room.seatsList.first { it.user.id == activity?.userId }.role
             runOnUiThread {
                 isShowing = true
                 view.role_card.isClickable = true

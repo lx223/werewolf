@@ -40,6 +40,7 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
 
         if (activity!!.isHost) {
             view.btn_start_game.visibility = View.VISIBLE
+            view.btn_start_game.isEnabled = false
             view.btn_start_game.setOnClickListener {
                 startGame()
                 view.btn_start_game.isEnabled = false
@@ -71,10 +72,13 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
     override fun onSeatsChanged(seats: List<Seat>) {
         runOnUiThread {
             seatAdapter?.setSeats(seats)
-            val isSeated = seats.any { seat -> seat.user.id == activity?.userId }
+            val isSeated = seats.any { it.user.id == activity?.userId }
             if (isSeated) {
                 view.btn_check_role.visibility = View.VISIBLE
                 view.btn_take_action.visibility = View.VISIBLE
+            }
+            if (seats.all { it.hasUser() }) {
+                view.btn_start_game.isEnabled = true
             }
         }
     }
@@ -99,7 +103,7 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
     }
 
     private fun takeAction() {
-        val myRole = roomService!!.getRoom().seatsList.first { seat -> seat.user.id == activity?.userId }.role
+        val myRole = roomService!!.getRoom().seatsList.first { it.user.id == activity?.userId }.role
         if (!canTakeAction(myRole)) {
             showNoActionSnackbar()
             return
@@ -182,8 +186,8 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
 
     private fun showCureDialog(deadPlayerSeatId: String) {
         val seats = roomService!!.getRoom().seatsList
-        val deadPlayerSeatIndex = seats.first { seat -> seat.id == deadPlayerSeatId }
-        val mySeatId = seats.first { seat -> seat.user.id == activity!!.userId }.id
+        val deadPlayerSeatIndex = seats.indexOfFirst { it.id == deadPlayerSeatId } + 1
+        val mySeatId = seats.first { it.user.id == activity?.userId }.id
         AlertDialog.Builder(context)
                 .setMessage(getString(R.string.dialog_witch_cure_action, deadPlayerSeatIndex))
                 .apply {
