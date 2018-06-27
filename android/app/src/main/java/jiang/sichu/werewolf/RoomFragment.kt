@@ -12,10 +12,10 @@ import jiang.sichu.werewolf.proto.Werewolf.Game.State.*
 import jiang.sichu.werewolf.proto.Werewolf.Role.*
 import kotlinx.android.synthetic.main.fragment_room.view.*
 
-class RoomFragment : BaseFragment(), RoomPollingService.Listener {
+class RoomFragment : BaseFragment(), RoomService.Listener {
 
     private var seatAdapter: SeatAdapter? = null
-    private var roomPollingService: RoomPollingService? = null
+    private var roomService: RoomService? = null
     // TODO: move audio manager to activity to avoid interruption on fragment transactions
     private var audioManager: AudioManager? = null
 
@@ -35,7 +35,7 @@ class RoomFragment : BaseFragment(), RoomPollingService.Listener {
 
         // TODO: add "dead players" button
 
-        roomPollingService = RoomPollingService(activity?.roomId!!, this, gameService!!).apply { init() }
+        roomService = RoomService(activity?.roomId!!, this, gameService!!).apply { init() }
         audioManager = AudioManager(context)
 
         if (activity!!.isHost) {
@@ -51,19 +51,19 @@ class RoomFragment : BaseFragment(), RoomPollingService.Listener {
 
     override fun onResume() {
         super.onResume()
-        roomPollingService?.start()
+        roomService?.start()
     }
 
     override fun onPause() {
         super.onPause()
-        roomPollingService?.stop()
+        roomService?.stop()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         seatAdapter = null
-        roomPollingService?.shutdown()
-        roomPollingService = null
+        roomService?.shutdown()
+        roomService = null
         audioManager?.shutdown()
         audioManager = null
     }
@@ -80,10 +80,8 @@ class RoomFragment : BaseFragment(), RoomPollingService.Listener {
     }
 
     override fun onGameStateChanged(previousState: Game.State, currentState: Game.State) {
-        runOnUiThread {
-            audioManager?.enqueue(previousState, AudioManager.Type.END)
-            audioManager?.enqueue(currentState, AudioManager.Type.START)
-        }
+        audioManager?.enqueue(previousState, AudioManager.Type.END)
+        audioManager?.enqueue(currentState, AudioManager.Type.START)
     }
 
     private fun takeSeat(seatId: String) {
@@ -101,7 +99,7 @@ class RoomFragment : BaseFragment(), RoomPollingService.Listener {
     }
 
     private fun takeAction() {
-        val myRole = roomPollingService!!.getRoom().seatsList.first { seat -> seat.user.id == activity?.userId }.role
+        val myRole = roomService!!.getRoom().seatsList.first { seat -> seat.user.id == activity?.userId }.role
         if (!canTakeAction(myRole)) {
             showNoActionSnackbar()
             return
@@ -120,7 +118,7 @@ class RoomFragment : BaseFragment(), RoomPollingService.Listener {
     }
 
     private fun canTakeAction(role: Role): Boolean {
-        val gameState = roomPollingService!!.getRoom().game.state
+        val gameState = roomService!!.getRoom().game.state
         return when (role) {
             ORPHAN -> throw NotImplementedError()
             HALF_BLOOD -> gameState == HALF_BLOOD_AWAKE
@@ -174,7 +172,7 @@ class RoomFragment : BaseFragment(), RoomPollingService.Listener {
     }
 
     private fun takeWitchAction() {
-        val deadPlayerSeatId = roomPollingService!!.getRoom().game.deadPlayerNumbersList?.firstOrNull()
+        val deadPlayerSeatId = roomService!!.getRoom().game.deadPlayerNumbersList?.firstOrNull()
         if (deadPlayerSeatId == null) {
             showPoisonDialog(R.string.dialog_witch_poison_action_nobody_killed)
         } else {
@@ -183,7 +181,7 @@ class RoomFragment : BaseFragment(), RoomPollingService.Listener {
     }
 
     private fun showCureDialog(deadPlayerSeatId: String) {
-        val seats = roomPollingService!!.getRoom().seatsList
+        val seats = roomService!!.getRoom().seatsList
         val deadPlayerSeatIndex = seats.first { seat -> seat.id == deadPlayerSeatId }
         val mySeatId = seats.first { seat -> seat.user.id == activity!!.userId }.id
         AlertDialog.Builder(context)
@@ -267,7 +265,7 @@ class RoomFragment : BaseFragment(), RoomPollingService.Listener {
     }
 
     private fun createTakeActionRequestBuilder(): TakeActionRequest.Builder {
-        val gameId = roomPollingService!!.getRoom().game.id
+        val gameId = roomService!!.getRoom().game.id
         return TakeActionRequest.newBuilder().setGameId(gameId)
     }
 }

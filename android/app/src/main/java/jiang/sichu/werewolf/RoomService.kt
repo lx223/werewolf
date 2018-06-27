@@ -1,5 +1,6 @@
 package jiang.sichu.werewolf
 
+import android.support.annotation.WorkerThread
 import jiang.sichu.werewolf.proto.GameServiceGrpc
 import jiang.sichu.werewolf.proto.Werewolf.*
 import java.util.concurrent.Executors
@@ -10,9 +11,9 @@ import java.util.concurrent.TimeUnit
 private const val POLLING_PERIOD_SEC = 1L
 
 // TODO: refactor to use a real service.
-class RoomPollingService(private val roomId: String,
-                         private val listener: Listener,
-                         private val gameService: GameServiceGrpc.GameServiceBlockingStub) {
+class RoomService(private val roomId: String,
+                  private val listener: Listener,
+                  private val gameService: GameServiceGrpc.GameServiceBlockingStub) {
 
     interface Listener {
         fun onSeatsChanged(seats: List<Seat>)
@@ -22,8 +23,6 @@ class RoomPollingService(private val roomId: String,
     private var executor: ScheduledExecutorService? = null
     private var taskFuture: Future<*>? = null
     private var room = Room.getDefaultInstance()
-
-    fun getRoom() = room
 
     fun init() {
         executor = Executors.newSingleThreadScheduledExecutor()
@@ -49,9 +48,14 @@ class RoomPollingService(private val roomId: String,
         executor = null
     }
 
+    @WorkerThread
+    fun getRoom() = room ?: fetchRoom()
+
+    @WorkerThread
+    fun fetchRoom() = gameService.getRoom(GetRoomRequest.newBuilder().setRoomId(roomId).build()).room
+
     private fun fetchRoomAndNotifyListenerIfChanged() {
-        val request = GetRoomRequest.newBuilder().setRoomId(roomId).build()
-        val newRoom = gameService.getRoom(request).room
+        val newRoom = fetchRoom()
         if (newRoom.seatsList != room.seatsList) {
             listener.onSeatsChanged(newRoom.seatsList)
         }

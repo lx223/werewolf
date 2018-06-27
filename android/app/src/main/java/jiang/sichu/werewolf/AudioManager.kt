@@ -15,6 +15,7 @@ class AudioManager(private val context: Context) {
     private var currentMediaPlayer: MediaPlayer? = null
 
     fun shutdown() {
+        queue.clear()
         currentMediaPlayer?.stop()
         currentMediaPlayer?.release()
     }
