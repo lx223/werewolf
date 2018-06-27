@@ -35,9 +35,9 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
         // TODO: add "dead players" button
 
         roomService = RoomService(activity?.roomId!!, this, gameService!!).apply { init() }
-        audioManager = AudioManager(context)
 
         if (activity!!.isHost) {
+            audioManager = AudioManager(context)
             view.btn_start_game.visibility = View.VISIBLE
             view.btn_start_game.isEnabled = false
             view.btn_start_game.setOnClickListener {
@@ -83,8 +83,14 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
     }
 
     override fun onGameStateChanged(previousState: Game.State, currentState: Game.State) {
-        audioManager?.enqueue(previousState, AudioManager.Type.END)
-        audioManager?.enqueue(currentState, AudioManager.Type.START)
+        if (!activity!!.isHost) {
+            return
+        }
+
+        audioManager?.apply {
+            enqueue(previousState, AudioManager.Type.END)
+            enqueue(currentState, AudioManager.Type.START)
+        }
     }
 
     private fun takeSeat(seatId: String) {
