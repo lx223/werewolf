@@ -24,8 +24,7 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
                               savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.fragment_room, container, false)
-
-        // TODO: display room ID
+        view.title.text = getString(R.string.fragment_room_title_room_id, activity?.roomId)
 
         seatAdapter = SeatAdapter(context, activity!!.userId)
                 .apply { setOneOffOnSeatClickListener { seatId, _ -> takeSeat(seatId) } }

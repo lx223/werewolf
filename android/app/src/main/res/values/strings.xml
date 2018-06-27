@@ -22,6 +22,7 @@
     <string name="dialog_title_join_room">请输入房间号</string>
 
     <!-- RoomFragment -->
+    <string name="fragment_room_title_room_id">房间号：%s</string>
     <string name="btn_check_role">查看身份</string>
     <string name="btn_start_game">开始游戏</string>
     <string name="btn_take_action">使用技能</string>
