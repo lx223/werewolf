@@ -176,28 +176,22 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
     }
 
     private fun takeWitchAction() {
-        val deadPlayerSeatId = roomService!!.getRoom().game.deadPlayerNumbersList?.firstOrNull()
-        if (deadPlayerSeatId == null) {
-            showPoisonDialog(R.string.dialog_witch_poison_action_nobody_killed)
-        } else {
-            showCureDialog(deadPlayerSeatId)
+        val room = roomService!!.getRoom()
+        val killedPlayerSeatId = room.game.killedSeatIdsList?.firstOrNull()
+        val mySeatId = room.seatsList.first { it.user.id == activity?.userId }.id
+        when (killedPlayerSeatId) {
+            null -> showPoisonDialog(R.string.dialog_witch_poison_action_nobody_killed)
+            mySeatId -> showPoisonDialog(R.string.dialog_witch_poison_action_witch_killed)
+            else -> showCureDialog(killedPlayerSeatId)
         }
     }
 
-    private fun showCureDialog(deadPlayerSeatId: String) {
-        val seats = roomService!!.getRoom().seatsList
-        val deadPlayerSeatIndex = seats.indexOfFirst { it.id == deadPlayerSeatId } + 1
-        val mySeatId = seats.first { it.user.id == activity?.userId }.id
+    private fun showCureDialog(killedPlayerSeatId: String) {
+        val killedPlayerSeatIndex = roomService!!.getRoom().seatsList.indexOfFirst { it.id == killedPlayerSeatId } + 1
         AlertDialog.Builder(context)
-                .setMessage(getString(R.string.dialog_witch_cure_action, deadPlayerSeatIndex))
-                .apply {
-                    if (deadPlayerSeatId != mySeatId) {
-                        setPositiveButton(R.string.btn_label_yes, { _, _ -> cure(deadPlayerSeatId) })
-                    }
-                    setNegativeButton(
-                            R.string.btn_label_no,
-                            { _, _ -> showPoisonDialog(R.string.dialog_witch_poison_action) })
-                }
+                .setMessage(getString(R.string.dialog_witch_cure_action, killedPlayerSeatIndex))
+                .setPositiveButton(R.string.btn_label_yes, { _, _ -> cure(killedPlayerSeatId) })
+                .setNegativeButton(R.string.btn_label_no, { _, _ -> showPoisonDialog(R.string.dialog_witch_poison_action) })
                 .show()
     }
 
