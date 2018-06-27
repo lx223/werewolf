@@ -86,14 +86,11 @@ extension RoomViewController {
     }
 
     @IBAction func onLastNightButtonPressed(_ btn: UIBarButtonItem) {
-        guard let deadPlayerString = game.value?.deadPlayerNumbers.joined(separator: ",") else {
+        guard let killedSeatString = game.value?.killedSeatIds.joined(separator: ",") else {
             return
         }
 
-        var msg = "昨夜是平安夜"
-        if !deadPlayerString.isEmpty {
-            msg = "昨夜死亡的玩家: \(deadPlayerString)"
-        }
+        let msg = killedSeatString.isEmpty ? "昨夜是平安夜" : "昨夜死亡的玩家: \(killedSeatString)"
         showAlert(for: nil, orMessage: msg)
     }
 
@@ -120,35 +117,49 @@ extension RoomViewController {
                 })
                 .disposed(by: disposeBag)
         case .witch:
-            let alert = UIAlertController(title: "女巫", message: "今晚死的是：", preferredStyle: .alert)
-            alert.addTextField { $0.placeholder = "救谁" }
-            alert.addTextField{ $0.placeholder = "毒谁" }
-            alert.addAction(UIAlertAction(title: "确认", style: .default, handler: { (_) in
-                let curedSeatNumber = Int(alert.textFields?.first?.text ?? "")
-                let poisonedSeatNumber = Int(alert.textFields?.last?.text ?? "")
-
-                var curedSeatID = ""
-                var poisonedSeatID = ""
-                if let num = curedSeatNumber {
-                    curedSeatID = self.seats.value?[num - 1].id ?? ""
+            let killedSeatID = game.value?.killedSeatIds.first
+            let killedSeatNumber = seats.value?.index(where: { (seat) -> Bool in
+                seat.id == killedSeatID
+            }) ?? 0 + 1
+            let witchActionMessage = killedSeatID != nil ? "今晚死的是：\(killedSeatNumber)" : "今晚无人死亡"
+            let alert = UIAlertController(title: "女巫", message: witchActionMessage, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "救", style: .default, handler: { (_) in
+                guard let cureSeatID = self.seats.value?.first(where: { (seat) -> Bool in
+                    seat.id == killedSeatID
+                })?.id else {
+                    return
                 }
-                if let num = poisonedSeatNumber {
-                    poisonedSeatID = self.seats.value?[num - 1].id ?? ""
-                }
-
                 var req = Werewolf_TakeActionRequest()
-                req.witch.cureSeatID = curedSeatID
-                req.witch.poisonSeatID = poisonedSeatID
+                req.witch.cureSeatID = cureSeatID
                 req.gameID = self.game.value?.id ?? ""
                 self.gameSrvClient
                     .takeActionRx(req)
                     .observeOn(MainScheduler.asyncInstance)
                     .subscribe(onNext: { (res) in
-                        self.showSnackbar(withMessage: "操作成功")
+                        self.showSnackbar(withMessage: "解药使用成功")
                     }, onError: nil, onCompleted: nil, onDisposed: nil)
                     .disposed(by: self.disposeBag)
             }))
-            alert.addAction(UIAlertAction(title: "不使用", style: .cancel, handler: nil))
+            alert.addTextField{ $0.placeholder = "毒谁" }
+            alert.addAction(UIAlertAction(title: "毒", style: .destructive, handler: { (_) in
+                guard let text = alert.textFields?.first?.text,
+                    let poisonSeatNumber = Int(text),
+                    let poisonedSeatID = self.seats.value?[safe: poisonSeatNumber - 1]?.id,
+                    let gameID = self.game.value?.id else {
+                    return
+                }
+
+                var req = Werewolf_TakeActionRequest()
+                req.witch.poisonSeatID = poisonedSeatID
+                req.gameID = gameID
+                self.gameSrvClient
+                    .takeActionRx(req)
+                    .observeOn(MainScheduler.asyncInstance)
+                    .subscribe(onNext: { (res) in
+                        self.showSnackbar(withMessage: "毒药使用成功")
+                    }, onError: nil, onCompleted: nil, onDisposed: nil)
+                    .disposed(by: self.disposeBag)
+            }))
             present(alert, animated: true, completion: nil)
         default:
             break

@@ -647,7 +647,7 @@ struct Werewolf_Game {
 
   var state: Werewolf_Game.State = .unknown
 
-  var deadPlayerNumbers: [String] = []
+  var killedSeatIds: [String] = []
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1866,7 +1866,7 @@ extension Werewolf_Game: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "id"),
     2: .same(proto: "state"),
-    3: .standard(proto: "dead_player_numbers"),
+    3: .standard(proto: "killed_seat_ids"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -1874,7 +1874,7 @@ extension Werewolf_Game: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
       switch fieldNumber {
       case 1: try decoder.decodeSingularStringField(value: &self.id)
       case 2: try decoder.decodeSingularEnumField(value: &self.state)
-      case 3: try decoder.decodeRepeatedStringField(value: &self.deadPlayerNumbers)
+      case 3: try decoder.decodeRepeatedStringField(value: &self.killedSeatIds)
       default: break
       }
     }
@@ -1887,8 +1887,8 @@ extension Werewolf_Game: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
     if self.state != .unknown {
       try visitor.visitSingularEnumField(value: self.state, fieldNumber: 2)
     }
-    if !self.deadPlayerNumbers.isEmpty {
-      try visitor.visitRepeatedStringField(value: self.deadPlayerNumbers, fieldNumber: 3)
+    if !self.killedSeatIds.isEmpty {
+      try visitor.visitRepeatedStringField(value: self.killedSeatIds, fieldNumber: 3)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -1896,7 +1896,7 @@ extension Werewolf_Game: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
   func _protobuf_generated_isEqualTo(other: Werewolf_Game) -> Bool {
     if self.id != other.id {return false}
     if self.state != other.state {return false}
-    if self.deadPlayerNumbers != other.deadPlayerNumbers {return false}
+    if self.killedSeatIds != other.killedSeatIds {return false}
     if unknownFields != other.unknownFields {return false}
     return true
   }

@@ -152,7 +152,7 @@ message Game {
     }
     State state = 2;
 
-    repeated string dead_player_numbers = 3;
+    repeated string killed_seat_ids = 3;
 }
 
 enum Role {

@@ -46,9 +46,9 @@ func (g *Game) ToProto() *werewolf.Game {
 	}
 
 	return &werewolf.Game{
-		Id:                g.Id,
-		State:             g.State,
-		DeadPlayerNumbers: g.getFirstNightResult(),
+		Id:            g.Id,
+		State:         g.State,
+		KilledSeatIds: g.getFirstNightResult(),
 	}
 }
 
@@ -110,7 +110,7 @@ func (g *Game) getFirstNightResult() []string {
 	}
 
 	// cured and guarded
-	if g.WerewolfKillSeatId == g.WitchCureSeatId && g.WitchCureSeatId != g.GuardSeatId {
+	if g.WerewolfKillSeatId == g.WitchCureSeatId && g.WitchCureSeatId == g.GuardSeatId {
 		return []string{g.WerewolfKillSeatId}
 	}
 
