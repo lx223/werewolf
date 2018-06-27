@@ -31,6 +31,7 @@
     <string name="snackbar_werewolf_action">请选择击杀目标</string>
     <string name="dialog_witch_cure_action">今晚被杀的玩家是：%d号\n你要使用解药吗？</string>
     <string name="dialog_witch_poison_action_nobody_killed">今晚没有玩家被杀！你要使用毒药吗？</string>
+    <string name="dialog_witch_poison_action_witch_killed">今晚你被杀！你要使用毒药吗？</string>
     <string name="dialog_witch_poison_action">你要使用毒药吗？</string>
     <string name="snackbar_witch_poison_action">请选择要毒杀的玩家</string>
     <string name="snackbar_seer_action">请选择查验对象</string>
