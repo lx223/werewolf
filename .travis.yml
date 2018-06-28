@@ -10,8 +10,6 @@ matrix:
     - language: go
       go:
         - "1.10.x"
-      before_install:
-        - brew install direnv
       script: 
-        - direnv allow
+        - export GOPATH=$HOME/gopath/src/github.com/lx223/werewolf-assistant/go
         - go test $(go list ./... | grep -v /vendor/ | grep -v /pkg/)
