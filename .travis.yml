@@ -9,6 +9,6 @@ matrix:
 
     - language: go
       go: "1.10.x"
-      install: export GOPATH=$HOME/gopath/src/github.com/lx223/werewolf-assistant
+      install: export GOPATH=$HOME/gopath/src/github.com/lx223/werewolf-assistant/go
       script: 
         - go test $(go list ./... | grep -v /vendor/ | grep -v /pkg/)
