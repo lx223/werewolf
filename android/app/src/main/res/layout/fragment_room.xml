@@ -50,6 +50,15 @@
             android:visibility="gone" />
 
         <Button
+            android:id="@+id/btn_result"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/gutter_width"
+            android:layout_weight="1"
+            android:text="@string/btn_result"
+            android:visibility="gone" />
+
+        <Button
             android:id="@+id/btn_take_action"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
