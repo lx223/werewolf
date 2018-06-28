@@ -14,7 +14,7 @@ class ViewController: UIViewController {
 
     private var gameSrvClient: Werewolf_GameServiceService  = {
         let client = Werewolf_GameServiceServiceClient(address:Constants.serverAddress, secure: false, arguments: [])
-        try! client.metadata.add(key: "x-api-key", value: Constants.googleApiKey)
+        try! client.metadata.add(key: "x-api-key", value: Constants.googleAPIKey)
         return client
     }()
 

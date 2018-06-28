@@ -10,4 +10,5 @@ import Foundation
 
 struct Constants {
     static let serverAddress = "localhost:21806"
+    static let googleAPIKey = ""
 }
