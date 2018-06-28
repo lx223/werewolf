@@ -8,8 +8,10 @@ matrix:
         - xcodebuild clean build -workspace ios/werewolf-assistant/werewolf-assistant.xcworkspace -scheme werewolf-assistant -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -quiet
 
     - language: go
-      go:
-        - "1.10.x"
+      go: "1.10.x"
+      sudo: true
+      before_install:
+        - brew install direnv
+      install: direnv allow
       script: 
-        - export GOPATH=$HOME/gopath/src/github.com/lx223/werewolf-assistant/go
         - go test $(go list ./... | grep -v /vendor/ | grep -v /pkg/)
