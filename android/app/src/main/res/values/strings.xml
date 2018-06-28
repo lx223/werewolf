@@ -25,6 +25,8 @@
     <string name="fragment_room_title_room_id">房间号：%s</string>
     <string name="btn_check_role">查看身份</string>
     <string name="btn_start_game">开始游戏</string>
+    <string name="btn_result">昨夜信息</string>
+    <string name="dialog_result_prefix">昨夜死亡的玩家：</string>
     <string name="btn_take_action">使用技能</string>
     <string name="snackbar_no_action">暂时无法使用技能</string>
     <string name="snackbar_half_blood_action">请选择你的榜样</string>

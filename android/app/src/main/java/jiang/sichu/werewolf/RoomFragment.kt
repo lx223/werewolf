@@ -32,8 +32,6 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
         view.btn_check_role.setOnClickListener { activity?.onCheckRoleButtonClick() }
         view.btn_take_action.setOnClickListener { takeAction() }
 
-        // TODO: add "dead players" button
-
         roomService = RoomService(activity?.roomId!!, this, gameService!!).apply { init() }
 
         if (activity!!.isHost) {
@@ -44,6 +42,7 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
                 startGame()
                 view.btn_start_game.isEnabled = false
             }
+            view.btn_result.setOnClickListener { showLastNightResult() }
         }
 
         return view
@@ -91,6 +90,12 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
             enqueue(previousState, AudioManager.Type.END)
             enqueue(currentState, AudioManager.Type.START)
         }
+        if (currentState == SHERIFF_ELECTION) {
+            runOnUiThread {
+                view.btn_start_game.visibility = View.GONE
+                view.btn_result.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun takeSeat(seatId: String) {
@@ -105,6 +110,15 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
             val request = StartGameRequest.newBuilder().setRoomId(activity?.roomId).build()
             gameService?.startGame(request)
         }
+    }
+
+    private fun showLastNightResult() {
+        val room = roomService!!.getRoom()
+        val resultStr = room.game.killedSeatIdsList
+                .map { seatId -> room.seatsList.indexOfFirst { it.id == seatId } + 1 }
+                .sorted()
+                .joinToString(prefix = getString(R.string.dialog_result_prefix))
+        AlertDialog.Builder(context).setMessage(resultStr).show()
     }
 
     private fun takeAction() {
