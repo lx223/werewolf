@@ -104,29 +104,26 @@ func computeRoleToSeatMap(seats map[string]*Seat) map[werewolf.Role]*Seat {
 }
 
 func (g *Game) getFirstNightResult() []string {
-	// werewolf hasn't killed yet
+	var deadPlayerSeatIds []string
+	if g.didWerewolfKillingSucceed() {
+		deadPlayerSeatIds = append(deadPlayerSeatIds, g.WerewolfKillSeatId)
+	}
+	if !util.IsEmptyOrWhiteSpace(g.WitchPoisonSeatId) {
+		deadPlayerSeatIds = append(deadPlayerSeatIds, g.WitchPoisonSeatId)
+	}
+	return deadPlayerSeatIds
+}
+
+func (g *Game) didWerewolfKillingSucceed() bool {
+
+	// werewolf did NOT kill
 	if util.IsEmptyOrWhiteSpace(g.WerewolfKillSeatId) {
-		return []string{}
+		return false
 	}
 
-	// cured and guarded
-	if g.WerewolfKillSeatId == g.WitchCureSeatId && g.WitchCureSeatId == g.GuardSeatId {
-		return []string{g.WerewolfKillSeatId}
-	}
-
-	// cured or guarded
-	if g.WerewolfKillSeatId == g.WitchCureSeatId || g.WerewolfKillSeatId == g.GuardSeatId {
-		return []string{}
-	}
-
-	// cure not used; poisoned or else
-	if g.WerewolfKillSeatId == g.WitchPoisonSeatId {
-		return []string{g.WerewolfKillSeatId}
-	} else {
-		return []string{g.WerewolfKillSeatId, g.WitchPoisonSeatId}
-	}
-
-	return []string{}
+	cured := g.WerewolfKillSeatId == g.WitchCureSeatId
+	guarded := g.WitchCureSeatId == g.GuardSeatId
+	return (!cured && !guarded) || (cured && guarded)
 }
 
 var seerActionToRuling = map[werewolf.Role]werewolf.Ruling{
