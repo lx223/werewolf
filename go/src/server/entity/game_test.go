@@ -35,23 +35,19 @@ func TestComputePossibleStates(t *testing.T) {
 	}
 	expectedOutputs := [][]werewolf.Game_State{
 		{
-			werewolf.Game_DARKNESS_FALLS,
 			werewolf.Game_SHERIFF_ELECTION,
 		},
 		{
-			werewolf.Game_DARKNESS_FALLS,
 			werewolf.Game_WITCH_AWAKE,
 			werewolf.Game_SHERIFF_ELECTION,
 		},
 		{
-			werewolf.Game_DARKNESS_FALLS,
 			werewolf.Game_HALF_BLOOD_AWAKE,
 			werewolf.Game_GUARDIAN_AWAKE,
 			werewolf.Game_WEREWOLF_AWAKE,
 			werewolf.Game_WITCH_AWAKE,
 			werewolf.Game_SEER_AWAKE,
 			werewolf.Game_HUNTER_AWAKE,
-			werewolf.Game_WHITE_WEREWOLF_AWAKE,
 			werewolf.Game_SHERIFF_ELECTION,
 		},
 	}
