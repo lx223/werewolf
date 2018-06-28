@@ -9,9 +9,6 @@ matrix:
 
     - language: go
       go: "1.10.x"
-      sudo: true
-      before_install:
-        - brew install direnv
-      install: direnv allow
+      install: export GOPATH=$HOME/gopath/src/github.com/lx223/werewolf-assistant
       script: 
         - go test $(go list ./... | grep -v /vendor/ | grep -v /pkg/)
