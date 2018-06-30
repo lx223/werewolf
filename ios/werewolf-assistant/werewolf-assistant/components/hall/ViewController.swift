@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        navigationItem.title = "大厅"
+        navigationItem.title = R.string.localizable.hallSceneTitle()
         navigationController?.isNavigationBarHidden = false
     }
 
@@ -46,10 +46,10 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onJoinRoomButtonPressed(_ sender: UIButton) {
-        let joinRoomAlert = UIAlertController(title: nil, message: "请输入房间号", preferredStyle: .alert)
+        let joinRoomAlert = UIAlertController(title: nil, message: R.string.localizable.joinRoomAlertMsg(), preferredStyle: .alert)
         joinRoomAlert.addTextField(configurationHandler: nil)
-        joinRoomAlert.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
-        joinRoomAlert.addAction(UIAlertAction(title: "确认", style: .default, handler: { [weak joinRoomAlert] (_) in
+        joinRoomAlert.addAction(UIAlertAction(title: R.string.localizable.joinRoomAlertCancel(), style: .cancel, handler: nil))
+        joinRoomAlert.addAction(UIAlertAction(title: R.string.localizable.joinRoomAlertConfirm(), style: .default, handler: { [weak joinRoomAlert] (_) in
             guard let roomId = joinRoomAlert?.textFields?.first?.text, let _ = Int32(roomId) else {
                 self.showAlert(for: nil, orMessage: "请输入数字")
                 return

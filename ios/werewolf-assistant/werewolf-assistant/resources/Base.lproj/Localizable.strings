@@ -1,0 +1,32 @@
+/* 
+  Localizable.strings
+  werewolf-assistant
+
+  Created by Lan Xiao on 30/06/2018.
+  Copyright © 2018 Lan Xiao. All rights reserved.
+*/
+
+"hallSceneTitle" = "大厅";
+"joinRoomAlertMsg" = "请输入房间号";
+"joinRoomAlertCancel" = "取消";
+"joinRoomAlertConfirm" = "确认";
+
+"configSceneTitle" = "配置设置";
+"configSetConfirmTitle" = "确认";
+
+"roomLabelTemplate" = "房间: %@";
+"gameStartedSnackMessage" = "游戏开始";
+"peacefulNightSnackMessage" = "昨夜是平安夜";
+"killedPlayersMessageTemplate" = "昨夜死亡的玩家: %@";
+"chooseTargetSnackMessage" = "请选择目标💺";
+"witchActionKilledTemplate" = "今晚死的是：%d";
+"witchActionNoDeath" = "今晚无人死亡";
+"witchActionTitle" = "女巫";
+"wtichActionSave" = "救";
+"witchActionPoison" = "毒";
+"witchActionPoisonTextfieldPlaceholder" = "毒谁";
+"witchActionSaveSuccess" = "解药使用成功";
+"witchActionPoisonSuccess" = "毒药使用成功";
+"reassignRoleSuccess" = "发牌成功";
+"wolfKillSuccess" = "🔪人成功";
+"takeSeatSuccessTemplate" = "成功坐下：%d";

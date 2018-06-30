@@ -55,6 +55,9 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - R.swift (4.0.0):
+    - R.swift.Library (~> 4.0.0)
+  - R.swift.Library (4.0.0)
   - RxCocoa (4.2.0):
     - RxSwift (~> 4.0)
   - RxSwift (4.2.0)
@@ -68,6 +71,7 @@ PODS:
 DEPENDENCIES:
   - MaterialComponents/Buttons
   - MaterialComponents/Snackbar
+  - R.swift
   - RxCocoa (~> 4.2.0)
   - RxSwift (~> 4.2.0)
   - SwiftGRPC (~> 0.4.3)
@@ -82,6 +86,8 @@ SPEC REPOS:
     - MDFInternationalization
     - MDFTextAccessibility
     - nanopb
+    - R.swift
+    - R.swift.Library
     - RxCocoa
     - RxSwift
     - SwiftGRPC
@@ -95,12 +101,14 @@ SPEC CHECKSUMS:
   MDFInternationalization: e355b0cebecf53d60233bd267084e49366c82513
   MDFTextAccessibility: 94098925e0853551c5a311ce7c1ecefbe297cdb6
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
+  R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   SwiftGRPC: e582ede5791867075513a3757faa41be215b7e5a
   SwiftProtobuf: 5ccc0e4054e37c75800e5744acb2aa80bb72b39c
   SwiftySound: b9c3370956fd4ed65ed79d45563070077a50a2cd
 
-PODFILE CHECKSUM: 26befea26b3b8e45c90497cab3be84244e7af083
+PODFILE CHECKSUM: efc9622fa79d012ceb331fa0ad7621f8494b5292
 
 COCOAPODS: 1.5.3

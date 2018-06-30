@@ -36,7 +36,7 @@ class RoomViewController: UIViewController {
         super.viewDidLoad()
 
         let roomLabel = UILabel()
-        roomLabel.text = "房间: \(roomID)"
+        roomLabel.text = R.string.localizable.roomLabelTemplate(roomID)
         let rightBarButtonItem = UIBarButtonItem(customView: roomLabel)
         navigationItem.setRightBarButton(rightBarButtonItem, animated: false)
 
@@ -81,7 +81,7 @@ extension RoomViewController {
                 return
             }
 
-            self.showSnackbar(withMessage: "game started")
+            self.showSnackbar(withMessage: R.string.localizable.gameStartedSnackMessage())
         }
     }
 
@@ -90,7 +90,7 @@ extension RoomViewController {
             return
         }
 
-        let msg = killedSeatString.isEmpty ? "昨夜是平安夜" : "昨夜死亡的玩家: \(killedSeatString)"
+        let msg = killedSeatString.isEmpty ? R.string.localizable.peacefulNightSnackMessage() : R.string.localizable.killedPlayersMessageTemplate(killedSeatString)
         showAlert(for: nil, orMessage: msg)
     }
 
@@ -106,7 +106,7 @@ extension RoomViewController {
              .guardian,
              .werewolf,
              .halfBlood:
-            showSnackbar(withMessage: "请选择目标💺")
+            showSnackbar(withMessage: R.string.localizable.chooseTargetSnackMessage())
         case .hunter:
             req.hunter = Werewolf_TakeActionRequest.HunterAction()
             gameSrvClient
@@ -121,9 +121,9 @@ extension RoomViewController {
             let killedSeatNumber = seats.value?.index(where: { (seat) -> Bool in
                 seat.id == killedSeatID
             }) ?? 0 + 1
-            let witchActionMessage = killedSeatID != nil ? "今晚死的是：\(killedSeatNumber)" : "今晚无人死亡"
-            let alert = UIAlertController(title: "女巫", message: witchActionMessage, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "救", style: .default, handler: { (_) in
+            let witchActionMessage = killedSeatID != nil ? R.string.localizable.witchActionKilledTemplate(killedSeatNumber) : R.string.localizable.witchActionNoDeath()
+            let alert = UIAlertController(title: R.string.localizable.witchActionTitle(), message: witchActionMessage, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: R.string.localizable.wtichActionSave(), style: .default, handler: { (_) in
                 guard let cureSeatID = self.seats.value?.first(where: { (seat) -> Bool in
                     seat.id == killedSeatID
                 })?.id else {
@@ -136,12 +136,12 @@ extension RoomViewController {
                     .takeActionRx(req)
                     .observeOn(MainScheduler.asyncInstance)
                     .subscribe(onNext: { (res) in
-                        self.showSnackbar(withMessage: "解药使用成功")
+                        self.showSnackbar(withMessage: R.string.localizable.witchActionSaveSuccess())
                     }, onError: nil, onCompleted: nil, onDisposed: nil)
                     .disposed(by: self.disposeBag)
             }))
-            alert.addTextField{ $0.placeholder = "毒谁" }
-            alert.addAction(UIAlertAction(title: "毒", style: .destructive, handler: { (_) in
+            alert.addTextField{ $0.placeholder = R.string.localizable.witchActionPoisonTextfieldPlaceholder() }
+            alert.addAction(UIAlertAction(title: R.string.localizable.witchActionPoison(), style: .destructive, handler: { (_) in
                 guard let text = alert.textFields?.first?.text,
                     let poisonSeatNumber = Int(text),
                     let poisonedSeatID = self.seats.value?[safe: poisonSeatNumber - 1]?.id,
@@ -156,7 +156,7 @@ extension RoomViewController {
                     .takeActionRx(req)
                     .observeOn(MainScheduler.asyncInstance)
                     .subscribe(onNext: { (res) in
-                        self.showSnackbar(withMessage: "毒药使用成功")
+                        self.showSnackbar(withMessage: R.string.localizable.witchActionPoisonSuccess())
                     }, onError: nil, onCompleted: nil, onDisposed: nil)
                     .disposed(by: self.disposeBag)
             }))
@@ -175,7 +175,7 @@ extension RoomViewController {
                 return
             }
 
-            self.showAlert(for: nil, orMessage: "Reassigned roles")
+            self.showAlert(for: nil, orMessage: R.string.localizable.reassignRoleSuccess())
         }
     }
 
@@ -232,7 +232,7 @@ extension RoomViewController {
                 .takeActionRx(req)
                 .observeOn(MainScheduler.asyncInstance)
                 .subscribe(onNext: { (_) in
-                    self.showSnackbar(withMessage: "🔪人成功")
+                    self.showSnackbar(withMessage: R.string.localizable.wolfKillSuccess())
                 }, onError: nil, onCompleted: nil, onDisposed: nil)
                 .disposed(by: disposeBag)
         default:
@@ -255,7 +255,7 @@ extension RoomViewController {
             .takeSeatRx(req)
             .observeOn(MainScheduler.asyncInstance)
             .subscribe(onNext: { (_) in
-                self.showSnackbar(withMessage: "Took seat \(seatButton.number)")
+                self.showSnackbar(withMessage: R.string.localizable.takeSeatSuccessTemplate(seatButton.number))
             }, onError: nil, onCompleted: nil, onDisposed: nil)
             .disposed(by: disposeBag)
     }

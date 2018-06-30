@@ -46,6 +46,8 @@
 		B7DB233520DE82730068F7C7 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB233420DE82730068F7C7 /* UIColorExtensions.swift */; };
 		B7DB233720E18F5B0068F7C7 /* MDCButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB233620E18F5B0068F7C7 /* MDCButtonExtensions.swift */; };
 		B7DB233A20E42CA50068F7C7 /* CollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB233920E42CA50068F7C7 /* CollectionExtensions.swift */; };
+		B7DB233F20E797300068F7C7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7DB234120E797300068F7C7 /* Localizable.strings */; };
+		B7DB234A20E79D230068F7C7 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DB234920E79D230068F7C7 /* R.generated.swift */; };
 		B7EF75A720CF312F00000A67 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF75A620CF312F00000A67 /* AppDelegate.swift */; };
 		B7EF75A920CF312F00000A67 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EF75A820CF312F00000A67 /* ViewController.swift */; };
 		B7EF75AC20CF312F00000A67 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7EF75AA20CF312F00000A67 /* Main.storyboard */; };
@@ -115,6 +117,8 @@
 		B7DB233420DE82730068F7C7 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		B7DB233620E18F5B0068F7C7 /* MDCButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDCButtonExtensions.swift; sourceTree = "<group>"; };
 		B7DB233920E42CA50068F7C7 /* CollectionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtensions.swift; sourceTree = "<group>"; };
+		B7DB234520E7975E0068F7C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B7DB234920E79D230068F7C7 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		B7EF75A320CF312F00000A67 /* werewolf-assistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "werewolf-assistant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7EF75A620CF312F00000A67 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7EF75A820CF312F00000A67 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -235,9 +239,11 @@
 		B7DB232520DB20480068F7C7 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				B7DB234920E79D230068F7C7 /* R.generated.swift */,
 				B793EA1E20D3366200F319AD /* Assets.xcassets */,
 				B7DB22F720D8504E0068F7C7 /* sounds */,
 				B7DB233020DE3BDA0068F7C7 /* Constants.swift */,
+				B7DB234120E797300068F7C7 /* Localizable.strings */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -353,6 +359,7 @@
 			buildConfigurationList = B7EF75CB20CF313100000A67 /* Build configuration list for PBXNativeTarget "werewolf-assistant" */;
 			buildPhases = (
 				ECE1F3BA847B08CB9DF2311E /* [CP] Check Pods Manifest.lock */,
+				B7DB234820E79C750068F7C7 /* ShellScript */,
 				B7EF759F20CF312F00000A67 /* Sources */,
 				B7EF75A020CF312F00000A67 /* Frameworks */,
 				B7EF75A120CF312F00000A67 /* Resources */,
@@ -433,7 +440,6 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = B7EF759A20CF312F00000A67;
@@ -466,6 +472,7 @@
 				B7DB231A20DB1F870068F7C7 /* 女巫睁眼.m4a in Resources */,
 				B7DB232320DB1F870068F7C7 /* 野孩子闭眼.m4a in Resources */,
 				B7EF75AC20CF312F00000A67 /* Main.storyboard in Resources */,
+				B7DB233F20E797300068F7C7 /* Localizable.strings in Resources */,
 				B7DB231F20DB1F870068F7C7 /* 混子睁眼.m4a in Resources */,
 				B7DB231920DB1F870068F7C7 /* 猎人睁眼.m4a in Resources */,
 				B7DB231C20DB1F870068F7C7 /* 女巫闭眼.m4a in Resources */,
@@ -505,6 +512,7 @@
 				"${BUILT_PRODUCTS_DIR}/MDFInternationalization/MDFInternationalization.framework",
 				"${BUILT_PRODUCTS_DIR}/MDFTextAccessibility/MDFTextAccessibility.framework",
 				"${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework",
+				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftGRPC/SwiftGRPC.framework",
@@ -519,6 +527,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFInternationalization.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFTextAccessibility.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialComponents.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGRPC.framework",
@@ -530,6 +539,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-werewolf-assistant/Pods-werewolf-assistant-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B7DB234820E79C750068F7C7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
 			showEnvVarsInLog = 0;
 		};
 		C42138E3FC1791716B107994 /* [CP] Check Pods Manifest.lock */ = {
@@ -601,6 +624,7 @@
 				B7DB233A20E42CA50068F7C7 /* CollectionExtensions.swift in Sources */,
 				B793EA2220D3BFCD00F319AD /* UINumberPickerView.swift in Sources */,
 				B7DB233720E18F5B0068F7C7 /* MDCButtonExtensions.swift in Sources */,
+				B7DB234A20E79D230068F7C7 /* R.generated.swift in Sources */,
 				B7DB233520DE82730068F7C7 /* UIColorExtensions.swift in Sources */,
 				B793EA2720D3F4F600F319AD /* SeatView.swift in Sources */,
 				B793EA1620D1E67B00F319AD /* ConfigurationViewController.swift in Sources */,
@@ -648,6 +672,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		B7DB234120E797300068F7C7 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B7DB234520E7975E0068F7C7 /* Base */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		B7EF75AA20CF312F00000A67 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -671,6 +703,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -731,6 +764,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

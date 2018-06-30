@@ -39,8 +39,8 @@ final class ConfigurationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "配置设置"
-        self.navigationItem.setRightBarButton(UIBarButtonItem(title: "确认", style: .done, target: self, action: #selector(self.onConfirmButtonPressed)), animated: false)
+        self.navigationItem.title = R.string.localizable.configSceneTitle()
+        self.navigationItem.setRightBarButton(UIBarButtonItem(title: R.string.localizable.configSetConfirmTitle(), style: .done, target: self, action: #selector(self.onConfirmButtonPressed)), animated: false)
     }
 
     override func viewDidAppear(_ animated: Bool) {
