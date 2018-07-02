@@ -2,11 +2,12 @@ package jiang.sichu.werewolf
 
 import android.content.Context
 import android.support.annotation.ColorRes
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import jiang.sichu.werewolf.proto.Werewolf.Seat
-import jiang.sichu.werewolf.ui.SquareImageView
+import jiang.sichu.werewolf.ui.SquareTextView
 
 private const val COLOR_RES_EMPTY_SEAT = android.R.color.holo_green_dark
 private const val COLOR_RES_TAKEN_SEAT = android.R.color.holo_orange_dark
@@ -43,7 +44,10 @@ class SeatAdapter(private val context: Context, private val userId: String?) : B
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val colorRes = getSeatColorRes(getItem(position))
-        return SquareImageView(context, null).apply {
+        return SquareTextView(context, null).apply {
+            text = (position + 1).toString()
+            textSize = resources.getDimension(R.dimen.text_size_seat_number)
+            gravity = Gravity.CENTER
             setBackgroundColor(context.resources.getColor(colorRes))
             setOnClickListener { listener?.onSeatClicked(getItem(position).id, position + 1) }
         }

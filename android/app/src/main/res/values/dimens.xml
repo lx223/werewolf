@@ -3,5 +3,7 @@
     <dimen name="gutter_width">16dp</dimen>
     <dimen name="double_gutter_width">16dp</dimen>
     <dimen name="half_gutter_width">8dp</dimen>
+
+    <dimen name="text_size_seat_number">16sp</dimen>
     <dimen name="text_size_room_id">24sp</dimen>
 </resources>
