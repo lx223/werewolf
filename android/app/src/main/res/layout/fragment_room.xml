@@ -11,7 +11,9 @@
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/gutter_width"
+        android:textSize="@dimen/text_size_room_id" />
 
     <GridView
         android:id="@+id/grid_seats"
