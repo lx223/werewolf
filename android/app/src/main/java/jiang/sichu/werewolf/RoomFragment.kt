@@ -166,6 +166,10 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
         Snackbar.make(view, R.string.snackbar_no_action, LENGTH_SHORT).show()
     }
 
+    private fun showActionSucceededSnackbar() {
+        Snackbar.make(view, R.string.snackbar_action_succeeded, LENGTH_SHORT).show()
+    }
+
     private fun takeHalfBloodAction() {
         val snackbar = Snackbar.make(view, R.string.snackbar_half_blood_action, LENGTH_INDEFINITE).apply { show() }
         seatAdapter?.setOneOffOnSeatClickListener { seatId, _ ->
@@ -173,7 +177,10 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
                 val halfBloodAction = TakeActionRequest.HalfBloodAction.newBuilder().setSeatId(seatId)
                 val request = createTakeActionRequestBuilder().setHalfBlood(halfBloodAction).build()
                 gameService!!.takeAction(request)
-                runOnUiThread { snackbar.dismiss() }
+                runOnUiThread {
+                    snackbar.dismiss()
+                    showActionSucceededSnackbar()
+                }
             }
         }
     }
@@ -185,7 +192,10 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
                 val guardianAction = TakeActionRequest.GuardAction.newBuilder().setSeatId(seatId)
                 val request = createTakeActionRequestBuilder().setGuard(guardianAction).build()
                 gameService!!.takeAction(request)
-                runOnUiThread { snackbar.dismiss() }
+                runOnUiThread {
+                    snackbar.dismiss()
+                    showActionSucceededSnackbar()
+                }
             }
         }
     }
@@ -197,7 +207,10 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
                 val werewolfAction = TakeActionRequest.WerewolfAction.newBuilder().setSeatId(seatId)
                 val request = createTakeActionRequestBuilder().setWerewolf(werewolfAction).build()
                 gameService!!.takeAction(request)
-                runOnUiThread { snackbar.dismiss() }
+                runOnUiThread {
+                    snackbar.dismiss()
+                    showActionSucceededSnackbar()
+                }
             }
         }
     }
@@ -241,6 +254,7 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
         executor?.execute {
             val witchAction = TakeActionRequest.WitchAction.newBuilder().setCureSeatId(seatId)
             gameService?.takeAction(createTakeActionRequestBuilder().setWitch(witchAction).build())
+            runOnUiThread { showActionSucceededSnackbar() }
         }
     }
 
@@ -250,7 +264,10 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
             executor?.execute {
                 val witchAction = TakeActionRequest.WitchAction.newBuilder().setPoisonSeatId(seatId)
                 gameService?.takeAction(createTakeActionRequestBuilder().setWitch(witchAction).build())
-                runOnUiThread { snackbar.dismiss() }
+                runOnUiThread {
+                    snackbar.dismiss()
+                    showActionSucceededSnackbar()
+                }
             }
         }
     }
