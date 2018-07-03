@@ -27,7 +27,7 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
         view.title.text = getString(R.string.fragment_room_title_room_id, activity?.roomId)
 
         seatAdapter = SeatAdapter(context, activity!!.userId)
-                .apply { setOneOffOnSeatClickListener { seatId, _ -> takeSeat(seatId) } }
+                .apply { setTakeSeatListener(this@RoomFragment::takeSeat) }
         view.grid_seats.adapter = seatAdapter
         view.btn_check_role.setOnClickListener { activity?.onCheckRoleButtonClick() }
         view.btn_take_action.setOnClickListener { takeAction() }
@@ -82,6 +82,10 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
     }
 
     override fun onGameStateChanged(previousState: Game.State, currentState: Game.State) {
+        if (previousState == Game.State.UNKNOWN) {
+            seatAdapter?.clearTakeSeatListener()
+        }
+
         if (!activity!!.isHost) {
             return
         }

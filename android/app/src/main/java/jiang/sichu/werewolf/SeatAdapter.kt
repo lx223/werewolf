@@ -15,20 +15,32 @@ private const val COLOR_RES_MY_SEAT = android.R.color.holo_red_light
 
 class SeatAdapter(private val context: Context, private val userId: String?) : BaseAdapter() {
 
-    interface OneOffOnSeatClickListener {
+    interface OnSeatClickListener {
         fun onSeatClicked(seatId: String, oneBasedIndex: Int)
     }
 
     private var seats: List<Seat> = arrayListOf()
-    private var listener: OneOffOnSeatClickListener? = null
+    private var listener: OnSeatClickListener? = null
 
     fun setSeats(seats: List<Seat>) {
         this.seats = seats
         notifyDataSetChanged()
     }
 
+    fun setTakeSeatListener(takeSeatCallback: (String) -> Unit) {
+        listener = object : OnSeatClickListener {
+            override fun onSeatClicked(seatId: String, oneBasedIndex: Int) {
+                takeSeatCallback(seatId)
+            }
+        }
+    }
+
+    fun clearTakeSeatListener() {
+        listener = null
+    }
+
     fun setOneOffOnSeatClickListener(callback: (String, Int) -> Unit) {
-        listener = object : OneOffOnSeatClickListener {
+        listener = object : OnSeatClickListener {
             override fun onSeatClicked(seatId: String, oneBasedIndex: Int) {
                 callback(seatId, oneBasedIndex)
                 listener = null
