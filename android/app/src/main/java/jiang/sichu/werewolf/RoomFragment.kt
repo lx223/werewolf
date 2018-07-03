@@ -117,12 +117,16 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
     }
 
     private fun showLastNightResult() {
-        val room = roomService!!.getRoom()
-        val resultStr = room.game.killedSeatIdsList
-                .map { seatId -> room.seatsList.indexOfFirst { it.id == seatId } + 1 }
+        val resultStr = getReadableDeadPlayersString(roomService!!.getRoom())
+        AlertDialog.Builder(context).setMessage(resultStr).show()
+    }
+
+    private fun getReadableDeadPlayersString(room: Room): String {
+        val killedSeatIds = room.game.killedSeatIdsList
+        return if (killedSeatIds.isEmpty()) getString(R.string.dialog_result_no_one_died)
+        else killedSeatIds.map { seatId -> room.seatsList.indexOfFirst { it.id == seatId } + 1 }
                 .sorted()
                 .joinToString(prefix = getString(R.string.dialog_result_prefix))
-        AlertDialog.Builder(context).setMessage(resultStr).show()
     }
 
     private fun takeAction() {
@@ -213,16 +217,16 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
         val killedPlayerSeatIndex = roomService!!.getRoom().seatsList.indexOfFirst { it.id == killedPlayerSeatId } + 1
         AlertDialog.Builder(context)
                 .setMessage(getString(R.string.dialog_witch_cure_action, killedPlayerSeatIndex))
-                .setPositiveButton(R.string.btn_label_yes, { _, _ -> cure(killedPlayerSeatId) })
-                .setNegativeButton(R.string.btn_label_no, { _, _ -> showPoisonDialog(R.string.dialog_witch_poison_action) })
+                .setPositiveButton(R.string.btn_label_yes) { _, _ -> cure(killedPlayerSeatId) }
+                .setNegativeButton(R.string.btn_label_no) { _, _ -> showPoisonDialog(R.string.dialog_witch_poison_action) }
                 .show()
     }
 
     private fun showPoisonDialog(messageResId: Int) {
         AlertDialog.Builder(context)
                 .setMessage(messageResId)
-                .setPositiveButton(R.string.btn_label_yes, { _, _ -> poison() })
-                .setNegativeButton(R.string.btn_label_no, { _, _ -> witchNoAction() })
+                .setPositiveButton(R.string.btn_label_yes) { _, _ -> poison() }
+                .setNegativeButton(R.string.btn_label_no) { _, _ -> witchNoAction() }
                 .show()
     }
 
