@@ -30,6 +30,7 @@
     <string name="dialog_result_no_one_died">昨夜无人死亡</string>
     <string name="btn_take_action">使用技能</string>
     <string name="snackbar_no_action">暂时无法使用技能</string>
+    <string name="snackbar_action_succeeded">操作成功</string>
     <string name="snackbar_half_blood_action">请选择你的榜样</string>
     <string name="snackbar_guardian_action">请选择你要守护的玩家</string>
     <string name="snackbar_werewolf_action">请选择击杀目标</string>
