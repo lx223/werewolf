@@ -58,3 +58,55 @@ func TestComputePossibleStates(t *testing.T) {
 		assert.Equal(t, expectedOutputs[i], states)
 	}
 }
+
+func TestIsWerewolfKillingSuccessful_NoWolfKilling_False(t *testing.T) {
+	g := &Game{}
+
+	r := g.isWerewolfKillingSuccessful()
+
+	assert.False(t, r)
+}
+
+func TestIsWerewolfKillingSuccessful_WitchCure_False(t *testing.T) {
+	g := &Game{
+		WerewolfKillSeatId: "1",
+		WitchCureSeatId:    "1",
+	}
+
+	r := g.isWerewolfKillingSuccessful()
+
+	assert.False(t, r)
+}
+
+func TestIsWerewolfKillingSuccessful_CorrectGuarding_False(t *testing.T) {
+	g := &Game{
+		WerewolfKillSeatId: "1",
+		GuardSeatId:        "1",
+	}
+
+	r := g.isWerewolfKillingSuccessful()
+
+	assert.False(t, r)
+}
+
+func TestIsWerewolfKillingSuccessful_NoGuardOrCure_True(t *testing.T) {
+	g := &Game{
+		WerewolfKillSeatId: "1",
+	}
+
+	r := g.isWerewolfKillingSuccessful()
+
+	assert.True(t, r)
+}
+
+func TestIsWerewolfKillingSuccessful_GuardAndCure_True(t *testing.T) {
+	g := &Game{
+		WerewolfKillSeatId: "1",
+		GuardSeatId:        "1",
+		WitchCureSeatId:    "1",
+	}
+
+	r := g.isWerewolfKillingSuccessful()
+
+	assert.True(t, r)
+}

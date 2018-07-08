@@ -105,7 +105,7 @@ func computeRoleToSeatMap(seats map[string]*Seat) map[werewolf.Role]*Seat {
 
 func (g *Game) getFirstNightResult() []string {
 	var deadPlayerSeatIds []string
-	if g.didWerewolfKillingSucceed() {
+	if g.isWerewolfKillingSuccessful() {
 		deadPlayerSeatIds = append(deadPlayerSeatIds, g.WerewolfKillSeatId)
 	}
 	if !util.IsEmptyOrWhiteSpace(g.WitchPoisonSeatId) {
@@ -114,7 +114,7 @@ func (g *Game) getFirstNightResult() []string {
 	return deadPlayerSeatIds
 }
 
-func (g *Game) didWerewolfKillingSucceed() bool {
+func (g *Game) isWerewolfKillingSuccessful() bool {
 
 	// werewolf did NOT kill
 	if util.IsEmptyOrWhiteSpace(g.WerewolfKillSeatId) {
@@ -122,7 +122,7 @@ func (g *Game) didWerewolfKillingSucceed() bool {
 	}
 
 	cured := g.WerewolfKillSeatId == g.WitchCureSeatId
-	guarded := g.WitchCureSeatId == g.GuardSeatId
+	guarded := g.WerewolfKillSeatId == g.GuardSeatId
 	return (!cured && !guarded) || (cured && guarded)
 }
 
