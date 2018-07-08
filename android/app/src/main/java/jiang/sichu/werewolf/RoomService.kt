@@ -52,7 +52,7 @@ class RoomService(private val roomId: String,
     fun getRoom() = room ?: fetchRoom()
 
     @WorkerThread
-    fun fetchRoom() = gameService.getRoom(GetRoomRequest.newBuilder().setRoomId(roomId).build()).room
+    private fun fetchRoom() = gameService.getRoom(GetRoomRequest.newBuilder().setRoomId(roomId).build()).room!!
 
     private fun fetchRoomAndNotifyListenerIfChanged() {
         val newRoom = fetchRoom()
