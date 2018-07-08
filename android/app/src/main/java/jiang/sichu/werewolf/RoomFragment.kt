@@ -35,14 +35,22 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
         roomService = RoomService(activity?.roomId!!, this, gameService!!).apply { init() }
 
         if (activity!!.isHost) {
-            audioManager = AudioManager(context)
-            view.btn_start_game.visibility = View.VISIBLE
-            view.btn_start_game.isEnabled = false
-            view.btn_start_game.setOnClickListener {
-                startGame()
-                view.btn_start_game.isEnabled = false
+            view.btn_reassign_roles.apply {
+                visibility = View.VISIBLE
+                setOnClickListener { showReassignRolesDialog() }
             }
-            view.btn_result.setOnClickListener { showLastNightResult() }
+            view.btn_start_game.apply {
+                visibility = View.VISIBLE
+                isEnabled = false
+                setOnClickListener {
+                    startGame()
+                    isEnabled = false
+                }
+            }
+            view.btn_result.apply {
+                visibility = View.GONE
+                setOnClickListener { showLastNightResult() }
+            }
         }
 
         return view
@@ -63,7 +71,7 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
         seatAdapter = null
         roomService?.shutdown()
         roomService = null
-        audioManager?.shutdown()
+        audioManager?.reset()
         audioManager = null
     }
 
@@ -109,10 +117,34 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
         }
     }
 
+    private fun showReassignRolesDialog() {
+        AlertDialog.Builder(context)
+                .setMessage(R.string.dialog_confirm_reassign_roles)
+                .setPositiveButton(R.string.btn_label_confirm) { _, _ -> reassignRoles() }
+                .show()
+    }
+
+    private fun reassignRoles() {
+        executor?.execute {
+            val request = ReassignRolesRequest.newBuilder().setRoomId(activity?.roomId).build()
+            gameService?.reassignRoles(request)
+            runOnUiThread {
+                audioManager?.reset()
+                audioManager = null
+                view.btn_result.visibility = View.GONE
+                view.btn_start_game.apply {
+                    isEnabled = true
+                    visibility = View.VISIBLE
+                }
+            }
+        }
+    }
+
     private fun startGame() {
         executor?.execute {
             val request = StartGameRequest.newBuilder().setRoomId(activity?.roomId).build()
             gameService?.startGame(request)
+            runOnUiThread { audioManager = AudioManager(context) }
         }
     }
 

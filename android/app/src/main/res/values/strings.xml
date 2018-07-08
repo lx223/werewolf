@@ -28,6 +28,8 @@
     <string name="btn_result">昨夜信息</string>
     <string name="dialog_result_prefix">昨夜死亡的玩家：</string>
     <string name="dialog_result_no_one_died">昨夜无人死亡</string>
+    <string name="btn_reassign_roles">发牌</string>
+    <string name="dialog_confirm_reassign_roles">确定重新发牌？</string>
     <string name="btn_take_action">使用技能</string>
     <string name="snackbar_no_action">暂时无法使用技能</string>
     <string name="snackbar_action_succeeded">操作成功</string>

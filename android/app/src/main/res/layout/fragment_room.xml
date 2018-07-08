@@ -43,6 +43,15 @@
             android:visibility="invisible" />
 
         <Button
+            android:id="@+id/btn_reassign_roles"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/gutter_width"
+            android:layout_weight="1"
+            android:text="@string/btn_reassign_roles"
+            android:visibility="gone" />
+
+        <Button
             android:id="@+id/btn_start_game"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
