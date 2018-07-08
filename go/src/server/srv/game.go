@@ -145,6 +145,7 @@ func (s *GameService) ReassignRoles(ctx context.Context, req *werewolf.ReassignR
 	for i, seat := range room.GetSortedSeats() {
 		seat.Role = newRoles[i]
 	}
+	room.Game = nil
 
 	return &werewolf.ReassignRolesResponse{}, nil
 }
