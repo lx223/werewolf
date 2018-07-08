@@ -30,3 +30,8 @@
 "reassignRoleSuccess" = "发牌成功";
 "wolfKillSuccess" = "🔪人成功";
 "takeSeatSuccessTemplate" = "成功坐下：%d";
+
+"seerActionRulingPositive" = "验的玩家是好人";
+"seerActionRulingNegative" = "验的玩家是狼人";
+"hunterActionRulingPositive" = "可以开枪";
+"hunterActionRulingNegative" = "不能开枪";

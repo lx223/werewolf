@@ -86,7 +86,13 @@ extension RoomViewController {
     }
 
     @IBAction func onLastNightButtonPressed(_ btn: UIBarButtonItem) {
-        guard let killedSeatString = game.value?.killedSeatIds.joined(separator: ",") else {
+        let killedSeatIndices = game.value?.killedSeatIds.compactMap({ (seatID) -> String? in
+            guard let i = seats.value?.index(where: { $0.id == seatID }) else {
+                return nil
+            }
+            return String(i + 1)
+        })
+        guard let killedSeatString = killedSeatIndices?.joined(separator: ",") else {
             return
         }
 
@@ -113,7 +119,8 @@ extension RoomViewController {
                 .takeActionRx(req)
                 .observeOn(MainScheduler.asyncInstance)
                 .subscribe(onNext: { (res) in
-                    self.showSnackbar(withMessage: "\(res.hunter.ruling)")
+                    let msg = (res.seer.ruling == .positive) ? R.string.localizable.hunterActionRulingPositive() : R.string.localizable.hunterActionRulingNegative()
+                    self.showSnackbar(withMessage: "\(msg)")
                 })
                 .disposed(by: disposeBag)
         case .witch:
@@ -196,7 +203,8 @@ extension RoomViewController {
                 .takeActionRx(req)
                 .observeOn(MainScheduler.asyncInstance)
                 .subscribe(onNext: { (res) in
-                    self.showSnackbar(withMessage: "\(res.seer.ruling)")
+                    let msg = (res.seer.ruling == .positive) ? R.string.localizable.seerActionRulingPositive() : R.string.localizable.seerActionRulingNegative()
+                    self.showSnackbar(withMessage: "\(msg)")
                 })
                 .disposed(by: disposeBag)
         case .halfBloodAwake:
