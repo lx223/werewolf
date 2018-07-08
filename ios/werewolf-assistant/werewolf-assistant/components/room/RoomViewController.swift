@@ -147,7 +147,10 @@ extension RoomViewController {
                     }, onError: nil, onCompleted: nil, onDisposed: nil)
                     .disposed(by: self.disposeBag)
             }))
-            alert.addTextField{ $0.placeholder = R.string.localizable.witchActionPoisonTextfieldPlaceholder() }
+            alert.addTextField{
+                $0.placeholder = R.string.localizable.witchActionPoisonTextfieldPlaceholder()
+                $0.keyboardType = .numberPad
+            }
             alert.addAction(UIAlertAction(title: R.string.localizable.witchActionPoison(), style: .destructive, handler: { (_) in
                 guard let text = alert.textFields?.first?.text,
                     let poisonSeatNumber = Int(text),
