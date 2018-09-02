@@ -2,15 +2,19 @@ package jiang.sichu.werewolf
 
 import android.app.Activity
 import android.app.Fragment
+import android.content.Context
 import android.os.Bundle
 import io.grpc.ManagedChannel
 import io.grpc.ManagedChannelBuilder
+import jiang.sichu.werewolf.model.RoomInfo
 import jiang.sichu.werewolf.proto.GameServiceGrpc
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 private const val HOST = "10.0.2.2"
 private const val PORT = 21806
+private const val PREF_ROOM_ID = "room_id"
+private const val PREF_USER_ID = "user_id"
 
 class GameActivity : Activity() {
 
@@ -27,7 +31,11 @@ class GameActivity : Activity() {
         gameService = GameServiceGrpc.newBlockingStub(
                 ManagedChannelBuilder.forAddress(HOST, PORT).usePlaintext().build())
 
-        showFragment(MenuFragment())
+        val menuFragment = MenuFragment()
+        getPreviousRoomInfo()?.let {
+            menuFragment.arguments = Bundle().apply { putParcelable(ARG_PREV_ROOM_INFO, it) }
+        }
+        showFragment(menuFragment)
     }
 
     override fun onDestroy() {
@@ -42,6 +50,7 @@ class GameActivity : Activity() {
         this.userId = userId
         this.roomId = roomId
         isHost = true
+        saveRoomInfo(RoomInfo(roomId, userId))
         showFragment(GameConfigFragment())
     }
 
@@ -49,6 +58,7 @@ class GameActivity : Activity() {
         this.userId = userId
         this.roomId = roomId
         isHost = false
+        saveRoomInfo(RoomInfo(roomId, userId))
         showFragment(RoomFragment())
     }
 
@@ -67,5 +77,20 @@ class GameActivity : Activity() {
                     .apply { addToBackStack(null) }
                     .commit()
         }
+    }
+
+    private fun saveRoomInfo(roomInfo: RoomInfo) {
+        getPreferences(Context.MODE_PRIVATE).edit().apply {
+            putString(PREF_ROOM_ID, roomInfo.roomId)
+            putString(PREF_USER_ID, roomInfo.userId)
+            apply()
+        }
+    }
+
+    private fun getPreviousRoomInfo() : RoomInfo? {
+        val sharedPrefs = getPreferences(Context.MODE_PRIVATE)
+        val roomId = sharedPrefs.getString(PREF_ROOM_ID, null)
+        val userId = sharedPrefs.getString(PREF_USER_ID, null)
+        return if (roomId == null && userId == null) null else RoomInfo(roomId, userId)
     }
 }
