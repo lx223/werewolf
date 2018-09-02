@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		178CDF6E39284DC35A7F4FAD /* Pods_werewolf_assistant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAEED26C1B93C636A5E2923B /* Pods_werewolf_assistant.framework */; };
 		716C4246B49ABAACE9D3C7BE /* Pods_werewolf_assistantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1100137AFE35F690F4B65053 /* Pods_werewolf_assistantTests.framework */; };
+		B746303F213C85E3000E02FA /* HallViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B746303E213C85E3000E02FA /* HallViewModel.swift */; };
+		B7463041213C95A3000E02FA /* JoinRoomAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7463040213C95A3000E02FA /* JoinRoomAlertController.swift */; };
 		B793EA1620D1E67B00F319AD /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA1420D1E67B00F319AD /* ConfigurationViewController.swift */; };
 		B793EA1720D1E67B00F319AD /* ConfigurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B793EA1520D1E67B00F319AD /* ConfigurationViewController.xib */; };
 		B793EA1C20D328B400F319AD /* werewolf.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA1A20D328B400F319AD /* werewolf.grpc.swift */; };
@@ -80,6 +82,8 @@
 		313D03B3719521B984BBB8C3 /* Pods-werewolf-assistantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-werewolf-assistantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-werewolf-assistantTests/Pods-werewolf-assistantTests.release.xcconfig"; sourceTree = "<group>"; };
 		6631210C884C1649D06C7140 /* Pods-werewolf-assistant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-werewolf-assistant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-werewolf-assistant/Pods-werewolf-assistant.debug.xcconfig"; sourceTree = "<group>"; };
 		82F70EAAF86318F8FA5CC817 /* Pods-werewolf-assistantUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-werewolf-assistantUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-werewolf-assistantUITests/Pods-werewolf-assistantUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B746303E213C85E3000E02FA /* HallViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallViewModel.swift; sourceTree = "<group>"; };
+		B7463040213C95A3000E02FA /* JoinRoomAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRoomAlertController.swift; sourceTree = "<group>"; };
 		B793EA1420D1E67B00F319AD /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 		B793EA1520D1E67B00F319AD /* ConfigurationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigurationViewController.xib; sourceTree = "<group>"; };
 		B793EA1A20D328B400F319AD /* werewolf.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = werewolf.grpc.swift; sourceTree = "<group>"; };
@@ -281,6 +285,8 @@
 			isa = PBXGroup;
 			children = (
 				B7EF75A820CF312F00000A67 /* ViewController.swift */,
+				B746303E213C85E3000E02FA /* HallViewModel.swift */,
+				B7463040213C95A3000E02FA /* JoinRoomAlertController.swift */,
 			);
 			path = hall;
 			sourceTree = "<group>";
@@ -623,12 +629,14 @@
 				B793EA3920D6D19E00F319AD /* CallResultExtensions.swift in Sources */,
 				B7DB233A20E42CA50068F7C7 /* CollectionExtensions.swift in Sources */,
 				B793EA2220D3BFCD00F319AD /* UINumberPickerView.swift in Sources */,
+				B746303F213C85E3000E02FA /* HallViewModel.swift in Sources */,
 				B7DB233720E18F5B0068F7C7 /* MDCButtonExtensions.swift in Sources */,
 				B7DB234A20E79D230068F7C7 /* R.generated.swift in Sources */,
 				B7DB233520DE82730068F7C7 /* UIColorExtensions.swift in Sources */,
 				B793EA2720D3F4F600F319AD /* SeatView.swift in Sources */,
 				B793EA1620D1E67B00F319AD /* ConfigurationViewController.swift in Sources */,
 				B7EF75A920CF312F00000A67 /* ViewController.swift in Sources */,
+				B7463041213C95A3000E02FA /* JoinRoomAlertController.swift in Sources */,
 				B7EF75A720CF312F00000A67 /* AppDelegate.swift in Sources */,
 				B7DB232D20DC5AFF0068F7C7 /* SoundQueue.swift in Sources */,
 				B7DB230220D9B8A60068F7C7 /* GameServiceExtensions.swift in Sources */,

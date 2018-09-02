@@ -8,6 +8,7 @@
 
 "hallSceneTitle" = "大厅";
 "joinRoomAlertMsg" = "请输入房间号";
+"joinRoomAlertPlaceholder" = "比如: 123456";
 "joinRoomAlertCancel" = "取消";
 "joinRoomAlertConfirm" = "确认";
 

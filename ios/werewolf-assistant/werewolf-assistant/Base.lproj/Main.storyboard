@@ -25,7 +25,7 @@
             </objects>
             <point key="canvasLocation" x="-694" y="133"/>
         </scene>
-        <!--View Controller-->
+        <!--大厅-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="werewolf_assistant" customModuleProvider="target" sceneMemberID="viewController">
@@ -36,16 +36,10 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WDV-n7-Bfi">
                                 <rect key="frame" x="156.5" y="295" width="62" height="30"/>
                                 <state key="normal" title="创建房间"/>
-                                <connections>
-                                    <action selector="onCreateRoomButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aJl-z7-NtK"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UNy-oK-61h">
                                 <rect key="frame" x="156.5" y="333" width="62" height="30"/>
                                 <state key="normal" title="加入房间"/>
-                                <connections>
-                                    <action selector="onJoinRoomButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fsP-IM-4pf"/>
-                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -57,7 +51,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="tMv-9C-lmB"/>
+                    <navigationItem key="navigationItem" title="大厅" id="tMv-9C-lmB"/>
+                    <connections>
+                        <outlet property="createRoomBtn" destination="WDV-n7-Bfi" id="4ha-PP-VwI"/>
+                        <outlet property="joinRoomBtn" destination="UNy-oK-61h" id="IlW-yi-Qs2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

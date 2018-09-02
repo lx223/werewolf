@@ -45,4 +45,40 @@ extension Werewolf_GameServiceService {
             }
         }
     }
+
+    func createAndJoinRoomRx(_ req: Werewolf_CreateAndJoinRoomRequest) -> Observable<Werewolf_CreateAndJoinRoomResponse> {
+        return Observable<Werewolf_CreateAndJoinRoomResponse>.create { observer -> Disposable in
+            let call = try? self.createAndJoinRoom(req) {
+                guard let res = $0 else {
+                    observer.onError($1)
+                    return
+                }
+
+                observer.onNext(res)
+                observer.onCompleted()
+            }
+
+            return Disposables.create {
+                call?.cancel()
+            }
+        }
+    }
+
+    func joinRoomRx(_ req: Werewolf_JoinRoomRequest) -> Observable<Werewolf_JoinRoomResponse> {
+        return Observable<Werewolf_JoinRoomResponse>.create { observer -> Disposable in
+            let call = try? self.joinRoom(req) {
+                guard let res = $0 else {
+                    observer.onError($1)
+                    return
+                }
+
+                observer.onNext(res)
+                observer.onCompleted()
+            }
+
+            return Disposables.create {
+                call?.cancel()
+            }
+        }
+    }
 }

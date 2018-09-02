@@ -10,68 +10,24 @@ import UIKit
 import SwiftGRPC
 import SwiftySound
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
-    private var gameSrvClient: Werewolf_GameServiceService  = {
-        let client = Werewolf_GameServiceServiceClient(address:Constants.serverAddress, secure: false, arguments: [])
-        try! client.metadata.add(key: "x-api-key", value: Constants.googleAPIKey)
-        return client
-    }()
+    @IBOutlet weak var createRoomBtn: UIButton!
+    @IBOutlet weak var joinRoomBtn: UIButton!
+
+    var viewModel: HallViewModeling?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationController?.isNavigationBarHidden = true
+        viewModel = HallViewModel(controller: self)
+        viewModel?.subscribe()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
         navigationItem.title = R.string.localizable.hallSceneTitle()
-        navigationController?.isNavigationBarHidden = false
-    }
-
-    @IBAction func onCreateRoomButtonPressed(_ sender: UIButton) {
-        _ = try? gameSrvClient.createAndJoinRoom(Werewolf_CreateAndJoinRoomRequest()){ createRoomResponse, callResult in
-            guard let roomID = createRoomResponse?.roomID, let userID = createRoomResponse?.userID  else {
-                self.showAlert(for: callResult)
-                return
-            }
-
-            let configController = ConfigurationViewController(roomID: roomID, userID: userID, client: self.gameSrvClient)
-            DispatchQueue.main.async {
-                self.navigationController?.pushViewController(configController, animated: true)
-            }
-        }
-    }
-
-    @IBAction func onJoinRoomButtonPressed(_ sender: UIButton) {
-        let joinRoomAlert = UIAlertController(title: nil, message: R.string.localizable.joinRoomAlertMsg(), preferredStyle: .alert)
-        joinRoomAlert.addTextField(configurationHandler: nil)
-        joinRoomAlert.addAction(UIAlertAction(title: R.string.localizable.joinRoomAlertCancel(), style: .cancel, handler: nil))
-        joinRoomAlert.addAction(UIAlertAction(title: R.string.localizable.joinRoomAlertConfirm(), style: .default, handler: { [weak joinRoomAlert] (_) in
-            guard let roomId = joinRoomAlert?.textFields?.first?.text, let _ = Int32(roomId) else {
-                self.showAlert(for: nil, orMessage: "请输入数字")
-                return
-            }
-
-            var joinRoomRequest = Werewolf_JoinRoomRequest()
-            joinRoomRequest.roomID = roomId
-            _ = try? self.gameSrvClient.joinRoom(joinRoomRequest) { joinRoomResponse, callResult in
-
-                guard let userID = joinRoomResponse?.userID else {
-                    self.showAlert(for: callResult)
-                    return
-                }
-
-                let roomController: RoomViewController = RoomViewController(roomID: roomId, userID: userID, client: self.gameSrvClient)
-                DispatchQueue.main.async {
-                    self.navigationController?.pushViewController(roomController, animated: true)
-                }
-            }
-        }))
-
-        self.present(joinRoomAlert, animated: true, completion: nil)
     }
 
 }
