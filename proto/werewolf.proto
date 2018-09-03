@@ -123,6 +123,7 @@ message TakeActionResponse {
 message Room {
     repeated Seat seats = 1;
     Game game = 2;
+    string host_id = 3;
 }
 
 message Seat {

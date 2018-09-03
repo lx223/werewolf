@@ -586,6 +586,11 @@ struct Werewolf_Room {
   /// Clears the value of `game`. Subsequent reads from it will return its default value.
   mutating func clearGame() {_storage._game = nil}
 
+  var hostID: String {
+    get {return _storage._hostID}
+    set {_uniqueStorage()._hostID = newValue}
+  }
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -1685,11 +1690,13 @@ extension Werewolf_Room: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "seats"),
     2: .same(proto: "game"),
+    3: .standard(proto: "host_id"),
   ]
 
   fileprivate class _StorageClass {
     var _seats: [Werewolf_Seat] = []
     var _game: Werewolf_Game? = nil
+    var _hostID: String = String()
 
     static let defaultInstance = _StorageClass()
 
@@ -1698,6 +1705,7 @@ extension Werewolf_Room: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
     init(copying source: _StorageClass) {
       _seats = source._seats
       _game = source._game
+      _hostID = source._hostID
     }
   }
 
@@ -1715,6 +1723,7 @@ extension Werewolf_Room: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
         switch fieldNumber {
         case 1: try decoder.decodeRepeatedMessageField(value: &_storage._seats)
         case 2: try decoder.decodeSingularMessageField(value: &_storage._game)
+        case 3: try decoder.decodeSingularStringField(value: &_storage._hostID)
         default: break
         }
       }
@@ -1729,6 +1738,9 @@ extension Werewolf_Room: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
       if let v = _storage._game {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
       }
+      if !_storage._hostID.isEmpty {
+        try visitor.visitSingularStringField(value: _storage._hostID, fieldNumber: 3)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -1740,6 +1752,7 @@ extension Werewolf_Room: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
         let other_storage = _args.1
         if _storage._seats != other_storage._seats {return false}
         if _storage._game != other_storage._game {return false}
+        if _storage._hostID != other_storage._hostID {return false}
         return true
       }
       if !storagesAreEqual {return false}

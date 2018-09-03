@@ -8,11 +8,12 @@ import (
 )
 
 type Room struct {
-	Id    string
-	Roles []werewolf.Role
-	Seats map[string]*Seat
-	Users map[string]*User
-	Game  *Game
+	Id     string
+	Roles  []werewolf.Role
+	Seats  map[string]*Seat
+	Users  map[string]*User
+	Game   *Game
+	HostId string
 
 	mux *sync.Mutex
 }
@@ -83,8 +84,9 @@ func (r *Room) ToProto() *werewolf.Room {
 	}
 
 	return &werewolf.Room{
-		Seats: seatsProto,
-		Game:  r.Game.ToProto(),
+		Seats:  seatsProto,
+		Game:   r.Game.ToProto(),
+		HostId: r.HostId,
 	}
 }
 

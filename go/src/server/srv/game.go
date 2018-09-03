@@ -40,6 +40,7 @@ func (s *GameService) CreateAndJoinRoom(ctx context.Context, req *werewolf.Creat
 	room := entity.NewRoom()
 	user := entity.NewUser(room.Id)
 	room.Users[user.Id] = user
+	room.HostId = user.Id
 
 	s.mux.Lock()
 	defer s.mux.Unlock()
