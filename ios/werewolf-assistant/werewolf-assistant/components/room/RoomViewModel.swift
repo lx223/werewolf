@@ -57,8 +57,11 @@ final class RoomViewModel: RoomViewModeling {
             })
             .distinctUntilChanged()
             .subscribe(onNext: { (room) in
+                if room.hasGame {
+                    self.game.accept(room.game)
+                }
                 self.seats.accept(room.seats)
-                self.game.accept(room.game)
+
             }, onError: nil)
             .disposed(by: disposeBag)
 
@@ -96,14 +99,11 @@ final class RoomViewModel: RoomViewModeling {
     }
 
     func drive(controller: RoomViewController) {
-        configureFloatingActions(controller: controller)
-
         controller.roomNumberLabel.text = R.string.localizable.roomLabelTemplate(roomID)
+        configureFloatingActions(controller)
         driveSeatsVisibility(controller)
         driveSeatButtonPressed(controller)
         driveRoleImageVisibility(controller)
-
-
     }
 }
 
@@ -261,7 +261,7 @@ extension RoomViewModel {
 }
 
 extension RoomViewModel {
-    func configureFloatingActions(controller: RoomViewController) {
+    func configureFloatingActions(_ controller: RoomViewController) {
         controller.floatingBtn.addItem(item: startGameFloatyItem(controller))
         controller.floatingBtn.addItem(item: assignRolesFloatyItem(controller))
         controller.floatingBtn.addItem(item: lastNightInfoFloatyItem(controller))
