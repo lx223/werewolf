@@ -14,6 +14,7 @@ import RxCocoa
 
 protocol HallViewModeling {
     func drive(controller: ViewController)
+    func dispose()
 }
 
 final class HallViewModel: HallViewModeling {
@@ -22,15 +23,21 @@ final class HallViewModel: HallViewModeling {
 
     let gameSrvClient: Werewolf_GameServiceService
 
-    private let disposeBag = DisposeBag()
-    private lazy var joinRoomAlertController = JoinRoomAlertController()
+    private var disposeBag = DisposeBag()
+    private var joinRoomAlertController = JoinRoomAlertController()
 
     init() {
         gameSrvClient = Werewolf_GameServiceServiceClient(address:Constants.serverAddress, secure: false, arguments: [])
         try! gameSrvClient.metadata.add(key: "x-api-key", value: Constants.googleAPIKey)
     }
 
+    func dispose() {
+        disposeBag = DisposeBag()
+    }
+
     func drive(controller: ViewController) {
+        controller.navigationItem.title = R.string.localizable.hallSceneTitle()
+
         controller.createRoomBtn.rx.tap
             .flatMapLatest({_ -> Observable<Werewolf_CreateAndJoinRoomResponse> in
                 let req = Werewolf_CreateAndJoinRoomRequest()

@@ -18,16 +18,16 @@ final class ViewController: UIViewController {
 
     var viewModel: HallViewModeling? = HallViewModel()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
         viewModel?.drive(controller: self)
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
 
-        navigationItem.title = R.string.localizable.hallSceneTitle()
+        viewModel?.dispose()
     }
 
 }

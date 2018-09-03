@@ -12,11 +12,6 @@ import Floaty
 
 class RoomViewController: UIViewController {
 
-    @IBOutlet weak var lastNightInfoBtn: UIBarButtonItem!
-    @IBOutlet weak var startGameBtn: UIBarButtonItem!
-    @IBOutlet weak var assignRoleBtn: UIBarButtonItem!
-    @IBOutlet weak var takeActionBtn: UIBarButtonItem!
-
     @IBOutlet var seatButtons: [MDCButton]!
     @IBOutlet weak var roleImageView: UIImageView!
     let roomNumberLabel = UILabel()
