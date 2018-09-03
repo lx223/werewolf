@@ -14,6 +14,7 @@ target 'werewolf-assistant' do
   pod 'MaterialComponents/Snackbar'
   pod 'MaterialComponents/Buttons'
   pod 'R.swift'
+  pod 'Floaty'
 
   target 'werewolf-assistantTests' do
     inherit! :search_paths

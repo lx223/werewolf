@@ -66,7 +66,7 @@ static inline CGFloat MDCDegreesToRadians(CGFloat degrees) {
 #endif
 }
 
-static inline bool MDCCGFloatEqual(CGFloat a, CGFloat b) {
+static inline BOOL MDCCGFloatEqual(CGFloat a, CGFloat b) {
   const CGFloat constantK = 3;
 #if CGFLOAT_IS_DOUBLE
   const CGFloat epsilon = DBL_EPSILON;
@@ -129,6 +129,38 @@ static inline CGFloat MDCSqrt(CGFloat value) {
 #else
   return sqrtf(value);
 #endif
+}
+
+/**
+ Round the given value to ceiling with provided scale factor.
+ If @c scale is zero, then the rounded value will be zero.
+
+ @param value The value to round
+ @param scale The scale factor
+ @return The ceiling value calculated using the provided scale factor
+ */
+static inline CGFloat MDCCeilScaled(CGFloat value, CGFloat scale) {
+  if (MDCCGFloatEqual(scale, 0)) {
+    return 0.0f;
+  }
+
+  return MDCCeil(value * scale) / scale;
+}
+
+/**
+ Round the given value to floor with provided scale factor.
+ If @c scale is zero, then the rounded value will be zero.
+
+ @param value The value to round
+ @param scale The scale factor
+ @return The floor value calculated using the provided scale factor
+ */
+static inline CGFloat MDCFloorScaled(CGFloat value, CGFloat scale) {
+  if (MDCCGFloatEqual(scale, 0)) {
+    return 0.0f;
+  }
+
+  return MDCFloor(value * scale) / scale;
 }
 
 /**

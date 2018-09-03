@@ -12,6 +12,7 @@ import RxCocoa
 import SwiftGRPC
 import MaterialComponents
 import SwiftySound
+import Floaty
 
 @objc protocol RoomViewModeling {
     func drive(controller: RoomViewController)
@@ -95,59 +96,14 @@ final class RoomViewModel: RoomViewModeling {
     }
 
     func drive(controller: RoomViewController) {
+        configureFloatingActions(controller: controller)
+
         controller.roomNumberLabel.text = R.string.localizable.roomLabelTemplate(roomID)
         driveSeatsVisibility(controller)
         driveSeatButtonPressed(controller)
         driveRoleImageVisibility(controller)
 
-        controller.startGameBtn.rx.tap
-            .flatMapLatest({_ -> Observable<Werewolf_StartGameResponse> in
-                var req = Werewolf_StartGameRequest()
-                req.roomID = self.roomID
-                return self.gameServiceClient.startGameRx(req)
-            })
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { (_) in
-                controller.showSnackbar(withMessage: R.string.localizable.gameStartedSnackMessage())
-            }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .disposed(by: disposeBag)
 
-        controller.lastNightInfoBtn.rx.tap
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { (_) in
-                let killedSeatIndices = self.game.value?.killedSeatIds.compactMap({ (seatID) -> String? in
-                    guard let i = self.seats.value?.index(where: { $0.id == seatID }) else {
-                        return nil
-                    }
-                    return String(i + 1)
-                })
-                guard let killedSeatString = killedSeatIndices?.joined(separator: ",") else {
-                    return
-                }
-
-                let msg = killedSeatString.isEmpty ? R.string.localizable.peacefulNightSnackMessage() : R.string.localizable.killedPlayersMessageTemplate(killedSeatString)
-                controller.showAlert(for: nil, orMessage: msg)
-            }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .disposed(by: disposeBag)
-
-        controller.takeActionBtn.rx.tap
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { (_) in
-                self.onUseSkillButtonPressed(controller)
-            }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .disposed(by: disposeBag)
-
-        controller.assignRoleBtn.rx.tap
-            .flatMapLatest({_ -> Observable<Werewolf_ReassignRolesResponse> in
-                var req = Werewolf_ReassignRolesRequest()
-                req.roomID = self.roomID
-                return self.gameServiceClient.reassignRolesRx(req)
-            })
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { (_) in
-                controller.showAlert(for: nil, orMessage: R.string.localizable.reassignRoleSuccess())
-            }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .disposed(by: disposeBag)
     }
 }
 
@@ -305,8 +261,83 @@ extension RoomViewModel {
 }
 
 extension RoomViewModel {
-    @objc func onRoleImageViewPressed(_ sender: UITapGestureRecognizer) {
-        self.showingRole.accept(!self.showingRole.value)
+    func configureFloatingActions(controller: RoomViewController) {
+        controller.floatingBtn.addItem(item: startGameFloatyItem(controller))
+        controller.floatingBtn.addItem(item: assignRolesFloatyItem(controller))
+        controller.floatingBtn.addItem(item: lastNightInfoFloatyItem(controller))
+        controller.floatingBtn.addItem(item: useSkillFloatyItem(controller))
+    }
+
+    func startGameFloatyItem(_ controller: RoomViewController) -> FloatyItem {
+        let item = FloatyItem()
+        item.title = R.string.localizable.startGameBtnTitle()
+        item.rx.tap.flatMapLatest { (_) -> Observable<Werewolf_StartGameResponse> in
+                var req = Werewolf_StartGameRequest()
+                req.roomID = self.roomID
+                return self.gameServiceClient.startGameRx(req)
+            }
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { (_) in
+                controller.showSnackbar(withMessage: R.string.localizable.gameStartedSnackMessage())
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
+
+        return item
+    }
+
+    func assignRolesFloatyItem(_ controller: RoomViewController) -> FloatyItem {
+        let item = FloatyItem()
+        item.title = R.string.localizable.assignRolesBtnTitle()
+        item.rx.tap
+            .flatMapLatest { (_) -> Observable<Werewolf_ReassignRolesResponse> in
+                var req = Werewolf_ReassignRolesRequest()
+                req.roomID = self.roomID
+                return self.gameServiceClient.reassignRolesRx(req)
+            }
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { (_) in
+                controller.showAlert(for: nil, orMessage: R.string.localizable.reassignRoleSuccess())
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
+
+        return item
+    }
+
+    func lastNightInfoFloatyItem(_ controller: RoomViewController) -> FloatyItem {
+        let item = FloatyItem()
+        item.title = R.string.localizable.lastNightInfoBtnTitle()
+        item.rx.tap
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { (_) in
+                let killedSeatIndices = self.game.value?.killedSeatIds.compactMap({ (seatID) -> String? in
+                    guard let i = self.seats.value?.index(where: { $0.id == seatID }) else {
+                        return nil
+                    }
+                    return String(i + 1)
+                })
+                guard let killedSeatString = killedSeatIndices?.joined(separator: ",") else {
+                    return
+                }
+
+                let msg = killedSeatString.isEmpty ? R.string.localizable.peacefulNightSnackMessage() : R.string.localizable.killedPlayersMessageTemplate(killedSeatString)
+                controller.showAlert(for: nil, orMessage: msg)
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
+
+        return item
+    }
+
+    func useSkillFloatyItem(_ controller: RoomViewController) -> FloatyItem {
+        let item = FloatyItem()
+        item.title = R.string.localizable.useSkillBtnTitle()
+        item.rx.tap
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { (_) in
+                self.onUseSkillButtonPressed(controller)
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
+
+        return item
     }
 
     func onUseSkillButtonPressed(_ controller: RoomViewController) {
@@ -385,5 +416,8 @@ extension RoomViewModel {
         }
     }
 
+    @objc func onRoleImageViewPressed(_ sender: UITapGestureRecognizer) {
+        self.showingRole.accept(!self.showingRole.value)
+    }
 }
 

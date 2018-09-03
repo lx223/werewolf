@@ -14,6 +14,7 @@
 		B7463045213D466E000E02FA /* RoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7463044213D466E000E02FA /* RoomViewModel.swift */; };
 		B78E2C4E213D7A0100B6E206 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78E2C4D213D7A0100B6E206 /* GameManager.swift */; };
 		B78E2C50213D7A7C00B6E206 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78E2C4F213D7A7C00B6E206 /* UserDefaultsExtensions.swift */; };
+		B78E2C52213DDD3200B6E206 /* FloatyItemExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78E2C51213DDD3200B6E206 /* FloatyItemExtensions.swift */; };
 		B793EA1620D1E67B00F319AD /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA1420D1E67B00F319AD /* ConfigurationViewController.swift */; };
 		B793EA1720D1E67B00F319AD /* ConfigurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B793EA1520D1E67B00F319AD /* ConfigurationViewController.xib */; };
 		B793EA1C20D328B400F319AD /* werewolf.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA1A20D328B400F319AD /* werewolf.grpc.swift */; };
@@ -90,6 +91,7 @@
 		B7463044213D466E000E02FA /* RoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewModel.swift; sourceTree = "<group>"; };
 		B78E2C4D213D7A0100B6E206 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		B78E2C4F213D7A7C00B6E206 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
+		B78E2C51213DDD3200B6E206 /* FloatyItemExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatyItemExtensions.swift; sourceTree = "<group>"; };
 		B793EA1420D1E67B00F319AD /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 		B793EA1520D1E67B00F319AD /* ConfigurationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigurationViewController.xib; sourceTree = "<group>"; };
 		B793EA1A20D328B400F319AD /* werewolf.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = werewolf.grpc.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				B7DB233620E18F5B0068F7C7 /* MDCButtonExtensions.swift */,
 				B7DB233920E42CA50068F7C7 /* CollectionExtensions.swift */,
 				B78E2C4F213D7A7C00B6E206 /* UserDefaultsExtensions.swift */,
+				B78E2C51213DDD3200B6E206 /* FloatyItemExtensions.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -524,6 +527,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-werewolf-assistant/Pods-werewolf-assistant-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/Floaty/Floaty.framework",
 				"${BUILT_PRODUCTS_DIR}/MDFInternationalization/MDFInternationalization.framework",
 				"${BUILT_PRODUCTS_DIR}/MDFTextAccessibility/MDFTextAccessibility.framework",
 				"${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework",
@@ -539,6 +543,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Floaty.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFInternationalization.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDFTextAccessibility.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialComponents.framework",
@@ -631,6 +636,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B78E2C52213DDD3200B6E206 /* FloatyItemExtensions.swift in Sources */,
 				B793EA3520D6B12B00F319AD /* WerewolfRoleExtensions.swift in Sources */,
 				B7DB233120DE3BDA0068F7C7 /* Constants.swift in Sources */,
 				B793EA2520D3CA9C00F319AD /* UIViewControllerExtensions.swift in Sources */,

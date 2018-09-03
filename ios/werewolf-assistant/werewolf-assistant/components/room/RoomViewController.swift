@@ -8,6 +8,7 @@
 
 import UIKit
 import MaterialComponents
+import Floaty
 
 class RoomViewController: UIViewController {
 
@@ -15,11 +16,11 @@ class RoomViewController: UIViewController {
     @IBOutlet weak var startGameBtn: UIBarButtonItem!
     @IBOutlet weak var assignRoleBtn: UIBarButtonItem!
     @IBOutlet weak var takeActionBtn: UIBarButtonItem!
-    
 
     @IBOutlet var seatButtons: [MDCButton]!
     @IBOutlet weak var roleImageView: UIImageView!
     let roomNumberLabel = UILabel()
+    let floatingBtn = Floaty()
 
     let viewModel: RoomViewModeling
 
@@ -31,6 +32,8 @@ class RoomViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        view.addSubview(floatingBtn)
 
         let rightBarButtonItem = UIBarButtonItem(customView: roomNumberLabel)
         navigationItem.setRightBarButton(rightBarButtonItem, animated: false)

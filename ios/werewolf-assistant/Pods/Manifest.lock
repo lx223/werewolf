@@ -1,10 +1,11 @@
 PODS:
-  - BoringSSL (10.0.3):
-    - BoringSSL/Implementation (= 10.0.3)
-    - BoringSSL/Interface (= 10.0.3)
-  - BoringSSL/Implementation (10.0.3):
-    - BoringSSL/Interface (= 10.0.3)
-  - BoringSSL/Interface (10.0.3)
+  - BoringSSL (10.0.6):
+    - BoringSSL/Implementation (= 10.0.6)
+    - BoringSSL/Interface (= 10.0.6)
+  - BoringSSL/Implementation (10.0.6):
+    - BoringSSL/Interface (= 10.0.6)
+  - BoringSSL/Interface (10.0.6)
+  - Floaty (4.0.1)
   - gRPC-Core (1.11.0):
     - gRPC-Core/Implementation (= 1.11.0)
     - gRPC-Core/Interface (= 1.11.0)
@@ -13,8 +14,8 @@ PODS:
     - gRPC-Core/Interface (= 1.11.0)
     - nanopb (~> 0.3)
   - gRPC-Core/Interface (1.11.0)
-  - MaterialComponents/AnimationTiming (55.4.0)
-  - MaterialComponents/Buttons (55.4.0):
+  - MaterialComponents/AnimationTiming (62.0.0)
+  - MaterialComponents/Buttons (62.0.0):
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
     - MaterialComponents/private/Shapes
@@ -23,22 +24,22 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - MaterialComponents/Ink (55.4.0):
+  - MaterialComponents/Ink (62.0.0):
     - MaterialComponents/private/Math
-  - MaterialComponents/OverlayWindow (55.4.0):
+  - MaterialComponents/OverlayWindow (62.0.0):
     - MaterialComponents/private/Application
-  - MaterialComponents/private/Application (55.4.0)
-  - MaterialComponents/private/KeyboardWatcher (55.4.0):
+  - MaterialComponents/private/Application (62.0.0)
+  - MaterialComponents/private/KeyboardWatcher (62.0.0):
     - MaterialComponents/private/Application
-  - MaterialComponents/private/Math (55.4.0)
-  - MaterialComponents/private/Overlay (55.4.0)
-  - MaterialComponents/private/Shapes (55.4.0):
+  - MaterialComponents/private/Math (62.0.0)
+  - MaterialComponents/private/Overlay (62.0.0)
+  - MaterialComponents/private/Shapes (62.0.0):
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/ShadowElevations (55.4.0)
-  - MaterialComponents/ShadowLayer (55.4.0):
+  - MaterialComponents/ShadowElevations (62.0.0)
+  - MaterialComponents/ShadowLayer (62.0.0):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/Snackbar (55.4.0):
+  - MaterialComponents/Snackbar (62.0.0):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Buttons
     - MaterialComponents/OverlayWindow
@@ -46,9 +47,10 @@ PODS:
     - MaterialComponents/private/KeyboardWatcher
     - MaterialComponents/private/Overlay
     - MaterialComponents/Typography
-  - MaterialComponents/Typography (55.4.0):
+  - MaterialComponents/Typography (62.0.0):
     - MaterialComponents/private/Application
-  - MDFInternationalization (1.0.4)
+    - MaterialComponents/private/Math
+  - MDFInternationalization (1.1.0)
   - MDFTextAccessibility (1.2.0)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
@@ -69,6 +71,7 @@ PODS:
   - SwiftySound (1.0.0)
 
 DEPENDENCIES:
+  - Floaty
   - MaterialComponents/Buttons
   - MaterialComponents/Snackbar
   - R.swift
@@ -81,6 +84,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - BoringSSL
+    - Floaty
     - gRPC-Core
     - MaterialComponents
     - MDFInternationalization
@@ -95,10 +99,11 @@ SPEC REPOS:
     - SwiftySound
 
 SPEC CHECKSUMS:
-  BoringSSL: c46efb47593135382bc0934196f16d2f726f5f36
+  BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
+  Floaty: 82854e1a5ef4fa208281ebd4da2f3d1e51ba67a6
   gRPC-Core: 164639cd8ae18ca8b65477fafb2efbaecf4f181a
-  MaterialComponents: 1a021ab211e40e95e27eb87d9051d558e8f095bd
-  MDFInternationalization: e355b0cebecf53d60233bd267084e49366c82513
+  MaterialComponents: bad29aec8c4dd416aa35f87afb8d65d44456d712
+  MDFInternationalization: b5b8626628abf026e630e5ebaeee563037712cbb
   MDFTextAccessibility: 94098925e0853551c5a311ce7c1ecefbe297cdb6
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
@@ -109,6 +114,6 @@ SPEC CHECKSUMS:
   SwiftProtobuf: 5ccc0e4054e37c75800e5744acb2aa80bb72b39c
   SwiftySound: b9c3370956fd4ed65ed79d45563070077a50a2cd
 
-PODFILE CHECKSUM: efc9622fa79d012ceb331fa0ad7621f8494b5292
+PODFILE CHECKSUM: 1cf74018dfa8d7de5b3a3708ff2fdde6ee5dfe52
 
 COCOAPODS: 1.5.3

@@ -36,3 +36,8 @@
 "seerActionRulingNegative" = "验的玩家是狼人";
 "hunterActionRulingPositive" = "可以开枪";
 "hunterActionRulingNegative" = "不能开枪";
+
+"lastNightInfoBtnTitle" = "昨夜信息";
+"startGameBtnTitle" = "开始游戏";
+"assignRolesBtnTitle" = "重新发牌";
+"useSkillBtnTitle" = "使用技能";

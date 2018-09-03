@@ -37,6 +37,7 @@
 #import "MaterialTypography.h"
 #import "MDCFontTextStyle.h"
 #import "MDCTypography.h"
+#import "UIFont+MaterialSimpleEquality.h"
 #import "UIFont+MaterialTypography.h"
 #import "UIFontDescriptor+MaterialTypography.h"
 #import "MaterialApplication.h"
