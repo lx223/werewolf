@@ -29,7 +29,9 @@ final class HallViewModel: HallViewModeling {
             self.gameSrvClient.joinRoomRx(req)
             .observeOn(MainScheduler.asyncInstance)
             .subscribe(onNext: { (res) in
-                let roomController: RoomViewController = RoomViewController(roomID: roomID, userID: res.userID, client: self.gameSrvClient)
+                let roomViewModel = RoomViewModel(roomID: roomID, userID: res.userID, client: self.gameSrvClient)
+                let roomController = RoomViewController(viewModel: roomViewModel)
+                
                 self.controller?.navigationController?.pushViewController(roomController, animated: true)
             }, onError: nil, onCompleted: nil, onDisposed: nil)
             .disposed(by: self.disposeBag)

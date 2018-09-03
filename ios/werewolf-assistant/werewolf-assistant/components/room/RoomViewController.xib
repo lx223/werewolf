@@ -13,7 +13,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RoomViewController" customModule="werewolf_assistant" customModuleProvider="target">
             <connections>
+                <outlet property="assignRoleBtn" destination="AJh-RL-vsE" id="fyZ-PL-rcy"/>
+                <outlet property="lastNightInfoBtn" destination="bg5-Si-odl" id="7ji-cS-cGQ"/>
                 <outlet property="roleImageView" destination="842-l4-BsY" id="6Wn-cg-Rzi"/>
+                <outlet property="startGameBtn" destination="kpj-sH-2E3" id="2cl-Y2-S5D"/>
+                <outlet property="takeActionBtn" destination="ZMx-UC-jJz" id="2Oi-Xz-YmW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="seatButtons" destination="mln-fR-KnX" collectionClass="NSMutableArray" id="0KD-Ny-v4L"/>
                 <outletCollection property="seatButtons" destination="Oy6-Y0-29Q" collectionClass="NSMutableArray" id="Nl5-Wh-6WL"/>
@@ -43,29 +47,13 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <items>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="kTc-Tc-VFI"/>
-                        <barButtonItem title="昨夜" id="bg5-Si-odl">
-                            <connections>
-                                <action selector="onLastNightButtonPressed:" destination="-1" id="umM-nN-5PB"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem title="昨夜" id="bg5-Si-odl"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="z3J-p2-jMr"/>
-                        <barButtonItem title="开始" id="kpj-sH-2E3">
-                            <connections>
-                                <action selector="onStartGameButtonPressed:" destination="-1" id="B4l-zO-OmH"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem title="开始" id="kpj-sH-2E3"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="D2L-lL-Obd"/>
-                        <barButtonItem title="发牌" id="AJh-RL-vsE">
-                            <connections>
-                                <action selector="onReassignButtonPressed:" destination="-1" id="14V-3X-0oa"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem title="发牌" id="AJh-RL-vsE"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="7Rt-Hb-Xq3"/>
-                        <barButtonItem title="技能" id="ZMx-UC-jJz">
-                            <connections>
-                                <action selector="onUseSkillButtonPressed:" destination="-1" id="LMv-3v-ha8"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem title="技能" id="ZMx-UC-jJz"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="Pfd-vB-K4n"/>
                     </items>
                 </toolbar>

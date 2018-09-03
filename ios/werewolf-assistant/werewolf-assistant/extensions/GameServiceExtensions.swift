@@ -11,6 +11,18 @@ import RxSwift
 import SwiftGRPC
 
 extension Werewolf_GameServiceService {
+    func reassignRolesRx(_ req: Werewolf_ReassignRolesRequest) -> Observable<Werewolf_ReassignRolesResponse> {
+        return rxUnary(req, self.reassignRoles)
+    }
+
+    func startGameRx(_ req: Werewolf_StartGameRequest) -> Observable<Werewolf_StartGameResponse> {
+        return rxUnary(req, self.startGame)
+    }
+
+    func getRoomRx(_ req: Werewolf_GetRoomRequest) -> Observable<Werewolf_GetRoomResponse> {
+        return rxUnary(req, self.getRoom)
+    }
+
     func takeActionRx(_ req: Werewolf_TakeActionRequest) -> Observable<Werewolf_TakeActionResponse> {
         return rxUnary(req, self.takeAction)
     }
