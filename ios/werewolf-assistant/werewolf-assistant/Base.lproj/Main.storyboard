@@ -41,6 +41,10 @@
                                 <rect key="frame" x="156.5" y="333" width="62" height="30"/>
                                 <state key="normal" title="加入房间"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qAA-PG-DAW">
+                                <rect key="frame" x="141" y="371" width="92" height="30"/>
+                                <state key="normal" title="返回上次房间"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -48,12 +52,15 @@
                             <constraint firstItem="WDV-n7-Bfi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="231" id="1Mv-xD-01z"/>
                             <constraint firstItem="UNy-oK-61h" firstAttribute="leading" secondItem="WDV-n7-Bfi" secondAttribute="leading" id="3Lx-QD-wW2"/>
                             <constraint firstItem="WDV-n7-Bfi" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="FjC-SO-9KN"/>
+                            <constraint firstItem="qAA-PG-DAW" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="y41-9P-FeN"/>
+                            <constraint firstItem="qAA-PG-DAW" firstAttribute="top" secondItem="UNy-oK-61h" secondAttribute="bottom" constant="8" id="zZe-cl-DRe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="大厅" id="tMv-9C-lmB"/>
                     <connections>
                         <outlet property="createRoomBtn" destination="WDV-n7-Bfi" id="4ha-PP-VwI"/>
+                        <outlet property="joinLastRoomBtn" destination="qAA-PG-DAW" id="6nK-2y-bud"/>
                         <outlet property="joinRoomBtn" destination="UNy-oK-61h" id="IlW-yi-Qs2"/>
                     </connections>
                 </viewController>

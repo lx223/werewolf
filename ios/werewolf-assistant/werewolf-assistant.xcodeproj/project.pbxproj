@@ -12,6 +12,8 @@
 		B746303F213C85E3000E02FA /* HallViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B746303E213C85E3000E02FA /* HallViewModel.swift */; };
 		B7463041213C95A3000E02FA /* JoinRoomAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7463040213C95A3000E02FA /* JoinRoomAlertController.swift */; };
 		B7463045213D466E000E02FA /* RoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7463044213D466E000E02FA /* RoomViewModel.swift */; };
+		B78E2C4E213D7A0100B6E206 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78E2C4D213D7A0100B6E206 /* GameManager.swift */; };
+		B78E2C50213D7A7C00B6E206 /* UserDefaultsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78E2C4F213D7A7C00B6E206 /* UserDefaultsExtensions.swift */; };
 		B793EA1620D1E67B00F319AD /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA1420D1E67B00F319AD /* ConfigurationViewController.swift */; };
 		B793EA1720D1E67B00F319AD /* ConfigurationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B793EA1520D1E67B00F319AD /* ConfigurationViewController.xib */; };
 		B793EA1C20D328B400F319AD /* werewolf.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA1A20D328B400F319AD /* werewolf.grpc.swift */; };
@@ -86,6 +88,8 @@
 		B746303E213C85E3000E02FA /* HallViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallViewModel.swift; sourceTree = "<group>"; };
 		B7463040213C95A3000E02FA /* JoinRoomAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRoomAlertController.swift; sourceTree = "<group>"; };
 		B7463044213D466E000E02FA /* RoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewModel.swift; sourceTree = "<group>"; };
+		B78E2C4D213D7A0100B6E206 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		B78E2C4F213D7A7C00B6E206 /* UserDefaultsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtensions.swift; sourceTree = "<group>"; };
 		B793EA1420D1E67B00F319AD /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
 		B793EA1520D1E67B00F319AD /* ConfigurationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigurationViewController.xib; sourceTree = "<group>"; };
 		B793EA1A20D328B400F319AD /* werewolf.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = werewolf.grpc.swift; sourceTree = "<group>"; };
@@ -215,6 +219,7 @@
 				B7DB233420DE82730068F7C7 /* UIColorExtensions.swift */,
 				B7DB233620E18F5B0068F7C7 /* MDCButtonExtensions.swift */,
 				B7DB233920E42CA50068F7C7 /* CollectionExtensions.swift */,
+				B78E2C4F213D7A7C00B6E206 /* UserDefaultsExtensions.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -328,6 +333,7 @@
 				B7EF75AA20CF312F00000A67 /* Main.storyboard */,
 				B7EF75AF20CF313100000A67 /* LaunchScreen.storyboard */,
 				B7EF75B220CF313100000A67 /* Info.plist */,
+				B78E2C4D213D7A0100B6E206 /* GameManager.swift */,
 			);
 			path = "werewolf-assistant";
 			sourceTree = "<group>";
@@ -629,6 +635,7 @@
 				B7DB233120DE3BDA0068F7C7 /* Constants.swift in Sources */,
 				B793EA2520D3CA9C00F319AD /* UIViewControllerExtensions.swift in Sources */,
 				B793EA3020D47AD700F319AD /* UIImageExtensions.swift in Sources */,
+				B78E2C4E213D7A0100B6E206 /* GameManager.swift in Sources */,
 				B793EA3920D6D19E00F319AD /* CallResultExtensions.swift in Sources */,
 				B7DB233A20E42CA50068F7C7 /* CollectionExtensions.swift in Sources */,
 				B793EA2220D3BFCD00F319AD /* UINumberPickerView.swift in Sources */,
@@ -644,6 +651,7 @@
 				B7EF75A720CF312F00000A67 /* AppDelegate.swift in Sources */,
 				B7DB232D20DC5AFF0068F7C7 /* SoundQueue.swift in Sources */,
 				B7DB230220D9B8A60068F7C7 /* GameServiceExtensions.swift in Sources */,
+				B78E2C50213D7A7C00B6E206 /* UserDefaultsExtensions.swift in Sources */,
 				B793EA2D20D466D900F319AD /* UIViewExtensions.swift in Sources */,
 				B7DB232720DB206B0068F7C7 /* SoundExtensions.swift in Sources */,
 				B793EA2A20D41D9500F319AD /* RoomViewController.swift in Sources */,

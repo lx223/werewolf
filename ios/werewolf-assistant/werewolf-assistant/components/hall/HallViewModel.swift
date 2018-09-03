@@ -13,56 +13,93 @@ import SwiftGRPC
 import RxCocoa
 
 protocol HallViewModeling {
-    func subscribe()
+    func drive(controller: ViewController)
 }
 
 final class HallViewModel: HallViewModeling {
 
+    let gameManager: GameManaging = GameManager()
+
     let gameSrvClient: Werewolf_GameServiceService
 
-    private weak var controller: ViewController?
     private let disposeBag = DisposeBag()
-    private lazy var joinRoomAlertController: UIAlertController = {
-        return JoinRoomAlertController(onConfirm: { (roomID) in
-            var req = Werewolf_JoinRoomRequest()
-            req.roomID = roomID
-            self.gameSrvClient.joinRoomRx(req)
-            .observeOn(MainScheduler.asyncInstance)
-            .subscribe(onNext: { (res) in
-                let roomViewModel = RoomViewModel(roomID: roomID, userID: res.userID, client: self.gameSrvClient)
-                let roomController = RoomViewController(viewModel: roomViewModel)
-                
-                self.controller?.navigationController?.pushViewController(roomController, animated: true)
-            }, onError: nil, onCompleted: nil, onDisposed: nil)
-            .disposed(by: self.disposeBag)
-        }, onCancel: nil)
-    }()
+    private lazy var joinRoomAlertController = JoinRoomAlertController()
 
-    init(controller: ViewController) {
-        self.controller = controller
-
+    init() {
         gameSrvClient = Werewolf_GameServiceServiceClient(address:Constants.serverAddress, secure: false, arguments: [])
         try! gameSrvClient.metadata.add(key: "x-api-key", value: Constants.googleAPIKey)
     }
 
-    func subscribe() {
-        self.controller?.createRoomBtn.rx.tap
+    func drive(controller: ViewController) {
+        controller.createRoomBtn.rx.tap
             .flatMapLatest({_ -> Observable<Werewolf_CreateAndJoinRoomResponse> in
                 let req = Werewolf_CreateAndJoinRoomRequest()
                 return self.gameSrvClient.createAndJoinRoomRx(req)
             })
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { (res) in
-                let configController = ConfigurationViewController(roomID: res.roomID, userID: res.userID, client: self.gameSrvClient)
-                self.controller?.navigationController?.pushViewController(configController, animated: true)
+                let roomID = res.roomID, userID = res.userID
+                self.gameManager.roomID.accept(roomID)
+                self.gameManager.userID.accept(userID)
+
+                let configController = ConfigurationViewController(roomID: roomID, userID: userID, client: self.gameSrvClient)
+                controller.navigationController?.pushViewController(configController, animated: true)
             }, onError: nil, onCompleted: nil, onDisposed: nil)
             .disposed(by: disposeBag)
 
-        self.controller?.joinRoomBtn.rx.tap
+        controller.joinRoomBtn.rx.tap
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { (_) in
-                self.controller?.present(self.joinRoomAlertController, animated: true, completion: nil)
+                controller.present(self.joinRoomAlertController, animated: true, completion: nil)
             }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
+
+        joinRoomAlertController.onConfirmHandler = { (roomID) in
+            var req = Werewolf_JoinRoomRequest()
+            req.roomID = roomID
+            self.gameSrvClient.joinRoomRx(req)
+                .observeOn(MainScheduler.asyncInstance)
+                .subscribe(onNext: { (res) in
+                    let userID = res.userID
+
+                    self.gameManager.userID.accept(userID)
+                    self.gameManager.roomID.accept(roomID)
+
+                    let roomViewModel = RoomViewModel(roomID: roomID, userID: userID, client: self.gameSrvClient)
+                    let roomController = RoomViewController(viewModel: roomViewModel)
+                    controller.navigationController?.pushViewController(roomController, animated: true)
+                }, onError: nil, onCompleted: nil, onDisposed: nil)
+                .disposed(by: self.disposeBag)
+        }
+
+        Observable
+            .combineLatest(gameManager.roomID.asObservable(), gameManager.userID.asObservable())
+            .flatMapLatest { (roomID, userID) -> Observable<Bool> in
+                return Observable.just(userID != nil && roomID != nil)
+            }
+            .bind(to: controller.joinLastRoomBtn.rx.isEnabled)
+            .disposed(by: disposeBag)
+
+        controller.joinLastRoomBtn.rx.tap
+            .flatMapLatest { (_) -> Observable<(String?, String?)> in
+                return Observable
+                    .combineLatest(
+                        self.gameManager.roomID.asObservable(),
+                        self.gameManager.userID.asObservable()
+                    )
+            }
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { (pair) in
+                guard let roomID = pair.0, let userID = pair.1 else {
+                    return
+                }
+                let roomViewModel = RoomViewModel(roomID: roomID, userID: userID, client: self.gameSrvClient)
+                let roomController = RoomViewController(viewModel: roomViewModel)
+                controller.navigationController?.pushViewController(roomController, animated: true)
+            }, onError: { (_) in
+                self.gameManager.roomID.accept(nil)
+                self.gameManager.userID.accept(nil)
+            }, onCompleted: nil, onDisposed: nil)
             .disposed(by: disposeBag)
     }
 }

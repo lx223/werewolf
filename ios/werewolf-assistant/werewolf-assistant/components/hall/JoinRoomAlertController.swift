@@ -11,6 +11,8 @@ import UIKit
 
 final class JoinRoomAlertController: UIAlertController {
 
+    var onConfirmHandler: ((_ roomID: String) -> Void)?
+
     override var message: String? {
         set {}
         get {
@@ -24,7 +26,7 @@ final class JoinRoomAlertController: UIAlertController {
 
     private weak var roomNumberTextField: UITextField?
 
-    init(onConfirm: ((_ roomID: String) -> Void)?, onCancel: (() -> Void)?) {
+    init() {
         super.init(nibName: nil, bundle: nil)
 
         addTextField { (textField) in
@@ -36,7 +38,7 @@ final class JoinRoomAlertController: UIAlertController {
         addAction(UIAlertAction(title: R.string.localizable.joinRoomAlertCancel(), style: .cancel, handler: nil))
         addAction(UIAlertAction(title: R.string.localizable.joinRoomAlertConfirm(), style: .default, handler: {  (_) in
             if let roomID = self.roomNumberTextField?.text, let _ = Int32(roomID) {
-                onConfirm?(roomID)
+                self.onConfirmHandler?(roomID)
             }
         }))
     }

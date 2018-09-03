@@ -14,14 +14,14 @@ final class ViewController: UIViewController {
 
     @IBOutlet weak var createRoomBtn: UIButton!
     @IBOutlet weak var joinRoomBtn: UIButton!
+    @IBOutlet weak var joinLastRoomBtn: UIButton!
 
-    var viewModel: HallViewModeling?
+    var viewModel: HallViewModeling? = HallViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewModel = HallViewModel(controller: self)
-        viewModel?.subscribe()
+        viewModel?.drive(controller: self)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
