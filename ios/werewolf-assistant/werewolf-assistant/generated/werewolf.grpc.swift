@@ -61,6 +61,12 @@ fileprivate final class Werewolf_GameServiceReassignRolesCallBase: ClientCallUna
   override class var method: String { return "/werewolf.GameService/ReassignRoles" }
 }
 
+internal protocol Werewolf_GameServiceKickUserCall: ClientCallUnary {}
+
+fileprivate final class Werewolf_GameServiceKickUserCallBase: ClientCallUnaryBase<Werewolf_KickUserRequest, Werewolf_KickUserResponse>, Werewolf_GameServiceKickUserCall {
+  override class var method: String { return "/werewolf.GameService/KickUser" }
+}
+
 internal protocol Werewolf_GameServiceStartGameCall: ClientCallUnary {}
 
 fileprivate final class Werewolf_GameServiceStartGameCallBase: ClientCallUnaryBase<Werewolf_StartGameRequest, Werewolf_StartGameResponse>, Werewolf_GameServiceStartGameCall {
@@ -105,6 +111,11 @@ internal protocol Werewolf_GameServiceService: ServiceClient {
   func reassignRoles(_ request: Werewolf_ReassignRolesRequest) throws -> Werewolf_ReassignRolesResponse
   /// Asynchronous. Unary.
   func reassignRoles(_ request: Werewolf_ReassignRolesRequest, completion: @escaping (Werewolf_ReassignRolesResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceReassignRolesCall
+
+  /// Synchronous. Unary.
+  func kickUser(_ request: Werewolf_KickUserRequest) throws -> Werewolf_KickUserResponse
+  /// Asynchronous. Unary.
+  func kickUser(_ request: Werewolf_KickUserRequest, completion: @escaping (Werewolf_KickUserResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceKickUserCall
 
   /// Synchronous. Unary.
   func startGame(_ request: Werewolf_StartGameRequest) throws -> Werewolf_StartGameResponse
@@ -182,6 +193,17 @@ internal final class Werewolf_GameServiceServiceClient: ServiceClientBase, Werew
   /// Asynchronous. Unary.
   internal func reassignRoles(_ request: Werewolf_ReassignRolesRequest, completion: @escaping (Werewolf_ReassignRolesResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceReassignRolesCall {
     return try Werewolf_GameServiceReassignRolesCallBase(channel)
+      .start(request: request, metadata: metadata, completion: completion)
+  }
+
+  /// Synchronous. Unary.
+  internal func kickUser(_ request: Werewolf_KickUserRequest) throws -> Werewolf_KickUserResponse {
+    return try Werewolf_GameServiceKickUserCallBase(channel)
+      .run(request: request, metadata: metadata)
+  }
+  /// Asynchronous. Unary.
+  internal func kickUser(_ request: Werewolf_KickUserRequest, completion: @escaping (Werewolf_KickUserResponse?, CallResult) -> Void) throws -> Werewolf_GameServiceKickUserCall {
+    return try Werewolf_GameServiceKickUserCallBase(channel)
       .start(request: request, metadata: metadata, completion: completion)
   }
 

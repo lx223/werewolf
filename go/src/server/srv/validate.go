@@ -111,6 +111,19 @@ func (s *GameService) validateReassignRolesRequest(req *werewolf.ReassignRolesRe
 	return nil
 }
 
+func (s *GameService) validateKickUserRequest(req *werewolf.KickUserRequest) error {
+	room, ok := s.rooms[req.GetRoomId()]
+	if !ok {
+		return status.Error(codes.InvalidArgument, "invalid room id")
+	}
+
+	if _, ok = room.Users[req.GetUserId()]; !ok {
+		return status.Error(codes.InvalidArgument, "invalid user id")
+	}
+
+	return nil
+}
+
 func (s *GameService) validateStartGameRequest(req *werewolf.StartGameRequest) error {
 	roomId := req.GetRoomId()
 	room, ok := s.rooms[roomId]

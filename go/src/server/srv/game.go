@@ -151,6 +151,19 @@ func (s *GameService) ReassignRoles(ctx context.Context, req *werewolf.ReassignR
 	return &werewolf.ReassignRolesResponse{}, nil
 }
 
+func (s *GameService) KickUser(ctx context.Context, req *werewolf.KickUserRequest) (*werewolf.KickUserResponse, error) {
+	if err := s.validateKickUserRequest(req); err != nil {
+		return nil, err
+	}
+
+	s.mux.Lock()
+	defer s.mux.Unlock()
+
+	delete(s.rooms[req.GetRoomId()].Users, req.GetUserId())
+
+	return &werewolf.KickUserResponse{}, nil
+}
+
 func (s *GameService) StartGame(ctx context.Context, req *werewolf.StartGameRequest) (*werewolf.StartGameResponse, error) {
 	if err := s.validateStartGameRequest(req); err != nil {
 		return nil, err

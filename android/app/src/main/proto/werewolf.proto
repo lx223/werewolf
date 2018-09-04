@@ -11,11 +11,19 @@ service GameService {
     rpc GetRoom (GetRoomRequest) returns (GetRoomResponse);
     rpc TakeSeat (TakeSeatRequest) returns (TakeSeatResponse);
     rpc ReassignRoles (ReassignRolesRequest) returns (ReassignRolesResponse);
+    rpc KickUser(KickUserRequest) returns (KickUserResponse);
 
     // group of game operations
     rpc StartGame (StartGameRequest) returns (StartGameResponse);
     rpc TakeAction (TakeActionRequest) returns (TakeActionResponse);
 }
+
+message KickUserRequest {
+    string room_id = 1;
+    string user_id = 2;
+}
+
+message KickUserResponse {}
 
 message CreateAndJoinRoomRequest {}
 
