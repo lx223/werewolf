@@ -41,3 +41,5 @@
 "startGameBtnTitle" = "开始游戏";
 "assignRolesBtnTitle" = "重新发牌";
 "useSkillBtnTitle" = "使用技能";
+"vacateSeatBtnTitle" = "离席玩家";
+"vacateSeatSnackbarMessage" = "请选择想要离席玩家💺";

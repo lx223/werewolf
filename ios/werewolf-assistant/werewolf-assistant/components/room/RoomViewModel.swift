@@ -22,18 +22,25 @@ import Floaty
 }
 
 final class RoomViewModel: RoomViewModeling {
-    private let soundQueuer: SoundQueuing = SoundQueuer()
+
+    enum SeatTapActionType {
+        case takeSeat, vacateSeat
+    }
+
+    private var seatTapActionType: SeatTapActionType = .takeSeat
+
+    private var disposeBag = DisposeBag()
 
     private let gameServiceClient: Werewolf_GameServiceService
     private let userID: String
     private let roomID: String
     private let isHost: Bool
 
+    private let soundQueuer: SoundQueuing = SoundQueuer()
     private let game = BehaviorRelay<Werewolf_Game?>(value: nil)
     private let seats = BehaviorRelay<[Werewolf_Seat]?>(value: nil)
     private let seatTaken = BehaviorRelay<Werewolf_Seat?>(value: nil)
     private let showingRole = BehaviorRelay<Bool>(value: false)
-    var disposeBag = DisposeBag()
 
     func dispose() {
         disposeBag = DisposeBag()
@@ -169,9 +176,30 @@ extension RoomViewModel {
             })
             .observeOn(MainScheduler.asyncInstance)
             .subscribe(onNext: { (button) in
-                self.tryHandleRoleSkill(button, controller)
-                self.tryHandleSeatTaking(button, controller)
+                switch self.seatTapActionType {
+                case .vacateSeat:
+                    self.handleVacateSeatTap(on: button)
+                default:
+                    self.tryHandleRoleSkill(button, controller)
+                    self.tryHandleSeatTaking(button, controller)
+                }
+                self.seatTapActionType = .takeSeat
             }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
+    }
+
+    func handleVacateSeatTap(on seatBtn: MDCButton) {
+        guard let seatID = seats.value?[seatBtn.number - 1].id, seatTapActionType == .vacateSeat else {
+            return
+        }
+
+        var req = Werewolf_VacateSeatRequest()
+        req.seatID = seatID
+        gameServiceClient.vacateSeatRx(req)
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: nil, onError: { (err) in
+                print(err)
+            }, onCompleted: nil, onDisposed: nil)
             .disposed(by: disposeBag)
     }
 }
@@ -266,6 +294,22 @@ extension RoomViewModel {
         controller.floatingBtn.addItem(item: assignRolesFloatyItem(controller))
         controller.floatingBtn.addItem(item: lastNightInfoFloatyItem(controller))
         controller.floatingBtn.addItem(item: useSkillFloatyItem(controller))
+        controller.floatingBtn.addItem(item: vacateSeatFloatyItem(controller))
+
+        controller.floatingBtn.items.reverse()
+    }
+
+    func vacateSeatFloatyItem(_ controller: RoomViewController) -> FloatyItem {
+        let item = FloatyItem()
+        item.title = R.string.localizable.vacateSeatBtnTitle()
+        item.rx.tap
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { (_) in
+                self.seatTapActionType = .vacateSeat
+                controller.showSnackbar(withMessage: R.string.localizable.vacateSeatSnackbarMessage())
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
+        return item
     }
 
     func startGameFloatyItem(_ controller: RoomViewController) -> FloatyItem {

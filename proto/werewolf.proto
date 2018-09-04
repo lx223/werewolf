@@ -11,19 +11,21 @@ service GameService {
     rpc GetRoom (GetRoomRequest) returns (GetRoomResponse);
     rpc TakeSeat (TakeSeatRequest) returns (TakeSeatResponse);
     rpc ReassignRoles (ReassignRolesRequest) returns (ReassignRolesResponse);
-    rpc KickUser(KickUserRequest) returns (KickUserResponse);
+
+    // This removes any users from a seat.
+    // If the seat is vacant, this RPC is a no-op.
+    rpc VacateSeat(VacateSeatRequest) returns (VacateSeatResponse);
 
     // group of game operations
     rpc StartGame (StartGameRequest) returns (StartGameResponse);
     rpc TakeAction (TakeActionRequest) returns (TakeActionResponse);
 }
 
-message KickUserRequest {
-    string room_id = 1;
-    string user_id = 2;
+message VacateSeatRequest {
+    string seat_id = 1;
 }
 
-message KickUserResponse {}
+message VacateSeatResponse {}
 
 message CreateAndJoinRoomRequest {}
 

@@ -111,14 +111,13 @@ func (s *GameService) validateReassignRolesRequest(req *werewolf.ReassignRolesRe
 	return nil
 }
 
-func (s *GameService) validateKickUserRequest(req *werewolf.KickUserRequest) error {
-	room, ok := s.rooms[req.GetRoomId()]
-	if !ok {
-		return status.Error(codes.InvalidArgument, "invalid room id")
+func (s *GameService) validateVacateSeatRequest(req *werewolf.VacateSeatRequest) error {
+	roomId, err := util.GetRoomId(req.GetSeatId())
+	if err != nil {
+		return status.Errorf(codes.InvalidArgument, "invalid seat id %s", req.GetSeatId())
 	}
-
-	if _, ok = room.Users[req.GetUserId()]; !ok {
-		return status.Error(codes.InvalidArgument, "invalid user id")
+	if _, ok := s.rooms[roomId]; !ok {
+		return status.Errorf(codes.InvalidArgument, "room cannot be found for seat id %s", req.GetSeatId())
 	}
 
 	return nil

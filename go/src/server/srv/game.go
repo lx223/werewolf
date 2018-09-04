@@ -151,17 +151,18 @@ func (s *GameService) ReassignRoles(ctx context.Context, req *werewolf.ReassignR
 	return &werewolf.ReassignRolesResponse{}, nil
 }
 
-func (s *GameService) KickUser(ctx context.Context, req *werewolf.KickUserRequest) (*werewolf.KickUserResponse, error) {
-	if err := s.validateKickUserRequest(req); err != nil {
+func (s *GameService) VacateSeat(ctx context.Context, req *werewolf.VacateSeatRequest) (*werewolf.VacateSeatResponse, error) {
+	if err := s.validateVacateSeatRequest(req); err != nil {
 		return nil, err
 	}
 
 	s.mux.Lock()
 	defer s.mux.Unlock()
 
-	delete(s.rooms[req.GetRoomId()].Users, req.GetUserId())
+	roomId, _ := util.GetRoomId(req.GetSeatId())
+	s.rooms[roomId].Seats[req.GetSeatId()].User = nil
 
-	return &werewolf.KickUserResponse{}, nil
+	return &werewolf.VacateSeatResponse{}, nil
 }
 
 func (s *GameService) StartGame(ctx context.Context, req *werewolf.StartGameRequest) (*werewolf.StartGameResponse, error) {

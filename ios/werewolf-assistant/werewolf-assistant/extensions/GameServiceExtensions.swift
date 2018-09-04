@@ -11,6 +11,10 @@ import RxSwift
 import SwiftGRPC
 
 extension Werewolf_GameServiceService {
+    func vacateSeatRx(_ req: Werewolf_VacateSeatRequest) -> Observable<Werewolf_VacateSeatResponse> {
+        return rxUnary(req, self.vacateSeat)
+    }
+
     func reassignRolesRx(_ req: Werewolf_ReassignRolesRequest) -> Observable<Werewolf_ReassignRolesResponse> {
         return rxUnary(req, self.reassignRoles)
     }
