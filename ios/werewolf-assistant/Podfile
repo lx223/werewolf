@@ -6,15 +6,15 @@ target 'werewolf-assistant' do
   use_frameworks!
 
   # Pods for werewolf-assistant
-  pod 'SwiftProtobuf',  '~> 1.0.3'
-  pod 'SwiftGRPC',      '~> 0.4.3'
-  pod 'RxSwift',        '~> 4.2.0'
-  pod 'RxCocoa',        '~> 4.2.0'
-  pod 'SwiftySound',    '~> 1.0.0'
-  pod 'MaterialComponents/Snackbar'
-  pod 'MaterialComponents/Buttons'
-  pod 'R.swift'
-  pod 'Floaty'
+  pod 'SwiftProtobuf',                  '~> 1.0.3'
+  pod 'SwiftGRPC',                      '~> 0.4.3'
+  pod 'RxSwift',                        '~> 4.2.0'
+  pod 'RxCocoa',                        '~> 4.2.0'
+  pod 'SwiftySound',                    '~> 1.0.0'
+  pod 'MaterialComponents/Snackbar',    '~> 62.0.0'
+  pod 'MaterialComponents/Buttons',     '~> 62.0.0'
+  pod 'R.swift',                        '~> 4.0.0'
+  pod 'Floaty',                         '~> 4.0.1'
 
   target 'werewolf-assistantTests' do
     inherit! :search_paths
