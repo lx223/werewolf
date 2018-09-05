@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		178CDF6E39284DC35A7F4FAD /* Pods_werewolf_assistant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAEED26C1B93C636A5E2923B /* Pods_werewolf_assistant.framework */; };
 		716C4246B49ABAACE9D3C7BE /* Pods_werewolf_assistantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1100137AFE35F690F4B65053 /* Pods_werewolf_assistantTests.framework */; };
+		B72AE5AD21403428007C3999 /* WitchActionAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72AE5AC21403428007C3999 /* WitchActionAlertController.swift */; };
 		B746303F213C85E3000E02FA /* HallViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B746303E213C85E3000E02FA /* HallViewModel.swift */; };
 		B7463041213C95A3000E02FA /* JoinRoomAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7463040213C95A3000E02FA /* JoinRoomAlertController.swift */; };
 		B7463045213D466E000E02FA /* RoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7463044213D466E000E02FA /* RoomViewModel.swift */; };
@@ -86,6 +87,7 @@
 		313D03B3719521B984BBB8C3 /* Pods-werewolf-assistantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-werewolf-assistantTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-werewolf-assistantTests/Pods-werewolf-assistantTests.release.xcconfig"; sourceTree = "<group>"; };
 		6631210C884C1649D06C7140 /* Pods-werewolf-assistant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-werewolf-assistant.debug.xcconfig"; path = "Pods/Target Support Files/Pods-werewolf-assistant/Pods-werewolf-assistant.debug.xcconfig"; sourceTree = "<group>"; };
 		82F70EAAF86318F8FA5CC817 /* Pods-werewolf-assistantUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-werewolf-assistantUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-werewolf-assistantUITests/Pods-werewolf-assistantUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B72AE5AC21403428007C3999 /* WitchActionAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WitchActionAlertController.swift; sourceTree = "<group>"; };
 		B746303E213C85E3000E02FA /* HallViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HallViewModel.swift; sourceTree = "<group>"; };
 		B7463040213C95A3000E02FA /* JoinRoomAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinRoomAlertController.swift; sourceTree = "<group>"; };
 		B7463044213D466E000E02FA /* RoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewModel.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				B793EA2920D41D9500F319AD /* RoomViewController.xib */,
 				B7DB232C20DC5AFF0068F7C7 /* SoundQueue.swift */,
 				B7463044213D466E000E02FA /* RoomViewModel.swift */,
+				B72AE5AC21403428007C3999 /* WitchActionAlertController.swift */,
 			);
 			path = room;
 			sourceTree = "<group>";
@@ -640,6 +643,7 @@
 				B793EA3520D6B12B00F319AD /* WerewolfRoleExtensions.swift in Sources */,
 				B7DB233120DE3BDA0068F7C7 /* Constants.swift in Sources */,
 				B793EA2520D3CA9C00F319AD /* UIViewControllerExtensions.swift in Sources */,
+				B72AE5AD21403428007C3999 /* WitchActionAlertController.swift in Sources */,
 				B793EA3020D47AD700F319AD /* UIImageExtensions.swift in Sources */,
 				B78E2C4E213D7A0100B6E206 /* GameManager.swift in Sources */,
 				B793EA3920D6D19E00F319AD /* CallResultExtensions.swift in Sources */,

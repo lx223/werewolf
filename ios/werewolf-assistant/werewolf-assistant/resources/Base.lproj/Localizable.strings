@@ -23,11 +23,13 @@
 "witchActionKilledTemplate" = "今晚死的是：%d";
 "witchActionNoDeath" = "今晚无人死亡";
 "witchActionTitle" = "女巫";
-"wtichActionSave" = "救";
-"witchActionPoison" = "毒";
-"witchActionPoisonTextfieldPlaceholder" = "毒谁";
+"witchActionSave" = "救";
+"witchNoAction" = "再想想";
+"witchActionPoison" = "去毒人";
+"witchActionPoisonSnackbarMsg" = "请选择要毒玩家的💺";
 "witchActionSaveSuccess" = "解药使用成功";
 "witchActionPoisonSuccess" = "毒药使用成功";
+"witchNoActionSuccess" = "闭眼想想吧";
 "reassignRoleSuccess" = "发牌成功";
 "wolfKillSuccess" = "🔪人成功";
 "takeSeatSuccessTemplate" = "成功坐下：%d";

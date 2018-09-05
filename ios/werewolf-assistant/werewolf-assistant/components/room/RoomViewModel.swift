@@ -24,7 +24,7 @@ import Floaty
 final class RoomViewModel: RoomViewModeling {
 
     enum SeatTapActionType {
-        case takeSeat, vacateSeat
+        case takeSeat, vacateSeat, witchPoison
     }
 
     private var seatTapActionType: SeatTapActionType = .takeSeat
@@ -179,6 +179,8 @@ extension RoomViewModel {
                 switch self.seatTapActionType {
                 case .vacateSeat:
                     self.handleVacateSeatTap(on: button)
+                case .witchPoison:
+                    self.handleWitchPoisonSeatTap(on: button, controller)
                 default:
                     self.tryHandleRoleSkill(button, controller)
                     self.tryHandleSeatTaking(button, controller)
@@ -200,6 +202,25 @@ extension RoomViewModel {
             .subscribe(onNext: nil, onError: { (err) in
                 print(err)
             }, onCompleted: nil, onDisposed: nil)
+            .disposed(by: disposeBag)
+    }
+
+    func handleWitchPoisonSeatTap(on seatBtn: MDCButton, _ controller: RoomViewController) {
+        guard let seatID = seats.value?[seatBtn.number - 1].id,
+            let gameID = self.game.value?.id,
+            seatTapActionType == .witchPoison else {
+            return
+        }
+
+        var req = Werewolf_TakeActionRequest()
+        req.witch.poisonSeatID = seatID
+        req.gameID = gameID
+        self.gameServiceClient
+            .takeActionRx(req)
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { (res) in
+                controller.showSnackbar(withMessage: R.string.localizable.witchActionPoisonSuccess())
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
             .disposed(by: disposeBag)
     }
 }
@@ -411,18 +432,17 @@ extension RoomViewModel {
             let killedSeatID = self.game.value?.killedSeatIds.first
             let killedSeatNumber = self.seats.value?.index(where: { (seat) -> Bool in
                 seat.id == killedSeatID
-            }) ?? 0 + 1
-            let witchActionMessage = killedSeatID != nil ? R.string.localizable.witchActionKilledTemplate(killedSeatNumber) : R.string.localizable.witchActionNoDeath()
-            let alert = UIAlertController(title: R.string.localizable.witchActionTitle(), message: witchActionMessage, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: R.string.localizable.wtichActionSave(), style: .default, handler: { (_) in
-                guard let cureSeatID = self.seats.value?.first(where: { (seat) -> Bool in
-                    seat.id == killedSeatID
-                })?.id else {
+            })
+
+            let alert = WitchActionAlertController(killedSeatNumber: killedSeatNumber)
+            alert.onCureBtnPressed = {
+                guard let seatID = killedSeatID, let gameID = self.game.value?.id else {
                     return
                 }
+
                 var req = Werewolf_TakeActionRequest()
-                req.witch.cureSeatID = cureSeatID
-                req.gameID = self.game.value?.id ?? ""
+                req.witch.cureSeatID = seatID
+                req.gameID = gameID
                 self.gameServiceClient
                     .takeActionRx(req)
                     .observeOn(MainScheduler.asyncInstance)
@@ -430,30 +450,26 @@ extension RoomViewModel {
                         controller.showSnackbar(withMessage: R.string.localizable.witchActionSaveSuccess())
                     }, onError: nil, onCompleted: nil, onDisposed: nil)
                     .disposed(by: self.disposeBag)
-            }))
-            alert.addTextField{
-                $0.placeholder = R.string.localizable.witchActionPoisonTextfieldPlaceholder()
-                $0.keyboardType = .numberPad
             }
-            alert.addAction(UIAlertAction(title: R.string.localizable.witchActionPoison(), style: .destructive, handler: { (_) in
-                guard let text = alert.textFields?.first?.text,
-                    let poisonSeatNumber = Int(text),
-                    let poisonedSeatID = self.seats.value?[safe: poisonSeatNumber - 1]?.id,
-                    let gameID = self.game.value?.id else {
-                        return
+            alert.onPoisonBtnPressed = {
+                self.seatTapActionType = .witchPoison
+                controller.showSnackbar(withMessage: R.string.localizable.witchActionPoisonSnackbarMsg())
+            }
+            alert.onNoActionBtnPressed = {
+                guard let gameID = self.game.value?.id else {
+                    return
                 }
 
                 var req = Werewolf_TakeActionRequest()
-                req.witch.poisonSeatID = poisonedSeatID
                 req.gameID = gameID
                 self.gameServiceClient
                     .takeActionRx(req)
                     .observeOn(MainScheduler.asyncInstance)
                     .subscribe(onNext: { (res) in
-                        controller.showSnackbar(withMessage: R.string.localizable.witchActionPoisonSuccess())
+                        controller.showSnackbar(withMessage: R.string.localizable.witchNoActionSuccess())
                     }, onError: nil, onCompleted: nil, onDisposed: nil)
                     .disposed(by: self.disposeBag)
-            }))
+            }
             controller.present(alert, animated: true, completion: nil)
         default:
             break
