@@ -16,7 +16,8 @@ target 'werewolf-assistant' do
   pod 'MaterialComponents/Buttons',     '~> 62.0.0'
   pod 'R.swift',                        '~> 4.0.0'
   pod 'Floaty',                         '~> 4.0.1'
-  pod 'SwiftLint'                       '~> 0.27.0'
+  pod 'SwiftLint',                      '~> 0.27.0'
+  pod 'RxGesture',                      '~> 1.2.1'
 
   target 'werewolf-assistantTests' do
     inherit! :search_paths

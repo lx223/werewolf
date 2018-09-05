@@ -26,7 +26,6 @@
 		B793EA2720D3F4F600F319AD /* SeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA2620D3F4F600F319AD /* SeatView.swift */; };
 		B793EA2A20D41D9500F319AD /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA2820D41D9500F319AD /* RoomViewController.swift */; };
 		B793EA2B20D41D9500F319AD /* RoomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B793EA2920D41D9500F319AD /* RoomViewController.xib */; };
-		B793EA2D20D466D900F319AD /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA2C20D466D900F319AD /* UIViewExtensions.swift */; };
 		B793EA3020D47AD700F319AD /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA2F20D47AD700F319AD /* UIImageExtensions.swift */; };
 		B793EA3520D6B12B00F319AD /* WerewolfRoleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA3420D6B12B00F319AD /* WerewolfRoleExtensions.swift */; };
 		B793EA3920D6D19E00F319AD /* CallResultExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793EA3820D6D19E00F319AD /* CallResultExtensions.swift */; };
@@ -104,7 +103,6 @@
 		B793EA2620D3F4F600F319AD /* SeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatView.swift; sourceTree = "<group>"; };
 		B793EA2820D41D9500F319AD /* RoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
 		B793EA2920D41D9500F319AD /* RoomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomViewController.xib; sourceTree = "<group>"; };
-		B793EA2C20D466D900F319AD /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		B793EA2F20D47AD700F319AD /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		B793EA3420D6B12B00F319AD /* WerewolfRoleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WerewolfRoleExtensions.swift; sourceTree = "<group>"; };
 		B793EA3820D6D19E00F319AD /* CallResultExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallResultExtensions.swift; sourceTree = "<group>"; };
@@ -214,7 +212,6 @@
 			isa = PBXGroup;
 			children = (
 				B793EA2420D3CA9C00F319AD /* UIViewControllerExtensions.swift */,
-				B793EA2C20D466D900F319AD /* UIViewExtensions.swift */,
 				B793EA2F20D47AD700F319AD /* UIImageExtensions.swift */,
 				B793EA3420D6B12B00F319AD /* WerewolfRoleExtensions.swift */,
 				B793EA3820D6D19E00F319AD /* CallResultExtensions.swift */,
@@ -537,6 +534,7 @@
 				"${BUILT_PRODUCTS_DIR}/MaterialComponents/MaterialComponents.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxGesture/RxGesture.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftGRPC/SwiftGRPC.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
@@ -553,6 +551,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialComponents.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxGesture.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGRPC.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
@@ -676,7 +675,6 @@
 				B7DB232D20DC5AFF0068F7C7 /* SoundQueue.swift in Sources */,
 				B7DB230220D9B8A60068F7C7 /* GameServiceExtensions.swift in Sources */,
 				B78E2C50213D7A7C00B6E206 /* UserDefaultsExtensions.swift in Sources */,
-				B793EA2D20D466D900F319AD /* UIViewExtensions.swift in Sources */,
 				B7DB232720DB206B0068F7C7 /* SoundExtensions.swift in Sources */,
 				B793EA2A20D41D9500F319AD /* RoomViewController.swift in Sources */,
 				B793EA1C20D328B400F319AD /* werewolf.grpc.swift in Sources */,

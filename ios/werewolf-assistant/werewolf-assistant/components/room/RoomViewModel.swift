@@ -13,12 +13,11 @@ import SwiftGRPC
 import MaterialComponents
 import SwiftySound
 import Floaty
+import RxGesture
 
 @objc protocol RoomViewModeling {
     func drive(controller: RoomViewController)
     func dispose()
-
-    @objc func onRoleImageViewPressed(_ sender: UITapGestureRecognizer)
 }
 
 final class RoomViewModel: RoomViewModeling {
@@ -110,7 +109,7 @@ final class RoomViewModel: RoomViewModeling {
         configureFloatingActions(controller)
         driveSeatsVisibility(controller)
         driveSeatButtonPressed(controller)
-        driveRoleImageVisibility(controller)
+        driveRoleImage(controller)
     }
 }
 
@@ -136,7 +135,7 @@ extension RoomViewModel {
             .disposed(by: disposeBag)
     }
 
-    func driveRoleImageVisibility(_ controller: RoomViewController) {
+    func driveRoleImage(_ controller: RoomViewController) {
         seatTaken
             .distinctUntilChanged()
             .flatMapLatest({ (seat) -> Observable<Bool> in
@@ -163,6 +162,12 @@ extension RoomViewModel {
                 return showing ? role : #imageLiteral(resourceName: "卡背")
             }
             .bind(to: controller.roleImageView.rx.image)
+            .disposed(by: disposeBag)
+
+        controller.roleImageView.rx.tapGesture()
+            .subscribe(onNext: { (_) in
+                self.showingRole.accept(!self.showingRole.value)
+            }, onError: nil, onCompleted: nil, onDisposed: nil)
             .disposed(by: disposeBag)
     }
 
@@ -474,9 +479,5 @@ extension RoomViewModel {
         default:
             break
         }
-    }
-
-    @objc func onRoleImageViewPressed(_ sender: UITapGestureRecognizer) {
-        self.showingRole.accept(!self.showingRole.value)
     }
 }

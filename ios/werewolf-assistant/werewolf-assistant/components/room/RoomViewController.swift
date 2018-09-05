@@ -32,8 +32,10 @@ class RoomViewController: UIViewController {
 
         let rightBarButtonItem = UIBarButtonItem(customView: roomNumberLabel)
         navigationItem.setRightBarButton(rightBarButtonItem, animated: false)
+    }
 
-        roleImageView.attachRecogniser(numOfTap: 1, forTarget: viewModel, withAction: #selector(viewModel.onRoleImageViewPressed))
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
         viewModel.drive(controller: self)
     }

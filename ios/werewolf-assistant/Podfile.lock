@@ -62,6 +62,9 @@ PODS:
   - R.swift.Library (4.0.0)
   - RxCocoa (4.2.0):
     - RxSwift (~> 4.0)
+  - RxGesture (1.2.1):
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
   - RxSwift (4.2.0)
   - SwiftGRPC (0.4.3):
     - BoringSSL (~> 10.0)
@@ -77,9 +80,10 @@ DEPENDENCIES:
   - MaterialComponents/Snackbar (~> 62.0.0)
   - R.swift (~> 4.0.0)
   - RxCocoa (~> 4.2.0)
+  - RxGesture (~> 1.2.1)
   - RxSwift (~> 4.2.0)
   - SwiftGRPC (~> 0.4.3)
-  - SwiftLint
+  - SwiftLint (~> 0.27.0)
   - SwiftProtobuf (~> 1.0.3)
   - SwiftySound (~> 1.0.0)
 
@@ -95,6 +99,7 @@ SPEC REPOS:
     - R.swift
     - R.swift.Library
     - RxCocoa
+    - RxGesture
     - RxSwift
     - SwiftGRPC
     - SwiftLint
@@ -112,12 +117,13 @@ SPEC CHECKSUMS:
   R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
+  RxGesture: c278eb05b187abd47e11e65464ae4de53ab71d95
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   SwiftGRPC: e582ede5791867075513a3757faa41be215b7e5a
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
   SwiftProtobuf: 5ccc0e4054e37c75800e5744acb2aa80bb72b39c
   SwiftySound: b9c3370956fd4ed65ed79d45563070077a50a2cd
 
-PODFILE CHECKSUM: d38c332e99fae83fb6189aeb242e1b04db0b3076
+PODFILE CHECKSUM: 79809e20c0a76f8f5e15efe5621699d50136d4b8
 
 COCOAPODS: 1.5.3
