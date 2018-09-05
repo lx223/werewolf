@@ -27,7 +27,8 @@ final class HallViewModel: HallViewModeling {
     private var joinRoomAlertController = JoinRoomAlertController()
 
     init() {
-        gameSrvClient = Werewolf_GameServiceServiceClient(address:Constants.serverAddress, secure: false, arguments: [])
+        gameSrvClient = Werewolf_GameServiceServiceClient(address: Constants.serverAddress, secure: false, arguments: [])
+        // swiftlint:disable:next force_try
         try! gameSrvClient.metadata.add(key: "x-api-key", value: Constants.googleAPIKey)
     }
 

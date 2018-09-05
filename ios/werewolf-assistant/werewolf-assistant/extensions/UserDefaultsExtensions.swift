@@ -8,8 +8,8 @@
 
 import Foundation
 
-fileprivate let roomIDKey = "room_id_key"
-fileprivate let userIDKey = "user_id_key"
+private let roomIDKey = "room_id_key"
+private let userIDKey = "user_id_key"
 
 extension UserDefaults {
     static var roomID: String? {

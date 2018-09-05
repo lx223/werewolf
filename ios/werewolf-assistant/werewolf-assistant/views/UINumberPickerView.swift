@@ -41,7 +41,7 @@ extension UINumberPickerView: UIPickerViewDelegate {
         optionView.text = "\(numOptions[row])"
         optionView.textAlignment = .center
         let hue = CGFloat(row) / CGFloat(numOptions.count)
-        optionView.backgroundColor = UIColor(hue: hue, saturation: 0.8, brightness:0.8, alpha: 0.8)
+        optionView.backgroundColor = UIColor(hue: hue, saturation: 0.8, brightness: 0.8, alpha: 0.8)
         return optionView
     }
 }

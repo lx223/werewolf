@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension UIView {
-    func attachRecogniser(numOfTap taps: Int, forTarget target: Any? , withAction action: Selector?) {
+    func attachRecogniser(numOfTap taps: Int, forTarget target: Any?, withAction action: Selector?) {
         let rec = UITapGestureRecognizer(target: target, action: action)
         rec.numberOfTapsRequired = taps
         addGestureRecognizer(rec)

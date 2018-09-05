@@ -1,0 +1,9 @@
+disabled_rules:
+  - line_length
+  - identifier_name
+excluded:
+  - Pods
+  - werewolf-assistant/generated
+  - R.generated.swift
+  - werewolf-assistantTests
+  - werewolf-assistantUITests

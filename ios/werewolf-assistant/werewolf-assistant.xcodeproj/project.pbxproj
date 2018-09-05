@@ -380,6 +380,7 @@
 			buildConfigurationList = B7EF75CB20CF313100000A67 /* Build configuration list for PBXNativeTarget "werewolf-assistant" */;
 			buildPhases = (
 				ECE1F3BA847B08CB9DF2311E /* [CP] Check Pods Manifest.lock */,
+				B72AE5AE21404CD5007C3999 /* ShellScript */,
 				B7DB234820E79C750068F7C7 /* ShellScript */,
 				B7EF759F20CF312F00000A67 /* Sources */,
 				B7EF75A020CF312F00000A67 /* Frameworks */,
@@ -563,6 +564,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-werewolf-assistant/Pods-werewolf-assistant-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		B72AE5AE21404CD5007C3999 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\" autocorrect";
 		};
 		B7DB234820E79C750068F7C7 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -38,7 +38,7 @@ final class ConfigurationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.navigationItem.title = R.string.localizable.configSceneTitle()
         self.navigationItem.setRightBarButton(UIBarButtonItem(title: R.string.localizable.configSetConfirmTitle(), style: .done, target: self, action: #selector(self.onConfirmButtonPressed)), animated: false)
     }
@@ -58,14 +58,14 @@ fileprivate extension ConfigurationViewController {
     @objc func onConfirmButtonPressed() {
         var req = Werewolf_UpdateGameConfigRequest()
         req.roomID = roomID
-        req.roleCounts = Werewolf_Role.allCases.map { getRoleCount(for: $0) }.filter{ $0.count != 0 }
+        req.roleCounts = Werewolf_Role.allCases.map { getRoleCount(for: $0) }.filter { $0.count != 0 }
 
         _ = try? gameSrvClient.updateGameConfig(req) { res, callResult in
             guard res != nil else {
                 self.showAlert(for: callResult)
                 return
             }
-            
+
             DispatchQueue.main.async {
                 let roomViewModel = RoomViewModel(roomID: self.roomID, userID: self.userID, client: self.gameSrvClient)
                 let roomController = RoomViewController(viewModel: roomViewModel)

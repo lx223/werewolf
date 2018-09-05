@@ -89,7 +89,7 @@ final class RoomViewModel: RoomViewModeling {
             .distinctUntilChanged()
             .subscribeOn(SerialDispatchQueueScheduler(internalSerialQueueName: "sound stream"))
             .scan(nil, accumulator: { (previous, current) -> Werewolf_Game.State? in
-                if let s = previous, let sound = Sound.getClosingSound(forState: s), self.isHost  {
+                if let s = previous, let sound = Sound.getClosingSound(forState: s), self.isHost {
                     self.soundQueuer.queue(sound)
                 }
 
@@ -126,7 +126,7 @@ extension RoomViewModel {
 
                 for i in 0..<seats.count {
                     seatBtns[i].alpha = 1.0
-                    seatBtns[i].backgroundColor = seats[i].hasUser ? .seatTaken : .seatVacant;
+                    seatBtns[i].backgroundColor = seats[i].hasUser ? .seatTaken : .seatVacant
                 }
 
                 for i in seats.count..<seatBtns.count {
@@ -218,7 +218,7 @@ extension RoomViewModel {
         self.gameServiceClient
             .takeActionRx(req)
             .observeOn(MainScheduler.asyncInstance)
-            .subscribe(onNext: { (res) in
+            .subscribe(onNext: { (_) in
                 controller.showSnackbar(withMessage: R.string.localizable.witchActionPoisonSuccess())
             }, onError: nil, onCompleted: nil, onDisposed: nil)
             .disposed(by: disposeBag)
@@ -446,7 +446,7 @@ extension RoomViewModel {
                 self.gameServiceClient
                     .takeActionRx(req)
                     .observeOn(MainScheduler.asyncInstance)
-                    .subscribe(onNext: { (res) in
+                    .subscribe(onNext: { (_) in
                         controller.showSnackbar(withMessage: R.string.localizable.witchActionSaveSuccess())
                     }, onError: nil, onCompleted: nil, onDisposed: nil)
                     .disposed(by: self.disposeBag)
@@ -465,7 +465,7 @@ extension RoomViewModel {
                 self.gameServiceClient
                     .takeActionRx(req)
                     .observeOn(MainScheduler.asyncInstance)
-                    .subscribe(onNext: { (res) in
+                    .subscribe(onNext: { (_) in
                         controller.showSnackbar(withMessage: R.string.localizable.witchNoActionSuccess())
                     }, onError: nil, onCompleted: nil, onDisposed: nil)
                     .disposed(by: self.disposeBag)
@@ -480,4 +480,3 @@ extension RoomViewModel {
         self.showingRole.accept(!self.showingRole.value)
     }
 }
-
