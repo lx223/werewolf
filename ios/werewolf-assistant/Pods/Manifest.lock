@@ -14,8 +14,8 @@ PODS:
     - gRPC-Core/Interface (= 1.11.0)
     - nanopb (~> 0.3)
   - gRPC-Core/Interface (1.11.0)
-  - MaterialComponents/AnimationTiming (62.0.0)
-  - MaterialComponents/Buttons (62.0.0):
+  - MaterialComponents/AnimationTiming (63.0.0)
+  - MaterialComponents/Buttons (63.0.0):
     - MaterialComponents/Ink
     - MaterialComponents/private/Math
     - MaterialComponents/private/Shapes
@@ -24,22 +24,22 @@ PODS:
     - MaterialComponents/Typography
     - MDFInternationalization
     - MDFTextAccessibility
-  - MaterialComponents/Ink (62.0.0):
+  - MaterialComponents/Ink (63.0.0):
     - MaterialComponents/private/Math
-  - MaterialComponents/OverlayWindow (62.0.0):
+  - MaterialComponents/OverlayWindow (63.0.0):
     - MaterialComponents/private/Application
-  - MaterialComponents/private/Application (62.0.0)
-  - MaterialComponents/private/KeyboardWatcher (62.0.0):
+  - MaterialComponents/private/Application (63.0.0)
+  - MaterialComponents/private/KeyboardWatcher (63.0.0):
     - MaterialComponents/private/Application
-  - MaterialComponents/private/Math (62.0.0)
-  - MaterialComponents/private/Overlay (62.0.0)
-  - MaterialComponents/private/Shapes (62.0.0):
+  - MaterialComponents/private/Math (63.0.0)
+  - MaterialComponents/private/Overlay (63.0.0)
+  - MaterialComponents/private/Shapes (63.0.0):
     - MaterialComponents/private/Math
     - MaterialComponents/ShadowLayer
-  - MaterialComponents/ShadowElevations (62.0.0)
-  - MaterialComponents/ShadowLayer (62.0.0):
+  - MaterialComponents/ShadowElevations (63.0.0)
+  - MaterialComponents/ShadowLayer (63.0.0):
     - MaterialComponents/ShadowElevations
-  - MaterialComponents/Snackbar (62.0.0):
+  - MaterialComponents/Snackbar (63.0.0):
     - MaterialComponents/AnimationTiming
     - MaterialComponents/Buttons
     - MaterialComponents/OverlayWindow
@@ -47,7 +47,7 @@ PODS:
     - MaterialComponents/private/KeyboardWatcher
     - MaterialComponents/private/Overlay
     - MaterialComponents/Typography
-  - MaterialComponents/Typography (62.0.0):
+  - MaterialComponents/Typography (63.0.0):
     - MaterialComponents/private/Application
     - MaterialComponents/private/Math
   - MDFInternationalization (1.1.0)
@@ -76,8 +76,8 @@ PODS:
 
 DEPENDENCIES:
   - Floaty (~> 4.0.1)
-  - MaterialComponents/Buttons (~> 62.0.0)
-  - MaterialComponents/Snackbar (~> 62.0.0)
+  - MaterialComponents/Buttons
+  - MaterialComponents/Snackbar
   - R.swift (~> 4.0.0)
   - RxCocoa (~> 4.2.0)
   - RxGesture (~> 1.2.1)
@@ -110,7 +110,7 @@ SPEC CHECKSUMS:
   BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
   Floaty: 82854e1a5ef4fa208281ebd4da2f3d1e51ba67a6
   gRPC-Core: 164639cd8ae18ca8b65477fafb2efbaecf4f181a
-  MaterialComponents: bad29aec8c4dd416aa35f87afb8d65d44456d712
+  MaterialComponents: 4e0c0ee000e0dcbf5214b0054767ef9f8f812264
   MDFInternationalization: b5b8626628abf026e630e5ebaeee563037712cbb
   MDFTextAccessibility: 94098925e0853551c5a311ce7c1ecefbe297cdb6
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
@@ -124,6 +124,6 @@ SPEC CHECKSUMS:
   SwiftProtobuf: 5ccc0e4054e37c75800e5744acb2aa80bb72b39c
   SwiftySound: b9c3370956fd4ed65ed79d45563070077a50a2cd
 
-PODFILE CHECKSUM: 79809e20c0a76f8f5e15efe5621699d50136d4b8
+PODFILE CHECKSUM: f0465d4bb5e33405c33bafeb5042f75029fc8697
 
 COCOAPODS: 1.5.3
