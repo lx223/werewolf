@@ -11,7 +11,7 @@ import jiang.sichu.werewolf.proto.GameServiceGrpc
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-private const val HOST = "10.0.2.2"
+private const val HOST = "35.229.117.155"
 private const val PORT = 21806
 private const val PREF_ROOM_ID = "room_id"
 private const val PREF_USER_ID = "user_id"
