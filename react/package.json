@@ -1,0 +1,33 @@
+{
+  "name": "werewolf-assitant",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.2",
+    "@types/node": "^10.11.3",
+    "@types/react": "^16.4.14",
+    "@types/react-dom": "^16.0.8",
+    "@types/react-redux": "^6.0.9",
+    "@types/react-router-dom": "^4.3.1",
+    "prettier": "1.14.3",
+    "react-scripts-ts": "3.1.0",
+    "typescript": "^3.1.1"
+  },
+  "scripts": {
+    "prestart": "npm run prettier:write",
+    "start": "react-scripts-ts start",
+    "prettier:base": "prettier --parser typescript --single-quote",
+    "prettier:check": "npm run prettier:base -- --list-different \"src/**/*.{ts,tsx}\"",
+    "prettier:write": "npm run prettier:base -- --write \"src/**/*.{ts,tsx}\"",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject"
+  }
+}
