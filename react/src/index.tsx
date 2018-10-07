@@ -11,7 +11,15 @@ import Hall from './containers/Hall';
 
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 
-const store = createStore(AppReducer, {});
+const storeStorageKey = 'store_key';
+
+const initialStore = JSON.parse(localStorage.getItem(storeStorageKey) || '{}');
+
+const store = createStore(AppReducer, initialStore);
+store.subscribe(() => {
+  const currState = store.getState();
+  localStorage.setItem(storeStorageKey, JSON.stringify(currState));
+});
 
 ReactDOM.render(
   <Provider store={store}>
