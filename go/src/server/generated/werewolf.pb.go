@@ -70,7 +70,7 @@ func (x Role) String() string {
 	return proto.EnumName(Role_name, int32(x))
 }
 func (Role) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{0}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{0}
 }
 
 type Ruling int32
@@ -96,7 +96,7 @@ func (x Ruling) String() string {
 	return proto.EnumName(Ruling_name, int32(x))
 }
 func (Ruling) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{1}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{1}
 }
 
 type Game_State int32
@@ -140,7 +140,7 @@ func (x Game_State) String() string {
 	return proto.EnumName(Game_State_name, int32(x))
 }
 func (Game_State) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{21, 0}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{21, 0}
 }
 
 type VacateSeatRequest struct {
@@ -154,7 +154,7 @@ func (m *VacateSeatRequest) Reset()         { *m = VacateSeatRequest{} }
 func (m *VacateSeatRequest) String() string { return proto.CompactTextString(m) }
 func (*VacateSeatRequest) ProtoMessage()    {}
 func (*VacateSeatRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{0}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{0}
 }
 func (m *VacateSeatRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_VacateSeatRequest.Unmarshal(m, b)
@@ -191,7 +191,7 @@ func (m *VacateSeatResponse) Reset()         { *m = VacateSeatResponse{} }
 func (m *VacateSeatResponse) String() string { return proto.CompactTextString(m) }
 func (*VacateSeatResponse) ProtoMessage()    {}
 func (*VacateSeatResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{1}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{1}
 }
 func (m *VacateSeatResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_VacateSeatResponse.Unmarshal(m, b)
@@ -221,7 +221,7 @@ func (m *CreateAndJoinRoomRequest) Reset()         { *m = CreateAndJoinRoomReque
 func (m *CreateAndJoinRoomRequest) String() string { return proto.CompactTextString(m) }
 func (*CreateAndJoinRoomRequest) ProtoMessage()    {}
 func (*CreateAndJoinRoomRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{2}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{2}
 }
 func (m *CreateAndJoinRoomRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CreateAndJoinRoomRequest.Unmarshal(m, b)
@@ -253,7 +253,7 @@ func (m *CreateAndJoinRoomResponse) Reset()         { *m = CreateAndJoinRoomResp
 func (m *CreateAndJoinRoomResponse) String() string { return proto.CompactTextString(m) }
 func (*CreateAndJoinRoomResponse) ProtoMessage()    {}
 func (*CreateAndJoinRoomResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{3}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{3}
 }
 func (m *CreateAndJoinRoomResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CreateAndJoinRoomResponse.Unmarshal(m, b)
@@ -299,7 +299,7 @@ func (m *UpdateGameConfigRequest) Reset()         { *m = UpdateGameConfigRequest
 func (m *UpdateGameConfigRequest) String() string { return proto.CompactTextString(m) }
 func (*UpdateGameConfigRequest) ProtoMessage()    {}
 func (*UpdateGameConfigRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{4}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{4}
 }
 func (m *UpdateGameConfigRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_UpdateGameConfigRequest.Unmarshal(m, b)
@@ -345,7 +345,7 @@ func (m *UpdateGameConfigRequest_RoleCount) Reset()         { *m = UpdateGameCon
 func (m *UpdateGameConfigRequest_RoleCount) String() string { return proto.CompactTextString(m) }
 func (*UpdateGameConfigRequest_RoleCount) ProtoMessage()    {}
 func (*UpdateGameConfigRequest_RoleCount) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{4, 0}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{4, 0}
 }
 func (m *UpdateGameConfigRequest_RoleCount) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_UpdateGameConfigRequest_RoleCount.Unmarshal(m, b)
@@ -389,7 +389,7 @@ func (m *UpdateGameConfigResponse) Reset()         { *m = UpdateGameConfigRespon
 func (m *UpdateGameConfigResponse) String() string { return proto.CompactTextString(m) }
 func (*UpdateGameConfigResponse) ProtoMessage()    {}
 func (*UpdateGameConfigResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{5}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{5}
 }
 func (m *UpdateGameConfigResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_UpdateGameConfigResponse.Unmarshal(m, b)
@@ -421,7 +421,7 @@ func (m *JoinRoomRequest) Reset()         { *m = JoinRoomRequest{} }
 func (m *JoinRoomRequest) String() string { return proto.CompactTextString(m) }
 func (*JoinRoomRequest) ProtoMessage()    {}
 func (*JoinRoomRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{6}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{6}
 }
 func (m *JoinRoomRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_JoinRoomRequest.Unmarshal(m, b)
@@ -466,7 +466,7 @@ func (m *JoinRoomResponse) Reset()         { *m = JoinRoomResponse{} }
 func (m *JoinRoomResponse) String() string { return proto.CompactTextString(m) }
 func (*JoinRoomResponse) ProtoMessage()    {}
 func (*JoinRoomResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{7}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{7}
 }
 func (m *JoinRoomResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_JoinRoomResponse.Unmarshal(m, b)
@@ -504,7 +504,7 @@ func (m *GetRoomRequest) Reset()         { *m = GetRoomRequest{} }
 func (m *GetRoomRequest) String() string { return proto.CompactTextString(m) }
 func (*GetRoomRequest) ProtoMessage()    {}
 func (*GetRoomRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{8}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{8}
 }
 func (m *GetRoomRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_GetRoomRequest.Unmarshal(m, b)
@@ -542,7 +542,7 @@ func (m *GetRoomResponse) Reset()         { *m = GetRoomResponse{} }
 func (m *GetRoomResponse) String() string { return proto.CompactTextString(m) }
 func (*GetRoomResponse) ProtoMessage()    {}
 func (*GetRoomResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{9}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{9}
 }
 func (m *GetRoomResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_GetRoomResponse.Unmarshal(m, b)
@@ -581,7 +581,7 @@ func (m *TakeSeatRequest) Reset()         { *m = TakeSeatRequest{} }
 func (m *TakeSeatRequest) String() string { return proto.CompactTextString(m) }
 func (*TakeSeatRequest) ProtoMessage()    {}
 func (*TakeSeatRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{10}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{10}
 }
 func (m *TakeSeatRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeSeatRequest.Unmarshal(m, b)
@@ -625,7 +625,7 @@ func (m *TakeSeatResponse) Reset()         { *m = TakeSeatResponse{} }
 func (m *TakeSeatResponse) String() string { return proto.CompactTextString(m) }
 func (*TakeSeatResponse) ProtoMessage()    {}
 func (*TakeSeatResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{11}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{11}
 }
 func (m *TakeSeatResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeSeatResponse.Unmarshal(m, b)
@@ -656,7 +656,7 @@ func (m *ReassignRolesRequest) Reset()         { *m = ReassignRolesRequest{} }
 func (m *ReassignRolesRequest) String() string { return proto.CompactTextString(m) }
 func (*ReassignRolesRequest) ProtoMessage()    {}
 func (*ReassignRolesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{12}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{12}
 }
 func (m *ReassignRolesRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ReassignRolesRequest.Unmarshal(m, b)
@@ -693,7 +693,7 @@ func (m *ReassignRolesResponse) Reset()         { *m = ReassignRolesResponse{} }
 func (m *ReassignRolesResponse) String() string { return proto.CompactTextString(m) }
 func (*ReassignRolesResponse) ProtoMessage()    {}
 func (*ReassignRolesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{13}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{13}
 }
 func (m *ReassignRolesResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ReassignRolesResponse.Unmarshal(m, b)
@@ -724,7 +724,7 @@ func (m *StartGameRequest) Reset()         { *m = StartGameRequest{} }
 func (m *StartGameRequest) String() string { return proto.CompactTextString(m) }
 func (*StartGameRequest) ProtoMessage()    {}
 func (*StartGameRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{14}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{14}
 }
 func (m *StartGameRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_StartGameRequest.Unmarshal(m, b)
@@ -761,7 +761,7 @@ func (m *StartGameResponse) Reset()         { *m = StartGameResponse{} }
 func (m *StartGameResponse) String() string { return proto.CompactTextString(m) }
 func (*StartGameResponse) ProtoMessage()    {}
 func (*StartGameResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{15}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{15}
 }
 func (m *StartGameResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_StartGameResponse.Unmarshal(m, b)
@@ -802,7 +802,7 @@ func (m *TakeActionRequest) Reset()         { *m = TakeActionRequest{} }
 func (m *TakeActionRequest) String() string { return proto.CompactTextString(m) }
 func (*TakeActionRequest) ProtoMessage()    {}
 func (*TakeActionRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{16}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{16}
 }
 func (m *TakeActionRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeActionRequest.Unmarshal(m, b)
@@ -1130,7 +1130,7 @@ func (m *TakeActionRequest_CompleteDarknessAction) Reset() {
 func (m *TakeActionRequest_CompleteDarknessAction) String() string { return proto.CompactTextString(m) }
 func (*TakeActionRequest_CompleteDarknessAction) ProtoMessage()    {}
 func (*TakeActionRequest_CompleteDarknessAction) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{16, 0}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{16, 0}
 }
 func (m *TakeActionRequest_CompleteDarknessAction) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeActionRequest_CompleteDarknessAction.Unmarshal(m, b)
@@ -1161,7 +1161,7 @@ func (m *TakeActionRequest_SeerAction) Reset()         { *m = TakeActionRequest_
 func (m *TakeActionRequest_SeerAction) String() string { return proto.CompactTextString(m) }
 func (*TakeActionRequest_SeerAction) ProtoMessage()    {}
 func (*TakeActionRequest_SeerAction) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{16, 1}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{16, 1}
 }
 func (m *TakeActionRequest_SeerAction) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeActionRequest_SeerAction.Unmarshal(m, b)
@@ -1200,7 +1200,7 @@ func (m *TakeActionRequest_WitchAction) Reset()         { *m = TakeActionRequest
 func (m *TakeActionRequest_WitchAction) String() string { return proto.CompactTextString(m) }
 func (*TakeActionRequest_WitchAction) ProtoMessage()    {}
 func (*TakeActionRequest_WitchAction) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{16, 2}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{16, 2}
 }
 func (m *TakeActionRequest_WitchAction) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeActionRequest_WitchAction.Unmarshal(m, b)
@@ -1244,7 +1244,7 @@ func (m *TakeActionRequest_HunterAction) Reset()         { *m = TakeActionReques
 func (m *TakeActionRequest_HunterAction) String() string { return proto.CompactTextString(m) }
 func (*TakeActionRequest_HunterAction) ProtoMessage()    {}
 func (*TakeActionRequest_HunterAction) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{16, 3}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{16, 3}
 }
 func (m *TakeActionRequest_HunterAction) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeActionRequest_HunterAction.Unmarshal(m, b)
@@ -1275,7 +1275,7 @@ func (m *TakeActionRequest_GuardAction) Reset()         { *m = TakeActionRequest
 func (m *TakeActionRequest_GuardAction) String() string { return proto.CompactTextString(m) }
 func (*TakeActionRequest_GuardAction) ProtoMessage()    {}
 func (*TakeActionRequest_GuardAction) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{16, 4}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{16, 4}
 }
 func (m *TakeActionRequest_GuardAction) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeActionRequest_GuardAction.Unmarshal(m, b)
@@ -1313,7 +1313,7 @@ func (m *TakeActionRequest_WerewolfAction) Reset()         { *m = TakeActionRequ
 func (m *TakeActionRequest_WerewolfAction) String() string { return proto.CompactTextString(m) }
 func (*TakeActionRequest_WerewolfAction) ProtoMessage()    {}
 func (*TakeActionRequest_WerewolfAction) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{16, 5}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{16, 5}
 }
 func (m *TakeActionRequest_WerewolfAction) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeActionRequest_WerewolfAction.Unmarshal(m, b)
@@ -1351,7 +1351,7 @@ func (m *TakeActionRequest_HalfBloodAction) Reset()         { *m = TakeActionReq
 func (m *TakeActionRequest_HalfBloodAction) String() string { return proto.CompactTextString(m) }
 func (*TakeActionRequest_HalfBloodAction) ProtoMessage()    {}
 func (*TakeActionRequest_HalfBloodAction) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{16, 6}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{16, 6}
 }
 func (m *TakeActionRequest_HalfBloodAction) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeActionRequest_HalfBloodAction.Unmarshal(m, b)
@@ -1390,7 +1390,7 @@ func (m *TakeActionRequest_CompleteSheriffAction) Reset() {
 func (m *TakeActionRequest_CompleteSheriffAction) String() string { return proto.CompactTextString(m) }
 func (*TakeActionRequest_CompleteSheriffAction) ProtoMessage()    {}
 func (*TakeActionRequest_CompleteSheriffAction) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{16, 7}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{16, 7}
 }
 func (m *TakeActionRequest_CompleteSheriffAction) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeActionRequest_CompleteSheriffAction.Unmarshal(m, b)
@@ -1424,7 +1424,7 @@ func (m *TakeActionResponse) Reset()         { *m = TakeActionResponse{} }
 func (m *TakeActionResponse) String() string { return proto.CompactTextString(m) }
 func (*TakeActionResponse) ProtoMessage()    {}
 func (*TakeActionResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{17}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{17}
 }
 func (m *TakeActionResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeActionResponse.Unmarshal(m, b)
@@ -1564,7 +1564,7 @@ func (m *TakeActionResponse_SeerResult) Reset()         { *m = TakeActionRespons
 func (m *TakeActionResponse_SeerResult) String() string { return proto.CompactTextString(m) }
 func (*TakeActionResponse_SeerResult) ProtoMessage()    {}
 func (*TakeActionResponse_SeerResult) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{17, 0}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{17, 0}
 }
 func (m *TakeActionResponse_SeerResult) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeActionResponse_SeerResult.Unmarshal(m, b)
@@ -1602,7 +1602,7 @@ func (m *TakeActionResponse_HunterResult) Reset()         { *m = TakeActionRespo
 func (m *TakeActionResponse_HunterResult) String() string { return proto.CompactTextString(m) }
 func (*TakeActionResponse_HunterResult) ProtoMessage()    {}
 func (*TakeActionResponse_HunterResult) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{17, 1}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{17, 1}
 }
 func (m *TakeActionResponse_HunterResult) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_TakeActionResponse_HunterResult.Unmarshal(m, b)
@@ -1642,7 +1642,7 @@ func (m *Room) Reset()         { *m = Room{} }
 func (m *Room) String() string { return proto.CompactTextString(m) }
 func (*Room) ProtoMessage()    {}
 func (*Room) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{18}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{18}
 }
 func (m *Room) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Room.Unmarshal(m, b)
@@ -1696,7 +1696,7 @@ func (m *Seat) Reset()         { *m = Seat{} }
 func (m *Seat) String() string { return proto.CompactTextString(m) }
 func (*Seat) ProtoMessage()    {}
 func (*Seat) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{19}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{19}
 }
 func (m *Seat) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Seat.Unmarshal(m, b)
@@ -1749,7 +1749,7 @@ func (m *User) Reset()         { *m = User{} }
 func (m *User) String() string { return proto.CompactTextString(m) }
 func (*User) ProtoMessage()    {}
 func (*User) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{20}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{20}
 }
 func (m *User) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_User.Unmarshal(m, b)
@@ -1796,7 +1796,7 @@ func (m *Game) Reset()         { *m = Game{} }
 func (m *Game) String() string { return proto.CompactTextString(m) }
 func (*Game) ProtoMessage()    {}
 func (*Game) Descriptor() ([]byte, []int) {
-	return fileDescriptor_werewolf_ce00684f7dc28bad, []int{21}
+	return fileDescriptor_werewolf_5afc7c52a3a201ce, []int{21}
 }
 func (m *Game) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Game.Unmarshal(m, b)
@@ -2220,9 +2220,9 @@ var _GameService_serviceDesc = grpc.ServiceDesc{
 	Metadata: "werewolf.proto",
 }
 
-func init() { proto.RegisterFile("werewolf.proto", fileDescriptor_werewolf_ce00684f7dc28bad) }
+func init() { proto.RegisterFile("werewolf.proto", fileDescriptor_werewolf_5afc7c52a3a201ce) }
 
-var fileDescriptor_werewolf_ce00684f7dc28bad = []byte{
+var fileDescriptor_werewolf_5afc7c52a3a201ce = []byte{
 	// 1294 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x57, 0xdd, 0x72, 0xda, 0xc6,
 	0x17, 0x0f, 0xdf, 0x70, 0x20, 0x58, 0xde, 0xbf, 0xf3, 0xb7, 0xa2, 0x64, 0x5a, 0x57, 0x4d, 0x53,

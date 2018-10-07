@@ -74,6 +74,27 @@ enum Werewolf_Role: SwiftProtobuf.Enum {
 
 }
 
+#if swift(>=4.2)
+
+extension Werewolf_Role: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  static var allCases: [Werewolf_Role] = [
+    .unknown,
+    .villager,
+    .seer,
+    .witch,
+    .hunter,
+    .idiot,
+    .guardian,
+    .werewolf,
+    .whiteWerewolf,
+    .orphan,
+    .halfBlood,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 enum Werewolf_Ruling: SwiftProtobuf.Enum {
   typealias RawValue = Int
   case unknownRuling // = 0
@@ -104,6 +125,19 @@ enum Werewolf_Ruling: SwiftProtobuf.Enum {
   }
 
 }
+
+#if swift(>=4.2)
+
+extension Werewolf_Ruling: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  static var allCases: [Werewolf_Ruling] = [
+    .unknownRuling,
+    .positive,
+    .negative,
+  ]
+}
+
+#endif  // swift(>=4.2)
 
 struct Werewolf_VacateSeatRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
@@ -239,7 +273,7 @@ struct Werewolf_GetRoomResponse {
   /// Returns true if `room` has been explicitly set.
   var hasRoom: Bool {return _storage._room != nil}
   /// Clears the value of `room`. Subsequent reads from it will return its default value.
-  mutating func clearRoom() {_storage._room = nil}
+  mutating func clearRoom() {_uniqueStorage()._room = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -407,6 +441,7 @@ struct Werewolf_TakeActionRequest {
     case halfBlood(Werewolf_TakeActionRequest.HalfBloodAction)
     case sheriff(Werewolf_TakeActionRequest.CompleteSheriffAction)
 
+  #if !swift(>=4.1)
     static func ==(lhs: Werewolf_TakeActionRequest.OneOf_Action, rhs: Werewolf_TakeActionRequest.OneOf_Action) -> Bool {
       switch (lhs, rhs) {
       case (.darkness(let l), .darkness(let r)): return l == r
@@ -420,6 +455,7 @@ struct Werewolf_TakeActionRequest {
       default: return false
       }
     }
+  #endif
   }
 
   struct CompleteDarknessAction {
@@ -551,6 +587,7 @@ struct Werewolf_TakeActionResponse {
     case seer(Werewolf_TakeActionResponse.SeerResult)
     case hunter(Werewolf_TakeActionResponse.HunterResult)
 
+  #if !swift(>=4.1)
     static func ==(lhs: Werewolf_TakeActionResponse.OneOf_Result, rhs: Werewolf_TakeActionResponse.OneOf_Result) -> Bool {
       switch (lhs, rhs) {
       case (.seer(let l), .seer(let r)): return l == r
@@ -558,6 +595,7 @@ struct Werewolf_TakeActionResponse {
       default: return false
       }
     }
+  #endif
   }
 
   struct SeerResult {
@@ -606,7 +644,7 @@ struct Werewolf_Room {
   /// Returns true if `game` has been explicitly set.
   var hasGame: Bool {return _storage._game != nil}
   /// Clears the value of `game`. Subsequent reads from it will return its default value.
-  mutating func clearGame() {_storage._game = nil}
+  mutating func clearGame() {_uniqueStorage()._game = nil}
 
   var hostID: String {
     get {return _storage._hostID}
@@ -637,7 +675,7 @@ struct Werewolf_Seat {
   /// Returns true if `user` has been explicitly set.
   var hasUser: Bool {return _storage._user != nil}
   /// Clears the value of `user`. Subsequent reads from it will return its default value.
-  mutating func clearUser() {_storage._user = nil}
+  mutating func clearUser() {_uniqueStorage()._user = nil}
 
   var role: Werewolf_Role {
     get {return _storage._role}
@@ -730,6 +768,25 @@ struct Werewolf_Game {
   init() {}
 }
 
+#if swift(>=4.2)
+
+extension Werewolf_Game.State: CaseIterable {
+  // The compiler won't synthesize support with the UNRECOGNIZED case.
+  static var allCases: [Werewolf_Game.State] = [
+    .unknown,
+    .orphanAwake,
+    .halfBloodAwake,
+    .guardianAwake,
+    .werewolfAwake,
+    .witchAwake,
+    .seerAwake,
+    .hunterAwake,
+    .sheriffElection,
+  ]
+}
+
+#endif  // swift(>=4.2)
+
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
 
 fileprivate let _protobuf_package = "werewolf"
@@ -780,9 +837,9 @@ extension Werewolf_VacateSeatRequest: SwiftProtobuf.Message, SwiftProtobuf._Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_VacateSeatRequest) -> Bool {
-    if self.seatID != other.seatID {return false}
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_VacateSeatRequest, rhs: Werewolf_VacateSeatRequest) -> Bool {
+    if lhs.seatID != rhs.seatID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -800,8 +857,8 @@ extension Werewolf_VacateSeatResponse: SwiftProtobuf.Message, SwiftProtobuf._Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_VacateSeatResponse) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_VacateSeatResponse, rhs: Werewolf_VacateSeatResponse) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -819,8 +876,8 @@ extension Werewolf_CreateAndJoinRoomRequest: SwiftProtobuf.Message, SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_CreateAndJoinRoomRequest) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_CreateAndJoinRoomRequest, rhs: Werewolf_CreateAndJoinRoomRequest) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -852,10 +909,10 @@ extension Werewolf_CreateAndJoinRoomResponse: SwiftProtobuf.Message, SwiftProtob
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_CreateAndJoinRoomResponse) -> Bool {
-    if self.roomID != other.roomID {return false}
-    if self.userID != other.userID {return false}
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_CreateAndJoinRoomResponse, rhs: Werewolf_CreateAndJoinRoomResponse) -> Bool {
+    if lhs.roomID != rhs.roomID {return false}
+    if lhs.userID != rhs.userID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -887,10 +944,10 @@ extension Werewolf_UpdateGameConfigRequest: SwiftProtobuf.Message, SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_UpdateGameConfigRequest) -> Bool {
-    if self.roomID != other.roomID {return false}
-    if self.roleCounts != other.roleCounts {return false}
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_UpdateGameConfigRequest, rhs: Werewolf_UpdateGameConfigRequest) -> Bool {
+    if lhs.roomID != rhs.roomID {return false}
+    if lhs.roleCounts != rhs.roleCounts {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -922,10 +979,10 @@ extension Werewolf_UpdateGameConfigRequest.RoleCount: SwiftProtobuf.Message, Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_UpdateGameConfigRequest.RoleCount) -> Bool {
-    if self.role != other.role {return false}
-    if self.count != other.count {return false}
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_UpdateGameConfigRequest.RoleCount, rhs: Werewolf_UpdateGameConfigRequest.RoleCount) -> Bool {
+    if lhs.role != rhs.role {return false}
+    if lhs.count != rhs.count {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -943,8 +1000,8 @@ extension Werewolf_UpdateGameConfigResponse: SwiftProtobuf.Message, SwiftProtobu
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_UpdateGameConfigResponse) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_UpdateGameConfigResponse, rhs: Werewolf_UpdateGameConfigResponse) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -976,10 +1033,10 @@ extension Werewolf_JoinRoomRequest: SwiftProtobuf.Message, SwiftProtobuf._Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_JoinRoomRequest) -> Bool {
-    if self.userID != other.userID {return false}
-    if self.roomID != other.roomID {return false}
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_JoinRoomRequest, rhs: Werewolf_JoinRoomRequest) -> Bool {
+    if lhs.userID != rhs.userID {return false}
+    if lhs.roomID != rhs.roomID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1006,9 +1063,9 @@ extension Werewolf_JoinRoomResponse: SwiftProtobuf.Message, SwiftProtobuf._Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_JoinRoomResponse) -> Bool {
-    if self.userID != other.userID {return false}
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_JoinRoomResponse, rhs: Werewolf_JoinRoomResponse) -> Bool {
+    if lhs.userID != rhs.userID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1035,9 +1092,9 @@ extension Werewolf_GetRoomRequest: SwiftProtobuf.Message, SwiftProtobuf._Message
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_GetRoomRequest) -> Bool {
-    if self.roomID != other.roomID {return false}
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_GetRoomRequest, rhs: Werewolf_GetRoomRequest) -> Bool {
+    if lhs.roomID != rhs.roomID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1088,17 +1145,17 @@ extension Werewolf_GetRoomResponse: SwiftProtobuf.Message, SwiftProtobuf._Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_GetRoomResponse) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  static func ==(lhs: Werewolf_GetRoomResponse, rhs: Werewolf_GetRoomResponse) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._room != other_storage._room {return false}
+        let rhs_storage = _args.1
+        if _storage._room != rhs_storage._room {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1130,10 +1187,10 @@ extension Werewolf_TakeSeatRequest: SwiftProtobuf.Message, SwiftProtobuf._Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_TakeSeatRequest) -> Bool {
-    if self.seatID != other.seatID {return false}
-    if self.userID != other.userID {return false}
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_TakeSeatRequest, rhs: Werewolf_TakeSeatRequest) -> Bool {
+    if lhs.seatID != rhs.seatID {return false}
+    if lhs.userID != rhs.userID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1151,8 +1208,8 @@ extension Werewolf_TakeSeatResponse: SwiftProtobuf.Message, SwiftProtobuf._Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_TakeSeatResponse) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_TakeSeatResponse, rhs: Werewolf_TakeSeatResponse) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1179,9 +1236,9 @@ extension Werewolf_ReassignRolesRequest: SwiftProtobuf.Message, SwiftProtobuf._M
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_ReassignRolesRequest) -> Bool {
-    if self.roomID != other.roomID {return false}
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_ReassignRolesRequest, rhs: Werewolf_ReassignRolesRequest) -> Bool {
+    if lhs.roomID != rhs.roomID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1199,8 +1256,8 @@ extension Werewolf_ReassignRolesResponse: SwiftProtobuf.Message, SwiftProtobuf._
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_ReassignRolesResponse) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_ReassignRolesResponse, rhs: Werewolf_ReassignRolesResponse) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1227,9 +1284,9 @@ extension Werewolf_StartGameRequest: SwiftProtobuf.Message, SwiftProtobuf._Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_StartGameRequest) -> Bool {
-    if self.roomID != other.roomID {return false}
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_StartGameRequest, rhs: Werewolf_StartGameRequest) -> Bool {
+    if lhs.roomID != rhs.roomID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1247,8 +1304,8 @@ extension Werewolf_StartGameResponse: SwiftProtobuf.Message, SwiftProtobuf._Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_StartGameResponse) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_StartGameResponse, rhs: Werewolf_StartGameResponse) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1392,18 +1449,18 @@ extension Werewolf_TakeActionRequest: SwiftProtobuf.Message, SwiftProtobuf._Mess
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionRequest) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  static func ==(lhs: Werewolf_TakeActionRequest, rhs: Werewolf_TakeActionRequest) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._gameID != other_storage._gameID {return false}
-        if _storage._action != other_storage._action {return false}
+        let rhs_storage = _args.1
+        if _storage._gameID != rhs_storage._gameID {return false}
+        if _storage._action != rhs_storage._action {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1421,8 +1478,8 @@ extension Werewolf_TakeActionRequest.CompleteDarknessAction: SwiftProtobuf.Messa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionRequest.CompleteDarknessAction) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_TakeActionRequest.CompleteDarknessAction, rhs: Werewolf_TakeActionRequest.CompleteDarknessAction) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1449,9 +1506,9 @@ extension Werewolf_TakeActionRequest.SeerAction: SwiftProtobuf.Message, SwiftPro
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionRequest.SeerAction) -> Bool {
-    if self.seatID != other.seatID {return false}
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_TakeActionRequest.SeerAction, rhs: Werewolf_TakeActionRequest.SeerAction) -> Bool {
+    if lhs.seatID != rhs.seatID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1483,10 +1540,10 @@ extension Werewolf_TakeActionRequest.WitchAction: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionRequest.WitchAction) -> Bool {
-    if self.poisonSeatID != other.poisonSeatID {return false}
-    if self.cureSeatID != other.cureSeatID {return false}
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_TakeActionRequest.WitchAction, rhs: Werewolf_TakeActionRequest.WitchAction) -> Bool {
+    if lhs.poisonSeatID != rhs.poisonSeatID {return false}
+    if lhs.cureSeatID != rhs.cureSeatID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1504,8 +1561,8 @@ extension Werewolf_TakeActionRequest.HunterAction: SwiftProtobuf.Message, SwiftP
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionRequest.HunterAction) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_TakeActionRequest.HunterAction, rhs: Werewolf_TakeActionRequest.HunterAction) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1532,9 +1589,9 @@ extension Werewolf_TakeActionRequest.GuardAction: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionRequest.GuardAction) -> Bool {
-    if self.seatID != other.seatID {return false}
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_TakeActionRequest.GuardAction, rhs: Werewolf_TakeActionRequest.GuardAction) -> Bool {
+    if lhs.seatID != rhs.seatID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1561,9 +1618,9 @@ extension Werewolf_TakeActionRequest.WerewolfAction: SwiftProtobuf.Message, Swif
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionRequest.WerewolfAction) -> Bool {
-    if self.seatID != other.seatID {return false}
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_TakeActionRequest.WerewolfAction, rhs: Werewolf_TakeActionRequest.WerewolfAction) -> Bool {
+    if lhs.seatID != rhs.seatID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1590,9 +1647,9 @@ extension Werewolf_TakeActionRequest.HalfBloodAction: SwiftProtobuf.Message, Swi
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionRequest.HalfBloodAction) -> Bool {
-    if self.seatID != other.seatID {return false}
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_TakeActionRequest.HalfBloodAction, rhs: Werewolf_TakeActionRequest.HalfBloodAction) -> Bool {
+    if lhs.seatID != rhs.seatID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1610,8 +1667,8 @@ extension Werewolf_TakeActionRequest.CompleteSheriffAction: SwiftProtobuf.Messag
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionRequest.CompleteSheriffAction) -> Bool {
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_TakeActionRequest.CompleteSheriffAction, rhs: Werewolf_TakeActionRequest.CompleteSheriffAction) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1682,17 +1739,17 @@ extension Werewolf_TakeActionResponse: SwiftProtobuf.Message, SwiftProtobuf._Mes
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionResponse) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  static func ==(lhs: Werewolf_TakeActionResponse, rhs: Werewolf_TakeActionResponse) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._result != other_storage._result {return false}
+        let rhs_storage = _args.1
+        if _storage._result != rhs_storage._result {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1719,9 +1776,9 @@ extension Werewolf_TakeActionResponse.SeerResult: SwiftProtobuf.Message, SwiftPr
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionResponse.SeerResult) -> Bool {
-    if self.ruling != other.ruling {return false}
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_TakeActionResponse.SeerResult, rhs: Werewolf_TakeActionResponse.SeerResult) -> Bool {
+    if lhs.ruling != rhs.ruling {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1748,9 +1805,9 @@ extension Werewolf_TakeActionResponse.HunterResult: SwiftProtobuf.Message, Swift
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_TakeActionResponse.HunterResult) -> Bool {
-    if self.ruling != other.ruling {return false}
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_TakeActionResponse.HunterResult, rhs: Werewolf_TakeActionResponse.HunterResult) -> Bool {
+    if lhs.ruling != rhs.ruling {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1815,19 +1872,19 @@ extension Werewolf_Room: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_Room) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  static func ==(lhs: Werewolf_Room, rhs: Werewolf_Room) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._seats != other_storage._seats {return false}
-        if _storage._game != other_storage._game {return false}
-        if _storage._hostID != other_storage._hostID {return false}
+        let rhs_storage = _args.1
+        if _storage._seats != rhs_storage._seats {return false}
+        if _storage._game != rhs_storage._game {return false}
+        if _storage._hostID != rhs_storage._hostID {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1892,19 +1949,19 @@ extension Werewolf_Seat: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_Seat) -> Bool {
-    if _storage !== other._storage {
-      let storagesAreEqual: Bool = withExtendedLifetime((_storage, other._storage)) { (_args: (_StorageClass, _StorageClass)) in
+  static func ==(lhs: Werewolf_Seat, rhs: Werewolf_Seat) -> Bool {
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
         let _storage = _args.0
-        let other_storage = _args.1
-        if _storage._id != other_storage._id {return false}
-        if _storage._user != other_storage._user {return false}
-        if _storage._role != other_storage._role {return false}
+        let rhs_storage = _args.1
+        if _storage._id != rhs_storage._id {return false}
+        if _storage._user != rhs_storage._user {return false}
+        if _storage._role != rhs_storage._role {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
-    if unknownFields != other.unknownFields {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1936,10 +1993,10 @@ extension Werewolf_User: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_User) -> Bool {
-    if self.id != other.id {return false}
-    if self.imgURL != other.imgURL {return false}
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_User, rhs: Werewolf_User) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.imgURL != rhs.imgURL {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }
@@ -1976,11 +2033,11 @@ extension Werewolf_Game: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementa
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  func _protobuf_generated_isEqualTo(other: Werewolf_Game) -> Bool {
-    if self.id != other.id {return false}
-    if self.state != other.state {return false}
-    if self.killedSeatIds != other.killedSeatIds {return false}
-    if unknownFields != other.unknownFields {return false}
+  static func ==(lhs: Werewolf_Game, rhs: Werewolf_Game) -> Bool {
+    if lhs.id != rhs.id {return false}
+    if lhs.state != rhs.state {return false}
+    if lhs.killedSeatIds != rhs.killedSeatIds {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
 }

@@ -20,10 +20,28 @@
   version = "v1.1.0"
 
 [[projects]]
+  name = "github.com/gorilla/websocket"
+  packages = ["."]
+  revision = "66b9c49e59c6c48f0ffce28c2d8b8a5678502c6d"
+  version = "v1.4.0"
+
+[[projects]]
+  name = "github.com/improbable-eng/grpc-web"
+  packages = ["go/grpcweb"]
+  revision = "8bc2a4d43363d03ea6cfbd3db96e4a5458bfbfc7"
+  version = "0.6.3"
+
+[[projects]]
   name = "github.com/pmezard/go-difflib"
   packages = ["difflib"]
   revision = "792786c7400a136282c1664665ae0a8db921c6c2"
   version = "v1.0.0"
+
+[[projects]]
+  name = "github.com/rs/cors"
+  packages = ["."]
+  revision = "3fb1b69b103a84de38a19c3c6ec073dd6caa4d3f"
+  version = "v1.5.0"
 
 [[projects]]
   name = "github.com/spf13/pflag"
@@ -112,6 +130,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "97409184113a93d05c17d28eeed76e216d3b2096828b66affb7af8acbb4c3d39"
+  inputs-digest = "cfc06de27ab8726b9047fe4a8ceaf7f09333c29f46501b75c9d5bafd96876d86"
   solver-name = "gps-cdcl"
   solver-version = 1

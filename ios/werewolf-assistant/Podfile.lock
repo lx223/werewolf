@@ -6,14 +6,14 @@ PODS:
     - BoringSSL/Interface (= 10.0.6)
   - BoringSSL/Interface (10.0.6)
   - Floaty (4.0.1)
-  - gRPC-Core (1.11.0):
-    - gRPC-Core/Implementation (= 1.11.0)
-    - gRPC-Core/Interface (= 1.11.0)
-  - gRPC-Core/Implementation (1.11.0):
+  - gRPC-Core (1.12.0):
+    - gRPC-Core/Implementation (= 1.12.0)
+    - gRPC-Core/Interface (= 1.12.0)
+  - gRPC-Core/Implementation (1.12.0):
     - BoringSSL (~> 10.0)
-    - gRPC-Core/Interface (= 1.11.0)
+    - gRPC-Core/Interface (= 1.12.0)
     - nanopb (~> 0.3)
-  - gRPC-Core/Interface (1.11.0)
+  - gRPC-Core/Interface (1.12.0)
   - MaterialComponents/AnimationTiming (63.0.0)
   - MaterialComponents/Buttons (63.0.0):
     - MaterialComponents/Ink
@@ -66,12 +66,12 @@ PODS:
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
   - RxSwift (4.2.0)
-  - SwiftGRPC (0.4.3):
+  - SwiftGRPC (0.6.0):
     - BoringSSL (~> 10.0)
-    - gRPC-Core (~> 1.11.0)
-    - SwiftProtobuf (~> 1.0.3)
+    - gRPC-Core (~> 1.12.0)
+    - SwiftProtobuf (~> 1.1.1)
   - SwiftLint (0.27.0)
-  - SwiftProtobuf (1.0.3)
+  - SwiftProtobuf (1.1.2)
   - SwiftySound (1.0.0)
 
 DEPENDENCIES:
@@ -82,9 +82,9 @@ DEPENDENCIES:
   - RxCocoa (~> 4.2.0)
   - RxGesture (~> 1.2.1)
   - RxSwift (~> 4.2.0)
-  - SwiftGRPC (~> 0.4.3)
+  - SwiftGRPC (~> 0.6.0)
   - SwiftLint (~> 0.27.0)
-  - SwiftProtobuf (~> 1.0.3)
+  - SwiftProtobuf (~> 1.1.1)
   - SwiftySound (~> 1.0.0)
 
 SPEC REPOS:
@@ -109,7 +109,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   BoringSSL: e10f92a27043805c01071fe815a5cd98ae8212e7
   Floaty: 82854e1a5ef4fa208281ebd4da2f3d1e51ba67a6
-  gRPC-Core: 164639cd8ae18ca8b65477fafb2efbaecf4f181a
+  gRPC-Core: 9696b220565b283e021cf2722d473a4a74b7622a
   MaterialComponents: 4e0c0ee000e0dcbf5214b0054767ef9f8f812264
   MDFInternationalization: b5b8626628abf026e630e5ebaeee563037712cbb
   MDFTextAccessibility: 94098925e0853551c5a311ce7c1ecefbe297cdb6
@@ -119,11 +119,11 @@ SPEC CHECKSUMS:
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxGesture: c278eb05b187abd47e11e65464ae4de53ab71d95
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
-  SwiftGRPC: e582ede5791867075513a3757faa41be215b7e5a
+  SwiftGRPC: 465792c0e09dcb083d19d97137cee71b4f4f8b6f
   SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
-  SwiftProtobuf: 5ccc0e4054e37c75800e5744acb2aa80bb72b39c
+  SwiftProtobuf: 7147b8ec19c8c0694a45155d989ea9e6dedaf51f
   SwiftySound: b9c3370956fd4ed65ed79d45563070077a50a2cd
 
-PODFILE CHECKSUM: f0465d4bb5e33405c33bafeb5042f75029fc8697
+PODFILE CHECKSUM: b2b9fabdeb0389d938b297a52debe6a8d63a68fd
 
 COCOAPODS: 1.5.3
