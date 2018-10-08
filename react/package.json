@@ -2,6 +2,7 @@
   "name": "werewolf-assitant",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://lx223.github.io/werewolf-assistant",
   "dependencies": {
     "grpc-web-client": "0.6.3",
     "react": "^16.5.2",
@@ -18,6 +19,7 @@
     "@types/react-dom": "^16.0.8",
     "@types/react-redux": "^6.0.9",
     "@types/react-router-dom": "^4.3.1",
+    "gh-pages": "2.0.1",
     "prettier": "1.14.3",
     "react-scripts-ts": "3.1.0",
     "ts-protoc-gen": "^0.7.6",
@@ -31,6 +33,8 @@
     "prettier:write": "npm run prettier:base -- --write \"src/**/*.{ts,tsx}\"",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "eject": "react-scripts-ts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   }
 }
