@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "http://lx223.github.io/werewolf-assistant",
   "dependencies": {
+    "gestalt": "0.81.0",
     "grpc-web-client": "0.6.3",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
@@ -12,6 +13,7 @@
     "redux": "^4.0.0"
   },
   "devDependencies": {
+    "@types/gestalt": "^0.75.2",
     "@types/google-protobuf": "^3.2.7",
     "@types/jest": "^23.3.2",
     "@types/node": "^10.11.3",

@@ -7,6 +7,8 @@ import { Code } from 'grpc-web-client/dist/Code';
 import { Dispatch } from 'redux';
 import { newAction, ActionType, IJoinRoomSuccessPayload } from '../actions';
 import { AppStore } from '../reducers/app';
+import { Button, Box, TextField, Heading } from 'gestalt';
+import 'gestalt/dist/gestalt.css';
 
 interface IHallProps {
   roomId?: string;
@@ -27,10 +29,22 @@ class Hall extends React.Component<IHallProps, IHallState> {
 
   public render() {
     return (
-      <div>
-        <h1>游戏大厅</h1>
-        <input value={this.state.roomId || ''} onChange={this.updateRoomId} />
-        <button
+      <Box>
+        <Box>
+          <Heading size="xs">游戏大厅</Heading>
+        </Box>
+        <Box>
+          <TextField
+            id="email"
+            onChange={this.updateRoomId}
+            placeholder="房间号"
+            value={this.state.roomId || ''}
+            type="number"
+          />
+        </Box>
+        <Button
+          text="加入房间"
+          disabled={!this.state.roomId}
           onClick={() => {
             const req = new JoinRoomRequest();
             req.setRoomId(this.state.roomId!);
@@ -46,13 +60,11 @@ class Hall extends React.Component<IHallProps, IHallState> {
               onFailure: this.props.onJoinRoomFailure
             });
           }}
-          disabled={!this.state.roomId}
-        >
-          加入房间
-        </button>
+        />
         {this.props.roomId &&
           this.props.userId && (
-            <button
+            <Button
+              text="返回上次房间"
               onClick={() => {
                 const req = new JoinRoomRequest();
                 req.setRoomId(this.props.roomId!);
@@ -69,17 +81,15 @@ class Hall extends React.Component<IHallProps, IHallState> {
                   onFailure: this.props.onJoinRoomFailure
                 });
               }}
-            >
-              返回上次房间
-            </button>
+            />
           )}
-      </div>
+      </Box>
     );
   }
 
-  private updateRoomId = (elem: any) => {
+  private updateRoomId = (args: { value: string }) => {
     this.setState({
-      roomId: elem.target.value
+      roomId: args.value
     });
   };
 }
