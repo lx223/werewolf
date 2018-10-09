@@ -9,16 +9,21 @@ import (
 	"google.golang.org/grpc"
 )
 
+var ctx = context.Background()
+
 func main() {
-	conn, err := grpc.Dial("35.229.117.155:21806", grpc.WithInsecure())
+	conn, err := grpc.Dial("localhost:21806", grpc.WithInsecure())
 	if err != nil {
 		panic(err)
 	}
 
 	c := werewolfpb.NewGameServiceClient(conn)
 
-	res, err := c.UpdateGameConfig(context.Background(), &werewolfpb.UpdateGameConfigRequest{
-		RoomId: "115584",
+	createRoomRes, _ := c.CreateAndJoinRoom(ctx, &werewolfpb.CreateAndJoinRoomRequest{})
+	fmt.Println(createRoomRes)
+
+	c.UpdateGameConfig(context.Background(), &werewolfpb.UpdateGameConfigRequest{
+		RoomId: createRoomRes.RoomId,
 		RoleCounts: []*werewolfpb.UpdateGameConfigRequest_RoleCount{
 			{
 				Role:  werewolfpb.Role_SEER,
@@ -26,13 +31,8 @@ func main() {
 			},
 			{
 				Role:  werewolfpb.Role_WEREWOLF,
-				Count: 1,
+				Count: 4,
 			},
 		},
 	})
-
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(res)
 }

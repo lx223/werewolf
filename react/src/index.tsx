@@ -10,6 +10,7 @@ import { createStore } from 'redux';
 import Hall from './containers/Hall';
 
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import Room from './containers/Room';
 
 const storeStorageKey = 'store_key';
 
@@ -26,6 +27,7 @@ ReactDOM.render(
     <BrowserRouter>
       <Switch>
         <Route exact={true} path="/" component={Hall} />
+        <Route exact={true} path="/room/:roomId" component={Room} />
         <Redirect from="*" to="/" />
       </Switch>
     </BrowserRouter>

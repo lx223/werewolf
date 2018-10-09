@@ -1,27 +1,13 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-<<<<<<< HEAD
-
-interface IRoomProps {
-  roomNumber: string;
-}
-
-class Room extends React.Component<IRoomProps, {}> {
-  public render() {
-    return (
-      <div>
-        <h1>房间: {this.props.roomNumber}</h1>
-      </div>
-=======
 import { Box, Heading, Divider, Column } from 'gestalt';
 import { RouteComponentProps } from 'react-router';
 import { AppStore, ISeat } from '../reducers/app';
-import Seat, { SeatColour } from '../components/Seat';
+import Seat from '../components/Seat';
 import {
   GetRoomRequest,
   GetRoomResponse,
-  Room as RoomType,
-  Game
+  Room as RoomType
 } from '../generated/werewolf_pb';
 import { doGRPCRequest, takeSeat } from '../utils/request';
 import { GameService } from '../generated/werewolf_pb_service';
@@ -34,8 +20,6 @@ interface IRoomProps extends RouteComponentProps<{ roomId: string }> {
   roomId: string;
   userId: string;
   seats?: ISeat[];
-  state?: Game.State;
-  game?: Game;
 
   onGetRoomSuccess: (room: RoomType) => void;
   onGetRoomFailure: (code: Code) => void;
@@ -67,7 +51,7 @@ class Room extends React.Component<IRoomProps, {}> {
   }
 
   public render() {
-    const { seats, userId, roomId } = this.props;
+    const { seats, userId } = this.props;
 
     return (
       <Box>
@@ -77,39 +61,39 @@ class Room extends React.Component<IRoomProps, {}> {
         <Divider />
         <Box display="flex" direction="row" wrap={true} paddingY={2}>
           {seats &&
-            seats.map((_, i) => (
+            seats.map((seat, i) => (
               <Column span={3} key={i}>
-                {this.newSeat(i + 1, seats[i], roomId, userId)}
+                {this.newSeat(
+                  i + 1,
+                  seat.id,
+                  userId,
+                  false,
+                  seat.userId!,
+                )}
               </Column>
             ))}
         </Box>
       </Box>
->>>>>>> a2f6487... Use new go mod system
     );
   }
 
   private newSeat = (
     no: number,
-    seat: ISeat,
-    roomId: string,
-    userId: string
+    seatId: string,
+    userId: string,
+    hasGameStarted: boolean,
+    occupierId?: string,
   ) => {
-    const seatColour =
-      seat.userId === userId
-        ? SeatColour.takenByMe
-        : !!seat.userId
-          ? SeatColour.taken
-          : SeatColour.vacant;
     return (
       <Seat
         no={no}
-        colour={seatColour}
+        occupierId={occupierId}
+        myUserId={userId}
         onClick={() => {
-          const hasGameStarted = !!this.props.state;
           if (!hasGameStarted) {
             takeSeat({
               userId,
-              seatId: seat.id
+              seatId
             });
           }
         }}
@@ -119,20 +103,43 @@ class Room extends React.Component<IRoomProps, {}> {
 }
 
 export default connect(
-<<<<<<< HEAD
-  () => {
-    return;
-=======
   (state: AppStore) => {
     return {
       roomId: state.roomId,
       userId: state.userId,
-      seats: state.seats,
-      state: state.state
+      seats: state.seats
     } as Partial<IRoomProps>;
->>>>>>> a2f6487... Use new go mod system
   },
-  () => {
-    return;
+  (dispatch: Dispatch) => {
+    return {
+      onGetRoomSuccess: (room: RoomType, myUserId: string) => {
+        const state = room.hasGame() ? room.getGame()!.getState() : undefined;
+        const seats = room.getSeatsList().map(val => {
+          return {
+            id: val.getId(),
+            userId: val.hasUser() ? val.getUser()!.getId() : undefined
+          } as ISeat;
+        });
+        const mySeats = room.getSeatsList().filter(s => {
+          return s.hasUser() && s.getUser()!.getId() === myUserId;
+        });
+        const mySeatId = mySeats.length === 0 ? undefined : mySeats[0].getId();
+        const role = mySeats.length === 0 ? undefined : mySeats[0].getRole();
+
+        dispatch(
+          newAction<IGetRoomSuccessPayload>(ActionType.getRoomSuccess, {
+            state,
+            seats,
+            mySeatId,
+            role
+          })
+        );
+      },
+      onGetRoomFailure: (code: Code) => {
+        if (code === Code.NotFound) {
+          dispatch(newAction(ActionType.getRoomFailure, {}));
+        }
+      }
+    };
   }
 )(Room);

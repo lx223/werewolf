@@ -45,7 +45,7 @@ func main() {
 	}()
 
 	go func() {
-		log.Printf("Start serving gRPC requests at :%d", grpcWebPort)
+		log.Printf("Start serving gRPC web requests at :%d", grpcWebPort)
 		errChan <- http.ListenAndServe(fmt.Sprintf(":%d", grpcWebPort), grpcweb.WrapServer(s))
 	}()
 

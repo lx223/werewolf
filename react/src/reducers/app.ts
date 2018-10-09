@@ -1,10 +1,15 @@
 import { Role, Game } from '../generated/werewolf_pb';
-import { IAction, ActionType, IJoinRoomSuccessPayload } from '../actions';
+import {
+  IAction,
+  ActionType,
+  IJoinRoomSuccessPayload,
+  IGetRoomSuccessPayload
+} from '../actions';
 
 export class AppStore {
   public roomId?: string;
   public userId?: string;
-  public seats?: [ISeat];
+  public seats?: ISeat[];
   public state?: Game.State;
   public myRole?: Role;
   public mySeatId?: string;
@@ -12,7 +17,7 @@ export class AppStore {
 
 export interface ISeat {
   id: string;
-  occupied: boolean;
+  userId?: string;
 }
 
 export function AppReducer(currentState: AppStore, action: IAction): AppStore {
@@ -25,12 +30,23 @@ export function AppReducer(currentState: AppStore, action: IAction): AppStore {
     };
   }
 
-  if (action.type === ActionType.joinRoomFailure) {
+  if (action.type === ActionType.getRoomSuccess) {
+    const payload = action.payload as IGetRoomSuccessPayload;
     return {
       ...currentState,
-      roomId: undefined,
-      userId: undefined
+      state: payload.state,
+      myRole: payload.role,
+      mySeatId: payload.mySeatId,
+      seats: payload.seats
     };
   }
+
+  if (
+    action.type === ActionType.joinRoomFailure ||
+    action.type === ActionType.getRoomFailure
+  ) {
+    return {};
+  }
+
   return currentState;
 }

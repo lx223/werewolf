@@ -7,10 +7,11 @@ import { Code } from 'grpc-web-client/dist/Code';
 import { Dispatch } from 'redux';
 import { newAction, ActionType, IJoinRoomSuccessPayload } from '../actions';
 import { AppStore } from '../reducers/app';
-import { Button, Box, TextField, Heading } from 'gestalt';
+import { Button, Box, TextField, Heading, Divider } from 'gestalt';
 import 'gestalt/dist/gestalt.css';
+import { RouteComponentProps } from 'react-router';
 
-interface IHallProps {
+interface IHallProps extends RouteComponentProps<{}> {
   roomId?: string;
   userId?: string;
   onJoinRoomSuccess: (roomId: string, userId: string) => void;
@@ -33,6 +34,7 @@ class Hall extends React.Component<IHallProps, IHallState> {
         <Box>
           <Heading size="xs">游戏大厅</Heading>
         </Box>
+        <Divider />
         <Box>
           <TextField
             id="email"
@@ -56,6 +58,7 @@ class Hall extends React.Component<IHallProps, IHallState> {
                   this.state.roomId!,
                   res.getUserId()
                 );
+                this.navigateToRoom(this.state.roomId!);
               },
               onFailure: this.props.onJoinRoomFailure
             });
@@ -77,6 +80,7 @@ class Hall extends React.Component<IHallProps, IHallState> {
                       this.props.roomId!,
                       this.props.userId!
                     );
+                    this.navigateToRoom(this.props.roomId!);
                   },
                   onFailure: this.props.onJoinRoomFailure
                 });
@@ -91,6 +95,10 @@ class Hall extends React.Component<IHallProps, IHallState> {
     this.setState({
       roomId: args.value
     });
+  };
+
+  private navigateToRoom = (roomId: string) => {
+    this.props.history.push('/room/' + roomId);
   };
 }
 
