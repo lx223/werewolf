@@ -1,0 +1,60 @@
+# github.com/davecgh/go-spew v1.1.0
+github.com/davecgh/go-spew/spew
+# github.com/golang/protobuf v1.1.0
+github.com/golang/protobuf/proto
+github.com/golang/protobuf/ptypes
+github.com/golang/protobuf/ptypes/any
+github.com/golang/protobuf/ptypes/duration
+github.com/golang/protobuf/ptypes/timestamp
+# github.com/gorilla/websocket v1.4.0
+github.com/gorilla/websocket
+# github.com/improbable-eng/grpc-web v0.0.0-20180907072152-8bc2a4d43363
+github.com/improbable-eng/grpc-web/go/grpcweb
+# github.com/pmezard/go-difflib v1.0.0
+github.com/pmezard/go-difflib/difflib
+# github.com/rs/cors v1.5.0
+github.com/rs/cors
+# github.com/spf13/pflag v1.0.1
+github.com/spf13/pflag
+# github.com/stretchr/testify v1.2.2
+github.com/stretchr/testify/assert
+# golang.org/x/net v0.0.0-20180530234432-1e491301e022
+golang.org/x/net/context
+golang.org/x/net/http2
+golang.org/x/net/trace
+golang.org/x/net/http/httpguts
+golang.org/x/net/http2/hpack
+golang.org/x/net/idna
+golang.org/x/net/internal/timeseries
+# golang.org/x/text v0.3.0
+golang.org/x/text/secure/bidirule
+golang.org/x/text/unicode/bidi
+golang.org/x/text/unicode/norm
+golang.org/x/text/transform
+# google.golang.org/genproto v0.0.0-20180608181217-32ee49c4dd80
+google.golang.org/genproto/googleapis/rpc/status
+# google.golang.org/grpc v1.12.2
+google.golang.org/grpc
+google.golang.org/grpc/codes
+google.golang.org/grpc/status
+google.golang.org/grpc/grpclog
+google.golang.org/grpc/balancer
+google.golang.org/grpc/balancer/roundrobin
+google.golang.org/grpc/channelz
+google.golang.org/grpc/connectivity
+google.golang.org/grpc/credentials
+google.golang.org/grpc/encoding
+google.golang.org/grpc/encoding/proto
+google.golang.org/grpc/grpclb/grpc_lb_v1/messages
+google.golang.org/grpc/internal
+google.golang.org/grpc/keepalive
+google.golang.org/grpc/metadata
+google.golang.org/grpc/naming
+google.golang.org/grpc/peer
+google.golang.org/grpc/resolver
+google.golang.org/grpc/resolver/dns
+google.golang.org/grpc/resolver/passthrough
+google.golang.org/grpc/stats
+google.golang.org/grpc/tap
+google.golang.org/grpc/transport
+google.golang.org/grpc/balancer/base

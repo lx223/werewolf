@@ -2,7 +2,7 @@
 set -e
 
 REPO_BASE=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
-GO_ROOT="${REPO_BASE}/go/src/"
+GO_ROOT="${REPO_BASE}/go/server/"
 GCLOUD_SERVICE_ACCOUNT_KEY_JSON=${HOME}/gcloud-service-account-key.json
 
 echo $GCLOUD_SERVICE_ACCOUNT_KEY | base64 --decode -i > $GCLOUD_SERVICE_ACCOUNT_KEY_JSON
