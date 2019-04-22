@@ -1,5 +1,5 @@
-import { ISeat } from './reducers/app';
 import { Role, Game } from './generated/werewolf_pb';
+import { Seat } from './entities/seat';
 
 export interface IAction {
   type: ActionType;
@@ -26,7 +26,7 @@ export interface IJoinRoomSuccessPayload {
 }
 
 export interface IGetRoomSuccessPayload {
-  seats: ISeat[];
+  seats: Seat[];
   role?: Role;
   mySeatId?: string;
   state?: Game.State;

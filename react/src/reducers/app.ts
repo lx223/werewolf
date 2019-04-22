@@ -5,19 +5,15 @@ import {
   IJoinRoomSuccessPayload,
   IGetRoomSuccessPayload
 } from '../actions';
+import { Seat } from 'src/entities/seat';
 
 export class AppStore {
   public roomId?: string;
   public userId?: string;
-  public seats?: ISeat[];
+  public seats?: Seat[];
   public state?: Game.State;
   public myRole?: Role;
   public mySeatId?: string;
-}
-
-export interface ISeat {
-  id: string;
-  userId?: string;
 }
 
 export function AppReducer(currentState: AppStore, action: IAction): AppStore {

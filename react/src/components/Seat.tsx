@@ -21,9 +21,13 @@ const Seat: React.SFC<ISeatProps> = (props: ISeatProps) => {
     <Box color="white" padding={1}>
       <Button
         text={props.no.toString()}
-        color={!!props.occupierId ? 
-                  props.occupierId === props.myUserId ? SeatColour.takenByMe : SeatColour.taken 
-                    : SeatColour.vacant}
+        color={
+          !!props.occupierId
+            ? props.occupierId === props.myUserId
+              ? SeatColour.takenByMe
+              : SeatColour.taken
+            : SeatColour.vacant
+        }
         onClick={() => {
           props.onClick(props.no);
         }}
