@@ -23,11 +23,6 @@ for p in `find $PROTO_ROOT -name "*.proto" -type f`; do
 done
 echo "Finished generating Go files"
 
-# Code-gen Swift files
-rm -rf $SWIFT_OUT/*
-protoc -I$PROTO_ROOT --swift_out=$SWIFT_OUT --swiftgrpc_out=Server=false:$SWIFT_OUT ${PROTO_ROOT}/*.proto
-echo "Finished generating Swift files"
-
 # Copy *.proto to Android project
 rm -rf $JAVA_PROTO_DIR
 cp -R $PROTO_ROOT $JAVA_PROTO_DIR
