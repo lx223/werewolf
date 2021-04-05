@@ -1,6 +1,4 @@
-FROM golang:1.12-alpine
-
-RUN apk update
+FROM golang:1.16-alpine
 
 COPY . /server
 
