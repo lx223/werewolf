@@ -1,6 +1,6 @@
 package lx223.werewolf
 
-import android.support.annotation.WorkerThread
+import androidx.annotation.WorkerThread
 import lx223.werewolf.proto.GameServiceGrpc
 import lx223.werewolf.proto.Werewolf.*
 import java.util.concurrent.Executors

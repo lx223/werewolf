@@ -3,11 +3,11 @@ package lx223.werewolf
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.support.annotation.RawRes
-import android.support.annotation.StringRes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RawRes
+import androidx.annotation.StringRes
 import lx223.werewolf.proto.Werewolf
 import lx223.werewolf.proto.Werewolf.GetRoomRequest
 import kotlinx.android.synthetic.main.fragment_role.view.*

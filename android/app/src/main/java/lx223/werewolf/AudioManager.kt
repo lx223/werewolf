@@ -2,7 +2,7 @@ package lx223.werewolf
 
 import android.content.Context
 import android.media.MediaPlayer
-import android.support.annotation.RawRes
+import androidx.annotation.RawRes
 import lx223.werewolf.proto.Werewolf
 import lx223.werewolf.proto.Werewolf.Game.State.*
 import java.util.*
