@@ -1,0 +1,43 @@
+
+name: postsubmit
+
+on:
+  push:
+    branches: 
+      - master
+
+jobs:
+
+  run-go-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-go@v2
+        with:
+          go-version: '^1.16'
+
+      - name: Run tests
+        run: pushd go/server && go test ./...
+
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: run-go-tests
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0.2.1
+        with:
+          project_id: ${{ secrets.GCE_PROJECT }}
+          service_account_key: ${{ secrets.GCE_SA_KEY }}
+          export_default_credentials: true
+
+      - run: ./scripts/publish_server.sh
+        env:
+          GCE_INSTANCE: ${{secrets.GCE_INSTANCE}}
+          GCE_INSTANCE_ZONE: ${{secrets.GCE_INSTANCE_ZONE}}
+          GCE_PROJECT: ${{secrets.GCE_PROJECT}}
