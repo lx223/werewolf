@@ -1,0 +1,30 @@
+name: presubmit
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  workflow-canceler:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.7.0
+        with:
+          access_token: ${{ secrets.GITHUB_TOKEN }}
+
+  run-go-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-go@v2
+        with:
+          go-version: '^1.16'
+
+      - name: Run tests
+        run: pushd go/server && go test ./...
