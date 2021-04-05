@@ -34,19 +34,19 @@ protobuf {
         artifact = "com.google.protobuf:protoc:$protobuf_version"
     }
     plugins {
-        javalite {
-            artifact = "com.google.protobuf:protoc-gen-javalite:3.0.0"
-        }
         grpc {
             artifact = "io.grpc:protoc-gen-grpc-java:$grpc_version"
         }
     }
     generateProtoTasks {
         all().each { task ->
+            task.builtins {
+                java {
+                    option "lite"
+                }
+            }
             task.plugins {
-                javalite {}
                 grpc {
-                    // Options added to --grpc_out
                     option 'lite'
                 }
             }
@@ -59,6 +59,7 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:2.0.4'
     implementation 'com.android.support:design:28.0.0'
+    implementation "com.google.protobuf:protobuf-javalite:$protobuf_version"
     implementation "io.grpc:grpc-okhttp:$grpc_version"
     implementation "io.grpc:grpc-protobuf-lite:$grpc_version"
     implementation "io.grpc:grpc-stub:$grpc_version"
