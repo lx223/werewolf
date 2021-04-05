@@ -1,4 +1,4 @@
-package jiang.sichu.werewolf
+package lx223.werewolf
 
 import android.app.Activity
 import android.app.Fragment
@@ -6,8 +6,8 @@ import android.content.Context
 import android.os.Bundle
 import io.grpc.ManagedChannel
 import io.grpc.ManagedChannelBuilder
-import jiang.sichu.werewolf.model.RoomInfo
-import jiang.sichu.werewolf.proto.GameServiceGrpc
+import lx223.werewolf.model.RoomInfo
+import lx223.werewolf.proto.GameServiceGrpc
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 

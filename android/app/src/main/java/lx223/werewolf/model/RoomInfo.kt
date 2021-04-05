@@ -1,4 +1,4 @@
-package jiang.sichu.werewolf.model
+package lx223.werewolf.model
 
 import android.os.Parcel
 import android.os.Parcelable

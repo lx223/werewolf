@@ -1,4 +1,4 @@
-package jiang.sichu.werewolf
+package lx223.werewolf
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -9,10 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import jiang.sichu.werewolf.proto.Werewolf.Role
-import jiang.sichu.werewolf.proto.Werewolf.Role.*
-import jiang.sichu.werewolf.proto.Werewolf.UpdateGameConfigRequest
-import jiang.sichu.werewolf.proto.Werewolf.UpdateGameConfigRequest.RoleCount
+import lx223.werewolf.proto.Werewolf.Role
+import lx223.werewolf.proto.Werewolf.Role.*
+import lx223.werewolf.proto.Werewolf.UpdateGameConfigRequest
+import lx223.werewolf.proto.Werewolf.UpdateGameConfigRequest.RoleCount
 import kotlinx.android.synthetic.main.fragment_game_config.view.*
 import kotlinx.android.synthetic.main.item_game_config.view.*
 

@@ -1,4 +1,4 @@
-package jiang.sichu.werewolf
+package lx223.werewolf
 
 import org.junit.Test
 

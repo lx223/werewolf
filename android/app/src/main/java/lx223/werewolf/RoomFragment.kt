@@ -1,4 +1,4 @@
-package jiang.sichu.werewolf
+package lx223.werewolf
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -7,9 +7,9 @@ import android.support.design.widget.Snackbar.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import jiang.sichu.werewolf.proto.Werewolf.*
-import jiang.sichu.werewolf.proto.Werewolf.Game.State.*
-import jiang.sichu.werewolf.proto.Werewolf.Role.*
+import lx223.werewolf.proto.Werewolf.*
+import lx223.werewolf.proto.Werewolf.Game.State.*
+import lx223.werewolf.proto.Werewolf.Role.*
 import kotlinx.android.synthetic.main.fragment_room.view.*
 
 class RoomFragment : BaseFragment(), RoomService.Listener {

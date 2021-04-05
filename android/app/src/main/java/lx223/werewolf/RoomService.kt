@@ -1,8 +1,8 @@
-package jiang.sichu.werewolf
+package lx223.werewolf
 
 import android.support.annotation.WorkerThread
-import jiang.sichu.werewolf.proto.GameServiceGrpc
-import jiang.sichu.werewolf.proto.Werewolf.*
+import lx223.werewolf.proto.GameServiceGrpc
+import lx223.werewolf.proto.Werewolf.*
 import java.util.concurrent.Executors
 import java.util.concurrent.Future
 import java.util.concurrent.ScheduledExecutorService

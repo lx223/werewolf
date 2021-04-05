@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="jiang.sichu.werewolf.GameConfigFragment">
+    tools:context=".GameConfigFragment">
 
     <GridView
         android:id="@+id/grid_roles"

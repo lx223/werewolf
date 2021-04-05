@@ -1,4 +1,4 @@
-package jiang.sichu.werewolf
+package lx223.werewolf
 
 
 import android.annotation.SuppressLint
@@ -8,8 +8,8 @@ import android.support.annotation.StringRes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import jiang.sichu.werewolf.proto.Werewolf
-import jiang.sichu.werewolf.proto.Werewolf.GetRoomRequest
+import lx223.werewolf.proto.Werewolf
+import lx223.werewolf.proto.Werewolf.GetRoomRequest
 import kotlinx.android.synthetic.main.fragment_role.view.*
 
 private const val BACK_IMAGE_RES = R.raw.back

@@ -1,8 +1,8 @@
-package jiang.sichu.werewolf
+package lx223.werewolf
 
 import android.app.Fragment
 import android.content.Context
-import jiang.sichu.werewolf.proto.GameServiceGrpc
+import lx223.werewolf.proto.GameServiceGrpc
 import java.util.concurrent.ExecutorService
 
 abstract class BaseFragment : Fragment() {

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical">
 
-    <jiang.sichu.werewolf.ui.SquareImageView
+    <lx223.werewolf.ui.SquareImageView
         android:id="@+id/image_role"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

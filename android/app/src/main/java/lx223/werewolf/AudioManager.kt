@@ -1,10 +1,10 @@
-package jiang.sichu.werewolf
+package lx223.werewolf
 
 import android.content.Context
 import android.media.MediaPlayer
 import android.support.annotation.RawRes
-import jiang.sichu.werewolf.proto.Werewolf
-import jiang.sichu.werewolf.proto.Werewolf.Game.State.*
+import lx223.werewolf.proto.Werewolf
+import lx223.werewolf.proto.Werewolf.Game.State.*
 import java.util.*
 
 class AudioManager(private val context: Context) {

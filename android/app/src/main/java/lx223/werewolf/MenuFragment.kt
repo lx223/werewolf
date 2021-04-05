@@ -1,4 +1,4 @@
-package jiang.sichu.werewolf
+package lx223.werewolf
 
 import android.app.AlertDialog
 import android.app.Dialog
@@ -7,9 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import jiang.sichu.werewolf.model.RoomInfo
-import jiang.sichu.werewolf.proto.Werewolf.CreateAndJoinRoomRequest
-import jiang.sichu.werewolf.proto.Werewolf.JoinRoomRequest
+import lx223.werewolf.model.RoomInfo
+import lx223.werewolf.proto.Werewolf.CreateAndJoinRoomRequest
+import lx223.werewolf.proto.Werewolf.JoinRoomRequest
 import kotlinx.android.synthetic.main.dialog_join_room.*
 import kotlinx.android.synthetic.main.fragment_menu.view.*
 

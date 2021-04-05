@@ -1,4 +1,4 @@
-package jiang.sichu.werewolf
+package lx223.werewolf
 
 import android.content.Context
 import android.support.annotation.ColorRes
@@ -6,8 +6,8 @@ import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import jiang.sichu.werewolf.proto.Werewolf.Seat
-import jiang.sichu.werewolf.ui.SquareTextView
+import lx223.werewolf.proto.Werewolf.Seat
+import lx223.werewolf.ui.SquareTextView
 
 private const val COLOR_RES_EMPTY_SEAT = android.R.color.holo_green_dark
 private const val COLOR_RES_TAKEN_SEAT = android.R.color.holo_orange_dark
