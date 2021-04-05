@@ -1,6 +1,6 @@
 module github.com/lx223/werewolf-assistant
 
-go 1.12
+go 1.16
 
 require (
 	github.com/davecgh/go-spew v1.1.0 // indirect
