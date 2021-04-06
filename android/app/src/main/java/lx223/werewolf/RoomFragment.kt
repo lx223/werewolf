@@ -10,9 +10,12 @@ import com.google.android.material.snackbar.Snackbar.*
 import lx223.werewolf.proto.Werewolf.*
 import lx223.werewolf.proto.Werewolf.Game.State.*
 import lx223.werewolf.proto.Werewolf.Role.*
-import kotlinx.android.synthetic.main.fragment_room.view.*
+import lx223.werewolf.databinding.FragmentRoomBinding
 
 class RoomFragment : BaseFragment(), RoomService.Listener {
+
+    private var _binding: FragmentRoomBinding? = null
+    private val binding get() = _binding!!
 
     private var seatAdapter: SeatAdapter? = null
     private var roomService: RoomService? = null
@@ -22,24 +25,23 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-
-        val view = inflater.inflate(R.layout.fragment_room, container, false)
-        view.title.text = getString(R.string.fragment_room_title_room_id, activity?.roomId)
+        _binding = FragmentRoomBinding.inflate(inflater, container, false)
+        binding.title.text = getString(R.string.fragment_room_title_room_id, activity?.roomId)
 
         seatAdapter = SeatAdapter(context, activity!!.userId)
                 .apply { setTakeSeatListener(this@RoomFragment::takeSeat) }
-        view.grid_seats.adapter = seatAdapter
-        view.btn_check_role.setOnClickListener { activity?.onCheckRoleButtonClick() }
-        view.btn_take_action.setOnClickListener { takeAction() }
+        binding.gridSeats.adapter = seatAdapter
+        binding.btnCheckRole.setOnClickListener { activity?.onCheckRoleButtonClick() }
+        binding.btnTakeAction.setOnClickListener { takeAction() }
 
         roomService = RoomService(activity?.roomId!!, this, gameService!!).apply { init() }
 
         if (activity!!.isHost) {
-            view.btn_reassign_roles.apply {
+            binding.btnReassignRoles.apply {
                 visibility = View.VISIBLE
                 setOnClickListener { showReassignRolesDialog() }
             }
-            view.btn_start_game.apply {
+            binding.btnStartGame.apply {
                 visibility = View.VISIBLE
                 isEnabled = false
                 setOnClickListener {
@@ -47,13 +49,13 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
                     isEnabled = false
                 }
             }
-            view.btn_result.apply {
+            binding.btnResult.apply {
                 visibility = View.GONE
                 setOnClickListener { showLastNightResult() }
             }
         }
 
-        return view
+        return binding.root
     }
 
     override fun onResume() {
@@ -80,11 +82,11 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
             seatAdapter?.setSeats(seats)
             val isSeated = seats.any { it.user.id == activity?.userId }
             if (isSeated) {
-                view.btn_check_role.visibility = View.VISIBLE
-                view.btn_take_action.visibility = View.VISIBLE
+                binding.btnCheckRole.visibility = View.VISIBLE
+                binding.btnTakeAction.visibility = View.VISIBLE
             }
             if (seats.all { it.hasUser() }) {
-                view.btn_start_game.isEnabled = true
+                binding.btnStartGame.isEnabled = true
             }
         }
     }
@@ -104,8 +106,8 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
         }
         if (currentState == SHERIFF_ELECTION) {
             runOnUiThread {
-                view.btn_start_game.visibility = View.GONE
-                view.btn_result.visibility = View.VISIBLE
+                binding.btnStartGame.visibility = View.GONE
+                binding.btnResult.visibility = View.VISIBLE
             }
         }
     }
@@ -131,8 +133,8 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
             runOnUiThread {
                 audioManager?.reset()
                 audioManager = null
-                view.btn_result.visibility = View.GONE
-                view.btn_start_game.apply {
+                binding.btnResult.visibility = View.GONE
+                binding.btnStartGame.apply {
                     isEnabled = true
                     visibility = View.VISIBLE
                 }

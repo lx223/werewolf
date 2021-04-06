@@ -10,25 +10,33 @@ import androidx.annotation.RawRes
 import androidx.annotation.StringRes
 import lx223.werewolf.proto.Werewolf
 import lx223.werewolf.proto.Werewolf.GetRoomRequest
-import kotlinx.android.synthetic.main.fragment_role.view.*
+import lx223.werewolf.databinding.FragmentRoleBinding
 
 private const val BACK_IMAGE_RES = R.raw.back
 
 @SuppressLint("ResourceType")
 class RoleFragment : BaseFragment() {
 
+    private var _binding: FragmentRoleBinding? = null
+    private val binding get() = _binding!!
+
     private var isShowing = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_role, container, false)
-        view.role_card.setOnClickListener { onRoleCardClick() }
-        return view
+        _binding = FragmentRoleBinding.inflate(inflater, container, false)
+        binding.roleCard.setOnClickListener { onRoleCardClick() }
+        return binding.root
     }
 
     override fun onResume() {
         super.onResume()
         showBackOfCard()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun onRoleCardClick() {
@@ -41,21 +49,21 @@ class RoleFragment : BaseFragment() {
 
     private fun showBackOfCard() {
         isShowing = false
-        view.role_card.setImageResource(BACK_IMAGE_RES)
-        view.role_label.text = ""
+        binding.roleCard.setImageResource(BACK_IMAGE_RES)
+        binding.roleLabel.text = ""
     }
 
     private fun showFrontOfCard() {
-        view.role_card.isClickable = false
+        binding.roleCard.isClickable = false
         executor?.execute {
             val request = GetRoomRequest.newBuilder().setRoomId(activity?.roomId).build()
             val response = gameService?.getRoom(request)!!
             val myRole = response.room.seatsList.first { it.user.id == activity?.userId }.role
             runOnUiThread {
                 isShowing = true
-                view.role_card.isClickable = true
-                view.role_card.setImageResource(getFrontImageRes(myRole))
-                view.role_label.text = getString(getRoleName(myRole))
+                binding.roleCard.isClickable = true
+                binding.roleCard.setImageResource(getFrontImageRes(myRole))
+                binding.roleLabel.text = getString(getRoleName(myRole))
             }
         }
     }

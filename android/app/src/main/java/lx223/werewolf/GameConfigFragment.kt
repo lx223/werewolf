@@ -9,12 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import lx223.werewolf.databinding.FragmentGameConfigBinding
+import lx223.werewolf.databinding.ItemGameConfigBinding
 import lx223.werewolf.proto.Werewolf.Role
 import lx223.werewolf.proto.Werewolf.Role.*
 import lx223.werewolf.proto.Werewolf.UpdateGameConfigRequest
 import lx223.werewolf.proto.Werewolf.UpdateGameConfigRequest.RoleCount
-import kotlinx.android.synthetic.main.fragment_game_config.view.*
-import kotlinx.android.synthetic.main.item_game_config.view.*
 
 private val ROLES = arrayOf(
         VILLAGER, WEREWOLF, SEER, WITCH, HUNTER, IDIOT, WHITE_WEREWOLF, GUARDIAN, HALF_BLOOD
@@ -24,14 +24,14 @@ private val ROLES = arrayOf(
 class GameConfigFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_game_config, container, false)
+                              savedInstanceState: Bundle?): View {
+        val binding = FragmentGameConfigBinding.inflate(inflater, container, false)
         val adapter = RoleAdapter(context)
-        view.grid_roles.adapter = adapter
-        view.btn_submit_config.setOnClickListener {
+        binding.gridRoles.adapter = adapter
+        binding.btnSubmitConfig.setOnClickListener {
             updateGameConfig(adapter.counts)
         }
-        return view
+        return binding.root
     }
 
     private fun updateGameConfig(roleCounts: HashMap<Role, Int>) {
@@ -43,7 +43,7 @@ class GameConfigFragment : BaseFragment() {
 
     private fun buildUpdateGameConfigRequest(counts: Map<Role, Int>): UpdateGameConfigRequest {
         val builder = UpdateGameConfigRequest.newBuilder().setRoomId(activity?.roomId)
-        counts.filter { entry -> entry.value > 0 }.forEach { role, count ->
+        counts.filter { entry -> entry.value > 0 }.forEach { (role, count) ->
             builder.addRoleCounts(RoleCount.newBuilder().setRole(role).setCount(count).build())
         }
         return builder.build()
@@ -62,12 +62,12 @@ class GameConfigFragment : BaseFragment() {
         @SuppressLint("ViewHolder")
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
             val role = ROLES[position]
-            val view = View.inflate(context, R.layout.item_game_config, null)
-            view.image_role.setImageResource(getImageResIdForRole(role))
+            val binding = ItemGameConfigBinding.inflate(LayoutInflater.from(context), parent, false)
+            binding.imageRole.setImageResource(getImageResIdForRole(role))
             if (role == Role.VILLAGER || role == Role.WEREWOLF) {
-                view.switch_add_role.visibility = View.GONE
-                view.edittext_role_count.visibility = View.VISIBLE
-                view.edittext_role_count.addTextChangedListener(object : TextWatcher {
+                binding.switchAddRole.visibility = View.GONE
+                binding.edittextRoleCount.visibility = View.VISIBLE
+                binding.edittextRoleCount.addTextChangedListener(object : TextWatcher {
                     override fun afterTextChanged(s: Editable?) {}
                     override fun beforeTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
                     override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -75,13 +75,13 @@ class GameConfigFragment : BaseFragment() {
                     }
                 })
             } else {
-                view.switch_add_role.visibility = View.VISIBLE
-                view.edittext_role_count.visibility = View.GONE
-                view.switch_add_role.setOnCheckedChangeListener { _, isChecked ->
+                binding.switchAddRole.visibility = View.VISIBLE
+                binding.edittextRoleCount.visibility = View.GONE
+                binding.switchAddRole.setOnCheckedChangeListener { _, isChecked ->
                     counts[role] = if (isChecked) 1 else 0
                 }
             }
-            return view
+            return binding.root
         }
 
         private fun getImageResIdForRole(role: Role) = when (role) {

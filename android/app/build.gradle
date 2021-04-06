@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.protobuf'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 28
@@ -26,6 +25,9 @@ android {
         disable 'GoogleAppIndexingWarning', 'HardcodedText', 'InvalidPackage'
         textReport true
         textOutput "stdout"
+    }
+    buildFeatures {
+        viewBinding true
     }
 }
 

@@ -7,11 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import lx223.werewolf.databinding.DialogJoinRoomBinding
+import lx223.werewolf.databinding.FragmentMenuBinding
 import lx223.werewolf.model.RoomInfo
 import lx223.werewolf.proto.Werewolf.CreateAndJoinRoomRequest
 import lx223.werewolf.proto.Werewolf.JoinRoomRequest
-import kotlinx.android.synthetic.main.dialog_join_room.*
-import kotlinx.android.synthetic.main.fragment_menu.view.*
 
 const val ARG_PREV_ROOM_INFO = "prev_room_info"
 
@@ -19,13 +19,13 @@ class MenuFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_menu, container, false)
-        view.btn_create_room.setOnClickListener { createAndJoinRoom() }
-        view.btn_join_room.setOnClickListener { showJoinRoomDialog() }
+        val binding = FragmentMenuBinding.inflate(inflater, container, false)
+        binding.btnCreateRoom.setOnClickListener { createAndJoinRoom() }
+        binding.btnJoinRoom.setOnClickListener { showJoinRoomDialog() }
         arguments?.getParcelable<RoomInfo>(ARG_PREV_ROOM_INFO)?.let {
-            initJoinPrevRoomBtn(view.btn_join_prev_room, it)
+            initJoinPrevRoomBtn(binding.btnJoinPrevRoom, it)
         }
-        return view
+        return binding.root
     }
 
     private fun initJoinPrevRoomBtn(joinPrevRoomBtn: Button, prevRoomInfo: RoomInfo) {
@@ -44,12 +44,13 @@ class MenuFragment : BaseFragment() {
     }
 
     private fun showJoinRoomDialog() {
+        val binding = DialogJoinRoomBinding.inflate(LayoutInflater.from(context))
         AlertDialog.Builder(context)
                 .setTitle(R.string.dialog_title_join_room)
-                .setView(R.layout.dialog_join_room)
+                .setView(binding.root)
                 .setPositiveButton(
                         R.string.btn_label_confirm
-                ) { dialog, _ -> joinRoom((dialog as Dialog).room_id_input.text.toString(), null) }
+                ) { _, _ -> joinRoom(binding.roomIdInput.text.toString(), null) }
                 .show()
     }
 
