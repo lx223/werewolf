@@ -12,12 +12,19 @@ import android.widget.BaseAdapter
 import lx223.werewolf.databinding.FragmentGameConfigBinding
 import lx223.werewolf.databinding.ItemGameConfigBinding
 import lx223.werewolf.proto.Werewolf.Role
-import lx223.werewolf.proto.Werewolf.Role.*
 import lx223.werewolf.proto.Werewolf.UpdateGameConfigRequest
 import lx223.werewolf.proto.Werewolf.UpdateGameConfigRequest.RoleCount
 
 private val ROLES = arrayOf(
-        VILLAGER, WEREWOLF, SEER, WITCH, HUNTER, IDIOT, WHITE_WEREWOLF, GUARDIAN, HALF_BLOOD
+        Role.VILLAGER,
+        Role.WEREWOLF,
+        Role.SEER,
+        Role.WITCH,
+        Role.HUNTER,
+        Role.IDIOT,
+        Role.WHITE_WEREWOLF,
+        Role.GUARDIAN,
+        Role.HALF_BLOOD
         // Role.ORPHAN is not implemented yet.
 )
 
@@ -55,7 +62,7 @@ class GameConfigFragment : BaseFragment() {
 
         override fun getCount(): Int = ROLES.size
 
-        override fun getItem(position: Int): Any? = Pair(ROLES[position], counts[ROLES[position]])
+        override fun getItem(position: Int): Any = Pair(ROLES[position], counts[ROLES[position]])
 
         override fun getItemId(position: Int): Long = ROLES[position].number.toLong()
 

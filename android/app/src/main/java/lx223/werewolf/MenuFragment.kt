@@ -1,7 +1,6 @@
 package lx223.werewolf
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,7 +17,7 @@ const val ARG_PREV_ROOM_INFO = "prev_room_info"
 class MenuFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View {
         val binding = FragmentMenuBinding.inflate(inflater, container, false)
         binding.btnCreateRoom.setOnClickListener { createAndJoinRoom() }
         binding.btnJoinRoom.setOnClickListener { showJoinRoomDialog() }

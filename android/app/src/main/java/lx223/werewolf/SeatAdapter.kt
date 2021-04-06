@@ -1,11 +1,11 @@
 package lx223.werewolf
 
 import android.content.Context
-import androidx.annotation.ColorRes
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import androidx.annotation.ColorRes
 import lx223.werewolf.proto.Werewolf.Seat
 import lx223.werewolf.ui.SquareTextView
 
@@ -60,7 +60,7 @@ class SeatAdapter(private val context: Context, private val userId: String?) : B
             text = (position + 1).toString()
             textSize = resources.getDimension(R.dimen.text_size_seat_number)
             gravity = Gravity.CENTER
-            setBackgroundColor(context.resources.getColor(colorRes))
+            setBackgroundColor(context.resources.getColor(colorRes, null))
             setOnClickListener { listener?.onSeatClicked(getItem(position).id, position + 1) }
         }
     }

@@ -4,7 +4,6 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class RoomInfo(val roomId: String, val userId: String) : Parcelable {
-    constructor(parcel: Parcel) : this(parcel.readString(), parcel.readString())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(roomId)
@@ -17,7 +16,7 @@ data class RoomInfo(val roomId: String, val userId: String) : Parcelable {
 
     companion object CREATOR : Parcelable.Creator<RoomInfo> {
         override fun createFromParcel(parcel: Parcel): RoomInfo {
-            return RoomInfo(parcel)
+            return RoomInfo(parcel.readString()!!, parcel.readString()!!)
         }
 
         override fun newArray(size: Int): Array<RoomInfo?> {

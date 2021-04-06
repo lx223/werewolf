@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.snackbar.BaseTransientBottomBar.*
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.snackbar.Snackbar.*
+import lx223.werewolf.databinding.FragmentRoomBinding
 import lx223.werewolf.proto.Werewolf.*
 import lx223.werewolf.proto.Werewolf.Game.State.*
 import lx223.werewolf.proto.Werewolf.Role.*
-import lx223.werewolf.databinding.FragmentRoomBinding
 
 class RoomFragment : BaseFragment(), RoomService.Listener {
 
@@ -24,11 +24,11 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View {
         _binding = FragmentRoomBinding.inflate(inflater, container, false)
         binding.title.text = getString(R.string.fragment_room_title_room_id, activity?.roomId)
 
-        seatAdapter = SeatAdapter(context, activity!!.userId)
+        seatAdapter = SeatAdapter(context!!, activity!!.userId)
                 .apply { setTakeSeatListener(this@RoomFragment::takeSeat) }
         binding.gridSeats.adapter = seatAdapter
         binding.btnCheckRole.setOnClickListener { activity?.onCheckRoleButtonClick() }
@@ -146,7 +146,7 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
         executor?.execute {
             val request = StartGameRequest.newBuilder().setRoomId(activity?.roomId).build()
             gameService?.startGame(request)
-            runOnUiThread { audioManager = AudioManager(context) }
+            runOnUiThread { audioManager = AudioManager(context!!) }
         }
     }
 
@@ -197,15 +197,15 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
     }
 
     private fun showNoActionSnackbar() {
-        Snackbar.make(view, R.string.snackbar_no_action, LENGTH_SHORT).show()
+        Snackbar.make(view!!, R.string.snackbar_no_action, LENGTH_SHORT).show()
     }
 
     private fun showActionSucceededSnackbar() {
-        Snackbar.make(view, R.string.snackbar_action_succeeded, LENGTH_SHORT).show()
+        Snackbar.make(view!!, R.string.snackbar_action_succeeded, LENGTH_SHORT).show()
     }
 
     private fun takeHalfBloodAction() {
-        val snackbar = Snackbar.make(view, R.string.snackbar_half_blood_action, LENGTH_INDEFINITE).apply { show() }
+        val snackbar = Snackbar.make(view!!, R.string.snackbar_half_blood_action, LENGTH_INDEFINITE).apply { show() }
         seatAdapter?.setOneOffOnSeatClickListener { seatId, _ ->
             executor?.execute {
                 val halfBloodAction = TakeActionRequest.HalfBloodAction.newBuilder().setSeatId(seatId)
@@ -220,7 +220,7 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
     }
 
     private fun takeGuardianAction() {
-        val snackbar = Snackbar.make(view, R.string.snackbar_guardian_action, LENGTH_INDEFINITE).apply { show() }
+        val snackbar = Snackbar.make(view!!, R.string.snackbar_guardian_action, LENGTH_INDEFINITE).apply { show() }
         seatAdapter?.setOneOffOnSeatClickListener { seatId, _ ->
             executor?.execute {
                 val guardianAction = TakeActionRequest.GuardAction.newBuilder().setSeatId(seatId)
@@ -235,7 +235,7 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
     }
 
     private fun takeWerewolfAction() {
-        val snackbar = Snackbar.make(view, R.string.snackbar_werewolf_action, LENGTH_INDEFINITE).apply { show() }
+        val snackbar = Snackbar.make(view!!, R.string.snackbar_werewolf_action, LENGTH_INDEFINITE).apply { show() }
         seatAdapter?.setOneOffOnSeatClickListener { seatId, _ ->
             executor?.execute {
                 val werewolfAction = TakeActionRequest.WerewolfAction.newBuilder().setSeatId(seatId)
@@ -293,7 +293,7 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
     }
 
     private fun poison() {
-        val snackbar = Snackbar.make(view, R.string.snackbar_witch_poison_action, LENGTH_INDEFINITE).apply { show() }
+        val snackbar = Snackbar.make(view!!, R.string.snackbar_witch_poison_action, LENGTH_INDEFINITE).apply { show() }
         seatAdapter?.setOneOffOnSeatClickListener { seatId, _ ->
             executor?.execute {
                 val witchAction = TakeActionRequest.WitchAction.newBuilder().setPoisonSeatId(seatId)
@@ -307,7 +307,7 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
     }
 
     private fun takeSeerAction() {
-        val snackbar = Snackbar.make(view, R.string.snackbar_seer_action, LENGTH_INDEFINITE).apply { show() }
+        val snackbar = Snackbar.make(view!!, R.string.snackbar_seer_action, LENGTH_INDEFINITE).apply { show() }
         seatAdapter?.setOneOffOnSeatClickListener { seatId, oneBasedIndex ->
             executor?.execute {
                 val seerAction = TakeActionRequest.SeerAction.newBuilder().setSeatId(seatId)
@@ -319,7 +319,7 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
                         else R.string.snackbar_seer_action_result_negative
                 runOnUiThread {
                     snackbar.dismiss()
-                    Snackbar.make(view, getString(seerResultResId, oneBasedIndex), LENGTH_LONG).show()
+                    Snackbar.make(view!!, getString(seerResultResId, oneBasedIndex), LENGTH_LONG).show()
                 }
             }
         }
@@ -335,7 +335,7 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
                         R.string.snackbar_hunter_action_result_positive
                     else R.string.snackbar_hunter_action_result_negative
             runOnUiThread {
-                Snackbar.make(view, hunterResultResId, LENGTH_LONG).show()
+                Snackbar.make(view!!, hunterResultResId, LENGTH_LONG).show()
             }
         }
     }

@@ -1,9 +1,9 @@
 package lx223.werewolf
 
-import android.app.Activity
-import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import io.grpc.ManagedChannel
 import io.grpc.ManagedChannelBuilder
 import lx223.werewolf.model.RoomInfo
@@ -16,7 +16,7 @@ private const val PORT = 21806
 private const val PREF_ROOM_ID = "room_id"
 private const val PREF_USER_ID = "user_id"
 
-class GameActivity : Activity() {
+class GameActivity : FragmentActivity() {
 
     var executor: ExecutorService? = null
     var gameService: GameServiceGrpc.GameServiceBlockingStub? = null
@@ -72,7 +72,7 @@ class GameActivity : Activity() {
 
     private fun showFragment(fragment: Fragment) {
         runOnUiThread {
-            fragmentManager.beginTransaction()
+            supportFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, fragment)
                     .apply { addToBackStack(null) }
                     .commit()
@@ -91,6 +91,6 @@ class GameActivity : Activity() {
         val sharedPrefs = getPreferences(Context.MODE_PRIVATE)
         val roomId = sharedPrefs.getString(PREF_ROOM_ID, null)
         val userId = sharedPrefs.getString(PREF_USER_ID, null)
-        return if (roomId == null && userId == null) null else RoomInfo(roomId, userId)
+        return if (roomId == null && userId == null) null else RoomInfo(roomId!!, userId!!)
     }
 }

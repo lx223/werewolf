@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit
 private const val POLLING_PERIOD_SEC = 1L
 
 // TODO: refactor to use a real service.
+// TODO: replace GameServiceBlockingStub with GameServiceFutureStub.
 class RoomService(private val roomId: String,
                   private val listener: Listener,
                   private val gameService: GameServiceGrpc.GameServiceBlockingStub) {

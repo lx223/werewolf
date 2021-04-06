@@ -31,7 +31,7 @@ class AudioManager(private val context: Context) {
 
     private fun playNext() {
         currentMediaPlayer =
-                MediaPlayer.create(context, queue.peek()).apply {
+                MediaPlayer.create(context, queue.peek()!!).apply {
                     setOnCompletionListener {
                         release()
                         currentMediaPlayer = null
