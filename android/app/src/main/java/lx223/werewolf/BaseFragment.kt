@@ -8,7 +8,7 @@ import java.util.concurrent.ExecutorService
 abstract class BaseFragment : Fragment() {
 
     private var _eventListener: GameEventListener? = null
-    val eventListener get() = _eventListener!!
+    val eventListener get() = _eventListener
 
     // TODO: change following variables to getter pattern.
     var activity: GameActivity? = null
