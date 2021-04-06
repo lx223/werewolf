@@ -1,23 +1,13 @@
 package lx223.werewolf
 
-/**
- * Handles key game/room events.
- */
-internal interface GameEventListener {
-    fun onCreateRoomSuccess(): `fun`?
-    fun onJoinRoomSuccess(): `fun`? {
-        this.userId = userId
-        this.roomId = roomId
-        isHost = false
-        saveRoomInfo(RoomInfo(roomId, userId))
-        showFragment(RoomFragment())
-    }
+/** Handles key game/room events. */
+interface GameEventListener {
 
-    fun onUpdateGameConfigSuccess(): `fun`? {
-        showFragment(RoomFragment())
-    }
+    fun onCreateRoomSuccess(roomId: String, userId: String)
 
-    fun onCheckRoleButtonClick(): `fun`? {
-        showFragment(RoleFragment())
-    }
+    fun onJoinRoomSuccess(roomId: String, userId: String)
+
+    fun onUpdateGameConfigSuccess()
+
+    fun onCheckRoleButtonClick()
 }

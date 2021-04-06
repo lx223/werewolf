@@ -44,7 +44,7 @@ class GameConfigFragment : BaseFragment() {
     private fun updateGameConfig(roleCounts: HashMap<Role, Int>) {
         executor?.execute {
             gameService?.updateGameConfig(buildUpdateGameConfigRequest(roleCounts))
-            activity?.onUpdateGameConfigSuccess()
+            eventListener.onUpdateGameConfigSuccess()
         }
     }
 

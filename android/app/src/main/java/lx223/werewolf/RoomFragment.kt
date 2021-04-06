@@ -31,7 +31,7 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
         seatAdapter = SeatAdapter(context!!, activity!!.userId)
                 .apply { setTakeSeatListener(this@RoomFragment::takeSeat) }
         binding.gridSeats.adapter = seatAdapter
-        binding.btnCheckRole.setOnClickListener { activity?.onCheckRoleButtonClick() }
+        binding.btnCheckRole.setOnClickListener { eventListener.onCheckRoleButtonClick() }
         binding.btnTakeAction.setOnClickListener { takeAction() }
 
         roomService = RoomService(activity?.roomId!!, this, gameService!!).apply { init() }

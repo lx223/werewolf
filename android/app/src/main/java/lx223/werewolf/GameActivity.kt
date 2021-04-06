@@ -16,7 +16,7 @@ private const val PORT = 21806
 private const val PREF_ROOM_ID = "room_id"
 private const val PREF_USER_ID = "user_id"
 
-class GameActivity : FragmentActivity() {
+class GameActivity : FragmentActivity(), GameEventListener {
 
     var executor: ExecutorService? = null
     var gameService: GameServiceGrpc.GameServiceBlockingStub? = null
@@ -46,7 +46,7 @@ class GameActivity : FragmentActivity() {
         gameService = null
     }
 
-    fun onCreateRoomSuccess(roomId: String, userId: String) {
+    override fun onCreateRoomSuccess(roomId: String, userId: String) {
         this.userId = userId
         this.roomId = roomId
         isHost = true
@@ -54,7 +54,7 @@ class GameActivity : FragmentActivity() {
         showFragment(GameConfigFragment())
     }
 
-    fun onJoinRoomSuccess(roomId: String, userId: String) {
+    override fun onJoinRoomSuccess(roomId: String, userId: String) {
         this.userId = userId
         this.roomId = roomId
         isHost = false
@@ -62,11 +62,11 @@ class GameActivity : FragmentActivity() {
         showFragment(RoomFragment())
     }
 
-    fun onUpdateGameConfigSuccess() {
+    override fun onUpdateGameConfigSuccess() {
         showFragment(RoomFragment())
     }
 
-    fun onCheckRoleButtonClick() {
+    override fun onCheckRoleButtonClick() {
         showFragment(RoleFragment())
     }
 
