@@ -36,7 +36,7 @@ func main() {
 
 	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
 	if err != nil {
-		log.Fatalf("failed to start on port %d", port)
+		log.Fatalf("failed to start on port %d; %s", port, err)
 	}
 
 	go func() {
