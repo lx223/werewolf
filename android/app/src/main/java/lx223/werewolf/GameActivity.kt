@@ -8,8 +8,6 @@ import io.grpc.ManagedChannel
 import io.grpc.ManagedChannelBuilder
 import lx223.werewolf.model.RoomInfo
 import lx223.werewolf.proto.GameServiceGrpc
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 
 private const val HOST = "35.229.117.155"
 private const val PORT = 21806
@@ -18,8 +16,7 @@ private const val PREF_USER_ID = "user_id"
 
 class GameActivity : FragmentActivity(), GameEventListener {
 
-    var executor: ExecutorService? = null
-    var gameService: GameServiceGrpc.GameServiceBlockingStub? = null
+    var gameService: GameServiceGrpc.GameServiceFutureStub? = null
     var userId: String? = null
     var roomId: String? = null
     var isHost = false
@@ -27,8 +24,7 @@ class GameActivity : FragmentActivity(), GameEventListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
-        executor = Executors.newSingleThreadExecutor()
-        gameService = GameServiceGrpc.newBlockingStub(
+        gameService = GameServiceGrpc.newFutureStub(
                 ManagedChannelBuilder.forAddress(HOST, PORT).usePlaintext().build())
 
         val menuFragment = MenuFragment()
@@ -40,8 +36,6 @@ class GameActivity : FragmentActivity(), GameEventListener {
 
     override fun onDestroy() {
         super.onDestroy()
-        executor?.shutdown()
-        executor = null
         (gameService?.channel as ManagedChannel).shutdown()
         gameService = null
     }
@@ -87,7 +81,7 @@ class GameActivity : FragmentActivity(), GameEventListener {
         }
     }
 
-    private fun getPreviousRoomInfo() : RoomInfo? {
+    private fun getPreviousRoomInfo(): RoomInfo? {
         val sharedPrefs = getPreferences(Context.MODE_PRIVATE)
         val roomId = sharedPrefs.getString(PREF_ROOM_ID, null)
         val userId = sharedPrefs.getString(PREF_USER_ID, null)

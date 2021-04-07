@@ -42,8 +42,8 @@ class GameConfigFragment : BaseFragment() {
     }
 
     private fun updateGameConfig(roleCounts: HashMap<Role, Int>) {
-        executor?.execute {
-            gameService?.updateGameConfig(buildUpdateGameConfigRequest(roleCounts))
+        val request = buildUpdateGameConfigRequest(roleCounts)
+        addUiThreadCallback(gameService?.updateGameConfig(request)) {
             eventListener?.onUpdateGameConfigSuccess()
         }
     }

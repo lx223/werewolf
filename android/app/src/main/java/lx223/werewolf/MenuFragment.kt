@@ -35,9 +35,8 @@ class MenuFragment : BaseFragment() {
     }
 
     private fun createAndJoinRoom() {
-        executor?.execute {
-            val request = CreateAndJoinRoomRequest.newBuilder().build()
-            val response = gameService?.createAndJoinRoom(request)!!
+        val request = CreateAndJoinRoomRequest.getDefaultInstance()
+        addUiThreadCallback(gameService?.createAndJoinRoom(request)) { response ->
             eventListener?.onCreateRoomSuccess(response.roomId, response.userId)
         }
     }
@@ -54,9 +53,8 @@ class MenuFragment : BaseFragment() {
     }
 
     private fun joinRoom(roomId: String, userId: String?) {
-        executor?.execute {
-            val request = JoinRoomRequest.newBuilder().setRoomId(roomId).setUserId(userId).build()
-            val response = gameService?.joinRoom(request)!!
+        val request = JoinRoomRequest.newBuilder().setRoomId(roomId).setUserId(userId).build()
+        addUiThreadCallback(gameService?.joinRoom(request)) { response ->
             eventListener?.onJoinRoomSuccess(roomId, response.userId)
         }
     }

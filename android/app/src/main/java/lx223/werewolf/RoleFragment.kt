@@ -55,16 +55,13 @@ class RoleFragment : BaseFragment() {
 
     private fun showFrontOfCard() {
         binding.roleCard.isClickable = false
-        executor?.execute {
-            val request = GetRoomRequest.newBuilder().setRoomId(activity?.roomId).build()
-            val response = gameService?.getRoom(request)!!
+        val request = GetRoomRequest.newBuilder().setRoomId(activity?.roomId).build()
+        addUiThreadCallback(gameService?.getRoom(request)) { response ->
             val myRole = response.room.seatsList.first { it.user.id == activity?.userId }.role
-            runOnUiThread {
-                isShowing = true
-                binding.roleCard.isClickable = true
-                binding.roleCard.setImageResource(getFrontImageRes(myRole))
-                binding.roleLabel.text = getString(getRoleName(myRole))
-            }
+            isShowing = true
+            binding.roleCard.isClickable = true
+            binding.roleCard.setImageResource(getFrontImageRes(myRole))
+            binding.roleLabel.text = getString(getRoleName(myRole))
         }
     }
 

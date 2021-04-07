@@ -1,6 +1,7 @@
 package lx223.werewolf
 
-import androidx.annotation.WorkerThread
+import com.google.common.util.concurrent.Futures
+import com.google.common.util.concurrent.MoreExecutors.directExecutor
 import lx223.werewolf.proto.GameServiceGrpc
 import lx223.werewolf.proto.Werewolf.*
 import java.util.concurrent.Executors
@@ -11,27 +12,23 @@ import java.util.concurrent.TimeUnit
 private const val POLLING_PERIOD_SEC = 1L
 
 // TODO: refactor to use a real service.
-// TODO: replace GameServiceBlockingStub with GameServiceFutureStub.
-class RoomService(private val roomId: String,
-                  private val listener: Listener,
-                  private val gameService: GameServiceGrpc.GameServiceBlockingStub) {
+class RoomService(
+        private val roomId: String,
+        private val listener: Listener,
+        private val gameService: GameServiceGrpc.GameServiceFutureStub,
+        private val executor: ScheduledExecutorService = Executors.newSingleThreadScheduledExecutor()) {
 
     interface Listener {
         fun onSeatsChanged(seats: List<Seat>)
         fun onGameStateChanged(previousState: Game.State, currentState: Game.State)
     }
 
-    private var executor: ScheduledExecutorService? = null
+    val room: Room get() = _room
+    private var _room = Room.newBuilder().setGame(Game.newBuilder().setState(Game.State.UNKNOWN)).build()
     private var taskFuture: Future<*>? = null
-    private var room = Room.getDefaultInstance()
-
-    fun init() {
-        executor = Executors.newSingleThreadScheduledExecutor()
-        room = Room.newBuilder().setGame(Game.newBuilder().setState(Game.State.UNKNOWN)).build()
-    }
 
     fun start() {
-        taskFuture = executor!!.scheduleAtFixedRate(
+        taskFuture = executor.scheduleAtFixedRate(
                 { fetchRoomAndNotifyListenerIfChanged() },
                 /*initialDelay=*/ 0,
                 POLLING_PERIOD_SEC,
@@ -45,24 +42,24 @@ class RoomService(private val roomId: String,
     }
 
     fun shutdown() {
-        executor?.shutdown()
-        executor = null
+        executor.shutdown()
     }
 
-    @WorkerThread
-    fun getRoom() = room ?: fetchRoom()
-
-    @WorkerThread
-    private fun fetchRoom() = gameService.getRoom(GetRoomRequest.newBuilder().setRoomId(roomId).build()).room!!
-
     private fun fetchRoomAndNotifyListenerIfChanged() {
-        val newRoom = fetchRoom()
-        if (newRoom.seatsList != room.seatsList) {
-            listener.onSeatsChanged(newRoom.seatsList)
-        }
-        if (newRoom.game.state != room.game.state) {
-            listener.onGameStateChanged(room.game.state, newRoom.game.state)
-        }
-        room = newRoom
+        val request = GetRoomRequest.newBuilder().setRoomId(roomId).build()
+        Futures.transform(
+                gameService.getRoom(request),
+                { response ->
+                    val newRoom = response!!.room
+                    if (newRoom.seatsList != room.seatsList) {
+                        listener.onSeatsChanged(newRoom.seatsList)
+                    }
+                    if (newRoom.game.state != room.game.state) {
+                        listener.onGameStateChanged(room.game.state, newRoom.game.state)
+                    }
+                    _room = newRoom
+                },
+                directExecutor()
+        )
     }
 }
