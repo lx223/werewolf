@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package werewolf;
-option java_package="jiang.sichu.werewolf.proto";
+option java_package="lx223.werewolf.proto";
 
 service GameService {
     // Group of room operations
@@ -104,6 +104,9 @@ message TakeActionRequest {
     message HalfBloodAction {
         string seat_id = 1;
     }
+    message OrphanAction {
+        string seat_id = 1;
+    }
     message CompleteSheriffAction {}
     oneof action {
         CompleteDarknessAction darkness = 2;
@@ -114,6 +117,7 @@ message TakeActionRequest {
         WerewolfAction werewolf = 7;
         HalfBloodAction half_blood = 8;
         CompleteSheriffAction sheriff = 9;
+        OrphanAction orphan = 10;
     }
 }
 
