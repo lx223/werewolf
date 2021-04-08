@@ -54,6 +54,7 @@ func (g *Game) ToProto() *werewolf.Game {
 
 var stateToRole = map[werewolf.Game_State]werewolf.Role{
 	werewolf.Game_HALF_BLOOD_AWAKE: werewolf.Role_HALF_BLOOD,
+	werewolf.Game_ORPHAN_AWAKE:     werewolf.Role_ORPHAN,
 	werewolf.Game_GUARDIAN_AWAKE:   werewolf.Role_GUARDIAN,
 	werewolf.Game_WEREWOLF_AWAKE:   werewolf.Role_WEREWOLF,
 	werewolf.Game_WITCH_AWAKE:      werewolf.Role_WITCH,

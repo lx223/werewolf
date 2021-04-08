@@ -161,6 +161,8 @@ func (s *GameService) validateTakeActionRequest(req *werewolf.TakeActionRequest)
 		return validateRequiredActionStateAgainstGameState(game, werewolf.Game_GUARDIAN_AWAKE)
 	case *werewolf.TakeActionRequest_HalfBlood:
 		return validateRequiredActionStateAgainstGameState(game, werewolf.Game_HALF_BLOOD_AWAKE)
+	case *werewolf.TakeActionRequest_Orphan:
+		return validateRequiredActionStateAgainstGameState(game, werewolf.Game_ORPHAN_AWAKE)
 	case *werewolf.TakeActionRequest_Hunter:
 		return validateRequiredActionStateAgainstGameState(game, werewolf.Game_HUNTER_AWAKE)
 	case *werewolf.TakeActionRequest_Seer:
