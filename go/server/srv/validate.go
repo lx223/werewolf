@@ -56,6 +56,7 @@ func validateRoleCount(role werewolf.Role, count int32) error {
 		werewolf.Role_IDIOT,
 		werewolf.Role_GUARDIAN,
 		werewolf.Role_WHITE_WEREWOLF,
+		werewolf.Role_ORPHAN,
 		werewolf.Role_HALF_BLOOD:
 		if count > 1 || count < 0 {
 			return newRoleCountErr(role)

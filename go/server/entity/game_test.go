@@ -1,8 +1,9 @@
 package entity
 
 import (
-	"github.com/lx223/werewolf-assistant/generated"
 	"testing"
+
+	werewolf "github.com/lx223/werewolf-assistant/generated"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -27,6 +28,7 @@ func TestComputePossibleStates(t *testing.T) {
 			werewolf.Role_GUARDIAN,
 			werewolf.Role_HUNTER,
 			werewolf.Role_HALF_BLOOD,
+			werewolf.Role_ORPHAN,
 			werewolf.Role_WEREWOLF,
 			werewolf.Role_WEREWOLF,
 			werewolf.Role_WEREWOLF,
@@ -42,6 +44,7 @@ func TestComputePossibleStates(t *testing.T) {
 			werewolf.Game_SHERIFF_ELECTION,
 		},
 		{
+			werewolf.Game_ORPHAN_AWAKE,
 			werewolf.Game_HALF_BLOOD_AWAKE,
 			werewolf.Game_GUARDIAN_AWAKE,
 			werewolf.Game_WEREWOLF_AWAKE,
