@@ -3,7 +3,7 @@ set -e
 
 REPO_BASE=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 PROTO_ROOT="${REPO_BASE}/proto"
-GO_OUT="${REPO_BASE}/go/src/server/generated"
+GO_OUT="${REPO_BASE}/go/server/generated"
 SWIFT_OUT="${REPO_BASE}/ios/werewolf-assistant/werewolf-assistant/generated"
 JAVA_PROTO_DIR="${REPO_BASE}/android/app/src/main/proto"
 WEB_OUT="${REPO_BASE}/react/src/generated"
@@ -29,7 +29,7 @@ cp -R $PROTO_ROOT $JAVA_PROTO_DIR
 echo "Finished coping proto to Android project"
 
 # Code-gen TS files
-pushd react
+pushd $REPO_BASE/react
 npm install
 popd
 rm -rf $WEB_OUT/*
