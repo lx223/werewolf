@@ -34,7 +34,7 @@ func main() {
 	s := grpc.NewServer()
 	registerServices(s)
 
-	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
+	lis, err := net.Listen("tcp4", fmt.Sprintf(":%d", port))
 	if err != nil {
 		log.Fatalf("failed to start on port %d; %s", port, err)
 	}
