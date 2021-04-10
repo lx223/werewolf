@@ -77,7 +77,7 @@ class RoleFragment : BaseFragment() {
             Werewolf.Role.WEREWOLF -> R.raw.werewolf
             Werewolf.Role.WHITE_WEREWOLF -> R.raw.white_wolf
             Werewolf.Role.HALF_BLOOD -> R.raw.half_blood
-            Werewolf.Role.ORPHAN -> BACK_IMAGE_RES // not implemented yet
+            Werewolf.Role.ORPHAN -> R.raw.orphan
             else -> throw IllegalArgumentException() // unexpected
         }
     }

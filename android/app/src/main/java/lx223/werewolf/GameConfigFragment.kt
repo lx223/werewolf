@@ -24,8 +24,8 @@ private val ROLES = arrayOf(
         Role.IDIOT,
         Role.WHITE_WEREWOLF,
         Role.GUARDIAN,
-        Role.HALF_BLOOD
-        // Role.ORPHAN is not implemented yet.
+        Role.HALF_BLOOD,
+        Role.ORPHAN,
 )
 
 class GameConfigFragment : BaseFragment() {
@@ -101,6 +101,7 @@ class GameConfigFragment : BaseFragment() {
             Role.IDIOT -> R.raw.idiot
             Role.GUARDIAN -> R.raw.guardian
             Role.HALF_BLOOD -> R.raw.half_blood
+            Role.ORPHAN -> R.raw.orphan
             else -> throw RuntimeException("Unsupported role: $role")
         }
     }

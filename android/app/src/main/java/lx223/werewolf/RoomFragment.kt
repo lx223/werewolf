@@ -168,7 +168,7 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
         }
 
         when (myRole) {
-            ORPHAN -> throw NotImplementedError()
+            ORPHAN -> takeOrphanAction()
             HALF_BLOOD -> takeHalfBloodAction()
             GUARDIAN -> takeGuardianAction()
             WEREWOLF -> takeWerewolfAction()
@@ -181,7 +181,7 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
 
     private fun canTakeAction(role: Role, gameState: Game.State): Boolean {
         return when (role) {
-            ORPHAN -> throw NotImplementedError()
+            ORPHAN -> gameState == ORPHAN_AWAKE
             HALF_BLOOD -> gameState == HALF_BLOOD_AWAKE
             GUARDIAN -> gameState == GUARDIAN_AWAKE
             WEREWOLF -> gameState == WEREWOLF_AWAKE
@@ -198,6 +198,18 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
 
     private fun showActionSucceededSnackbar() {
         Snackbar.make(view!!, R.string.snackbar_action_succeeded, LENGTH_SHORT).show()
+    }
+
+    private fun takeOrphanAction() {
+        val snackbar = Snackbar.make(view!!, R.string.snackbar_orphan_action, LENGTH_INDEFINITE).apply { show() }
+        seatAdapter?.setOneOffOnSeatClickListener { seatId, _ ->
+            val orphanAction = TakeActionRequest.OrphanAction.newBuilder().setSeatId(seatId)
+            val request = createTakeActionRequestBuilder().setOrphan(orphanAction).build()
+            addUiThreadCallback(gameService!!.takeAction(request)) {
+                snackbar.dismiss()
+                showActionSucceededSnackbar()
+            }
+        }
     }
 
     private fun takeHalfBloodAction() {
