@@ -12,104 +12,65 @@ import lx223.werewolf.proto.Werewolf.*
 import lx223.werewolf.proto.Werewolf.Game.State.*
 import lx223.werewolf.proto.Werewolf.Role.*
 
-class RoomFragment : BaseFragment(), RoomService.Listener {
+open class RoomFragment : BaseFragment(), RoomService.Listener {
 
     private var _binding: FragmentRoomBinding? = null
-    private val binding get() = _binding!!
+    private var _roomService: RoomService? = null
+    private var _seatAdapter: SeatAdapter? = null
 
-    private var seatAdapter: SeatAdapter? = null
-    private var roomService: RoomService? = null
-
-    // TODO: move audio manager to activity to avoid interruption on fragment transactions
-    private var audioManager: AudioManager? = null
+    internal val binding get() = _binding!!
+    internal val roomService get() = _roomService!!
+    internal val seatAdapter get() = _seatAdapter!!
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         _binding = FragmentRoomBinding.inflate(inflater, container, false)
-        binding.title.text = getString(R.string.fragment_room_title_room_id, activity?.roomId)
+        _roomService = RoomService(activity?.roomId!!, this, gameService!!)
+        _seatAdapter = SeatAdapter(context!!, activity!!.userId!!)
+                .apply { setOnClickListener(this@RoomFragment::takeSeat) }
 
-        seatAdapter = SeatAdapter(context!!, activity!!.userId)
-                .apply { setTakeSeatListener(this@RoomFragment::takeSeat) }
+        binding.title.text = getString(R.string.fragment_room_title_room_id, activity?.roomId)
         binding.gridSeats.adapter = seatAdapter
+        binding.btnCheckRole.isEnabled = false
+        binding.btnTakeAction.isEnabled = false
         binding.btnCheckRole.setOnClickListener { eventListener?.onCheckRoleButtonClick() }
         binding.btnTakeAction.setOnClickListener { takeAction() }
-
-        roomService = RoomService(activity?.roomId!!, this, gameService!!)
-
-        if (activity!!.isHost) {
-            binding.btnReassignRoles.apply {
-                visibility = View.VISIBLE
-                setOnClickListener { showReassignRolesDialog() }
-            }
-            binding.btnStartGame.apply {
-                visibility = View.VISIBLE
-                isEnabled = false
-                setOnClickListener {
-                    startGame()
-                    isEnabled = false
-                }
-            }
-            binding.btnResult.apply {
-                visibility = View.GONE
-                setOnClickListener { showLastNightResult() }
-            }
-        }
-
         return binding.root
     }
 
     override fun onResume() {
         super.onResume()
-        roomService?.start()
+        roomService.start()
     }
 
     override fun onPause() {
         super.onPause()
-        roomService?.stop()
+        roomService.stop()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        seatAdapter = null
-        roomService?.shutdown()
-        roomService = null
-        audioManager?.reset()
-        audioManager = null
+        _binding = null
+        _seatAdapter = null
+        _roomService?.shutdown()
+        _roomService = null
     }
 
     override fun onSeatsChanged(seats: List<Seat>) {
         runOnUiThread {
-            seatAdapter?.setSeats(seats)
+            seatAdapter.setSeats(seats)
             val isSeated = seats.any { it.user.id == activity?.userId }
             if (isSeated) {
-                binding.btnCheckRole.visibility = View.VISIBLE
-                binding.btnTakeAction.visibility = View.VISIBLE
-            }
-            if (seats.all { it.hasUser() }) {
-                binding.btnStartGame.isEnabled = true
+                binding.btnCheckRole.isEnabled = true
+                binding.btnTakeAction.isEnabled = true
             }
         }
     }
 
     override fun onGameStateChanged(previousState: Game.State, currentState: Game.State) {
         if (previousState == Game.State.UNKNOWN) {
-            seatAdapter?.clearTakeSeatListener()
-        }
-
-        if (!activity!!.isHost) {
-            return
-        }
-
-        audioManager?.apply {
-            enqueue(previousState, AudioManager.Type.END)
-            enqueue(currentState, AudioManager.Type.START)
-        }
-        if (currentState == SHERIFF_ELECTION) {
-            runOnUiThread {
-                binding.btnStartGame.visibility = View.GONE
-                binding.btnResult.visibility = View.VISIBLE
-            }
+            seatAdapter.clearOnClickListener()
         }
     }
 
@@ -118,48 +79,8 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
         addUiThreadCallback(gameService?.takeSeat(request)) { /* noop */ }
     }
 
-    private fun showReassignRolesDialog() {
-        AlertDialog.Builder(context)
-                .setMessage(R.string.dialog_confirm_reassign_roles)
-                .setPositiveButton(R.string.btn_label_confirm) { _, _ -> reassignRoles() }
-                .show()
-    }
-
-    private fun reassignRoles() {
-        val request = ReassignRolesRequest.newBuilder().setRoomId(activity?.roomId).build()
-        addUiThreadCallback(gameService?.reassignRoles(request)) {
-            audioManager?.reset()
-            audioManager = null
-            binding.btnResult.visibility = View.GONE
-            binding.btnStartGame.apply {
-                isEnabled = true
-                visibility = View.VISIBLE
-            }
-        }
-    }
-
-    private fun startGame() {
-        val request = StartGameRequest.newBuilder().setRoomId(activity?.roomId).build()
-        addUiThreadCallback(gameService?.startGame(request)) {
-            audioManager = AudioManager(context!!)
-        }
-    }
-
-    private fun showLastNightResult() {
-        val resultStr = getReadableDeadPlayersString(roomService!!.room)
-        AlertDialog.Builder(context).setMessage(resultStr).show()
-    }
-
-    private fun getReadableDeadPlayersString(room: Room): String {
-        val killedSeatIds = room.game.killedSeatIdsList
-        return if (killedSeatIds.isEmpty()) getString(R.string.dialog_result_no_one_died)
-        else killedSeatIds.map { seatId -> room.seatsList.indexOfFirst { it.id == seatId } + 1 }
-                .sorted()
-                .joinToString(prefix = getString(R.string.dialog_result_prefix))
-    }
-
     private fun takeAction() {
-        val room = roomService!!.room
+        val room = roomService.room
         val myRole = room.seatsList.first { it.user.id == activity?.userId }.role
         val gameState = room.game.state
         if (!canTakeAction(myRole, gameState)) {
@@ -202,7 +123,7 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
 
     private fun takeOrphanAction() {
         val snackbar = Snackbar.make(view!!, R.string.snackbar_orphan_action, LENGTH_INDEFINITE).apply { show() }
-        seatAdapter?.setOneOffOnSeatClickListener { seatId, _ ->
+        seatAdapter.setOneOffOnSeatClickListener { seatId, _ ->
             val orphanAction = TakeActionRequest.OrphanAction.newBuilder().setSeatId(seatId)
             val request = createTakeActionRequestBuilder().setOrphan(orphanAction).build()
             addUiThreadCallback(gameService!!.takeAction(request)) {
@@ -214,7 +135,7 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
 
     private fun takeHalfBloodAction() {
         val snackbar = Snackbar.make(view!!, R.string.snackbar_half_blood_action, LENGTH_INDEFINITE).apply { show() }
-        seatAdapter?.setOneOffOnSeatClickListener { seatId, _ ->
+        seatAdapter.setOneOffOnSeatClickListener { seatId, _ ->
             val halfBloodAction = TakeActionRequest.HalfBloodAction.newBuilder().setSeatId(seatId)
             val request = createTakeActionRequestBuilder().setHalfBlood(halfBloodAction).build()
             addUiThreadCallback(gameService!!.takeAction(request)) {
@@ -226,7 +147,7 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
 
     private fun takeGuardianAction() {
         val snackbar = Snackbar.make(view!!, R.string.snackbar_guardian_action, LENGTH_INDEFINITE).apply { show() }
-        seatAdapter?.setOneOffOnSeatClickListener { seatId, _ ->
+        seatAdapter.setOneOffOnSeatClickListener { seatId, _ ->
             val guardianAction = TakeActionRequest.GuardAction.newBuilder().setSeatId(seatId)
             val request = createTakeActionRequestBuilder().setGuard(guardianAction).build()
             addUiThreadCallback(gameService!!.takeAction(request)) {
@@ -238,7 +159,7 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
 
     private fun takeWerewolfAction() {
         val snackbar = Snackbar.make(view!!, R.string.snackbar_werewolf_action, LENGTH_INDEFINITE).apply { show() }
-        seatAdapter?.setOneOffOnSeatClickListener { seatId, _ ->
+        seatAdapter.setOneOffOnSeatClickListener { seatId, _ ->
             val werewolfAction = TakeActionRequest.WerewolfAction.newBuilder().setSeatId(seatId)
             val request = createTakeActionRequestBuilder().setWerewolf(werewolfAction).build()
             addUiThreadCallback(gameService!!.takeAction(request)) {
@@ -293,7 +214,7 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
 
     private fun poison() {
         val snackbar = Snackbar.make(view!!, R.string.snackbar_witch_poison_action, LENGTH_INDEFINITE).apply { show() }
-        seatAdapter?.setOneOffOnSeatClickListener { seatId, _ ->
+        seatAdapter.setOneOffOnSeatClickListener { seatId, _ ->
             val witchAction = TakeActionRequest.WitchAction.newBuilder().setPoisonSeatId(seatId)
             val request = createTakeActionRequestBuilder().setWitch(witchAction).build()
             addUiThreadCallback(gameService?.takeAction(request)) {
@@ -305,7 +226,7 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
 
     private fun takeSeerAction() {
         val snackbar = Snackbar.make(view!!, R.string.snackbar_seer_action, LENGTH_INDEFINITE).apply { show() }
-        seatAdapter?.setOneOffOnSeatClickListener { seatId, oneBasedIndex ->
+        seatAdapter.setOneOffOnSeatClickListener { seatId, oneBasedIndex ->
             val seerAction = TakeActionRequest.SeerAction.newBuilder().setSeatId(seatId)
             val request = createTakeActionRequestBuilder().setSeer(seerAction).build()
             addUiThreadCallback(gameService?.takeAction(request)) { response ->
@@ -334,7 +255,7 @@ class RoomFragment : BaseFragment(), RoomService.Listener {
     }
 
     private fun createTakeActionRequestBuilder(): TakeActionRequest.Builder {
-        val gameId = roomService!!.room.game.id
+        val gameId = roomService.room.game.id
         return TakeActionRequest.newBuilder().setGameId(gameId)
     }
 }

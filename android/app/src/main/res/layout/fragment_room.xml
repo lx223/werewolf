@@ -29,53 +29,52 @@
         android:layout_weight="1" />
 
     <LinearLayout
+        android:id="@+id/host_action_btns"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/gutter_width">
-
-        <Button
-            android:id="@+id/btn_check_role"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/btn_check_role"
-            android:visibility="invisible" />
-
+        android:paddingHorizontal="@dimen/gutter_width"
+        android:paddingTop="@dimen/gutter_width"
+        android:paddingBottom="0dp"
+        android:visibility="gone">
         <Button
             android:id="@+id/btn_reassign_roles"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/gutter_width"
             android:layout_weight="1"
-            android:text="@string/btn_reassign_roles"
-            android:visibility="gone" />
-
+            android:text="@string/btn_reassign_roles" />
         <Button
             android:id="@+id/btn_start_game"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/gutter_width"
             android:layout_weight="1"
-            android:text="@string/btn_start_game"
-            android:visibility="gone" />
-
+            android:text="@string/btn_start_game" />
         <Button
             android:id="@+id/btn_result"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/gutter_width"
             android:layout_weight="1"
-            android:text="@string/btn_result"
-            android:visibility="gone" />
+            android:text="@string/btn_result" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/gutter_width">
+        <Button
+            android:id="@+id/btn_check_role"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btn_check_role" />
         <Button
             android:id="@+id/btn_take_action"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/gutter_width"
             android:layout_weight="1"
-            android:text="@string/btn_take_action"
-            android:visibility="invisible" />
+            android:text="@string/btn_take_action" />
     </LinearLayout>
 </LinearLayout>
 

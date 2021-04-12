@@ -19,7 +19,6 @@ class GameActivity : FragmentActivity(), GameEventListener {
     var gameService: GameServiceGrpc.GameServiceFutureStub? = null
     var userId: String? = null
     var roomId: String? = null
-    var isHost = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +42,6 @@ class GameActivity : FragmentActivity(), GameEventListener {
     override fun onCreateRoomSuccess(roomId: String, userId: String) {
         this.userId = userId
         this.roomId = roomId
-        isHost = true
         saveRoomInfo(RoomInfo(roomId, userId))
         showFragment(GameConfigFragment())
     }
@@ -51,13 +49,12 @@ class GameActivity : FragmentActivity(), GameEventListener {
     override fun onJoinRoomSuccess(roomId: String, userId: String) {
         this.userId = userId
         this.roomId = roomId
-        isHost = false
         saveRoomInfo(RoomInfo(roomId, userId))
         showFragment(RoomFragment())
     }
 
     override fun onUpdateGameConfigSuccess() {
-        showFragment(RoomFragment())
+        showFragment(HostRoomFragment())
     }
 
     override fun onCheckRoleButtonClick() {

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import androidx.annotation.ColorRes
+import androidx.annotation.UiThread
 import lx223.werewolf.proto.Werewolf.Seat
 import lx223.werewolf.ui.SquareTextView
 
@@ -13,7 +14,7 @@ private const val COLOR_RES_EMPTY_SEAT = android.R.color.holo_green_dark
 private const val COLOR_RES_TAKEN_SEAT = android.R.color.holo_orange_dark
 private const val COLOR_RES_MY_SEAT = android.R.color.holo_red_light
 
-class SeatAdapter(private val context: Context, private val userId: String?) : BaseAdapter() {
+class SeatAdapter(private val context: Context, private val userId: String) : BaseAdapter() {
 
     interface OnSeatClickListener {
         fun onSeatClicked(seatId: String, oneBasedIndex: Int)
@@ -22,20 +23,23 @@ class SeatAdapter(private val context: Context, private val userId: String?) : B
     private var seats: List<Seat> = arrayListOf()
     private var listener: OnSeatClickListener? = null
 
+    @UiThread
     fun setSeats(seats: List<Seat>) {
         this.seats = seats
         notifyDataSetChanged()
     }
 
-    fun setTakeSeatListener(takeSeatCallback: (String) -> Unit) {
+    fun allSeated() = seats.all { it.hasUser() }
+
+    fun setOnClickListener(callback: (String) -> Unit) {
         listener = object : OnSeatClickListener {
             override fun onSeatClicked(seatId: String, oneBasedIndex: Int) {
-                takeSeatCallback(seatId)
+                callback(seatId)
             }
         }
     }
 
-    fun clearTakeSeatListener() {
+    fun clearOnClickListener() {
         listener = null
     }
 
