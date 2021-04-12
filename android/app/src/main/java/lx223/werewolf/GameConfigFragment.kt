@@ -43,13 +43,13 @@ class GameConfigFragment : BaseFragment() {
 
     private fun updateGameConfig(roleCounts: HashMap<Role, Int>) {
         val request = buildUpdateGameConfigRequest(roleCounts)
-        addUiThreadCallback(gameService?.updateGameConfig(request)) {
-            eventListener?.onUpdateGameConfigSuccess()
+        addUiThreadCallback(gameService.updateGameConfig(request)) {
+            eventListener.onUpdateGameConfigSuccess()
         }
     }
 
     private fun buildUpdateGameConfigRequest(counts: Map<Role, Int>): UpdateGameConfigRequest {
-        val builder = UpdateGameConfigRequest.newBuilder().setRoomId(activity?.roomId)
+        val builder = UpdateGameConfigRequest.newBuilder().setRoomId(activity.roomId)
         counts.filter { entry -> entry.value > 0 }.forEach { (role, count) ->
             builder.addRoleCounts(RoleCount.newBuilder().setRole(role).setCount(count).build())
         }

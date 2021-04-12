@@ -26,15 +26,15 @@ open class RoomFragment : BaseFragment(), RoomService.Listener {
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
         _binding = FragmentRoomBinding.inflate(inflater, container, false)
-        _roomService = RoomService(activity?.roomId!!, this, gameService!!)
-        _seatAdapter = SeatAdapter(context!!, activity!!.userId!!)
+        _roomService = RoomService(activity.roomId!!, this, gameService)
+        _seatAdapter = SeatAdapter(context!!, activity.userId!!)
                 .apply { setOnClickListener(this@RoomFragment::takeSeat) }
 
-        binding.title.text = getString(R.string.fragment_room_title_room_id, activity?.roomId)
+        binding.title.text = getString(R.string.fragment_room_title_room_id, activity.roomId)
         binding.gridSeats.adapter = seatAdapter
         binding.btnCheckRole.isEnabled = false
         binding.btnTakeAction.isEnabled = false
-        binding.btnCheckRole.setOnClickListener { eventListener?.onCheckRoleButtonClick() }
+        binding.btnCheckRole.setOnClickListener { eventListener.onCheckRoleButtonClick() }
         binding.btnTakeAction.setOnClickListener { takeAction() }
         return binding.root
     }
@@ -60,7 +60,7 @@ open class RoomFragment : BaseFragment(), RoomService.Listener {
     override fun onSeatsChanged(seats: List<Seat>) {
         runOnUiThread {
             seatAdapter.setSeats(seats)
-            val isSeated = seats.any { it.user.id == activity?.userId }
+            val isSeated = seats.any { it.user.id == activity.userId }
             if (isSeated) {
                 binding.btnCheckRole.isEnabled = true
                 binding.btnTakeAction.isEnabled = true
@@ -75,13 +75,13 @@ open class RoomFragment : BaseFragment(), RoomService.Listener {
     }
 
     private fun takeSeat(seatId: String) {
-        val request = TakeSeatRequest.newBuilder().setSeatId(seatId).setUserId(activity?.userId).build()
-        addUiThreadCallback(gameService?.takeSeat(request)) { /* noop */ }
+        val request = TakeSeatRequest.newBuilder().setSeatId(seatId).setUserId(activity.userId).build()
+        addUiThreadCallback(gameService.takeSeat(request)) { /* noop */ }
     }
 
     private fun takeAction() {
         val room = roomService.room
-        val myRole = room.seatsList.first { it.user.id == activity?.userId }.role
+        val myRole = room.seatsList.first { it.user.id == activity.userId }.role
         val gameState = room.game.state
         if (!canTakeAction(myRole, gameState)) {
             showNoActionSnackbar()
@@ -126,7 +126,7 @@ open class RoomFragment : BaseFragment(), RoomService.Listener {
         seatAdapter.setOneOffOnSeatClickListener { seatId, _ ->
             val orphanAction = TakeActionRequest.OrphanAction.newBuilder().setSeatId(seatId)
             val request = createTakeActionRequestBuilder().setOrphan(orphanAction).build()
-            addUiThreadCallback(gameService!!.takeAction(request)) {
+            addUiThreadCallback(gameService.takeAction(request)) {
                 snackbar.dismiss()
                 showActionSucceededSnackbar()
             }
@@ -138,7 +138,7 @@ open class RoomFragment : BaseFragment(), RoomService.Listener {
         seatAdapter.setOneOffOnSeatClickListener { seatId, _ ->
             val halfBloodAction = TakeActionRequest.HalfBloodAction.newBuilder().setSeatId(seatId)
             val request = createTakeActionRequestBuilder().setHalfBlood(halfBloodAction).build()
-            addUiThreadCallback(gameService!!.takeAction(request)) {
+            addUiThreadCallback(gameService.takeAction(request)) {
                 snackbar.dismiss()
                 showActionSucceededSnackbar()
             }
@@ -150,7 +150,7 @@ open class RoomFragment : BaseFragment(), RoomService.Listener {
         seatAdapter.setOneOffOnSeatClickListener { seatId, _ ->
             val guardianAction = TakeActionRequest.GuardAction.newBuilder().setSeatId(seatId)
             val request = createTakeActionRequestBuilder().setGuard(guardianAction).build()
-            addUiThreadCallback(gameService!!.takeAction(request)) {
+            addUiThreadCallback(gameService.takeAction(request)) {
                 snackbar.dismiss()
                 showActionSucceededSnackbar()
             }
@@ -162,7 +162,7 @@ open class RoomFragment : BaseFragment(), RoomService.Listener {
         seatAdapter.setOneOffOnSeatClickListener { seatId, _ ->
             val werewolfAction = TakeActionRequest.WerewolfAction.newBuilder().setSeatId(seatId)
             val request = createTakeActionRequestBuilder().setWerewolf(werewolfAction).build()
-            addUiThreadCallback(gameService!!.takeAction(request)) {
+            addUiThreadCallback(gameService.takeAction(request)) {
                 snackbar.dismiss()
                 showActionSucceededSnackbar()
             }
@@ -171,7 +171,7 @@ open class RoomFragment : BaseFragment(), RoomService.Listener {
 
     private fun takeWitchAction(room: Room) {
         val killedPlayerSeatId = room.game.killedSeatIdsList?.firstOrNull()
-        val mySeatId = room.seatsList.first { it.user.id == activity?.userId }.id
+        val mySeatId = room.seatsList.first { it.user.id == activity.userId }.id
         when (killedPlayerSeatId) {
             null -> showPoisonDialog(R.string.dialog_witch_poison_action_nobody_killed)
             mySeatId -> showPoisonDialog(R.string.dialog_witch_poison_action_witch_killed)
@@ -201,13 +201,13 @@ open class RoomFragment : BaseFragment(), RoomService.Listener {
     private fun witchNoAction() {
         val witchAction = TakeActionRequest.WitchAction.newBuilder()
         val request = createTakeActionRequestBuilder().setWitch(witchAction).build()
-        addUiThreadCallback(gameService?.takeAction(request)) { /* noop */ }
+        addUiThreadCallback(gameService.takeAction(request)) { /* noop */ }
     }
 
     private fun cure(seatId: String) {
         val witchAction = TakeActionRequest.WitchAction.newBuilder().setCureSeatId(seatId)
         val request = createTakeActionRequestBuilder().setWitch(witchAction).build()
-        addUiThreadCallback(gameService?.takeAction(request)) {
+        addUiThreadCallback(gameService.takeAction(request)) {
             showActionSucceededSnackbar()
         }
     }
@@ -217,7 +217,7 @@ open class RoomFragment : BaseFragment(), RoomService.Listener {
         seatAdapter.setOneOffOnSeatClickListener { seatId, _ ->
             val witchAction = TakeActionRequest.WitchAction.newBuilder().setPoisonSeatId(seatId)
             val request = createTakeActionRequestBuilder().setWitch(witchAction).build()
-            addUiThreadCallback(gameService?.takeAction(request)) {
+            addUiThreadCallback(gameService.takeAction(request)) {
                 snackbar.dismiss()
                 showActionSucceededSnackbar()
             }
@@ -229,7 +229,7 @@ open class RoomFragment : BaseFragment(), RoomService.Listener {
         seatAdapter.setOneOffOnSeatClickListener { seatId, oneBasedIndex ->
             val seerAction = TakeActionRequest.SeerAction.newBuilder().setSeatId(seatId)
             val request = createTakeActionRequestBuilder().setSeer(seerAction).build()
-            addUiThreadCallback(gameService?.takeAction(request)) { response ->
+            addUiThreadCallback(gameService.takeAction(request)) { response ->
                 val seerRuling = response.seer.ruling
                 val seerResultResId =
                         if (seerRuling == Ruling.POSITIVE)
@@ -244,7 +244,7 @@ open class RoomFragment : BaseFragment(), RoomService.Listener {
     private fun takeHunterAction() {
         val hunterAction = TakeActionRequest.HunterAction.newBuilder()
         val request = createTakeActionRequestBuilder().setHunter(hunterAction).build()
-        addUiThreadCallback(gameService?.takeAction(request)) { response ->
+        addUiThreadCallback(gameService.takeAction(request)) { response ->
             val hunterRuling = response.hunter.ruling
             val hunterResultResId =
                     if (hunterRuling == Ruling.POSITIVE)

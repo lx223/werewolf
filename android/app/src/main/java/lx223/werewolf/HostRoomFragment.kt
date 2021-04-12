@@ -68,8 +68,8 @@ class HostRoomFragment : RoomFragment() {
 
     private fun reassignRoles() {
         binding.btnReassignRoles.isEnabled = false
-        val request = Werewolf.ReassignRolesRequest.newBuilder().setRoomId(activity?.roomId).build()
-        addUiThreadCallback(gameService?.reassignRoles(request)) {
+        val request = Werewolf.ReassignRolesRequest.newBuilder().setRoomId(activity.roomId).build()
+        addUiThreadCallback(gameService.reassignRoles(request)) {
             audioManager.reset()
             binding.btnReassignRoles.isEnabled = true
             binding.btnStartGame.isEnabled = seatAdapter.allSeated()
@@ -78,8 +78,8 @@ class HostRoomFragment : RoomFragment() {
     }
 
     private fun startGame() {
-        val request = Werewolf.StartGameRequest.newBuilder().setRoomId(activity?.roomId).build()
-        addUiThreadCallback(gameService?.startGame(request)) {
+        val request = Werewolf.StartGameRequest.newBuilder().setRoomId(activity.roomId).build()
+        addUiThreadCallback(gameService.startGame(request)) {
             binding.btnReassignRoles.isEnabled = false
             binding.btnStartGame.isEnabled = false
         }

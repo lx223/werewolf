@@ -10,29 +10,31 @@ import java.util.function.Consumer
 
 abstract class BaseFragment : Fragment() {
 
+    // TODO: refactor and remove _activity.
+    private var _activity: GameActivity? = null
     private var _eventListener: GameEventListener? = null
-    val eventListener get() = _eventListener
+    private var _gameService: GameServiceGrpc.GameServiceFutureStub? = null
 
-    // TODO: change following variables to getter pattern.
-    var activity: GameActivity? = null
-    var gameService: GameServiceGrpc.GameServiceFutureStub? = null
+    internal val activity get() = _activity!!
+    internal val eventListener get() = _eventListener!!
+    internal val gameService get() = _gameService!!
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        _eventListener = context as GameEventListener
-        activity = context as GameActivity
-        gameService = activity?.gameService
+        _activity = context as GameActivity
+        _eventListener = context
+        _gameService = _activity?.gameService
     }
 
     override fun onDetach() {
         super.onDetach()
+        _activity = null
         _eventListener = null
-        activity = null
-        gameService = null
+        _gameService = null
     }
 
     fun runOnUiThread(action: () -> Unit) {
-        activity?.runOnUiThread(action)
+        activity.runOnUiThread(action)
     }
 
     fun <V> addUiThreadCallback(future: ListenableFuture<V>?, callback: Consumer<V>) {
