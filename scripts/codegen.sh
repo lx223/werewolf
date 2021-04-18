@@ -19,23 +19,23 @@ protoc \
 # Code-gen Go files
 rm -rf $GO_OUT/*
 for p in `find $PROTO_ROOT -name "*.proto" -type f`; do
-    protoc -I$PROTO_ROOT --go_out=plugins=grpc:$GO_OUT $p
+    protoc -I $PROTO_ROOT --go_out=plugins=grpc:$GO_OUT $p
 done
-echo "Finished generating Go files"
+echo "Finished generating Go proto for server"
 
 # Copy *.proto to Android project
 rm -rf $JAVA_PROTO_DIR
 cp -R $PROTO_ROOT $JAVA_PROTO_DIR
-echo "Finished coping proto to Android project"
+echo "Finished copying proto to Android client"
 
 # Code-gen TS files
 pushd $REPO_BASE/react
 npm install
 popd
 rm -rf $WEB_OUT/*
-protoc -I$PROTO_ROOT \
+protoc -I $PROTO_ROOT \
     --plugin=protoc-gen-ts=./react/node_modules/.bin/protoc-gen-ts \
     --ts_out=service=true:$WEB_OUT \
     --js_out=import_style=commonjs,binary:$WEB_OUT \
     ${PROTO_ROOT}/*.proto
-echo "Finished generating web files"
+echo "Finished generating React proto for web client"
