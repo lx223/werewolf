@@ -10,6 +10,7 @@ service GameService {
     rpc JoinRoom (JoinRoomRequest) returns (JoinRoomResponse);
     rpc GetRoom (GetRoomRequest) returns (GetRoomResponse);
     rpc TakeSeat (TakeSeatRequest) returns (TakeSeatResponse);
+    rpc CheckRole (CheckRoleRequest) returns (CheckRoleResponse);
     rpc ReassignRoles (ReassignRolesRequest) returns (ReassignRolesResponse);
 
     // This removes any users from a seat.
@@ -70,6 +71,14 @@ message TakeSeatRequest {
 }
 
 message TakeSeatResponse {}
+
+message CheckRoleRequest {
+    string seat_id = 1;
+}
+
+message CheckRoleResponse {
+    Role role = 1;
+}
 
 message ReassignRolesRequest {
     string room_id = 1;

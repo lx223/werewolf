@@ -55,6 +55,15 @@ GameService.TakeSeat = {
   responseType: werewolf_pb.TakeSeatResponse
 };
 
+GameService.CheckRole = {
+  methodName: "CheckRole",
+  service: GameService,
+  requestStream: false,
+  responseStream: false,
+  requestType: werewolf_pb.CheckRoleRequest,
+  responseType: werewolf_pb.CheckRoleResponse
+};
+
 GameService.ReassignRoles = {
   methodName: "ReassignRoles",
   service: GameService,
@@ -191,6 +200,28 @@ GameServiceClient.prototype.takeSeat = function takeSeat(requestMessage, metadat
     callback = arguments[1];
   }
   grpc.unary(GameService.TakeSeat, {
+    request: requestMessage,
+    host: this.serviceHost,
+    metadata: metadata,
+    transport: this.options.transport,
+    debug: this.options.debug,
+    onEnd: function (response) {
+      if (callback) {
+        if (response.status !== grpc.Code.OK) {
+          callback(Object.assign(new Error(response.statusMessage), { code: response.status, metadata: response.trailers }), null);
+        } else {
+          callback(null, response.message);
+        }
+      }
+    }
+  });
+};
+
+GameServiceClient.prototype.checkRole = function checkRole(requestMessage, metadata, callback) {
+  if (arguments.length === 2) {
+    callback = arguments[1];
+  }
+  grpc.unary(GameService.CheckRole, {
     request: requestMessage,
     host: this.serviceHost,
     metadata: metadata,
