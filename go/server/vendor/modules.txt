@@ -30,7 +30,7 @@ github.com/spf13/pflag
 # github.com/stretchr/testify v1.2.2
 ## explicit
 github.com/stretchr/testify/assert
-# golang.org/x/net v0.0.0-20180530234432-1e491301e022
+# golang.org/x/net v0.0.0-20220722155237-a158d28d115b
 ## explicit
 golang.org/x/net/context
 golang.org/x/net/http/httpguts
@@ -39,9 +39,7 @@ golang.org/x/net/http2/hpack
 golang.org/x/net/idna
 golang.org/x/net/internal/timeseries
 golang.org/x/net/trace
-# golang.org/x/sync v0.0.0-20190412183630-56d357773e84
-## explicit
-# golang.org/x/text v0.3.0
+# golang.org/x/text v0.3.8
 ## explicit
 golang.org/x/text/secure/bidirule
 golang.org/x/text/transform
